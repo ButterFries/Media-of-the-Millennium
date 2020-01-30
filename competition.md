@@ -18,4 +18,12 @@ Letterboxd - The social network for film lovers
 
 -----------------------------------------------------------------
 
+Common Sense Media - Source of entertainment and technology reviews
+- https://www.commonsensemedia.org/
+- Common Sense Media also has some features that we would like to include in our app, the main being an in depth review with ratings of specific categories for a piece of media such as: positive messages, language, violence, etc. This is geared towards adults who are looking out for what their child is watching as well as what they may want to watch with their family. We would like to expand upon this idea so that parents may check reviews for not only movies (as Common Sense does) but other media forms as well.
+- Our product will include similar in depth category ratings but will not only be a place for parents but all people that enjoy media.
+- The competitors made this product with a focus on family (usually parents watching out for their children) and so it is designed more closely in that regard for parents. Our goal is to have that available but also a bigger community that can judge for themselves (not purely based on family values).
+- In this way the users include parents and everyday media consumers.
+- The competitors probably did not consider this focus because it is a much broader concept then what they originally had in mind, it would require more resources and money (they are a nonprofit so this would be much tougher to accomplish).
+
 X

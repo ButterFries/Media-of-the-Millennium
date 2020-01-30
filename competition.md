@@ -15,7 +15,14 @@ Letterboxd - The social network for film lovers
 - The users in both cases are those interested in media, those who want to review what others think of some media title, and those who want to create a review of some media title.    
 - Letterboxd has the capacity to create the same experience as we hope to create, however the scale of this expansion is much larger and likely harder to administrate which may be the reason why they choose to focus on film titles.      
 
+-----------------------------------------------------------------
 
+IMDb - the world's most popular and authoritative source for movie, TV and celebrity content. 
+- https://www.imdb.com/
+- IMDb much like Letterboxd share basic features we want to incorporate within our app. Some of these features include the ability to review media, create lists & polls, and personal user data and profiles. However, with the closing of the IMDb forums in the early 10s, the app has lacked a specific social experience that people crave.
+- While both Letterboxd and IDMb focus solely on movies and TV shows, we want to create a media database that will cover other forms of media that do not have the same type of service. Namely starting with a music database and possibly adding in.
+- The users that would be interested with this app would be people have a strong interest in media but who want to share their love for that media with others through lists and reviews.
+- IMDb for a long part of its early life had a greater focus on social aspects, but at the turn of the decade decided to solely focus on the movies and tv shows as well as news revolving around these two forms of media. Furthermore, the company switched focus to creating their own original media as well.
 -----------------------------------------------------------------
 
 Common Sense Media - Source of entertainment and technology reviews
@@ -26,4 +33,4 @@ Common Sense Media - Source of entertainment and technology reviews
 - In this way the users include parents and everyday media consumers.
 - The competitors probably did not consider this focus because it is a much broader concept then what they originally had in mind, it would require more resources and money (they are a nonprofit so this would be much tougher to accomplish).
 
-X
+-----------------------------------------------------------------

@@ -1,0 +1,134 @@
+https://www.sqlitetutorial.net/sqlite-java/
+
+
+
+
+javac appServer.java
+java -classpath '.:sqlite-jdbc-3.27.2.1.jar' appServer
+//not sure what to do to include in the app build, add to classpath somewhere
+
+
+-------------------------------------------------------------------------------
+
+./sqlite3 appdatabase.db "CREATE TABLE accounts (username TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL);
+
+### password should be converted to a hash via hashing function such as md5 or sha256 for security
+### can also salt passwords (add something to the password string before hashing) to make it even safer   
+### https://www.thesslstore.com/blog/difference-encryption-hashing-salting/
+
+./sqlite3 appdatabase.db "INSERT INTO accounts (username, email, password) VALUES ('example', 'email', 'passwordhash')";
+
+### example of hashing
+echo "mypassword" | md5sum
+>>  d84c7934a7a786d26da3d34d5f7c6c86  -
+
+
+### example of salting the password
+saltshaker=pepper; echo "mypassword"$saltshaker
+>>  mypasswordpepper
+saltshaker=pepper; echo "mypassword"$saltshaker | md5sum
+>>  338504fc625032d49565c3eb08dfd1f4  -
+
+
+### extra safety by using pbkdf2
+https://security.stackexchange.com/questions/16354/whats-the-advantage-of-using-pbkdf2-vs-sha256-to-generate-an-aes-encryption-key
+
+
+================================================================================
+
+import java.sql.*;
+
+main(){
+	Class.forName("org.sqlite.JDBC");
+
+	handler(args);
+}
+
+handler(args){ 	//(if using client-server-db model)
+	//handle client requests 
+	//when req is received then "communicate" with db
+}
+
+
+communicate(args){
+	Connection c = null;
+	Statement stmt = null;
+
+
+	try{
+		c = DriverManager.getConnection("jdbc:sqlite:db/shard_"+shardID+".db");
+		c.setAutoCommit(true);
+		stmt = c.createStatement();
+	} catch (exception) {/*etc*/}
+
+}
+
+write_to_DB(stmt){
+	String sqlReq = "INSERT OR REPLACE INTO table (attr_1, attr_2) VALUES(?,?)";
+	PreparedStatement pstmt = c.prepareStatement(sqlReq);
+	pstmt.setString(1, "attribute 1 value");
+	pstmt.setString(2, "attribute 2 value");
+	try {
+		pstmt.executeUpdate();
+	} 
+	catch (SQLException ex) {/*handle it*/}
+}
+
+
+
+read_from_DB(stmt){
+	String sqlReq = "SELECT * FROM table WHERE example = 'something'";
+	try {
+		ResultSet rs = stmt.executeQuery( sqlReq );
+	} 
+	catch (SQLException ex) {/*handle it*/}
+
+	if (rs.next()){ //found something
+		String attribute = "some_attr";
+		String value = rs.getString(attribute);
+	} else { //didnt find
+		//handle failure
+	}
+}
+
+
+add_account(stmt, u_name, e_addr, pw){
+	String sqlReq = "INSERT OR REPLACE INTO accounts (username, email, passwordhash) VALUES(?,?,?)";
+	PreparedStatement pstmt = c.prepareStatement(sqlReq);
+
+	String saltshaker = "password_security++";
+	String pass_hash = hashingFunction( pw + saltshaker );	
+
+	pstmt.setString(1, u_name);
+	pstmt.setString(2, e_addr);
+	pstmt.setString(3, pass_hash);
+	try {
+		pstmt.executeUpdate();
+	} 
+	catch (SQLException ex) {/*handle it*/}
+}
+
+
+hashingFunction(); //TODO or rather to be determined
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

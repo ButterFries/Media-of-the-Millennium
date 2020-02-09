@@ -35,6 +35,9 @@ sqlite> PRAGMA foreign_keys = ON;
 ### administrator table
 CREATE TABLE admins (adminID INTEGER PRIMARY KEY, adminLevel SHORT NOT NULL DEFAULT 1, userID INTEGER NOT NULL, FOREIGN KEY (userID) REFERENCES accounts (userID));
 ### we could have something like adminLevels where each level has different privledges. otherwise ignore it when adding
+INSERT INTO admins (userID) VALUES (~~~);
+INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
+
 
 
 ### media titles table and insert
@@ -167,6 +170,11 @@ saltshaker=pepper; echo "mypassword"$saltshaker | md5sum
 
 ### extra safety by using pbkdf2
 https://security.stackexchange.com/questions/16354/whats-the-advantage-of-using-pbkdf2-vs-sha256-to-generate-an-aes-encryption-key
+
+
+###  for admin accounts just do it manually in the terminal commandline using
+INSERT INTO admins (userID) VALUES (~~~);
+INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 
 --------------------------------------------------------------------------------
 

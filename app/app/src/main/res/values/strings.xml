@@ -1,0 +1,10 @@
+<resources>
+    <!-- Global -->
+    <string name="app_name">MotM</string>
+
+    <!-- Registration Page -->
+    <string name="registration_login_button">Login</string>
+    <string name="registration_signup_button">Signup</string>
+    <string name="registration_guest_button">or continue as a guest</string>
+
+</resources>

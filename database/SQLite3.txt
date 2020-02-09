@@ -196,7 +196,8 @@ add_account(conn, u_name, e_addr, pw){
 }
 
 
-hashingFunction(); //TODO or rather to be determined
+hashingFunction(pw); //to be determined
+//see passwordHashing.txt
 
 
 

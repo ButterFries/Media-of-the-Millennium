@@ -41,8 +41,9 @@ INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 
 
 ### media titles table and insert
-./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, summary TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
-./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, summary) VALUES ('example', 'this is very nice media, much good')";
+./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
+./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary) VALUES ('example', 'testtype', 'this is very nice media, much good')";
+# use media types {'cinema', 'music', 'tv-series', 'video game', 'novel'}
 
 
 ###  ratings table
@@ -51,26 +52,15 @@ CREATE TABLE ratings (ratingID INTEGER PRIMARY KEY, rating FLOAT NOT NULL, userI
 
 
 
+!!!!!!!!!!!!   everything below here has been put in a java file   !!!!!!!!!!!!!
+
+
+
 ================================================================================
 ###   generalized DB transactions   ###
 ================================================================================
 
 import java.sql.*;
-
-
-public static final String DB_URL = "jdbc:sqlite:database.db";
-public static final String DRIVER = "org.sqlite.JDBC";
-
-public static Connection getConnection() throws ClassNotFoundException {
-    Class.forName(DRIVER);
-    Connection connection = null;
-    try {
-        SQLiteConfig config = new SQLiteConfig();
-        config.enforceForeignKeys(true);
-        connection = DriverManager.getConnection(DB_URL,config.toProperties());
-    } catch (SQLException ex) {}
-    return connection;
-}
 
 
 main(){
@@ -94,10 +84,12 @@ connect(args){
 	Connection conn = null;
 	Statement stmt = null;
 	try{
+		/*
 		SQLiteConfig config = new SQLiteConfig();
 		config.enforceForeignKeys(true);
-		conn = DriverManager.getConnection("jdbc:sqlite:db/appdatabase.db",config.toProperties());
-		  //conn = DriverManager.getConnection("jdbc:sqlite:db/appdatabase.db");
+		conn = DriverManager.getConnection("jdbc:sqlite:db/appdatabase.db",config.toProperties());*/
+		conn = DriverManager.getConnection("jdbc:sqlite:db/appdatabase.db"); 
+		conn.createStatement().executeUpdate("PRAGMA foreign_keys = ON; "); //work around for enforcing foreign key constraint
 		conn.setAutoCommit(true);
 	} catch (exception) {/*etc*/}
 	return conn;
@@ -204,14 +196,12 @@ hashingFunction(pw); //to be determined
 
 
 
-
-
-
 ================================================================================
 ###  media page db stuff  ###
 ================================================================================
 ##  mediaID -- unique integer id, primary key
 ##  title -- the title/name of the movie/music/game/etc
+##  mediaType -- the type of media;  {'cinema', 'music', 'tv-series', 'video game', 'novel'}
 ##  summary -- string of words
 ##  rating -- float, current rating
 ##  numRaters -- total number of all people who've rated this title
@@ -223,21 +213,23 @@ hashingFunction(pw); //to be determined
 
 ./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, summary TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
 
-./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, summary) VALUES ('example', 'this is very nice media, much good')";
+./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary) VALUES ('example', 'testtype', 'this is very nice media, much good')";
 
 
 --------------------------------------------------------------------------------
 
-add_media_title(conn, title, summary){
-	String sqlReq = "INSERT INTO mediaTitles (title, summary) VALUES(?,?)";
+add_media_title(conn, title, mediaType,summary){
+	String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary) VALUES(?,?,?)";
 	PreparedStatement pstmt = conn.prepareStatement(sqlReq);
 	pstmt.setString(1, title);
-	pstmt.setString(2, summary);
+	pstmt.setString(2, mediaType);
+	pstmt.setString(3, summary);
 	try {
 		pstmt.executeUpdate();
 	} 
 	catch (SQLException ex) {/*handle it*/}
 }
+
 
 
 
@@ -332,7 +324,7 @@ update/add_mediaRating(conn, mediaId, newRating){
 hasRated(conn, userId, mediaId){
 	//check if user already rated, if so either change the entry or reject it
 	stmt = conn.createStatement();
-	String sqlReq = "SELECT (count(*) > 0) FROM ratings WHERE mediaID = "+mediaId+" AND usedID = "+userId;
+	String sqlReq = "SELECT (count(*) > 0) FROM ratings WHERE mediaID = "+mediaId+" AND userID = "+userId;
 	try {
 		ResultSet rs = stmt.executeQuery( sqlReq );
 	} 
@@ -348,7 +340,7 @@ hasRated(conn, userId, mediaId){
 get_userMediaRating(conn, userId, mediaId){
 	//check if user already rated, if so either change the entry or reject it
 	stmt = conn.createStatement();
-	String sqlReq = "SELECT * FROM ratings WHERE mediaID = "+mediaId+" AND usedID = "+userId;
+	String sqlReq = "SELECT * FROM ratings WHERE mediaID = "+mediaId+" AND userID = "+userId;
 	try {
 		ResultSet rs = stmt.executeQuery( sqlReq );
 	} 

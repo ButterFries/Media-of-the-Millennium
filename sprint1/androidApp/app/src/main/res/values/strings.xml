@@ -8,8 +8,13 @@
     <string name="registration_guest_button">or continue as a guest</string>
 
     <!-- Media Profile Page -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="media_profile_image">media image</string>
-    <string name="summary_info">Summary_info</string>
+    <string name="media_profile_image">media_image</string>
+    <string name="summary_info">summary_info</string>
+    <string name="title">title</string>
+    <string name="tags">tags</string>
+    <string name="rate">rate</string>
+    <string name="review">review</string>
+    <string name="add_to_favorites">add to favorites</string>
+    <string name="media_image" />
 
 </resources>

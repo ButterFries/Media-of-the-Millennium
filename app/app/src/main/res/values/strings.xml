@@ -17,5 +17,9 @@
     <string name="add_to_favorites">add to favorites</string>
     <string name="media_image" />
 
+    <!-- Media Reviews Page -->
+    <string name="AddReview">Add Review</string>
+    <string name="reviewpagetitle">Title</string>
+
 
 </resources>

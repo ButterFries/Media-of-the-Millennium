@@ -17,8 +17,10 @@ public class RegistrationPageFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TAKE TO LOGIN PAGE
-                LoginPageFragment loginFragment = new LoginPageFragment();
-                ((MainActivity)getActivity()).replaceFragment(loginFragment);
+                //LoginPageFragment loginFragment = new LoginPageFragment();
+                MediaProfilePageFragment rpf = new MediaProfilePageFragment();
+                //ReviewsFragment rpf = new ReviewsFragment();
+                ((MainActivity)getActivity()).replaceFragment(rpf);
             }
         });
         final Button signupButton = v.findViewById(R.id.ActivityRegistrationButtonSignup);

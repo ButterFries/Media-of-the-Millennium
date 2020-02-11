@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         RegistrationPageFragment rpf = new RegistrationPageFragment();
+        //MediaProfilePageFragment rpf = new MediaProfilePageFragment();
         fragmentTransaction.add(R.id.fragment_view, rpf);
-
         fragmentTransaction.commit();
     }
 

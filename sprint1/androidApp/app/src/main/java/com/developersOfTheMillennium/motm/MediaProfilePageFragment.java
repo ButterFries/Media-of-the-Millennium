@@ -1,6 +1,7 @@
 package com.developersOfTheMillennium.motm;
 
 import android.content.Context;
+import android.media.MediaMetadata;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
 
 //import com.example.motm.R;  //TODO?
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MediaProfilePageFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    int ratingScore;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -66,7 +69,11 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        //final RatingBar ratingBar = findViewById(R.id.ratingBar);
+
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,12 +83,18 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
 
         View rootView = inflater.inflate(R.layout.media_profile_page_fragment, container, false);
 
+        // Review Button
         Button reviewBtn = rootView.findViewById(R.id.reviewButton);
-
         reviewBtn.setOnClickListener(this);
+
+        // Rating Bar and rating button
+        final RatingBar ratingBar = rootView.findViewById(R.id.ratingBar);
+        Button ratingButton = rootView.findViewById(R.id.ratingButton);
+        ratingButton.setOnClickListener(this);
 
         return rootView;
     }
+
     public void onClick(View view) {
         Fragment fragment = null;
         switch (view.getId()) {
@@ -90,6 +103,10 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
                 fragment = new ReviewsFragment();
                 replaceFragment(fragment);
                 break;
+            case R.id.ratingBar:
+                //ratingScore = ratingBar.getRating();
+                //String rating = "Rating is :" + ratingBar.getRating();
+
         }
     }
     public void replaceFragment(Fragment someFragment) {

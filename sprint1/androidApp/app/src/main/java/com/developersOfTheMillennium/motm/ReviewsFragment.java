@@ -5,27 +5,23 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-//import com.example.motm.R;  //TODO?
-import androidx.appcompat.app.AppCompatActivity;
+
+//import com.example.motm.R; //TODO?
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MediaProfilePageFragment.OnFragmentInteractionListener} interface
+ * {@link ReviewsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MediaProfilePageFragment#newInstance} factory method to
+ * Use the {@link ReviewsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MediaProfilePageFragment extends Fragment implements View.OnClickListener{
+public class ReviewsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,7 +33,7 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
 
     private OnFragmentInteractionListener mListener;
 
-    public MediaProfilePageFragment() {
+    public ReviewsFragment() {
         // Required empty public constructor
     }
 
@@ -47,11 +43,11 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MediaProfilePageFragment.
+     * @return A new instance of fragment ReviewsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MediaProfilePageFragment newInstance(String param1, String param2) {
-        MediaProfilePageFragment fragment = new MediaProfilePageFragment();
+    public static ReviewsFragment newInstance(String param1, String param2) {
+        ReviewsFragment fragment = new ReviewsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,38 +68,8 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.media_profile_page_fragment, container, false);
-
-        View rootView = inflater.inflate(R.layout.media_profile_page_fragment, container, false);
-
-        Button reviewBtn = rootView.findViewById(R.id.reviewButton);
-
-        reviewBtn.setOnClickListener(this);
-
-        return rootView;
+        return inflater.inflate(R.layout.fragment_reviews, container, false);
     }
-    public void onClick(View view) {
-        Fragment fragment = null;
-        switch (view.getId()) {
-            case R.id.reviewButton:
-                Log.d("MediaProfileFrag","review button pressed");
-                fragment = new ReviewsFragment();
-                replaceFragment(fragment);
-                break;
-        }
-    }
-    public void replaceFragment(Fragment someFragment) {
-        //FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        androidx.fragment.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, someFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-
-
-
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

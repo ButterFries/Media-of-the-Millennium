@@ -17,6 +17,9 @@ public class MediaHomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tvseries);
+
+        //IMPLEMENT A VIEWFLIPPER FOR EACH CATEGORYPIC
+
         //viewFlipper = findViewById(R.id.viewFlipper);
         //rightArrow = findViewById(R.id.RightArrow);
         //leftArrow = findViewById(R.id.LeftArrow);

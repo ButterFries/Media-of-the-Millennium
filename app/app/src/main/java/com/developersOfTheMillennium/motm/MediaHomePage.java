@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MediaHomePage extends AppCompatActivity {
 
     ViewFlipper viewFlipper;
-    Button leftArrow;
-    Button rightArrow;
+    Button left1;
+    Button right1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +20,9 @@ public class MediaHomePage extends AppCompatActivity {
 
         //IMPLEMENT A VIEWFLIPPER FOR EACH CATEGORYPIC
 
-        //viewFlipper = findViewById(R.id.viewFlipper);
-        //rightArrow = findViewById(R.id.RightArrow);
-        //leftArrow = findViewById(R.id.LeftArrow);
+        //viewFlipper = findViewById(R.id.viewFlipper1);
+        right1 = findViewById(R.id.RightComedy);
+        left1 = findViewById(R.id.LeftComedy);
         //leftArrow.setOnClickListener(new View.OnClickListener() {
         //    public void onClick(View v) {
                 //Previous pic

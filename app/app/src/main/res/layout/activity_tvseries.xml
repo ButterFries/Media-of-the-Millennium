@@ -53,18 +53,34 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/TrendingButton"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/ViewFlipper1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.575" />
 
-                <ImageButton
-                    android:id="@+id/TrendingButton"
+                <ViewFlipper
+                    android:id="@+id/ViewFlipper1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    android:src="@color/colorAccent"
+                    tools:layout_editor_absoluteX="110dp"
+                    tools:layout_editor_absoluteY="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/RightTrending"
-                    app:layout_constraintStart_toEndOf="@+id/LeftTrending"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toStartOf="@id/RightTrending"
+                    app:layout_constraintStart_toEndOf="@id/LeftTrending"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+                    <!--ADD MORE IMAGES HERE-->
+
+                    <ImageButton
+                        android:id="@+id/TrendingButton"
+                        android:layout_width="160dp"
+                        android:layout_height="180dp"
+                        android:src="@color/colorAccent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/RightTrending"
+                        app:layout_constraintStart_toEndOf="@id/LeftTrending"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+                </ViewFlipper>
 
                 <Button
                     android:id="@+id/LeftTrending"
@@ -75,12 +91,13 @@
                     android:text="\u003c"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/TrendingButton"
+                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper1"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.575" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </TableRow>
 
         <TableRow
@@ -113,12 +130,23 @@
                     android:text="\u003c"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ComedyPic"
+                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper2"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.575" />
-
+                <ViewFlipper
+                    android:id="@+id/ViewFlipper2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    tools:layout_editor_absoluteX="110dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/RightComedy"
+                    app:layout_constraintStart_toEndOf="@id/LeftComedy"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
                     android:id="@+id/ComedyPic"
                     android:layout_width="160dp"
@@ -129,7 +157,7 @@
                     app:layout_constraintStart_toEndOf="@id/LeftComedy"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
-
+                </ViewFlipper>
                 <Button
                     android:id="@+id/RightComedy"
                     android:layout_width="wrap_content"
@@ -140,7 +168,7 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ComedyPic"
+                    app:layout_constraintStart_toEndOf="@id/ViewFlipper2"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.575" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -168,7 +196,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/ActionLeft"
+                    android:id="@+id/LeftAction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -176,23 +204,34 @@
                     android:text="\u003c"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ActionPic"
+                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
+                <ViewFlipper
+                    android:id="@+id/ViewFlipper3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    tools:layout_editor_absoluteX="110dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/RightAction"
+                    app:layout_constraintStart_toEndOf="@id/LeftAction"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
                     android:id="@+id/ActionPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ActionRight"
-                    app:layout_constraintStart_toEndOf="@id/ActionLeft"
+                    app:layout_constraintEnd_toStartOf="@id/RightAction"
+                    app:layout_constraintStart_toEndOf="@id/LeftAction"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@color/backgroundPrimary" />
-
+                </ViewFlipper>
                 <Button
-                    android:id="@+id/ActionRight"
+                    android:id="@+id/RightAction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -202,7 +241,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.838"
-                    app:layout_constraintStart_toEndOf="@id/ActionPic"
+                    app:layout_constraintStart_toEndOf="@id/ViewFlipper3"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.575" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -238,10 +277,21 @@
                     android:text="\u003c"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/DramaPic"
+                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
+                <ViewFlipper
+                    android:id="@+id/ViewFlipper4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    tools:layout_editor_absoluteX="110dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/RightDrama"
+                    app:layout_constraintStart_toEndOf="@id/LeftDrama"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
                     android:id="@+id/DramaPic"
                     android:layout_width="160dp"
@@ -251,7 +301,7 @@
                     app:layout_constraintStart_toEndOf="@id/LeftDrama"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@color/colorTextBody" />
-
+                </ViewFlipper>
                 <Button
                     android:id="@+id/RightDrama"
                     android:layout_width="wrap_content"
@@ -262,7 +312,7 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/DramaPic"
+                    app:layout_constraintStart_toEndOf="@id/ViewFlipper4"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </TableRow>
@@ -289,7 +339,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/RomanceLeft"
+                    android:id="@+id/LeftRomance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -297,24 +347,35 @@
                     android:text="\u003c"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RomancePic"
+                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
+                <ViewFlipper
+                    android:id="@+id/ViewFlipper5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    tools:layout_editor_absoluteX="110dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/RightRomance"
+                    app:layout_constraintStart_toEndOf="@id/LeftRomance"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
                     android:id="@+id/RomancePic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/RomanceRight"
+                    app:layout_constraintEnd_toStartOf="@+id/RightRomance"
                     app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/RomanceLeft"
+                    app:layout_constraintStart_toEndOf="@+id/LeftRomance"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@color/backgroundPrimary" />
-
+                </ViewFlipper>
                 <Button
-                    android:id="@+id/RomanceRight"
+                    android:id="@+id/RightRomance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -323,7 +384,7 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/RomancePic"
+                    app:layout_constraintStart_toEndOf="@id/ViewFlipper5"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </TableRow>
@@ -350,7 +411,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/SciFiLeft"
+                    android:id="@+id/LeftSciFi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -358,24 +419,35 @@
                     android:text="\u003c"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/SciFiPic"
+                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
+                <ViewFlipper
+                    android:id="@+id/ViewFlipper6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    tools:layout_editor_absoluteX="110dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/RightSciFi"
+                    app:layout_constraintStart_toEndOf="@id/LeftSciFi"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
                     android:id="@+id/SciFiPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/SciFiRight"
+                    app:layout_constraintEnd_toStartOf="@+id/RightSciFi"
                     app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/SciFiLeft"
+                    app:layout_constraintStart_toEndOf="@+id/LeftSciFi"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@color/backgroundPrimary" />
-
+                </ViewFlipper>
                 <Button
-                    android:id="@+id/SciFiRight"
+                    android:id="@+id/RightSciFi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -384,7 +456,7 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/SciFiPic"
+                    app:layout_constraintStart_toEndOf="@id/ViewFlipper6"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </TableRow>
@@ -411,7 +483,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/HistLeft"
+                    android:id="@+id/LeftHist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -419,24 +491,35 @@
                     android:text="\u003c"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/HistPic"
+                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper7"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
+                <ViewFlipper
+                    android:id="@+id/ViewFlipper7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    tools:layout_editor_absoluteX="110dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/RightHist"
+                    app:layout_constraintStart_toEndOf="@id/LeftHist"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
                     android:id="@+id/HistPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/HistRight"
+                    app:layout_constraintEnd_toStartOf="@+id/RightHist"
                     app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/HistLeft"
+                    app:layout_constraintStart_toEndOf="@+id/LeftHist"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@color/backgroundPrimary" />
-
+                </ViewFlipper>
                 <Button
-                    android:id="@+id/HistRight"
+                    android:id="@+id/RightHist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -445,7 +528,7 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/HistPic"
+                    app:layout_constraintStart_toEndOf="@id/ViewFlipper7"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </TableRow>

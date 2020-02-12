@@ -16,7 +16,7 @@
                 android:id="@+id/CategoryTitleTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MOVIES"
+                android:text="MUSIC"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -105,10 +105,10 @@
             android:layout_height="match_parent" >
 
             <TextView
-                android:id="@+id/CategoryComedy"
+                android:id="@+id/CategoryHip-Hop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Comedy"
+                android:text="Hip-Hop"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </TableRow>
@@ -122,7 +122,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/LeftComedy"
+                    android:id="@+id/LeftHipHop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -142,24 +142,24 @@
                     tools:layout_editor_absoluteX="110dp"
                     tools:layout_editor_absoluteY="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightComedy"
-                    app:layout_constraintStart_toEndOf="@id/LeftComedy"
+                    app:layout_constraintEnd_toStartOf="@id/RightHipHop"
+                    app:layout_constraintStart_toEndOf="@id/LeftHipHop"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/ComedyPic"
+                    android:id="@+id/Hip-HopPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     android:src="@color/backgroundSecondary"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightComedy"
-                    app:layout_constraintStart_toEndOf="@id/LeftComedy"
+                    app:layout_constraintEnd_toStartOf="@id/RightHipHop"
+                    app:layout_constraintStart_toEndOf="@id/LeftHipHop"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
                 </ViewFlipper>
                 <Button
-                    android:id="@+id/RightComedy"
+                    android:id="@+id/RightHipHop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -182,7 +182,7 @@
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Action/Adventure"
+                android:text="Pop"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </TableRow>
@@ -196,7 +196,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/LeftAction"
+                    android:id="@+id/LeftPop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -214,24 +214,24 @@
                     tools:layout_editor_absoluteX="110dp"
                     tools:layout_editor_absoluteY="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightAction"
-                    app:layout_constraintStart_toEndOf="@id/LeftAction"
+                    app:layout_constraintEnd_toStartOf="@id/RightPop"
+                    app:layout_constraintStart_toEndOf="@id/LeftPop"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/ActionPic"
+                    android:id="@+id/PopPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightAction"
-                    app:layout_constraintStart_toEndOf="@id/LeftAction"
+                    app:layout_constraintEnd_toStartOf="@id/RightPop"
+                    app:layout_constraintStart_toEndOf="@id/LeftPop"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@color/backgroundPrimary" />
                 </ViewFlipper>
                 <Button
-                    android:id="@+id/RightAction"
+                    android:id="@+id/RightPop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -255,7 +255,7 @@
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Drama"
+                android:text="Rap"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </TableRow>
@@ -269,7 +269,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/LeftDrama"
+                    android:id="@+id/LeftRap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -287,23 +287,23 @@
                     tools:layout_editor_absoluteX="110dp"
                     tools:layout_editor_absoluteY="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightDrama"
-                    app:layout_constraintStart_toEndOf="@id/LeftDrama"
+                    app:layout_constraintEnd_toStartOf="@id/RightRap"
+                    app:layout_constraintStart_toEndOf="@id/LeftRap"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/DramaPic"
+                    android:id="@+id/RapPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightDrama"
-                    app:layout_constraintStart_toEndOf="@id/LeftDrama"
+                    app:layout_constraintEnd_toStartOf="@id/RightRap"
+                    app:layout_constraintStart_toEndOf="@id/LeftRap"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@color/colorTextBody" />
                 </ViewFlipper>
                 <Button
-                    android:id="@+id/RightDrama"
+                    android:id="@+id/RightRap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -325,7 +325,7 @@
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Romance"
+                android:text="Rock"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </TableRow>
@@ -339,7 +339,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/LeftRomance"
+                    android:id="@+id/LeftRock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -357,25 +357,25 @@
                     tools:layout_editor_absoluteX="110dp"
                     tools:layout_editor_absoluteY="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightRomance"
-                    app:layout_constraintStart_toEndOf="@id/LeftRomance"
+                    app:layout_constraintEnd_toStartOf="@id/RightRock"
+                    app:layout_constraintStart_toEndOf="@id/LeftRock"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/RomancePic"
+                    android:id="@+id/RockPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/RightRomance"
+                    app:layout_constraintEnd_toStartOf="@+id/RightRock"
                     app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/LeftRomance"
+                    app:layout_constraintStart_toEndOf="@+id/LeftRock"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@color/backgroundPrimary" />
                 </ViewFlipper>
                 <Button
-                    android:id="@+id/RightRomance"
+                    android:id="@+id/RightRock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -397,7 +397,7 @@
                 android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SciFi"
+                android:text="EDM/Electronic"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </TableRow>
@@ -411,7 +411,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/LeftSciFi"
+                    android:id="@+id/LeftEdm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -429,25 +429,25 @@
                     tools:layout_editor_absoluteX="110dp"
                     tools:layout_editor_absoluteY="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightSciFi"
-                    app:layout_constraintStart_toEndOf="@id/LeftSciFi"
+                    app:layout_constraintEnd_toStartOf="@id/RightEdm"
+                    app:layout_constraintStart_toEndOf="@id/LeftEdm"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/SciFiPic"
+                    android:id="@+id/EdmPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/RightSciFi"
+                    app:layout_constraintEnd_toStartOf="@+id/RightEdm"
                     app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/LeftSciFi"
+                    app:layout_constraintStart_toEndOf="@+id/LeftEdm"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@color/backgroundPrimary" />
                 </ViewFlipper>
                 <Button
-                    android:id="@+id/RightSciFi"
+                    android:id="@+id/RightEdm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -469,7 +469,7 @@
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Historical"
+                android:text="Classical"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </TableRow>
@@ -483,7 +483,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/LeftHist"
+                    android:id="@+id/LeftClassical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"
@@ -501,25 +501,25 @@
                     tools:layout_editor_absoluteX="110dp"
                     tools:layout_editor_absoluteY="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightHist"
-                    app:layout_constraintStart_toEndOf="@id/LeftHist"
+                    app:layout_constraintEnd_toStartOf="@id/RightClassical"
+                    app:layout_constraintStart_toEndOf="@id/LeftClassical"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/HistPic"
+                    android:id="@+id/ClassicalPic"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/RightHist"
+                    app:layout_constraintEnd_toStartOf="@+id/RightClassical"
                     app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/LeftHist"
+                    app:layout_constraintStart_toEndOf="@+id/LeftClassical"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@color/backgroundPrimary" />
                 </ViewFlipper>
                 <Button
-                    android:id="@+id/RightHist"
+                    android:id="@+id/RightClassical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="46dp"

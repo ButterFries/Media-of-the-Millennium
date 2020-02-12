@@ -1,13 +1,13 @@
 package com.developersOfTheMillennium.motm;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import androidx.fragment.app.Fragment;
-import android.content.Intent;
 
 public class RegistrationPageFragment extends Fragment {
 
@@ -33,7 +33,7 @@ public class RegistrationPageFragment extends Fragment {
         guestButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TAKE TO LOGIN PAGE
-                startActivity(new Intent((MainActivity)getActivity(), MediaHomePage.class));
+                startActivity(new Intent((MainActivity)getActivity(), Movies.class));
             }
         });
         return v;

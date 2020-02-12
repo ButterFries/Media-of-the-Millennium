@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import android.content.Intent;
 
 public class RegistrationPageFragment extends Fragment {
 
@@ -32,8 +33,8 @@ public class RegistrationPageFragment extends Fragment {
         final Button guestButton = v.findViewById(R.id.ActivityRegistrationButtonGuest);
         guestButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //TAKE TO LOGIN PAGE
-                startActivity(new Intent((MainActivity)getActivity(), Movies.class));
+                //TAKE TO HOME PAGE AS GUEST
+                startActivity(new Intent((MainActivity)getActivity(), MediaHomePage.class));
             }
         });
         return v;

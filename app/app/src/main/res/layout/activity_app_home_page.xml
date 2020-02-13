@@ -16,16 +16,16 @@
 
 
         <ImageButton
-            android:id="@+id/ActivityAppHomePageImageButtonCinema"
+            android:id="@+id/HomePageMovies"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_cinema"
             android:paddingRight="200dp"
             android:background="@drawable/ic_cinema_button"/>
-
+-->
         <ImageButton
-            android:id="@+id/ActivityAppHomePageImageButtonTV-Series"
+            android:id="@+id/HomePageTvSeries"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -34,7 +34,7 @@
             android:background="@drawable/ic_tvseries_button"/>
 
         <ImageButton
-            android:id="@+id/imageButton6"
+            android:id="@+id/HomePageMusic"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -43,7 +43,7 @@
             android:background="@drawable/ic_music_button"/>
 
         <ImageButton
-            android:id="@+id/ActivityAppHomePageImageButtonVideo-Games"
+            android:id="@+id/HomePageGames"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -52,7 +52,7 @@
             android:background="@drawable/ic_videogames_button"/>
 
         <ImageButton
-            android:id="@+id/imageButton8"
+            android:id="@+id/HomePageBooks"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

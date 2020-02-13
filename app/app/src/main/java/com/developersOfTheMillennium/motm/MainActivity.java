@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
 
         RegistrationPageFragment rpf = new RegistrationPageFragment();
         fragmentTransaction.add(R.id.fragment_view, rpf);
-
         fragmentTransaction.commit();
     }
 

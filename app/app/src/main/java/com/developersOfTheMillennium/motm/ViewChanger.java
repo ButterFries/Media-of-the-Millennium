@@ -3,6 +3,9 @@ package com.developersOfTheMillennium.motm;
 //import android.os.Bundle;
 //import androidx.appcompat.app.AppCompatActivity;
 
+//THIS FILE IS FOR NEXT SPRINT WHEN WE CHANGE THE VIEW MIGHT NEED SOMETHING BETTER THAN
+//VIEWFLIPPER
+
 public interface ViewChanger {
         //extends AppCompatActivity {
         //This will be abstract class for dealing with switching pictures

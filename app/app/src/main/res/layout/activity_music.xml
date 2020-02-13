@@ -148,7 +148,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/Hip-HopPic"
+                    android:id="@+id/HipHopButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     android:src="@color/backgroundSecondary"
@@ -220,7 +220,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/PopPic"
+                    android:id="@+id/PopButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -293,7 +293,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/RapPic"
+                    android:id="@+id/RapButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -363,7 +363,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/RockPic"
+                    android:id="@+id/RockButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -435,7 +435,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/EdmPic"
+                    android:id="@+id/EdmButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -507,7 +507,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/ClassicalPic"
+                    android:id="@+id/ClassicalButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"

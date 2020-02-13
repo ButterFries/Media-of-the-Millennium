@@ -148,7 +148,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/ComedyPic"
+                    android:id="@+id/ComedyButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     android:src="@color/backgroundSecondary"
@@ -220,7 +220,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/ActionPic"
+                    android:id="@+id/ActionButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -293,7 +293,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/DramaPic"
+                    android:id="@+id/DramaButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -363,7 +363,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/RomancePic"
+                    android:id="@+id/RomanceButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -435,7 +435,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/SciFiPic"
+                    android:id="@+id/SciFiButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -507,7 +507,7 @@
                     app:layout_constraintVertical_bias="0.0">
                 <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/AnimatedPic"
+                    android:id="@+id/AnimeButton"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"

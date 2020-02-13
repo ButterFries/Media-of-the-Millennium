@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import androidx.fragment.app.Fragment;
 
 public class RegistrationPageFragment extends Fragment {
@@ -31,10 +32,10 @@ public class RegistrationPageFragment extends Fragment {
         guestButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TAKE TO HOME PAGE AS GUEST
+                HomePageFragment homeFragment = new HomePageFragment();
+                ((MainActivity)getActivity()).replaceFragment(homeFragment);
             }
         });
-
-
         return v;
 
 

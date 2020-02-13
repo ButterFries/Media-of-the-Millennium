@@ -1,24 +1,15 @@
 package com.developersOfTheMillennium.motm;
 
-import android.content.Context;
-import android.media.MediaMetadata;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RatingBar;
+
+import androidx.fragment.app.Fragment;
 
 //import com.example.motm.R;  //TODO?
-import androidx.appcompat.app.AppCompatActivity;
 
 public class MediaProfilePageFragment extends Fragment implements View.OnClickListener {
 

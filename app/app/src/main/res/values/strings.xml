@@ -6,6 +6,7 @@
     <string name="registration_login_button">Login</string>
     <string name="registration_signup_button">Signup</string>
     <string name="registration_guest_button">or continue as a guest</string>
+    <string name="tv_series">TV SERIES</string>
 
     <!-- Login Page -->
     <string name="login_email_button">Email</string>

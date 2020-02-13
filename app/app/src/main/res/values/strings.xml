@@ -6,5 +6,25 @@
     <string name="registration_login_button">Login</string>
     <string name="registration_signup_button">Signup</string>
     <string name="registration_guest_button">or continue as a guest</string>
+    <string name="tv_series">TV SERIES</string>
+
+    <!-- Login Page -->
+    <string name="login_email_button">Email</string>
+    <string name="login_password_button">Password</string>
+
+    <!-- Media Profile Page -->
+    <string name="media_profile_image">media_image</string>
+    <string name="summary_info">summary_info</string>
+    <string name="title">title</string>
+    <string name="tags">tags</string>
+    <string name="rate">rate</string>
+    <string name="review">review</string>
+    <string name="add_to_favorites">add to favorites</string>
+    <string name="media_image" />
+
+    <!-- Media Reviews Page -->
+    <string name="AddReview">Add Review</string>
+    <string name="reviewpagetitle">Title</string>
+
 
 </resources>

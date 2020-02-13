@@ -7,6 +7,10 @@
     <string name="registration_signup_button">Signup</string>
     <string name="registration_guest_button">or continue as a guest</string>
 
+    <!-- Login Page -->
+    <string name="login_email_button">Email</string>
+    <string name="login_password_button">Password</string>
+
     <!-- Media Profile Page -->
     <string name="media_profile_image">media_image</string>
     <string name="summary_info">summary_info</string>

@@ -59,6 +59,14 @@ public class HomePageFragment extends Fragment {
                 ((MainActivity)getActivity()).replaceFragment(bookFragment);
             }
         });
+        final ImageButton SettingsButton = v.findViewById(R.id.HomePageSettings);
+        SettingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TAKE TO BOOKS PAGE
+                UserProfilePageFragment userProfileFragment = new UserProfilePageFragment();
+                ((MainActivity)getActivity()).replaceFragment(userProfileFragment);
+            }
+        });
 
         return v;
     }

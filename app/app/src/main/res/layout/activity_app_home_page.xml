@@ -24,14 +24,15 @@
             android:paddingRight="200dp"
             android:background="@drawable/ic_cinema_button"/>
 -->
+
         <ImageButton
             android:id="@+id/HomePageTvSeries"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="3dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_tvseries"
+            android:background="@drawable/ic_tvseries_button"
             android:paddingRight="200dp"
-            android:background="@drawable/ic_tvseries_button"/>
+            app:srcCompat="@drawable/ic_tvseries" />
 
         <ImageButton
             android:id="@+id/HomePageMusic"
@@ -59,6 +60,17 @@
             app:srcCompat="@drawable/ic_novels"
             android:paddingRight="200dp"
             android:background="@drawable/ic_novels_button"/>
+
+        <ImageButton
+            android:id="@+id/HomePageSettings"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/feldgrau"
+            android:paddingRight="200dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
 
     </LinearLayout>
 

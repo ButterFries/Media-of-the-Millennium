@@ -245,10 +245,10 @@ _• Additionally, all stories in PB.md, need be recorded on Jira._
 **Priority** :  3  
 
 - **Description** :  Integrating with the rest of the app. Add button in the home page, so when clicked it takes user to the profile page.
-**Difficulty** :  2  
+**Difficulty** :  4  
 **Value** :  4  
-**Return-on-Investment** :  (Value / Difficulty) = 2 
-**Cost-of-Delay** :  2  
+**Return-on-Investment** :  (Value / Difficulty) = 1 
+**Cost-of-Delay** :  3  
 **Priority** :  3   
   
 - **Description** :  x  

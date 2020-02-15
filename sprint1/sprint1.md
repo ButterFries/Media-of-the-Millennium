@@ -4,29 +4,40 @@ This document must clearly indicate the sprint goal, all stories for this sprint
 
 Sprint Goal:
 
-Our goal was to have a general layout UI and the database for user accounts ready to be connected (next sprint)
+    Our goal was to have a general layout UI and the database for user accounts ready to be connected (next sprint)
 
 Stories:
 
 User Accounts
 
-  As a user I would like to have a user account with a unique username or ID in order to have a personalized experience and a unique identity on the app
+    As a user I would like to have a user account with a unique username or ID
+    in order to have a personalized experience and a unique  identity on the app
 
 Login Page
 
-  As a user I would like my account to have its own page so that I can share what genres or titles I like as well as show my activities so that I can socialize with the community and express myself
+    As a user I would like my account to have its own page so that I can share 
+    what genres or titles I like as well as show my activities so that I can 
+    socialize with the community and express myself
+
 All Media Type Pages
   
-  As a user I would like to have a section for different media types such as cinema, TV series, music, video games, novels  so that I can find titles that may interest me regardless of the type
+    As a user I would like to have a section for different media types such as 
+    cinema, TV series, music, video games, novels  so that I can find titles that 
+    may interest me regardless of the type
 
 Summary/Review Pages
-  As a user I would like to have a section to see the reviews, summary, and ratings for each piece of media
-  each media title to have a description or summary as well as info such as the producers, cast, genre, and details  so that I can easily find relevant information without having to search for it elsewhere.
-  (could be a template for admins to publish pages/views for media titles)
+
+    As a user I would like to have a section to see the reviews, summary, 
+    and ratings for each piece of media
+    each media title to have a description or summary as well as info such as the 
+    producers, cast, genre, and details  so that I can easily
+    find relevant information without having to search for it elsewhere.
+    (could be a template for admins to publish pages/views for media titles)
 
 User Profile Page
   
-  As a user I would like a User Profile section to see my information and edit it. Such as e-mail address, age and username.
+    As a user I would like a User Profile section to see my information and 
+    edit it. Such as e-mail address, age and username.
 
 Team Capacity: 
 
@@ -113,3 +124,9 @@ Other
     -Artist page
   
     -(BUG) onClick error had to fix base of app
+
+Spikes:
+
+    -Unsure how long it would take to learn android studio to implement most of these user stories
+    -Understanding the database we would implement and need for server affected our 
+    first user story (creating the database for user accounts)

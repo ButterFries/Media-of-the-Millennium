@@ -1,5 +1,7 @@
 package server.motm;
+import server.motm.servlets.*;
 import server.motm.database.appDatabase;
+import server.motm.utils.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -26,7 +28,7 @@ public class Server
         System.out.println("--connection established");
         // the general procedure should be like
         /* appDatabase db = new appDatabase();
-         * Connect conn = db.connect(args)
+         * Connection conn = db.connect(args)
          * try{
          *     ~~~do some work, like write_to_DB(conn, args)
          * }
@@ -40,8 +42,9 @@ public class Server
 
         /***   setup server servlets/endpoints   ***/
         server.createContext("/HelloWorld", new HelloWorld(db));
-        //server.createContext("/api/registerAccount", new registerAccount(db));
-        //server.createContext("/api/validateAccount", new validateAccount(db));
+        server.createContext("/registerAccount", new registerAccount(db));
+        server.createContext("/validateAccount", new validateAccount(db));
+        ////server.createContext("/x", new x(db));
 
 
 

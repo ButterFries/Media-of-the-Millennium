@@ -1,5 +1,4 @@
-package server.motm;
-//import server.motm.database;
+package server.motm.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

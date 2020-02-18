@@ -1,8 +1,8 @@
 To compile the server files on Linux (on Windows replace colons with semicolons):
-	javac -cp ".:./server/motm/lib/*:./server/motm/database/*" server/motm/Server.java
+	javac -cp ".:./server/motm/lib/*:./server/motm/servlets/*:./server/motm/database/*:./server/motm/utils/*" server/motm/Server.java
 
 To run the server:
-	java -cp ".:./server/motm/lib/*:./server/motm/database/*" server/motm/Server
+	java  -cp ".:./server/motm/lib/*:./server/motm/servlets/*:./server/motm/database/*:./server/motm/utils/*" server/motm/Server
 
 
 To test endpoints (via CLI):
@@ -12,7 +12,7 @@ To test endpoints (via CLI):
 
 
 example of usage on server:
-	user@ubuntu:~/project-developers-of-the-millennium$ java -cp ".:./server/motm/lib/*:./server/motm/database/*" server/motm/Server
+	user@ubuntu:~/project-developers-of-the-millennium$ java -cp ".:./server/motm/lib/*:./server/motm/servlets/*:./server/motm/database/*:./server/motm/utils/*" server/motm/Server
 	! Setting up HTTP server on 0.0.0.0:8080
 	--setup complete
 	! Setting up connection via appDatabase

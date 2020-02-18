@@ -1,7 +1,7 @@
 package server.motm.database;
 
-
 import java.sql.*;
+
 
 
 public class appDatabase{
@@ -31,7 +31,7 @@ public class appDatabase{
 
     // the general procedure should be like
     /* appDatabase db = new appDatabase();
-     *  Connect conn = db.connect(args)
+     *  Connection conn = db.connect(args)
      * ~~~do some work, like write_to_DB(conn, args)
      * db.disconnect(conn);
      */

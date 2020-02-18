@@ -5,6 +5,8 @@ import java.sql.*;
 
 
 public class appDatabase{
+    public static String dbPath = "./server/motm/database/appdatabase.db";
+    
     public static void main(String[] args){ //does this execute when making new class object? i dun remember
         System.out.println("appDatabase running main");
         try {
@@ -46,10 +48,10 @@ public class appDatabase{
     public Connection connect(/*args*/){
         Connection conn = null;
         try{
-            conn = DriverManager.getConnection("jdbc:sqlite:db/appdatabase.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
             conn.createStatement().executeUpdate("PRAGMA foreign_keys = ON; ");
             conn.setAutoCommit(true);
-        } catch (Exception e) {/*etc*/}
+        } catch (Exception e) { e.printStackTrace(); System.exit(1); }
         return conn;
     }
 

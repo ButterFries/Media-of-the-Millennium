@@ -1,7 +1,9 @@
 package server.motm.database;
 
 import java.sql.*;
-
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 
 public class appDatabase{
@@ -519,13 +521,103 @@ public class appDatabase{
             throw new SQLException("An error occurred when adding the user rated on media relation");
         }
     }
- 
+
+
+//==============================================================================
+//###   Reviews   ###
+//==============================================================================
+
+    public static class mediaReviewInfo {
+        private int user_ID;
+        private String username;
+        private String media_ID;
+        private int rating_FID;
+        private float rating;
+        private int review_ID;
+        private String review_text;
+
+        public mediaRatingInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text){
+            this.user_ID = user_ID;
+            this.username = username;
+            this.media_ID = media_ID;
+            this.rating_FID = rating_FID;
+            this.rating = rating;
+            this.review_ID = review_ID;
+            this.review_text = review_text;
+        }
+//        public float get_rating(){ return this.rating; }
+//        public int get_raters(){ return this.numRaters; }
+    }
+
+    private void insert_review(Connection conn, int user_ID,String username, String media_ID,int rating_FID,float rating, int review_ID,String review_text) throws SQLException{
+        try {
+            String sqlReq = "INSERT INTO reviews (user_ID,username media_ID,rating_FID,rating,review_ID,review_text) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setInt(1, user_ID);
+            pstmt.setString(2,username);
+            pstmt.setString(3, media_ID);
+            pstmt.setInt(4, rating_FID);
+            pstmt.setFloat(5, rating);
+            pstmt.setInt(6, review_ID);
+            pstmt.setString(7, review_text);
+            pstmt.executeUpdate();
+        }
+        catch (SQLException ex) {
+            System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("An error occurred when adding the user rated on media relation");
+        }
+    }
 
 
 
 
+    public void load_reviews() {
+        try {
+            JSONArray query = new JSONArray();
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT username,rating,review_text FROM reviews ORDER BY RANDOM() LIMIT 10;
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while(rs.next()){
+                JSONObject line = new JSONObject();
+                line.put("username",rs.getString("username"));
+                line.put("rating",rs.getInt("rating"));
+                line.put("review_text",rs.getString("review_text"));
+                query.put(line);
+            }else{
+                System.out.println("#  ERROR :  "+ex);
+                throw new SQLException("An error occurred when getting the reviews on review  relation");
 
+            }
+            return line;
+        }
+        catch (SQLException ex) {
+            System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("An error occurred when adding the user rated on media relation");
+        }
+    }
+    public void get_specific_review(int user_ID){
+        try {
+            JSONArray query = new JSONArray();
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT * FROM reviews WHERE user_ID = ? ;
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if(rs.next()){
+                JSONObject line = new JSONObject();
+                line.put("username",rs.getString("username"));
+                line.put("rating",rs.getInt("rating"));
+                line.put("review_text",rs.getString("review_text"));
+                query.put(line);
+            }else{
+                System.out.println("#  ERROR :  "+ex);
+                throw new SQLException("An error occurred when getting the reviews on review  relation");
 
-
+            }
+            return line;
+        }
+        catch (SQLException ex) {
+            System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("An error occurred when adding the user rated on media relation");
+        }
+    }
 }
 

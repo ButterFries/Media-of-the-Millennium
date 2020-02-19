@@ -1,3 +1,6 @@
+
+Be in the root dir of the project!
+
 To compile the server files on Linux (on Windows replace colons with semicolons):
 	javac -cp ".:./server/motm/lib/*:./server/motm/servlets/*:./server/motm/database/*:./server/motm/utils/*" server/motm/Server.java
 
@@ -46,4 +49,10 @@ example of usage on client (testing through CLI):
 	< 
 	{"hello":"client"}
 	* Connection #0 to host localhost left intact
+
+
+
+
+
+
 

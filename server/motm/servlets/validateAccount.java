@@ -19,7 +19,13 @@ import java.sql.*;
 
 
 
-/* Send { u_name: "my_username", s_pw: "hashed_password" }
+/* First send the username/email alone then it will return the hash,
+ * apply the hash on the password and send it along with the username/email
+ * 
+ * Send Send { u_name: "my_username"} or { email: "my_email@example"}
+ * and it will return { error_code: int, hash: "x:yy:zzzz" }
+ * use applyHash.java on the password and the retrieved hash
+ * then send { u_name: "my_username", s_pw: "hashed_password" }
  * or { email: "my_email@example", s_pw: "hashed_password" }
  * and it will return (TBD) something like { error_code: int, session_token: String?, etc } 
  */
@@ -36,8 +42,8 @@ public class validateAccount implements HttpHandler
         System.out.println("\n-Received request [validateAccount]");
         Connection conn = null;
         try {
-            if (r.getRequestMethod().equals("GET")) {
-                System.out.println("--request type: GET");
+            if (r.getRequestMethod().equals("POST")) {
+                System.out.println("--request type: POST (GET)"); //System.out.println("--request type: GET");
                 conn = db.connect();
                 handleReq(r, conn);
             }
@@ -71,72 +77,43 @@ public class validateAccount implements HttpHandler
         appDatabase.accountInfo acc = null;
         String username, email, secured_password;
 
-        /*  username login  */
-        if (requestJSON.has("u_name") && requestJSON.has("s_pw")){
-            username = requestJSON.getString("u_name");
-            secured_password = requestJSON.getString("s_pw");
-            System.out.println("--client sent u_name: "+username);
-            System.out.println("--client sent s_pw: "+secured_password);
-            /*  check if username exists  */
-            if ( !db.usernameExists(conn, username) ){ //exception will be forwarded up to .handle
-                System.out.println("--username already exists");
-                responseJSON.put("error_code", 1);
-                responseJSON.put("error_description", "username doesn't exist");
-                String response = responseJSON.toString() + "\n";
-                r.sendResponseHeaders(200, response.length());
-                OutputStream os = r.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                System.out.println("--responese :   "+response.trim());
-                System.out.println("--request fufilled");
+        /*  Get password hash for given username/email  */
+        if ( !requestJSON.has("s_pw") ){
+            System.out.println("--[Stage 1] Retrieving stored hash");
+            /*  username request -> return the hash info  */
+            if ( requestJSON.has("u_name") ){
+                username = requestJSON.getString("u_name");
+                System.out.println("--client sent u_name: "+username);
+                /*  check if username exists  */
+                if ( !db.usernameExists(conn, username) ){ //exception will be forwarded up to .handle
+                    responose_no_user(r, responseJSON);
+                    return;
+                }
+                acc = db.get_user_from_name(conn, username); //exception will be forwarded up to .handle
+            }
+            /*  email request -> return the hash info  */
+            else if ( requestJSON.has("email") ){
+                email = requestJSON.getString("email");
+                System.out.println("--client sent email: "+email);
+                /*  check if email exists  */
+                if ( !db.emailExists(conn, email) ){ //exception will be forwarded up to .handle
+                    responose_no_email(r, responseJSON);
+                    return;
+                }
+                acc = db.get_user_from_email(conn, email); //exception will be forwarded up to .handle
+            }
+            /* if invalid request body */
+            else {
+                r.sendResponseHeaders(400, -1);
                 return;
             }
-            acc = db.get_user_from_name(conn, username); //exception will be forwarded up to .handle
-        }
 
-
-        /*  email login  */
-        else if (requestJSON.has("email") && requestJSON.has("s_pw")){
-            email = requestJSON.getString("email");
-            secured_password = requestJSON.getString("s_pw");
-            System.out.println("--client sent email: "+email);
-            System.out.println("--client sent s_pw: "+secured_password);
-            /*  check if email exists  */
-            if ( !db.emailExists(conn, email) ){ //exception will be forwarded up to .handle
-                System.out.println("--email already exists");
-                responseJSON.put("error_code", 2);
-                responseJSON.put("error_description", "email doesn't exists");
-                String response = responseJSON.toString() + "\n";
-                r.sendResponseHeaders(200, response.length());
-                OutputStream os = r.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                System.out.println("--responese :   "+response.trim());
-                System.out.println("--request fufilled");
-                return;
-            }
-            acc = db.get_user_from_email(conn, email); //exception will be forwarded up to .handle
-        }
-
-
-        /* if invalid request body */
-        else {
-            r.sendResponseHeaders(400, -1);
-            return;
-        }
-
-
-
-        /* validate with the given userID */
-        if (db.validatePassword(conn, secured_password, acc)){
-            System.out.println("--the given account credentials are valid");
+            System.out.println("--valid account, password verification pending");
+            
             try {
                 responseJSON.put("error_code", 0);
-                responseJSON.put("error_description", "successfully verified account credentials");
-                /* TODO: get session token */
-                //ex.getSession();
-                String session_token = "none";
-                responseJSON.put("session_token", session_token);
+                responseJSON.put("error_description", "successfully verified accountID");
+                responseJSON.put("hash", acc.get_password());
                 String response = responseJSON.toString() + "\n";
                 r.sendResponseHeaders(200, response.length());
                 OutputStream os = r.getResponseBody();
@@ -147,27 +124,113 @@ public class validateAccount implements HttpHandler
             }
             catch (Exception e){
                 System.out.println("## ERROR ::  " + e);
-                throw new Exception("(handleReq) -- something went wrong when sending response");
+                throw new Exception("(handleReq 1) -- something went wrong when sending initial response");
             }
         }
-        else {
-            System.out.println("--the given account credentials are invalid");
+    
+        
+
+
+
+        /*  Validate credentials  */
+        else { //requestJSON.has("s_pw")
+            System.out.println("--[Stage 2] Validating credentials");
+            /*  username login -> validate */
+            if ( requestJSON.has("u_name") ){
+                username = requestJSON.getString("u_name");
+                secured_password = requestJSON.getString("s_pw");
+                System.out.println("--client sent u_name: "+username);
+                System.out.println("--client sent s_pw: "+secured_password);
+                /*  check if username exists  */
+                if ( !db.usernameExists(conn, username) ){ //exception will be forwarded up to .handle
+                    responose_no_user(r, responseJSON);
+                    return;
+                }
+                acc = db.get_user_from_name(conn, username); //exception will be forwarded up to .handle
+            }
+            /*  email login -> validate */
+            else if ( requestJSON.has("email") ){
+                email = requestJSON.getString("email");
+                secured_password = requestJSON.getString("s_pw");
+                System.out.println("--client sent email: "+email);
+                System.out.println("--client sent s_pw: "+secured_password);
+                /*  check if email exists  */
+                if ( !db.emailExists(conn, email) ){ //exception will be forwarded up to .handle
+                    responose_no_email(r, responseJSON);
+                    return;
+                }
+                acc = db.get_user_from_email(conn, email); //exception will be forwarded up to .handle
+            }
+            /* if invalid request body */
+            else {
+                r.sendResponseHeaders(400, -1);
+                return;
+            }
+
+            /* validate with the given userID */
             try {
-                responseJSON.put("error_code", 3);
-                responseJSON.put("error_description", "invalid account credentials");
-                String response = responseJSON.toString() + "\n";
-                r.sendResponseHeaders(200, response.length());
-                OutputStream os = r.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                System.out.println("--responese :   "+response.trim());
-                System.out.println("--request fufilled");
+                if (db.validatePassword(conn, secured_password, acc)){
+                    System.out.println("--the given account credentials are valid");
+                
+                    responseJSON.put("error_code", 0);
+                    responseJSON.put("error_description", "successfully verified account credentials");
+                    /* TODO: get session token */
+                    //ex.getSession();
+                    String session_token = "none";
+                    responseJSON.put("session_token", session_token);
+                    String response = responseJSON.toString() + "\n";
+                    r.sendResponseHeaders(200, response.length());
+                    OutputStream os = r.getResponseBody();
+                    os.write(response.getBytes());
+                    os.close();
+                    System.out.println("--responese :   "+response.trim());
+                    System.out.println("--request fufilled");
+                }
+                else {
+                    System.out.println("--the given account credentials are invalid");
+                
+                    responseJSON.put("error_code", 3);
+                    responseJSON.put("error_description", "invalid account credentials");
+                    String response = responseJSON.toString() + "\n";
+                    r.sendResponseHeaders(200, response.length());
+                    OutputStream os = r.getResponseBody();
+                    os.write(response.getBytes());
+                    os.close();
+                    System.out.println("--responese :   "+response.trim());
+                    System.out.println("--request fufilled");
+                }                
             }
             catch (Exception e){
                 System.out.println("## ERROR ::  " + e);
-                throw new Exception("(handleReq) -- something went wrong when sending response");
+                throw new Exception("(handleReq 2) -- something went wrong when sending final response");
             }
         }
+    }
+
+    private void responose_no_user(HttpExchange r, JSONObject responseJSON) throws Exception {
+        System.out.println("--username doesn't exist");
+        responseJSON.put("error_code", 1);
+        responseJSON.put("error_description", "username doesn't exist");
+        String response = responseJSON.toString() + "\n";
+        r.sendResponseHeaders(200, response.length());
+        OutputStream os = r.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+        System.out.println("--responese :   "+response.trim());
+        System.out.println("--request fufilled");
+    }
+
+    private void responose_no_email(HttpExchange r, JSONObject responseJSON) throws Exception {
+        System.out.println("--email doesn't exist");
+        responseJSON.put("error_code", 2);
+        responseJSON.put("error_description", "email doesn't exists");
+        String response = responseJSON.toString() + "\n";
+        r.sendResponseHeaders(200, response.length());
+        OutputStream os = r.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+        System.out.println("--responese :   "+response.trim());
+        System.out.println("--request fufilled");
     }
 }
 

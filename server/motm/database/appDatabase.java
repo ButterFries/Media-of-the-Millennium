@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class appDatabase{
     public static String dbPath = "./server/motm/database/appdatabase.db";
-    
+
     public static void main(String[] args){ //does this execute when making new class object? i dun remember
         System.out.println("appDatabase running main");
         try {
@@ -143,7 +143,7 @@ public class appDatabase{
      */
     public accountInfo get_user_from_name(Connection conn, String username) throws SQLException{
         Statement stmt = conn.createStatement();
-        String sqlReq = "SELECT * FROM accounts WHERE username = "+username;   
+        String sqlReq = "SELECT * FROM accounts WHERE username = \""+username+"\"";   
         try {
             ResultSet rs = stmt.executeQuery( sqlReq );
             if (rs.next()){
@@ -166,7 +166,7 @@ public class appDatabase{
      */
     public accountInfo get_user_from_email(Connection conn, String email) throws SQLException{
         Statement stmt = conn.createStatement();
-        String sqlReq = "SELECT * FROM accounts WHERE email = "+email;   
+        String sqlReq = "SELECT * FROM accounts WHERE email = \""+email+"\"";   
         try {
             ResultSet rs = stmt.executeQuery( sqlReq );
             if (rs.next()){
@@ -223,7 +223,7 @@ public class appDatabase{
      */
     /*public String hashingFunction(String pw) throws Exception{
         try {
-            return generatePasswordHash.generateStorngPasswordHash(pw);
+            return generatePasswordHash.generateStrongPasswordHash(pw);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -236,8 +236,13 @@ public class appDatabase{
      * Validates the password by comparing it to the entry in the database using
      * the same hashing function or validation method of that function.
      * 
+     * --modified due to change in server exchange process
      */
-    public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException{
+    public boolean validatePassword(Connection conn, String s_pw, accountInfo acc){
+        String storedPassword = acc.get_password();
+        return s_pw.equals(storedPassword);
+    }
+    /*public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException{
         String storedPassword = acc.get_password();
         try {
             return validatePasswordHash.validatePassword(pw, storedPassword);
@@ -246,14 +251,15 @@ public class appDatabase{
             e.printStackTrace();
             throw new Exception("An error occured when validating password with database entry");
         }
-    }
+    }*/
+    
 
     /*
      * Checks if username exists in 'accounts' table, returns true if it does exist.
      */
     public boolean usernameExists(Connection conn, String username) throws SQLException{
         Statement stmt = conn.createStatement();
-        String sqlReq = "SELECT (count(*) > 0) FROM accounts WHERE username = "+username;
+        String sqlReq = "SELECT (count(*) > 0) FROM accounts WHERE username = \""+username+"\"";
         try {
             ResultSet rs = stmt.executeQuery( sqlReq );
             if (rs.next()){
@@ -273,7 +279,7 @@ public class appDatabase{
      */
     public boolean emailExists(Connection conn, String email) throws SQLException{
         Statement stmt = conn.createStatement();
-        String sqlReq = "SELECT (count(*) > 0) FROM accounts WHERE email = "+email;
+        String sqlReq = "SELECT (count(*) > 0) FROM accounts WHERE email = \""+email+"\"";
         try {
             ResultSet rs = stmt.executeQuery( sqlReq );
             if (rs.next()){

@@ -31,8 +31,9 @@ public class HelloWorld implements HttpHandler
         try {
             if (r.getRequestMethod().equals("GET")) {
                 System.out.println("--request type: GET");
-                conn = db.connect();
-                handleReq(r, conn);
+                r.sendResponseHeaders(200, -1);
+                //conn = db.connect();
+                //handleReq(r, conn);
             } else if (r.getRequestMethod().equals("POST")) {
                 System.out.println("--request type: POST");
                 conn = db.connect();

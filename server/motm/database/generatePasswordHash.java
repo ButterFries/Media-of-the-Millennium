@@ -2,7 +2,6 @@
  *   https://howtodoinjava.com/security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
  */
 
-
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -16,11 +15,11 @@ public class generatePasswordHash
 {
 	public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException 
 	{
-		String generatedSecuredPasswordHash = generateStorngPasswordHash(args[0]);
+		String generatedSecuredPasswordHash = generateStrongPasswordHash(args[0]);
 		System.out.println(generatedSecuredPasswordHash);
 	}
 	
-	public static String generateStorngPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
+	public static String generateStrongPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
 	{
 		int iterations = 1000;
 		char[] chars = password.toCharArray();

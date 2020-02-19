@@ -140,13 +140,13 @@ read_from_DB(conn, args){
 # 	https://www.sqlitetutorial.net/sqlite-autoincrement/
 
 
-./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL);"
+./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, passwordhash TEXT NOT NULL);"
 
 ### password should be converted to a hash via hashing function such as md5 or sha256 for security
 ### can also salt passwords (add something to the password string before hashing) to make it even safer   
 ### https://www.thesslstore.com/blog/difference-encryption-hashing-salting/
 
-./sqlite3 appdatabase.db "INSERT INTO accounts (username, email, password) VALUES ('example', 'email', 'passwordhash');"
+./sqlite3 appdatabase.db "INSERT INTO accounts (username, email, passwordhash) VALUES ('example', 'email', 'passwordhash');"
 
 ### example of hashing
 echo "mypassword" | md5sum

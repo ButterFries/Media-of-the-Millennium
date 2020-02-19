@@ -73,11 +73,12 @@ public class registerAccount implements HttpHandler
             String secured_password = requestJSON.getString("s_pw");
             System.out.println("--client sent u_name: "+username);
             System.out.println("--client sent email: "+email);
-            System.out.println("--client sent s_pw: "+secured_password);
+            System.out.println("--client's s_pw: "+secured_password);
 
             JSONObject responseJSON = new JSONObject();
 
             /*  check if username exists  */
+            System.out.println("--checking if username exists already");
             if (db.usernameExists(conn, username)){ //exception will be forwarded up to .handle
                 System.out.println("--username already exists");
                 responseJSON.put("error_code", 1);
@@ -91,9 +92,11 @@ public class registerAccount implements HttpHandler
                 System.out.println("--request fufilled");
                 return;
             }
+            System.out.println("----username not taken");
 
             /*  check if email exists  */
-            else if (db.emailExists(conn, email)){ //exception will be forwarded up to .handle
+            System.out.println("--checking if username exists already");
+            if (db.emailExists(conn, email)){ //exception will be forwarded up to .handle
                 System.out.println("--email already exists");
                 responseJSON.put("error_code", 2);
                 responseJSON.put("error_description", "email already exists");
@@ -106,10 +109,12 @@ public class registerAccount implements HttpHandler
                 System.out.println("--request fufilled");
                 return;
             }
+            System.out.println("----email not taken");
 
             /*  register the account;  both username and email can be used  */
+            System.out.println("--adding account to database");
             db.add_account(conn, username, email, secured_password); //exception will be forwarded up to .handle
-            System.out.println("--successfully added account to database");
+            System.out.println("----successfully added account to database");
             
 
             /*  send response  */

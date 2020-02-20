@@ -1,20 +1,26 @@
 package com.developersOfTheMillennium.motm;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class MediaProfilePage {
     private int mediaID;         //unique integer id, PRIMARY KEY
     private String title;        //the title/name of the movie/music/game/etc
     private String mediaType;    //type of media;  {'cinema', 'music', 'tv-series', 'video game', 'novel'}
     private String summary;      //string of words
-    private String[] tags;       //list of tags (strings) associated to title, contents are different based on mediaType DEV-60
+    //private ArrayList<String> genres = new ArrayList<String>(); //list of tags (strings) associated to title, contents are different based on mediaType DEV-60
+    private String[] genres;
     //private double rating = 0.0; //current rating, seems well fleshed out in appdb.java already, exists
     //private int numRaters;       //total number of all people who've rated this title, exists
 
+    public MediaProfilePage(int ID, String t, String mt, String s, String[] g){
+        this.mediaID = ID;
+        this.title = t;
+        this.mediaType = mt;
+        this.summary = s;
+        this.genres = g;
+        //might merge ratings in this class object
+    }
     public int get_mediaID() {
         return this.mediaID;
     }
@@ -30,10 +36,12 @@ public class MediaProfilePage {
     public String get_summary() {
         return this.summary;
     }
-
-    public String[] get_tags() {
-        return this.tags;
+    public String[] get_genres() {
+        return this.genres;
     }
+    //public ArrayList<String> get_genres() {
+    //    return this.genres;
+    //}
     //get_rating(){ return this.rating; } //exists
     //get_raters(){ return this.numRaters; } //existS
 
@@ -70,6 +78,8 @@ public class MediaProfilePage {
     }
 
 //--------------------THE FUNCTIONS BELOW WILL NOT BE DEFINED WITHIN THE CLASS----------------------
+//NOTE TO SELF: IF result.next is used for ONE ROW, while result.next is more multiple rows
+//Design (Genres): Tags is stored as a COMMA SEPARATED VALUE inside the database
     /**
      * Adds the media title to the database (CAREFUL! DUPLICATES ARE POSSIBLE)
      */
@@ -91,36 +101,91 @@ public class MediaProfilePage {
      * Retrieves media title information of specified mediaID
      * RETURN: MediaProfilePage object with title information
      */
-    public MediaProfilePage get_mediaTitleInfo(Connection conn, int mediaID) {
-        stmt = conn.createStatement();
-        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = " + mediaId; //Should this retrieve a single row or all rows
+    public MediaProfilePage get_mediaProfilePageInfo(Connection conn, int mediaID) throws Exception {
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = " + mediaID;
         try {
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlReq);
-        } catch (SQLException ex) {/*handle it*/}
+            if (rs.next()) { //found something
+                String mg = rs.getString("genres");
+                String[] media_genres = mg.split(","); //place each genre into a list
+                return new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres);
 
-        if (rs.next()) {    //found something
-            //make and return mediaRatingInfo class
-            return new mediaRatingInfo(rs.getFloat("rating"), rs.getFloat("numRaters"));
-        } else {    //didnt find
-            //handle failure
+            } else { //didnt find
+                throw new Exception("No ID found");
+            }
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            //System.out.println("#  ERROR :  " + ex);
+            throw new Exception("Error while fetching MPP data");
         }
     }
 
     /**
-     * Retrieves a list of mediaID's, useful if we sort each categories ID's OR we make separate tables
-     * Call get_mediaTitleInfo() on each ID to get its information stored in a class object
-     * RETURN: List of media IDs
+     *
+     * Returns a list of MediaProfilePage objects that have the associated mediaType
+     *
      */
-    public int[] get_mediaIDs(Connection conn, String mediaType){}
+    public ArrayList<MediaProfilePage> get_mediaIDs(Connection conn, String mediaType){
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaType = " + mediaType;
+        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                String mg = rs.getString("genres");
+                String[] media_genres = mg.split(","); //place each genre into a list
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres);
+
+                pages.add(m);
+
+            }
+            return pages;
+
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            //System.out.println("#  ERROR :  " + ex);
+            throw new Exception("Error while fetching MPP data using specified Type");
+        }
+    }
+    /**
+     * Returns a list of MediaProfilePage objects that have the associated genre within its DB entry
+     * YOU CAN MODIFY QUERY TO PULL ROWS WITH SPECIFIC TYPE AND GENRE SINCE SOME TYPES HAVE OVERLAPPING GENRES
+     */
+    public ArrayList<MediaProfilePage> get_genrePages(Connection conn, String genre){
+        String sqlReq = "SELECT * FROM mediaTitles WHERE ; //Modify using Substr()
+
+        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                String mg = rs.getString("genres");
+                String[] media_genres = mg.split(","); //place each genre into a list
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres);
+
+                pages.add(m);
+
+            }
+            return pages;
+
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            //System.out.println("#  ERROR :  " + ex);
+            throw new Exception("Error while fetching MPP data using specified Genre");
+        }
+    }
+
 
     /**
      * Adds specified media title to User's favorite/watchlist
      */
     public void add_userWatchlist(Connection conn, int mediaID) {}
 
-    /**
-     *
-     */
+
 
 
 

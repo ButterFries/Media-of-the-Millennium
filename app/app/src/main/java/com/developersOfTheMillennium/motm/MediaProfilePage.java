@@ -3,6 +3,7 @@ package com.developersOfTheMillennium.motm;
 import java.sql.*;
 import java.util.ArrayList;
 
+
 public class MediaProfilePage {
     private int mediaID;         //unique integer id, PRIMARY KEY
     private String title;        //the title/name of the movie/music/game/etc
@@ -101,8 +102,8 @@ public class MediaProfilePage {
      * Retrieves media title information of specified mediaID
      * RETURN: MediaProfilePage object with title information
      */
-    public MediaProfilePage get_mediaProfilePageInfo(Connection conn, int mediaID) throws Exception {
-        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = " + mediaID;
+    public MediaProfilePage get_mediaProfilePageInfo(Connection conn, int mediaID) throws SQLException {
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = \"" + mediaID + "\"";
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlReq);
@@ -113,12 +114,12 @@ public class MediaProfilePage {
                         rs.getString("mediaType"), rs.getString("summary"), media_genres);
 
             } else { //didnt find
-                throw new Exception("No ID found");
+                throw new SQLException("No ID found");
             }
         } catch (SQLException ex) {
             //ex.printStackTrace();
             //System.out.println("#  ERROR :  " + ex);
-            throw new Exception("Error while fetching MPP data");
+            throw new SQLException("Error while fetching MPP data");
         }
     }
 
@@ -127,8 +128,8 @@ public class MediaProfilePage {
      * Returns a list of MediaProfilePage objects that have the associated mediaType
      *
      */
-    public ArrayList<MediaProfilePage> get_mediaIDs(Connection conn, String mediaType){
-        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaType = " + mediaType;
+    public ArrayList<MediaProfilePage> get_mediaIDs(Connection conn, String mediaType) throws SQLException{
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaType = \"" + mediaType + "\"";
         ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
         try {
             Statement stmt = conn.createStatement();
@@ -142,20 +143,28 @@ public class MediaProfilePage {
                 pages.add(m);
 
             }
-            return pages;
+            if (pages.isEmpty())
+                throw new SQLException("No objects created");
+            else
+                return pages;
 
         } catch (SQLException ex) {
             //ex.printStackTrace();
             //System.out.println("#  ERROR :  " + ex);
-            throw new Exception("Error while fetching MPP data using specified Type");
+            throw new SQLException("Error while fetching MPP data using specified Type");
         }
+
     }
     /**
      * Returns a list of MediaProfilePage objects that have the associated genre within its DB entry
      * YOU CAN MODIFY QUERY TO PULL ROWS WITH SPECIFIC TYPE AND GENRE SINCE SOME TYPES HAVE OVERLAPPING GENRES
      */
-    public ArrayList<MediaProfilePage> get_genrePages(Connection conn, String genre){
-        String sqlReq = "SELECT * FROM mediaTitles WHERE ; //Modify using Substr()
+    public ArrayList<MediaProfilePage> get_genrePages(Connection conn, String genre) throws SQLException{
+        String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
+        //Option 2
+        //could be '' instead of ""
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
+
 
         ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
         try {
@@ -170,22 +179,35 @@ public class MediaProfilePage {
                 pages.add(m);
 
             }
-            return pages;
+            if (pages.isEmpty())
+                throw new SQLException("No objects created");
+            else
+                return pages;
 
         } catch (SQLException ex) {
             //ex.printStackTrace();
             //System.out.println("#  ERROR :  " + ex);
-            throw new Exception("Error while fetching MPP data using specified Genre");
+            throw new SQLException("Error while fetching MPP data using specified Genre");
         }
     }
 
 
     /**
-     * Adds specified media title to User's favorite/watchlist
+     * Adds specified media title (ID) to User's favorite/watchlist
      */
-    public void add_userWatchlist(Connection conn, int mediaID) {}
+    public void add_titleToFavorites(Connection var1, int mediaID, int accountID) throws Exception {
+        String ID = Integer.toString(mediaID);
+        //could be '' instead of ""
+        String var3 = "UPDATE accounts SET favorites = favorites || \"" + ID + "\" WHERE userID = \"" + accountID + "\"";
 
-
+        try {
+            PreparedStatement var4 = var1.prepareStatement(var3);
+            var4.executeUpdate();
+        } catch (SQLException var5) {
+            System.out.println("#  ERROR :  " + var5);
+            throw new Exception("Could not update account favorites");
+        }
+    }
 
 
 

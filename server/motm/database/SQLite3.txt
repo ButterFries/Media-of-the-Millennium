@@ -18,7 +18,7 @@ java -classpath '.:sqlite-jdbc-3.27.2.1.jar' appServer
 
 
 ### accounts table and insert
-./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL);"
+./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, favorites TEXT);"
 ./sqlite3 appdatabase.db "INSERT INTO accounts (username, email, password) VALUES ('example', 'email', 'passwordhash');"
 
 
@@ -41,9 +41,10 @@ INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 
 
 ### media titles table and insert
-./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
-./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary) VALUES ('example', 'testtype', 'this is very nice media, much good')";
+./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
+./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary, genres) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror')";
 # use media types {'cinema', 'music', 'tv-series', 'video game', 'novel'}
+# use genre types {'depends on media type'}
 
 
 ###  ratings table
@@ -99,15 +100,16 @@ INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 ##  summary -- string of words
 ##  rating -- float, current rating
 ##  numRaters -- total number of all people who've rated this title
+##  genres -- string of associated genres (comma separated) 'action,horror'
 
 ### to calculate the new rating, take the current rating (say 3.4) and current numRaters (9000)
 ###    updatedRating = (numRaters/(numRaters+1))*rating + newRating*(1/(numRaters+1))
 ###    this preserves the ratio of ratings
 
 
-./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, summary TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
+./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
 
-./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary) VALUES ('example', 'testtype', 'this is very nice media, much good')";
+./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror')";
 
 ================================================================================
 ###   ratings   ###

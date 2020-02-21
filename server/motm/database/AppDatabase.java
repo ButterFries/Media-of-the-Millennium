@@ -1,6 +1,7 @@
 package server.motm.database;
 
 import java.sql.*;
+import server.motm.utils.generatePasswordHash;
 
 
 

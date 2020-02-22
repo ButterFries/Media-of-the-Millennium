@@ -1,6 +1,7 @@
 package motm.example;
 
 import motm.utils.*;
+import motm.ssl.*;
 
 import okhttp3.*;
 import org.json.*;
@@ -41,11 +42,20 @@ public class Client
      *  https://stackoverflow.com/questions/42904584/how-to-connect-to-localhost-from-android-studio-emulator 
      */
 
+    private SecureHTTPClient secureHttpClient = new SecureHTTPClient(ADDR);
+    /* //use  `Response response = secureHttpClient.run(request)` instead
+    private final CertificatePinner certPinner = new CertificatePinner.Builder()
+            .add(ADDR, "sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+            .build();
     private final OkHttpClient httpClient = new OkHttpClient().newBuilder()
         .connectTimeout(3, TimeUnit.SECONDS)
         .readTimeout(5, TimeUnit.SECONDS)
         .connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.COMPATIBLE_TLS))
+        .certificatePinner(certPinner)
         .build();
+    */
+    
+
 
 
     public static void main(String[] args) throws Exception
@@ -91,9 +101,9 @@ public class Client
     }
     private void close() throws IOException{
         System.out.println("--closing");
-        httpClient.dispatcher().executorService().shutdown();
-        httpClient.connectionPool().evictAll();
-        //httpClient.cache().close();
+        //httpClient.dispatcher().executorService().shutdown();
+        //httpClient.connectionPool().evictAll();
+        ////httpClient.cache().close();
     }
 
     private void sendHelloWorld(){
@@ -109,7 +119,7 @@ public class Client
                 .url(url)
                 .addHeader("User-Agent", "motm HelloWorld request")
                 .addHeader("Accept", "application/json")
-                .put(body)
+                .post(body)
                 //.method("GET", body)
                 .build();
             /* OKHTTP will not allow a requestbody for GET
@@ -119,7 +129,8 @@ public class Client
 
 
             /***   send request and wait to receive response   ***/
-            Response response = httpClient.newCall(request).execute();
+            //Response response = httpClient.newCall(request).execute();
+            Response response = secureHttpClient.run(request);
 
             
             /***   print response   ***/
@@ -130,7 +141,8 @@ public class Client
             response.close();
         } 
         catch (Exception e){
-            System.out.println(e); //e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println(e); 
             System.exit(1);
         }
         System.out.println("--complete");
@@ -155,7 +167,8 @@ public class Client
                 .addHeader("Accept", "application/json")
                 .put(body)
                 .build();
-            Response response = httpClient.newCall(request).execute();
+            //Response response = httpClient.newCall(request).execute();
+            Response response = secureHttpClient.run(request);
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             System.out.println(response.toString());
             System.out.println(response.body().string().trim());
@@ -184,7 +197,8 @@ public class Client
                 .addHeader("Accept", "application/json")
                 .post(body)
                 .build();
-            Response response = httpClient.newCall(request).execute();
+            //Response response = httpClient.newCall(request).execute();
+            Response response = secureHttpClient.run(request);
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             System.out.println(response.toString());
             String res_body = response.body().string();
@@ -216,7 +230,8 @@ public class Client
                 .addHeader("Accept", "application/json")
                 .post(body)
                 .build();
-            response = httpClient.newCall(request).execute();
+            //response = httpClient.newCall(request).execute();
+            response = secureHttpClient.run(request);
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             System.out.println(response.toString());
             System.out.println(response.body().string().trim());

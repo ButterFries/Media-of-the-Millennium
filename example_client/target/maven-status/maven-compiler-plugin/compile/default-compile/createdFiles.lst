@@ -1,4 +1,7 @@
-motm/utils/applyHash.class
+motm/ssl/SecureHTTPClient.class
 motm/utils/Utils.class
+motm/ssl/SecureHTTPClient$KeyAndTrustManagers.class
+motm/ssl/SecureHTTPClient$1.class
 motm/utils/generatePasswordHash.class
+motm/utils/applyHash.class
 motm/example/Client.class

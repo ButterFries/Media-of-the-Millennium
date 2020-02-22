@@ -67,9 +67,11 @@ public class Server
         HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(ADDR, PORT), 0);
         SSLContext sslContext = SSLContext.getInstance("TLS");
         // initialise the keystore
-        char[] cert_password = "developers_of_the_millenium_password_to_motm".toCharArray();
+        String jks = "motm_key.jks";
+        String jks_pw = "developers_of_the_millenium_password_to_motm";
+        char[] cert_password = jks_pw.toCharArray();
         KeyStore ks = KeyStore.getInstance("JKS");
-        FileInputStream fis = new FileInputStream("motm_key.jks");
+        FileInputStream fis = new FileInputStream(jks);
         ks.load(fis, cert_password);
         // setup the key manager factory
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
@@ -96,6 +98,8 @@ public class Server
                 }
             }
         });
+        //System.setProperty("javax.net.ssl.trustStore",jks);
+        //System.setProperty("javax.net.ssl.trustStorePassword",jks_pw);
         System.out.println("--setup complete");
 
 

@@ -24,6 +24,8 @@ To get the PEM file
 To check the PEM encoded, x509 certificate (at the bottom ---begin certificate---)
 	openssl x509 -text -inform PEM -in motm_cert.pem
 
+You only need to have the PEM on the client side, dont copy anything else.
+
 maybe see the following for details on Android implementation:
 	http://oceanairdrop.blogspot.com/2018/05/https-self-signed-certificates-and.html
 

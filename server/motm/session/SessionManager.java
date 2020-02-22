@@ -53,10 +53,12 @@ public class SessionManager
     public SessionManager() {
         this.sessions = new HashMap<String, sessionInfo>();
         this.session_duration = DEFAULT_SESSION_DURATION;
+        System.out.println("%%  Session duration set to "+this.session_duration+" seconds");
     }
     public SessionManager(int session_duration) {
         this.sessions = new HashMap<String, sessionInfo>();
         this.session_duration = session_duration;
+        System.out.println("%%  Session duration set to "+this.session_duration+" seconds");
     }
 
     /* Return the session duration.
@@ -86,7 +88,10 @@ public class SessionManager
         byte[] sha2hash = dig.digest(str.getBytes(StandardCharsets.UTF_8));
         String sessID = UUID.randomUUID().toString() + "-" + DatatypeConverter.printHexBinary(sha2hash); //encodeHexString(sha2hash);
 
+
+        System.out.println("%% creating session for uID ["+uID+"] with sID: ["+sessID+"]");
         addSession(uID, sessID, time_stamp);
+        System.out.println("%%-- session for uID ["+uID+"] created.");
         return sessID;
     }
     
@@ -102,7 +107,7 @@ public class SessionManager
         }    
         @Override
         public void run() {
-            System.out.println("%% session for uID ["+this.uID+"] expired.");
+            System.out.println("\n%% session for uID ["+this.uID+"] expired.\n");
             sessions.remove(this.uID);
         }
     }
@@ -114,9 +119,11 @@ public class SessionManager
     private void addSession(String uID, String sID, long time_stamp){
         Timer timer = new Timer(uID+"_sessionTimer");
         TimerTask dse = new destroySessionEvent(uID, sessions);
-        timer.schedule( dse, TimeUnit.SECONDS.toMillis(session_duration) );
+        timer.schedule( dse, TimeUnit.SECONDS.toMillis(session_duration) ); 
+        // increase accuracy with `sess_dur - (getTime - time_stamp).toMilli`
         
         if (sessions.containsKey(uID)){
+            System.out.println("%%-- overwriting existing session for uID ["+uID+"]");
             sessionInfo sess = sessions.get(uID);
             sess.getTimer().cancel();
             sess.setSID(sID);
@@ -124,6 +131,7 @@ public class SessionManager
             sess.setTimer(timer);
         }
         else {
+            System.out.println("%%-- creating new session for uID ["+uID+"]");
             sessionInfo sess = new sessionInfo(uID, sID, time_stamp, timer);
             sessions.put(uID,sess);
         }
@@ -133,11 +141,19 @@ public class SessionManager
      * destroy the timed event
      */
     public void removeSession(String uID, String sID) throws Exception{
+        System.out.println("%% removing session for uID ["+uID+"]");
+        if ( !sessions.containsKey(uID) ){
+            System.out.println("%%-- session for uID ["+uID+"] does not exist. (may have expired or wasn't created)");    
+            return;
+        }
         sessionInfo sess = sessions.get(uID);
-        if (sID != sess.getSID())
+        if (sID != sess.getSID()){
+            System.out.println("%%-- session for uID ["+uID+"] does not match given sID. Session will not be removed");
             throw new Exception("Invalid session ID for user. Session will not be removed.");
+        }
         sess.getTimer().cancel();
         sessions.remove(uID);
+        System.out.println("%%-- session for uID ["+uID+"] has been destroyed.");
     }
 
     /* Convert a byte array to hex string.

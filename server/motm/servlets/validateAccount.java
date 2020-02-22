@@ -173,7 +173,7 @@ public class validateAccount implements HttpHandler
 
             /* validate with the given userID */
             try {
-                uID = acc.get_ID().toString();
+                uID = acc.get_ID()+"";
                 if (db.validatePassword(conn, secured_password, acc)){
                     System.out.println("--the given account credentials are valid");
                 
@@ -184,13 +184,13 @@ public class validateAccount implements HttpHandler
                     Headers reqHeader = r.getRequestHeaders();
                     List<String> ipList = reqHeader.get("X-FORWARDED-FOR");
                     System.out.println("--reqHeader [x-forwarded-for]: "+ipList);
-                    String ipAddress = ipList == null ? r.getRemoteAddress() : ipList.get(0); 
+                    String ipAddress = ipList == null ? r.getRemoteAddress().getAddress().toString() : ipList.get(0); 
                     System.out.println("--client ip addr: "+ipAddress);
                     
                     
                     String sessionID = sm.createSession(uID, ipAddress);
                     //add both session id to cookie header and token to json (same purpose)
-                    Headers headers = httpExchange.getResponseHeaders();
+                    Headers headers = r.getResponseHeaders();
                     headers.add("User-agent", "HTTPTool/1.0");
                     headers.add("Set-cookie", "motm_sessionID="+sessionID+"; Max-Age="+(sm.getSessionDuration()-60)+"; HttpOnly;"); // Secure;");
                     String session_token = "motm_sessionID="+sessionID;

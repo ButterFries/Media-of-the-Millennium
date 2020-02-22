@@ -24,7 +24,7 @@ public class Server
 
         /***   initialize session manager   ***/
         System.out.println("! Initializing SessionManager");
-        SessionManager sm = new SessionManager();
+        SessionManager sm = new SessionManager(/*30*/); //if arg then arg-sec session duration, otherwise default 1hour
         System.out.println("--manager ready");
 
 

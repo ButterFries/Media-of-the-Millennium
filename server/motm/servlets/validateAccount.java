@@ -1,6 +1,7 @@
 package server.motm.servlets;
 import server.motm.database.*;
 import server.motm.utils.*;
+import server.motm.session.*;
 
 
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.json.*;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.Headers;
 
 import java.sql.*;
 
@@ -32,10 +34,12 @@ import java.sql.*;
 
 public class validateAccount implements HttpHandler
 {
-    private static appDatabase db;
+    private static AppDatabase db;
+    private static SessionManager sm;
 
-    public validateAccount(appDatabase appDB) {
+    public validateAccount(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
+        sm = appSM;
     }
 
     public void handle(HttpExchange r) {
@@ -74,8 +78,8 @@ public class validateAccount implements HttpHandler
         String body = Utils.convert(r.getRequestBody());
         JSONObject requestJSON = new JSONObject(body);
         JSONObject responseJSON = new JSONObject();
-        appDatabase.accountInfo acc = null;
-        String username, email, secured_password;
+        AppDatabase.accountInfo acc = null;
+        String username, email, secured_password, uID;
 
         /*  Get password hash for given username/email  */
         if ( !requestJSON.has("s_pw") ){
@@ -169,15 +173,29 @@ public class validateAccount implements HttpHandler
 
             /* validate with the given userID */
             try {
+                uID = acc.get_ID()+"";
                 if (db.validatePassword(conn, secured_password, acc)){
                     System.out.println("--the given account credentials are valid");
                 
                     responseJSON.put("error_code", 0);
                     responseJSON.put("error_description", "successfully verified account credentials");
-                    /* TODO: get session token */
-                    //ex.getSession();
-                    String session_token = "none";
+                    
+                    //get client addr (if forwarded then get that from header, otherwise get the remote addr)
+                    Headers reqHeader = r.getRequestHeaders();
+                    List<String> ipList = reqHeader.get("X-FORWARDED-FOR");
+                    System.out.println("--reqHeader [x-forwarded-for]: "+ipList);
+                    String ipAddress = ipList == null ? r.getRemoteAddress().getAddress().toString() : ipList.get(0); 
+                    System.out.println("--client ip addr: "+ipAddress);
+                    
+                    
+                    String sessionID = sm.createSession(uID, ipAddress);
+                    //add both session id to cookie header and token to json (same purpose)
+                    Headers headers = r.getResponseHeaders();
+                    headers.add("User-agent", "HTTPTool/1.0");
+                    headers.add("Set-cookie", "motm_sessionID="+sessionID+"; Max-Age="+(sm.getSessionDuration()-60)+"; HttpOnly;"); // Secure;");
+                    String session_token = "motm_sessionID="+sessionID;
                     responseJSON.put("session_token", session_token);
+
                     String response = responseJSON.toString() + "\n";
                     r.sendResponseHeaders(200, response.length());
                     OutputStream os = r.getResponseBody();

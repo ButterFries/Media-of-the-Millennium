@@ -1,7 +1,8 @@
 package server.motm;
 import server.motm.servlets.*;
-import server.motm.database.appDatabase;
+import server.motm.database.AppDatabase;
 import server.motm.utils.*;
+import server.motm.session.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -21,13 +22,20 @@ public class Server
         System.out.println("--setup complete");
 
 
+        /***   initialize session manager   ***/
+        System.out.println("! Initializing SessionManager");
+        SessionManager sm = new SessionManager(/*30*/); //if arg then arg-sec session duration, otherwise default 1hour
+        System.out.println("--manager ready");
+
 
         /***   initialize db connection   ***/
-        System.out.println("! Setting up connection via appDatabase");
-        appDatabase db = new appDatabase();
+        System.out.println("! Setting up connection via AppDatabase");
+        AppDatabase db = new AppDatabase();
         System.out.println("--connection established");
+
+        
         // the general procedure should be like
-        /* appDatabase db = new appDatabase();
+        /* AppDatabase db = new AppDatabase();
          * Connection conn = db.connect(args)
          * try{
          *     ~~~do some work, like write_to_DB(conn, args)
@@ -41,10 +49,10 @@ public class Server
 
 
         /***   setup server servlets/endpoints   ***/
-        server.createContext("/HelloWorld", new HelloWorld(db));
-        server.createContext("/registerAccount", new registerAccount(db));
-        server.createContext("/validateAccount", new validateAccount(db));
-        ////server.createContext("/x", new x(db));
+        server.createContext("/HelloWorld", new HelloWorld(db, sm));
+        server.createContext("/registerAccount", new registerAccount(db, sm));
+        server.createContext("/validateAccount", new validateAccount(db, sm));
+        ////server.createContext("/x", new x(db, sm));
 
 
 

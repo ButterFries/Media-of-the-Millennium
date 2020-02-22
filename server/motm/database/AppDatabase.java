@@ -1,20 +1,21 @@
 package server.motm.database;
 
 import java.sql.*;
+import server.motm.utils.generatePasswordHash;
 
 
 
-public class appDatabase{
+public class AppDatabase{
     public static String dbPath = "./server/motm/database/appdatabase.db";
 
     public static void main(String[] args){ //does this execute when making new class object? i dun remember
-        System.out.println("appDatabase running main");
+        System.out.println("AppDatabase running main");
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (Exception e){ e.printStackTrace(); }
     }
 
-    public appDatabase(){
+    public AppDatabase(){
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (Exception e){ 
@@ -32,7 +33,7 @@ public class appDatabase{
 
 
     // the general procedure should be like
-    /* appDatabase db = new appDatabase();
+    /* AppDatabase db = new AppDatabase();
      *  Connection conn = db.connect(args)
      * ~~~do some work, like write_to_DB(conn, args)
      * db.disconnect(conn);

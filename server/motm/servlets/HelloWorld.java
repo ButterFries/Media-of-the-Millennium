@@ -1,6 +1,7 @@
 package server.motm.servlets;
 import server.motm.database.*;
 import server.motm.utils.*;
+import server.motm.session.*;
 
 
 import java.util.Map;
@@ -19,10 +20,12 @@ import java.sql.*;
 
 public class HelloWorld implements HttpHandler
 {
-    private static appDatabase db;
+    private static AppDatabase db;
+    private static SessionManager sm;
 
-    public HelloWorld(appDatabase appDB) {
+    public HelloWorld(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
+        sm = appSM;
     }
 
     public void handle(HttpExchange r) {

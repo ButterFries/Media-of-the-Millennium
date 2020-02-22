@@ -117,7 +117,7 @@ public class validateAccount implements HttpHandler
             try {
                 responseJSON.put("error_code", 0);
                 responseJSON.put("error_description", "successfully verified accountID");
-                responseJSON.put("hash", acc.get_password());
+                responseJSON.put( "hash", StripHash.stripHash(acc.get_password()) ); //strip the password hash from the hex string
                 String response = responseJSON.toString() + "\n";
                 r.sendResponseHeaders(200, response.length());
                 OutputStream os = r.getResponseBody();

@@ -2,7 +2,7 @@
  *   https://howtodoinjava.com/security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
  */
 
-package com.developersOfTheMillennium.motm.utils;
+package server.motm.utils;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -25,9 +25,9 @@ public class applyHash
 		String[] parts = storedPassword.split(":");
 		int iterations = Integer.parseInt(parts[0]);
 		byte[] salt = fromHex(parts[1]);
-		byte[] hash = fromHex(parts[2]);
+		int hash_length = Integer.parseInt(parts[2]);
 		
-		PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, hash.length * 8);
+		PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, hash_length);
 		SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");		
 		byte[] result_hash = skf.generateSecret(spec).getEncoded();		
 		return iterations + ":" + toHex(salt) + ":" + toHex(result_hash);

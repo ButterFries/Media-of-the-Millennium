@@ -37,6 +37,9 @@ To compile the server files on Linux (on Windows replace colons with semicolons)
 
 To run the server:
 	java  -cp ".:./server/motm/lib/*:./server/motm/servlets/*:./server/motm/database/*:./server/motm/utils/*" server/motm/Server
+If there is troubles, delete all class files
+	find . -type f -name "*.class"
+	find . -type f -name "*.class" -delete
 
 
 To test endpoints (via CLI):

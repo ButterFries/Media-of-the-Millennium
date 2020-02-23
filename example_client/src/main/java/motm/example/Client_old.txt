@@ -36,7 +36,7 @@ public class Client
 {
     static int PORT = 8080;
     static String ADDR = "0.0.0.0";
-    static String http_type = "https";
+    static String http_type = "https"; //"http";
 
     /* Note: ADDR should be changed from "localhost"/"0.0.0.0" to your local IP address when testing through the android emulator
      *  https://stackoverflow.com/questions/42904584/how-to-connect-to-localhost-from-android-studio-emulator 
@@ -150,14 +150,16 @@ public class Client
     }
 
 
-    private void sendRegistration(String username, String email, String user_password){
+    private void sendRegistration(String username, String email, String password){
         System.out.println("Creating registerAccount request");
         String url = http_type+"://"+ADDR+":"+PORT+"/registerAccount";
         try {
+            
+            String secured_password = generatePasswordHash.generateStrongPasswordHash(password);
             JSONObject json = new JSONObject();
             json.put("u_name", username);
             json.put("email", email);
-            json.put("pw", user_password);
+            json.put("s_pw", secured_password);
             RequestBody body = RequestBody.create(json.toString(), MediaType.parse("application/json; charset=utf-8"));
             Request request = new Request.Builder()
                 .url(url)
@@ -165,6 +167,7 @@ public class Client
                 .addHeader("Accept", "application/json")
                 .put(body)
                 .build();
+            //Response response = httpClient.newCall(request).execute();
             Response response = secureHttpClient.run(request);
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             System.out.println(response.toString());
@@ -187,15 +190,48 @@ public class Client
                 json.put("u_name", user);
             else
                 json.put("email", user);
-            json.put("pw", password);
             RequestBody body = RequestBody.create(json.toString(), MediaType.parse("application/json; charset=utf-8"));
             Request request = new Request.Builder()
+                .url(url)
+                .addHeader("User-Agent", "motm registerAccount initial request")
+                .addHeader("Accept", "application/json")
+                .post(body)
+                .build();
+            //Response response = httpClient.newCall(request).execute();
+            Response response = secureHttpClient.run(request);
+            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+            System.out.println(response.toString());
+            String res_body = response.body().string();
+            System.out.println(res_body.trim());
+            response.close();
+
+            JSONObject responseJSON = new JSONObject(res_body);
+
+            int err_code = responseJSON.getInt("error_code");
+            String err_msg = responseJSON.getString("error_description");
+            if (err_code != 0)
+                throw new Exception("error code"+err_code+" ::  "+err_msg);
+
+            String stored_hash = responseJSON.getString("hash");
+            System.out.println("stored_hash::  '"+stored_hash+"'");
+            String hashed_password = applyHash.hashPassword(password, stored_hash);
+            System.out.println("hashed_password::  '"+hashed_password+"'");
+
+            json = new JSONObject();
+            if (mode == 0)
+                json.put("u_name", user);
+            else
+                json.put("email", user);
+            json.put("s_pw", hashed_password);
+            body = RequestBody.create(json.toString(), MediaType.parse("application/json; charset=utf-8"));
+            request = new Request.Builder()
                 .url(url)
                 .addHeader("User-Agent", "motm registerAccount final request")
                 .addHeader("Accept", "application/json")
                 .post(body)
                 .build();
-            Response response = secureHttpClient.run(request);
+            //response = httpClient.newCall(request).execute();
+            response = secureHttpClient.run(request);
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             System.out.println(response.toString());
             System.out.println(response.body().string().trim());

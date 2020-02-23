@@ -1,7 +1,7 @@
 package server.motm.database;
 
 import java.sql.*;
-import server.motm.utils.generatePasswordHash;
+import server.motm.utils.*;
 
 
 
@@ -193,15 +193,13 @@ public class AppDatabase{
      * 
      * Warning!  the input validity is not checked, you must do so before calling.
      */
-    public void add_account(Connection conn, String u_name, String e_addr, String pass_hash/*String pw*/) throws SQLException{
+    public void add_account(Connection conn, String u_name, String e_addr, /*String pass_hash*/String pw) throws SQLException{
         try {
             String sqlReq = "INSERT INTO accounts (username, email, passwordhash) VALUES(?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
         
-            /* //will instead hash on the client side and pass the hashed string in here
             String saltshaker = "||password_security++"; //using PBKDF2, this is extra and isn't necessary
-            String pass_hash = hashingFunction( pw + saltshaker );
-            */
+            String pass_hash = hashingFunction( pw + saltshaker );    
         
             pstmt.setString(1, u_name);
             pstmt.setString(2, e_addr);
@@ -222,7 +220,7 @@ public class AppDatabase{
      * Hashes the password given a hashing function of choice and returns the hash 
      * to be stored in the database.
      */
-    /*public String hashingFunction(String pw) throws Exception{
+    public String hashingFunction(String pw) throws Exception{
         try {
             return generatePasswordHash.generateStrongPasswordHash(pw);
         }
@@ -231,19 +229,21 @@ public class AppDatabase{
             throw new Exception("An error occured when hashing the password using the hashing function");
         }
 
-    }*/
+    }
 
     /*
      * Validates the password by comparing it to the entry in the database using
      * the same hashing function or validation method of that function.
      * 
      * --modified due to change in server exchange process
+     * --resumed due to change from http to https, 
+     *     enabling safe transfer of plain text password
      */
-    public boolean validatePassword(Connection conn, String s_pw, accountInfo acc){
+    public boolean validatePassword_0(Connection conn, String s_pw, accountInfo acc){
         String storedPassword = acc.get_password();
         return s_pw.equals(storedPassword);
     }
-    /*public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException{
+    public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException{
         String storedPassword = acc.get_password();
         try {
             return validatePasswordHash.validatePassword(pw, storedPassword);
@@ -252,7 +252,7 @@ public class AppDatabase{
             e.printStackTrace();
             throw new Exception("An error occured when validating password with database entry");
         }
-    }*/
+    }
     
 
     /*

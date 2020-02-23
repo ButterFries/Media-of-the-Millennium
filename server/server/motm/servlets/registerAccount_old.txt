@@ -73,13 +73,13 @@ public class registerAccount implements HttpHandler
 
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("u_name") && requestJSON.has("email") && requestJSON.has("pw")){
+        if (requestJSON.has("u_name") && requestJSON.has("email") && requestJSON.has("s_pw")){
             String username = requestJSON.getString("u_name");
             String email = requestJSON.getString("email");
-            String user_password = requestJSON.getString("pw");
+            String secured_password = requestJSON.getString("s_pw");
             System.out.println("--client sent u_name: "+username);
             System.out.println("--client sent email: "+email);
-            System.out.println("--client's pw: "+user_password);
+            System.out.println("--client's s_pw: "+secured_password);
 
             JSONObject responseJSON = new JSONObject();
 
@@ -117,11 +117,9 @@ public class registerAccount implements HttpHandler
             }
             System.out.println("----email not taken");
 
-
-
             /*  register the account;  both username and email can be used  */
             System.out.println("--adding account to database");
-            db.add_account(conn, username, email, user_password); //exception will be forwarded up to .handle
+            db.add_account(conn, username, email, secured_password); //exception will be forwarded up to .handle
             System.out.println("----successfully added account to database");
             
 

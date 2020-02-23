@@ -29,8 +29,8 @@ import com.sun.net.httpserver.HttpsExchange;
  * Send Send { u_name: "my_username"} or { email: "my_email@example"}
  * and it will return { error_code: int, hash: "x:yy:zzzz" }
  * use applyHash.java on the password and the retrieved hash
- * then send { u_name: "my_username", s_pw: "hashed_password" }
- * or { email: "my_email@example", s_pw: "hashed_password" }
+ * then send { u_name: "my_username", pw: "hashed_password" }
+ * or { email: "my_email@example", pw: "hashed_password" }
  * and it will return (TBD) something like { error_code: int, session_token: String?, etc } 
  */
 
@@ -82,77 +82,23 @@ public class validateAccount implements HttpHandler
         JSONObject requestJSON = new JSONObject(body);
         JSONObject responseJSON = new JSONObject();
         AppDatabase.accountInfo acc = null;
-        String username, email, secured_password, uID;
+        String username, email, user_password = null, uID;
 
         HttpsExchange rs = (HttpsExchange) r;
 
-        /*  Get password hash for given username/email  */
-        if ( !requestJSON.has("s_pw") ){
-            System.out.println("--[Stage 1] Retrieving stored hash");
-            /*  username request -> return the hash info  */
-            if ( requestJSON.has("u_name") ){
-                username = requestJSON.getString("u_name");
-                System.out.println("--client sent u_name: "+username);
-                /*  check if username exists  */
-                if ( !db.usernameExists(conn, username) ){ //exception will be forwarded up to .handle
-                    responose_no_user(r, responseJSON);
-                    return;
-                }
-                acc = db.get_user_from_name(conn, username); //exception will be forwarded up to .handle
-            }
-            /*  email request -> return the hash info  */
-            else if ( requestJSON.has("email") ){
-                email = requestJSON.getString("email");
-                System.out.println("--client sent email: "+email);
-                /*  check if email exists  */
-                if ( !db.emailExists(conn, email) ){ //exception will be forwarded up to .handle
-                    responose_no_email(r, responseJSON);
-                    return;
-                }
-                acc = db.get_user_from_email(conn, email); //exception will be forwarded up to .handle
-            }
-            /* if invalid request body */
-            else {
-                rs.sendResponseHeaders(400, -1);
-                return;
-            }
-
-            System.out.println("--valid account, password verification pending");
-            
-            try {
-                responseJSON.put("error_code", 0);
-                responseJSON.put("error_description", "successfully verified accountID");
-                responseJSON.put( "hash", StripHash.stripHash(acc.get_password()) ); //strip the password hash from the hex string
-                String response = responseJSON.toString() + "\n";
-                rs.sendResponseHeaders(200, response.length());
-                OutputStream os = rs.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                System.out.println("--responese :   "+response.trim());
-                System.out.println("--request fufilled");
-            }
-            catch (Exception e){
-                System.out.println("## ERROR ::  " + e);
-                throw new Exception("(handleReq 1) -- something went wrong when sending initial response");
-            }
-        }
-    
-        
-
-
-
         /*  Validate credentials  */
-        else { //requestJSON.has("s_pw")
-            System.out.println("--[Stage 2] Validating credentials");
+        
+        System.out.println("--Validating credentials");
+        if ( requestJSON.has("pw") ){
             /*  username login -> validate */
             if ( requestJSON.has("u_name") ){
                 username = requestJSON.getString("u_name");
-                secured_password = requestJSON.getString("s_pw");
+                user_password = requestJSON.getString("pw");
                 System.out.println("--client sent u_name: "+username);
-                System.out.println("--client sent s_pw: "+secured_password);
+                System.out.println("--client sent pw: "+user_password);
                 /*  check if username exists  */
                 if ( !db.usernameExists(conn, username) ){ //exception will be forwarded up to .handle
-                    responose_no_user(r, responseJSON);
+                    response_no_user(r, responseJSON);
                     return;
                 }
                 acc = db.get_user_from_name(conn, username); //exception will be forwarded up to .handle
@@ -160,77 +106,78 @@ public class validateAccount implements HttpHandler
             /*  email login -> validate */
             else if ( requestJSON.has("email") ){
                 email = requestJSON.getString("email");
-                secured_password = requestJSON.getString("s_pw");
+                user_password = requestJSON.getString("pw");
                 System.out.println("--client sent email: "+email);
-                System.out.println("--client sent s_pw: "+secured_password);
+                System.out.println("--client sent pw: "+user_password);
                 /*  check if email exists  */
                 if ( !db.emailExists(conn, email) ){ //exception will be forwarded up to .handle
-                    responose_no_email(r, responseJSON);
+                    response_no_email(r, responseJSON);
                     return;
                 }
                 acc = db.get_user_from_email(conn, email); //exception will be forwarded up to .handle
             }
-            /* if invalid request body */
-            else {
-                r.sendResponseHeaders(400, -1);
-                return;
-            }
-
-            /* validate with the given userID */
-            try {
-                uID = acc.get_ID()+"";
-                if (db.validatePassword(conn, secured_password, acc)){
-                    System.out.println("--the given account credentials are valid");
-                
-                    responseJSON.put("error_code", 0);
-                    responseJSON.put("error_description", "successfully verified account credentials");
-                    
-                    //get client addr (if forwarded then get that from header, otherwise get the remote addr)
-                    Headers reqHeader = r.getRequestHeaders();
-                    List<String> ipList = reqHeader.get("X-FORWARDED-FOR");
-                    System.out.println("--reqHeader [x-forwarded-for]: "+ipList);
-                    String ipAddress = ipList == null ? r.getRemoteAddress().getAddress().toString() : ipList.get(0); 
-                    System.out.println("--client ip addr: "+ipAddress);
-                    
-                    
-                    String sessionID = sm.createSession(uID, ipAddress);
-                    //add both session id to cookie header and token to json (same purpose)
-                    Headers headers = r.getResponseHeaders();
-                    headers.add("User-agent", "HTTPTool/1.0");
-                    headers.add("Set-cookie", "motm_sessionID="+sessionID+"; Max-Age="+(sm.getSessionDuration()-60)+"; HttpOnly;"); // Secure;");
-                    String session_token = "motm_sessionID="+sessionID;
-                    responseJSON.put("session_token", session_token);
-
-                    String response = responseJSON.toString() + "\n";
-                    r.sendResponseHeaders(200, response.length());
-                    OutputStream os = r.getResponseBody();
-                    os.write(response.getBytes());
-                    os.close();
-                    System.out.println("--responese :   "+response.trim());
-                    System.out.println("--request fufilled");
-                }
-                else {
-                    System.out.println("--the given account credentials are invalid");
-                
-                    responseJSON.put("error_code", 3);
-                    responseJSON.put("error_description", "invalid account credentials");
-                    String response = responseJSON.toString() + "\n";
-                    r.sendResponseHeaders(200, response.length());
-                    OutputStream os = r.getResponseBody();
-                    os.write(response.getBytes());
-                    os.close();
-                    System.out.println("--responese :   "+response.trim());
-                    System.out.println("--request fufilled");
-                }                
-            }
-            catch (Exception e){
-                System.out.println("## ERROR ::  " + e);
-                throw new Exception("(handleReq 2) -- something went wrong when sending final response");
-            }
         }
+        /* if invalid request body */
+        else {
+            r.sendResponseHeaders(400, -1);
+            return;
+        }
+
+        /* validate with the given userID */
+        try {
+            uID = acc.get_ID()+"";
+            if (db.validatePassword(conn, user_password, acc)){
+                System.out.println("--the given account credentials are valid");
+            
+                responseJSON.put("error_code", 0);
+                responseJSON.put("error_description", "successfully verified account credentials");
+                
+                //get client addr (if forwarded then get that from header, otherwise get the remote addr)
+                Headers reqHeader = r.getRequestHeaders();
+                List<String> ipList = reqHeader.get("X-FORWARDED-FOR");
+                System.out.println("--reqHeader [x-forwarded-for]: "+ipList);
+                String ipAddress = ipList == null ? r.getRemoteAddress().getAddress().toString() : ipList.get(0); 
+                System.out.println("--client ip addr: "+ipAddress);
+                
+                
+                String sessionID = sm.createSession(uID, ipAddress);
+                //add both session id to cookie header and token to json (same purpose)
+                Headers headers = r.getResponseHeaders();
+                headers.add("User-agent", "HTTPTool/1.0");
+                headers.add("Set-cookie", "motm_sessionID="+sessionID+"; Max-Age="+(sm.getSessionDuration()-60)+"; HttpOnly;"); // Secure;");
+                String session_token = "motm_sessionID="+sessionID;
+                responseJSON.put("session_token", session_token);
+
+                String response = responseJSON.toString() + "\n";
+                r.sendResponseHeaders(200, response.length());
+                OutputStream os = r.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+                System.out.println("--responese :   "+response.trim());
+                System.out.println("--request fufilled");
+            }
+            else {
+                System.out.println("--the given account credentials are invalid");
+            
+                responseJSON.put("error_code", 3);
+                responseJSON.put("error_description", "invalid account credentials");
+                String response = responseJSON.toString() + "\n";
+                r.sendResponseHeaders(200, response.length());
+                OutputStream os = r.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+                System.out.println("--responese :   "+response.trim());
+                System.out.println("--request fufilled");
+            }                
+        }
+        catch (Exception e){
+            System.out.println("## ERROR ::  " + e);
+            throw new Exception("(handleReq) -- something went wrong when sending validation response");
+        }
+
     }
 
-    private void responose_no_user(HttpExchange r, JSONObject responseJSON) throws Exception {
+    private void response_no_user(HttpExchange r, JSONObject responseJSON) throws Exception {
         System.out.println("--username doesn't exist");
         responseJSON.put("error_code", 1);
         responseJSON.put("error_description", "username doesn't exist");
@@ -243,7 +190,7 @@ public class validateAccount implements HttpHandler
         System.out.println("--request fufilled");
     }
 
-    private void responose_no_email(HttpExchange r, JSONObject responseJSON) throws Exception {
+    private void response_no_email(HttpExchange r, JSONObject responseJSON) throws Exception {
         System.out.println("--email doesn't exist");
         responseJSON.put("error_code", 2);
         responseJSON.put("error_description", "email doesn't exists");

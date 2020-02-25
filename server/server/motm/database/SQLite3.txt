@@ -18,7 +18,7 @@ java -classpath '.:sqlite-jdbc-3.27.2.1.jar' appServer
 
 
 ### accounts table and insert
-./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, favorites TEXT);"
+./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, favorites TEXT DEFAULT '');"
 ./sqlite3 appdatabase.db "INSERT INTO accounts (username, email, password) VALUES ('example', 'email', 'passwordhash');"
 
 

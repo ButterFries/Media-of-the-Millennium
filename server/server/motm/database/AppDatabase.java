@@ -1,24 +1,28 @@
 package server.motm.database;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import server.motm.utils.*;
 
 
 
-public class AppDatabase{
+public class AppDatabase {
     public static String dbPath = "./server/motm/database/appdatabase.db";
 
-    public static void main(String[] args){ //does this execute when making new class object? i dun remember
+    public static void main(String[] args) { //does this execute when making new class object? i dun remember
         System.out.println("AppDatabase running main");
         try {
             Class.forName("org.sqlite.JDBC");
-        } catch (Exception e){ e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public AppDatabase(){
+    public AppDatabase() {
         try {
             Class.forName("org.sqlite.JDBC");
-        } catch (Exception e){ 
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
@@ -26,7 +30,7 @@ public class AppDatabase{
 
 
     //only use if this class makes the handling decisions, otherwise just make new class object and call methods
-    private void handler(String args){ 	//(if using client-server-db model)
+    private void handler(String args) {    //(if using client-server-db model)
         //handle client requests 
         //when req is received then "communicate" with db
     }
@@ -42,76 +46,75 @@ public class AppDatabase{
 
 
     /*
-     * This method connects to the database while enforcing foreign key 
+     * This method connects to the database while enforcing foreign key
      * constraints.
      *  It returns a Connection object.
      */
-    public Connection connect(/*args*/){
+    public Connection connect(/*args*/) {
         Connection conn = null;
-        try{
-            conn = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
             conn.createStatement().executeUpdate("PRAGMA foreign_keys = ON; ");
             conn.setAutoCommit(true);
-        } catch (Exception e) { e.printStackTrace(); System.exit(1); }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
         return conn;
     }
 
     /*
      * This method safely disconnects to the database.
      */
-    public void disconnect(Connection conn){
-        try{
+    public void disconnect(Connection conn) {
+        try {
             conn.close();
-        } catch (SQLException close_exception){
+        } catch (SQLException close_exception) {
             System.out.println("#  ERROR:  error when closing db connection");
             /* handle it */
         }
     }
 
     /*
-     * this is an example, not to be used at runtime but rather use it as a 
+     * this is an example, not to be used at runtime but rather use it as a
      * coding template
-     */ 
-    private /*public*/ void write_to_DB(Connection conn, String args) throws Exception{
+     */
+    private /*public*/ void write_to_DB(Connection conn, String args) throws Exception {
         String sqlReq = "INSERT OR REPLACE INTO table (attr_1, attr_2) VALUES(?,?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setString(1, "attribute 1 value");
             pstmt.setString(2, "attribute 2 value");
             pstmt.executeUpdate();
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             //ex.printStackTrace();
-            System.out.println("#  ERROR :  "+ex);
+            System.out.println("#  ERROR :  " + ex);
             throw new Exception("some error");
         }
     }
 
     /*
-     * this is an example, not to be used at runtime but rather use it as a 
+     * this is an example, not to be used at runtime but rather use it as a
      * coding template
-     */ 
-    private /*public*/ String read_from_DB(Connection conn, String args) throws Exception{
+     */
+    private /*public*/ String read_from_DB(Connection conn, String args) throws Exception {
         String sqlReq = "SELECT * FROM table WHERE example = 'something'";
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery( sqlReq );
-            if (rs.next()){ //found something
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if (rs.next()) { //found something
                 String attribute = "some_attr";
                 String value = rs.getString(attribute);
                 return value;
             } else { //didnt find
                 throw new Exception("some error");
             }
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             //ex.printStackTrace();
-            System.out.println("#  ERROR :  "+ex);
+            System.out.println("#  ERROR :  " + ex);
             throw new Exception("some error");
         }
     }
-
-
 
 
 //==============================================================================
@@ -125,39 +128,57 @@ public class AppDatabase{
         private String username;
         private String email;
         private String passwordHash;
-        
-        public accountInfo(int id, String name, String email, String hash){
+        private String favorites;
+
+
+        public accountInfo(int id, String name, String email, String hash, String fav) {
             this.userID = id;
             this.username = name;
             this.email = email;
             this.passwordHash = hash;
+            this.favorites = fav;
         }
-        public int get_ID(){ return this.userID; }
-        public String get_username(){ return this.username; }
-        public String get_email(){ return this.email; }
-        public String get_password(){ return this.passwordHash; } 
+
+        public int get_ID() {
+            return this.userID;
+        }
+
+        public String get_username() {
+            return this.username;
+        }
+
+        public String get_email() {
+            return this.email;
+        }
+
+        public String get_password() {
+            return this.passwordHash;
+        }
+
+        public String get_favorites() {
+            return this.favorites;
+        }
     }
 
 
     /*
      * Obtain the account info where the username matches
      */
-    public accountInfo get_user_from_name(Connection conn, String username) throws SQLException{
+    public accountInfo get_user_from_name(Connection conn, String username) throws SQLException {
         Statement stmt = conn.createStatement();
-        String sqlReq = "SELECT * FROM accounts WHERE username = \""+username+"\"";   
+        String sqlReq = "SELECT * FROM accounts WHERE username = \"" + username + "\"";
         try {
-            ResultSet rs = stmt.executeQuery( sqlReq );
-            if (rs.next()){
-                return new accountInfo( rs.getInt("userID"),
-                                        rs.getString("username"),
-                                        rs.getString("email"),
-                                        rs.getString("passwordhash"));
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if (rs.next()) {
+                return new accountInfo(rs.getInt("userID"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("passwordhash"));
             } else {
                 throw new SQLException("Failed to fetch user with 'username' from 'accounts' table");
             }
-        } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
+        } catch (SQLException ex) {
+            System.out.println("#  ERROR :  " + ex);
             throw new SQLException("An error occurred when executing query to fetch user with 'username' from 'accounts' table");
         }
     }
@@ -165,66 +186,60 @@ public class AppDatabase{
     /*
      * Obtain the account info where the email matches
      */
-    public accountInfo get_user_from_email(Connection conn, String email) throws SQLException{
+    public accountInfo get_user_from_email(Connection conn, String email) throws SQLException {
         Statement stmt = conn.createStatement();
-        String sqlReq = "SELECT * FROM accounts WHERE email = \""+email+"\"";   
+        String sqlReq = "SELECT * FROM accounts WHERE email = \"" + email + "\"";
         try {
-            ResultSet rs = stmt.executeQuery( sqlReq );
-            if (rs.next()){
-                return new accountInfo( rs.getInt("userID"),
-                                        rs.getString("username"),
-                                        rs.getString("email"),
-                                        rs.getString("passwordhash"));
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if (rs.next()) {
+                return new accountInfo(rs.getInt("userID"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("passwordhash"));
             } else {
                 throw new SQLException("Failed to fetch user with 'email' from 'accounts' table");
             }
-        } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
+        } catch (SQLException ex) {
+            System.out.println("#  ERROR :  " + ex);
             throw new SQLException("An error occurred when executing query to fetch user with 'email' from 'accounts' table");
         }
     }
 
 
-
-
     /*
      * This adds the account to the database.
-     * 
+     *
      * Warning!  the input validity is not checked, you must do so before calling.
      */
-    public void add_account(Connection conn, String u_name, String e_addr, /*String pass_hash*/String pw) throws SQLException{
+    public void add_account(Connection conn, String u_name, String e_addr, /*String pass_hash*/String pw) throws SQLException {
         try {
             String sqlReq = "INSERT INTO accounts (username, email, passwordhash) VALUES(?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-        
+
             String saltshaker = "||password_security++"; //using PBKDF2, this is extra and isn't necessary
-            String pass_hash = hashingFunction( pw + saltshaker );    
-        
+            String pass_hash = hashingFunction(pw + saltshaker);
+
             pstmt.setString(1, u_name);
             pstmt.setString(2, e_addr);
             pstmt.setString(3, pass_hash);
             pstmt.executeUpdate();
-        } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
+        } catch (SQLException ex) {
+            System.out.println("#  ERROR :  " + ex);
             throw new SQLException("Failed to add account to database");
-        } 
-        catch (Exception e){
-            System.out.println("#  ERROR :  "+e);
+        } catch (Exception e) {
+            System.out.println("#  ERROR :  " + e);
             throw new SQLException("Failed to add account to database");
         }
     }
 
     /*
-     * Hashes the password given a hashing function of choice and returns the hash 
+     * Hashes the password given a hashing function of choice and returns the hash
      * to be stored in the database.
      */
-    public String hashingFunction(String pw) throws Exception{
+    public String hashingFunction(String pw) throws Exception {
         try {
             return generatePasswordHash.generateStrongPasswordHash(pw);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("An error occured when hashing the password using the hashing function");
         }
@@ -234,43 +249,42 @@ public class AppDatabase{
     /*
      * Validates the password by comparing it to the entry in the database using
      * the same hashing function or validation method of that function.
-     * 
+     *
      * --modified due to change in server exchange process
-     * --resumed due to change from http to https, 
+     * --resumed due to change from http to https,
      *     enabling safe transfer of plain text password
      */
-    public boolean validatePassword_0(Connection conn, String s_pw, accountInfo acc){
+    public boolean validatePassword_0(Connection conn, String s_pw, accountInfo acc) {
         String storedPassword = acc.get_password();
         return s_pw.equals(storedPassword);
     }
-    public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException{
+
+    public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException {
         String storedPassword = acc.get_password();
         try {
             return validatePasswordHash.validatePassword(pw, storedPassword);
-        } 
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("An error occured when validating password with database entry");
         }
     }
-    
+
 
     /*
      * Checks if username exists in 'accounts' table, returns true if it does exist.
      */
-    public boolean usernameExists(Connection conn, String username) throws SQLException{
+    public boolean usernameExists(Connection conn, String username) throws SQLException {
         Statement stmt = conn.createStatement();
-        String sqlReq = "SELECT (count(*) > 0) FROM accounts WHERE username = \""+username+"\"";
+        String sqlReq = "SELECT (count(*) > 0) FROM accounts WHERE username = \"" + username + "\"";
         try {
-            ResultSet rs = stmt.executeQuery( sqlReq );
-            if (rs.next()){
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if (rs.next()) {
                 return rs.getBoolean(1);
             } else {
                 throw new SQLException("Failed to fetch query on existence of 'username' from 'accounts' table");
             }
-        } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
+        } catch (SQLException ex) {
+            System.out.println("#  ERROR :  " + ex);
             throw new SQLException("An error occurred when executing query on existence of 'username' from 'accounts' table");
         }
     }
@@ -278,29 +292,40 @@ public class AppDatabase{
     /*
      * Checks if email exists in 'accounts' table, returns true if it does exist.
      */
-    public boolean emailExists(Connection conn, String email) throws SQLException{
+    public boolean emailExists(Connection conn, String email) throws SQLException {
         Statement stmt = conn.createStatement();
-        String sqlReq = "SELECT (count(*) > 0) FROM accounts WHERE email = \""+email+"\"";
+        String sqlReq = "SELECT (count(*) > 0) FROM accounts WHERE email = \"" + email + "\"";
         try {
-            ResultSet rs = stmt.executeQuery( sqlReq );
-            if (rs.next()){
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if (rs.next()) {
                 return rs.getBoolean(1);
             } else {
                 throw new SQLException("Failed to fetch query on existence of 'email' from 'accounts' table");
             }
-        } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
+        } catch (SQLException ex) {
+            System.out.println("#  ERROR :  " + ex);
             throw new SQLException("An error occurred when executing query on existence of 'email' from 'accounts' table");
         }
     }
 
+    /**
+     * Adds specified media title (ID) to User's favorite/watchlist
+     */
+    public void add_titleToFavorites(Connection var1, int mediaID, int accountID) throws Exception {
+        String ID = Integer.toString(mediaID);
+        String var3 = "UPDATE accounts SET favorites = favorites || \"" + ID + "\" WHERE userID = \"" + accountID + "\"";
+
+        try {
+            PreparedStatement var4 = var1.prepareStatement(var3);
+            var4.executeUpdate();
+        } catch (SQLException var5) {
+            System.out.println("#  ERROR :  " + var5);
+            throw new Exception("Could not update account favorites");
+        }
+    }
     /*
      * TODO add update methods for username and email (low priority)
      */
-
-
-
 
 
 //==============================================================================
@@ -309,6 +334,42 @@ public class AppDatabase{
 
 //TODO this needs to be more developed when we establish a structure behind media titles
 // as of now we have a very simplistic notion of a media title
+
+    public static class MediaProfilePage {
+        private int mediaID;         //unique integer id, PRIMARY KEY
+        private String title;        //the title/name of the movie/music/game/etc
+        private String mediaType;    //type of media;  {'cinema', 'music', 'tv-series', 'video game', 'novel'}
+        private String summary;      //string of words
+        //private ArrayList<String> tags = new ArrayList<String>(); //list of tags (strings) associated to title, contents are different based on mediaType DEV-60
+        private String[] genres;
+        private String[] tags;
+
+        public MediaProfilePage(int ID, String t, String mt, String s, String[] g, String[] tag) {
+            this.mediaID = ID;
+            this.title = t;
+            this.mediaType = mt;
+            this.summary = s;
+            this.genres = g;
+            this.tags = tag;
+        }
+
+        public int get_mediaID() {
+            return this.mediaID;
+        }
+        public String get_title() {
+            return this.title;
+        }
+        public String get_mediaType() {
+            return this.mediaType;
+        }
+        public String get_summary() {
+            return this.summary;
+        }
+        public String[] get_genres() {
+            return this.genres;
+        }
+        public String[] get_tags() { return.this.tags; }
+    }
 
     /*
      * Adds the media title to the database (careful duplicates are possible!)
@@ -327,9 +388,136 @@ public class AppDatabase{
             throw new SQLException("Failed to add media title");
         }
     }
+    /**
+     * Retrieves media title information of specified mediaID
+     * RETURN: MediaProfilePage object with title information
+     */
+    public MediaProfilePage get_mediaProfilePageInfo(Connection conn, int mediaID) throws SQLException {
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = \"" + mediaID + "\"";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if (rs.next()) { //found something
+                String mg = rs.getString("genres");
+                String[] media_genres = mg.split(","); //place each genre into a list
+                String tg = rs.getString("tags");
+                String [] media_tags = tg.split(",");
+                return new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
+
+            } else { //didnt find
+                throw new SQLException("No ID found");
+            }
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            //System.out.println("#  ERROR :  " + ex);
+            throw new SQLException("Error while fetching MPP data");
+        }
+    }
+
+    /**
+     *
+     * Returns a list of MediaProfilePage objects that have the associated mediaType
+     *
+     */
+    public ArrayList<MediaProfilePage> get_mediaIDs(Connection conn, String mediaType) throws SQLException{
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaType = \"" + mediaType + "\"";
+        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                String mg = rs.getString("genres");
+                String[] media_genres = mg.split(","); //place each genre into a list
+                String tg = rs.getString("tags");
+                String [] media_tags = tg.split(",");
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
+
+                pages.add(m);
+
+            }
+            if (pages.isEmpty())
+                throw new SQLException("No objects created");
+            else
+                return pages;
+
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            //System.out.println("#  ERROR :  " + ex);
+            throw new SQLException("Error while fetching MPP data using specified Type");
+        }
+
+    }
+    /**
+     * Returns a list of MediaProfilePage objects that have the associated GENRE within its DB entry
+     */
+    public ArrayList<MediaProfilePage> get_genrePages(Connection conn, String genre) throws SQLException{
+        String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
 
 
+        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                String mg = rs.getString("genres");
+                String tg = rs.getString("tags");
+                String [] media_tags = tg.split(",");
+                String[] media_genres = mg.split(","); //place each genre into a list
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
 
+                pages.add(m);
+
+            }
+            if (pages.isEmpty())
+                throw new SQLException("No objects created");
+            else
+                return pages;
+
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            //System.out.println("#  ERROR :  " + ex);
+            throw new SQLException("Error while fetching MPP data using specified Genre");
+        }
+    }
+
+    /**
+     * Returns a list of MediaProfilePage objects that have the associated TAG within its DB entry
+     */
+    public ArrayList<MediaProfilePage> get_tagPages(Connection conn, String tag) throws SQLException{
+        String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
+
+
+        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                String mg = rs.getString("genres");
+                String tg = rs.getString("tags");
+                String[] media_genres = mg.split(",");
+                String [] media_tags = tg.split(",");
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
+
+                pages.add(m);
+
+            }
+            if (pages.isEmpty())
+                throw new SQLException("No objects created");
+            else
+                return pages;
+
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            //System.out.println("#  ERROR :  " + ex);
+            throw new SQLException("Error while fetching MPP data using specified Genre");
+        }
+    }
 
 
 

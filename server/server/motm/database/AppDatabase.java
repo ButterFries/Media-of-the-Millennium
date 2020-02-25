@@ -342,13 +342,15 @@ public class AppDatabase {
         private String summary;      //string of words
         //private ArrayList<String> tags = new ArrayList<String>(); //list of tags (strings) associated to title, contents are different based on mediaType DEV-60
         private String[] genres;
+        private String[] tags;
 
-        public MediaProfilePage(int ID, String t, String mt, String s, String[] g) {
+        public MediaProfilePage(int ID, String t, String mt, String s, String[] g, String[] tag) {
             this.mediaID = ID;
             this.title = t;
             this.mediaType = mt;
             this.summary = s;
             this.genres = g;
+            this.tags = tag;
         }
 
         public int get_mediaID() {
@@ -366,6 +368,7 @@ public class AppDatabase {
         public String[] get_genres() {
             return this.genres;
         }
+        public String[] get_tags() { return.this.tags; }
     }
 
     /*
@@ -397,8 +400,10 @@ public class AppDatabase {
             if (rs.next()) { //found something
                 String mg = rs.getString("genres");
                 String[] media_genres = mg.split(","); //place each genre into a list
+                String tg = rs.getString("tags");
+                String [] media_tags = tg.split(",");
                 return new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
-                        rs.getString("mediaType"), rs.getString("summary"), media_genres);
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
 
             } else { //didnt find
                 throw new SQLException("No ID found");
@@ -424,8 +429,10 @@ public class AppDatabase {
             while (rs.next()) { //found something
                 String mg = rs.getString("genres");
                 String[] media_genres = mg.split(","); //place each genre into a list
+                String tg = rs.getString("tags");
+                String [] media_tags = tg.split(",");
                 MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
-                        rs.getString("mediaType"), rs.getString("summary"), media_genres);
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
 
                 pages.add(m);
 
@@ -443,8 +450,7 @@ public class AppDatabase {
 
     }
     /**
-     * Returns a list of MediaProfilePage objects that have the associated genre within its DB entry
-     * YOU CAN MODIFY QUERY TO PULL ROWS WITH SPECIFIC TYPE AND GENRE SINCE SOME TYPES HAVE OVERLAPPING GENRES
+     * Returns a list of MediaProfilePage objects that have the associated GENRE within its DB entry
      */
     public ArrayList<MediaProfilePage> get_genrePages(Connection conn, String genre) throws SQLException{
         String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
@@ -457,9 +463,11 @@ public class AppDatabase {
             ResultSet rs = stmt.executeQuery(sqlReq);
             while (rs.next()) { //found something
                 String mg = rs.getString("genres");
+                String tg = rs.getString("tags");
+                String [] media_tags = tg.split(",");
                 String[] media_genres = mg.split(","); //place each genre into a list
                 MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
-                        rs.getString("mediaType"), rs.getString("summary"), media_genres);
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
 
                 pages.add(m);
 
@@ -476,6 +484,40 @@ public class AppDatabase {
         }
     }
 
+    /**
+     * Returns a list of MediaProfilePage objects that have the associated TAG within its DB entry
+     */
+    public ArrayList<MediaProfilePage> get_tagPages(Connection conn, String tag) throws SQLException{
+        String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
+
+
+        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                String mg = rs.getString("genres");
+                String tg = rs.getString("tags");
+                String[] media_genres = mg.split(",");
+                String [] media_tags = tg.split(",");
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
+
+                pages.add(m);
+
+            }
+            if (pages.isEmpty())
+                throw new SQLException("No objects created");
+            else
+                return pages;
+
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            //System.out.println("#  ERROR :  " + ex);
+            throw new SQLException("Error while fetching MPP data using specified Genre");
+        }
+    }
 
 
 

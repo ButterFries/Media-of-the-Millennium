@@ -41,10 +41,11 @@ INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 
 
 ### media titles table and insert
-./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
-./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary, genres) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror')";
+./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, tags TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
+./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror', 'sword,fun,blood')";
 # use media types {'cinema', 'music', 'tv-series', 'video game', 'novel'}
 # use genre types {'depends on media type'}
+
 
 
 ###  ratings table

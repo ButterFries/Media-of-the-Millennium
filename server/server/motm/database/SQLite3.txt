@@ -41,8 +41,8 @@ INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 
 
 ### media titles table and insert
-./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, tags TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
-./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror', 'sword,fun,blood')";
+./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, tags TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0, pictureUrl TEXT NOT NULL);
+./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags, pictureUrl) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror', 'sword,fun,blood', 'https://google.com/picture')";
 # use media types {'cinema', 'music', 'tv-series', 'video game', 'novel'}
 # use genre types {'depends on media type'}
 
@@ -102,6 +102,7 @@ INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 ##  rating -- float, current rating
 ##  numRaters -- total number of all people who've rated this title
 ##  genres -- string of associated genres (comma separated) 'action,horror'
+##  pictureUrl -- string of the url to the picture
 
 ### to calculate the new rating, take the current rating (say 3.4) and current numRaters (9000)
 ###    updatedRating = (numRaters/(numRaters+1))*rating + newRating*(1/(numRaters+1))

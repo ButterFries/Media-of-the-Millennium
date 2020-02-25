@@ -343,14 +343,16 @@ public class AppDatabase {
         //private ArrayList<String> tags = new ArrayList<String>(); //list of tags (strings) associated to title, contents are different based on mediaType DEV-60
         private String[] genres;
         private String[] tags;
+        private String[] url;
 
-        public MediaProfilePage(int ID, String t, String mt, String s, String[] g, String[] tag) {
+        public MediaProfilePage(int ID, String t, String mt, String s, String[] g, String[] tag, String url) {
             this.mediaID = ID;
             this.title = t;
             this.mediaType = mt;
             this.summary = s;
             this.genres = g;
             this.tags = tag;
+            this.pictureUrl = url;
         }
 
         public int get_mediaID() {
@@ -369,18 +371,22 @@ public class AppDatabase {
             return this.genres;
         }
         public String[] get_tags() { return.this.tags; }
+        public String get_url() {return.this.pictureUrl; }
     }
 
     /*
      * Adds the media title to the database (careful duplicates are possible!)
      */
-    public void add_media_title(Connection conn, String title, String mediaType, String summary) throws SQLException{
-        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary) VALUES(?,?,?)";
+    public void add_media_title(Connection conn, String title, String mediaType, String summary, String[] genres, String[] tags, String pictureUrl) throws SQLException{
+        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags, pictureUrl) VALUES(?,?,?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setString(1, title);
             pstmt.setString(2, mediaType);
             pstmt.setString(3, summary);
+            //pstmt.setString(4, genres); NOT SURE IF U SET STRING MIGHT HAVE TO LOOP?
+            //pstmt.setString(5, tags);
+            pstmt.setString(6, pictureUrl);
             pstmt.executeUpdate();
         } 
         catch (SQLException ex) {

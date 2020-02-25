@@ -7,6 +7,7 @@ import server.motm.utils.*;
 
 public class AppDatabase{
     public static String dbPath = "./server/motm/database/appdatabase.db";
+    private static String saltshaker = "||password_security++"; //using PBKDF2, this is extra and isn't necessary
 
     public static void main(String[] args){ //does this execute when making new class object? i dun remember
         System.out.println("AppDatabase running main");
@@ -198,8 +199,7 @@ public class AppDatabase{
             String sqlReq = "INSERT INTO accounts (username, email, passwordhash) VALUES(?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
         
-            String saltshaker = "||password_security++"; //using PBKDF2, this is extra and isn't necessary
-            String pass_hash = hashingFunction( pw + saltshaker );    
+            String pass_hash = hashingFunction( pw );    
         
             pstmt.setString(1, u_name);
             pstmt.setString(2, e_addr);
@@ -222,7 +222,7 @@ public class AppDatabase{
      */
     public String hashingFunction(String pw) throws Exception{
         try {
-            return generatePasswordHash.generateStrongPasswordHash(pw);
+            return generatePasswordHash.generateStrongPasswordHash( pw + saltshaker );
         }
         catch(Exception e){
             e.printStackTrace();
@@ -239,14 +239,14 @@ public class AppDatabase{
      * --resumed due to change from http to https, 
      *     enabling safe transfer of plain text password
      */
-    public boolean validatePassword_0(Connection conn, String s_pw, accountInfo acc){
+    /*public boolean validatePassword_0(Connection conn, String s_pw, accountInfo acc){
         String storedPassword = acc.get_password();
         return s_pw.equals(storedPassword);
-    }
+    }*/
     public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException{
         String storedPassword = acc.get_password();
         try {
-            return validatePasswordHash.validatePassword(pw, storedPassword);
+            return validatePasswordHash.validatePassword( pw + saltshaker , storedPassword);
         } 
         catch(Exception e){
             e.printStackTrace();

@@ -2,536 +2,580 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:id="@+id/movie_page_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/ic_videogames_button">
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TableRow
+        <TextView
+            android:id="@+id/CategoryTitleTxt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:text="VIDEO GAMES"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/CategoryTitleTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="VIDEO GAMES"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-        </TableRow>
-
-        <TableRow
+        <TextView
+            android:id="@+id/Trending"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:text="Trending"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/Trending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Trending"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="403dp"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/RightTrending"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper1"
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightTrending"
-                    app:layout_constraintStart_toEndOf="@id/LeftTrending"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                    <!--ADD MORE IMAGES HERE-->
-
-                    <ImageButton
-                        android:id="@+id/TrendingButton"
-                        android:layout_width="160dp"
-                        android:layout_height="180dp"
-                        android:src="@color/colorAccent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/RightTrending"
-                        app:layout_constraintStart_toEndOf="@id/LeftTrending"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
-                </ViewFlipper>
-
-                <Button
-                    android:id="@+id/LeftTrending"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper1"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/CategoryAction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Action"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftAction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper2"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper2"
+                <ImageButton
+                    android:id="@+id/Trending1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightAction"
-                    app:layout_constraintStart_toEndOf="@id/LeftAction"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                    <!--ADD MORE IMAGES HERE-->
-                    <ImageButton
-                        android:id="@+id/ActionButton"
-                        android:layout_width="160dp"
-                        android:layout_height="180dp"
-                        android:src="@color/backgroundSecondary"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/RightAction"
-                        app:layout_constraintStart_toEndOf="@id/LeftAction"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightAction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Trending2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Trending3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Trending4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Trending5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Trending6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/CategoryAction"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:text="Action"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adventure"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftAdventure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper3"
+                <ImageButton
+                    android:id="@+id/Action1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightAdventure"
-                    app:layout_constraintStart_toEndOf="@id/LeftAdventure"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                    <!--ADD MORE IMAGES HERE-->
-                    <ImageButton
-                        android:id="@+id/AdventureButton"
-                        android:layout_width="160dp"
-                        android:layout_height="180dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/RightAdventure"
-                        app:layout_constraintStart_toEndOf="@id/LeftAdventure"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:srcCompat="@color/backgroundPrimary" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightAdventure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.838"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper3"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Action2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Action3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Action4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/CategoryAdventure"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:text="Adventure"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Role-Playing Games"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftRpg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper4"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper4"
+                <ImageButton
+                    android:id="@+id/Adventure1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightRpg"
-                    app:layout_constraintStart_toEndOf="@id/LeftRpg"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                    <!--ADD MORE IMAGES HERE-->
-                    <ImageButton
-                        android:id="@+id/RpgButton"
-                        android:layout_width="160dp"
-                        android:layout_height="180dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/RightRpg"
-                        app:layout_constraintStart_toEndOf="@id/LeftRpg"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:srcCompat="@color/colorTextBody" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightRpg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper4"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Adventure2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Adventure3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Adventure4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/categoryRpg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:text="RPG"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Shooters"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftFps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper5"
+                <ImageButton
+                    android:id="@+id/Rpg1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightFps"
-                    app:layout_constraintStart_toEndOf="@id/LeftFps"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                    <!--ADD MORE IMAGES HERE-->
-                    <ImageButton
-                        android:id="@+id/FpsButton"
-                        android:layout_width="160dp"
-                        android:layout_height="180dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/RightFps"
-                        app:layout_constraintHorizontal_bias="0.492"
-                        app:layout_constraintStart_toEndOf="@+id/LeftFps"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:srcCompat="@color/backgroundPrimary" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightFps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper5"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Rpg2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Rpg3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Rpg4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/categoryFps"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sports"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+            android:layout_height="match_parent"
+            android:text="FPS"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftSports"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper6"
+                <ImageButton
+                    android:id="@+id/Fps1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightSports"
-                    app:layout_constraintStart_toEndOf="@id/LeftSports"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                    <!--ADD MORE IMAGES HERE-->
-                    <ImageButton
-                        android:id="@+id/SportsButton"
-                        android:layout_width="160dp"
-                        android:layout_height="180dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/RightSports"
-                        app:layout_constraintHorizontal_bias="0.492"
-                        app:layout_constraintStart_toEndOf="@+id/LeftSports"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:srcCompat="@color/backgroundPrimary" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightSports"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper6"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Fps2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Fps3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Fps4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/categorySports"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Strategy"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+            android:layout_height="match_parent"
+            android:text="Sports"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftStrategy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper7"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper7"
+                <ImageButton
+                    android:id="@+id/Sports1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightStrategy"
-                    app:layout_constraintStart_toEndOf="@id/LeftStrategy"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                    <!--ADD MORE IMAGES HERE-->
-                    <ImageButton
-                        android:id="@+id/StrategyButton"
-                        android:layout_width="160dp"
-                        android:layout_height="180dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/RightStrategy"
-                        app:layout_constraintHorizontal_bias="0.492"
-                        app:layout_constraintStart_toEndOf="@+id/LeftStrategy"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:srcCompat="@color/backgroundPrimary" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightStrategy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper7"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-    </TableLayout>
+                <ImageButton
+                    android:id="@+id/Sports2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Sports3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Sports4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/categoryStrategy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Strategy"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Strategy1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Strategy2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Strategy3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Strategy4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 </ScrollView>

@@ -1,0 +1,11 @@
+files here may be identical and should be updated together, but the package may differ.
+--------------------------------------------------------------------------------
+
+~/project-developers-of-the-millennium/server/server/motm/utils
+~/project-developers-of-the-millennium/app/app/src/main/java/com/developersOfTheMillennium/utils
+~/project-developers-of-the-millennium/example_client/src/main/java/motm/utils
+
+
+~/project-developers-of-the-millennium/server/motm_cert.pem
+~/project-developers-of-the-millennium/example_client/src/main/java/motm/ssl/
+~/project-developers-of-the-millennium/app/app/src/main/java/com/developersOfTheMillennium/ssl

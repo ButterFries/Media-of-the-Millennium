@@ -2,536 +2,580 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:id="@+id/movie_page_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/ic_cinema_button">
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TableRow
+        <TextView
+            android:id="@+id/CategoryTitleTxt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:text="MOVIES"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/CategoryTitleTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="MOVIES"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-        </TableRow>
-
-        <TableRow
+        <TextView
+            android:id="@+id/Trending"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:text="Trending"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/Trending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Trending"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="403dp"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/RightTrending"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper1"
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightTrending"
-                    app:layout_constraintStart_toEndOf="@id/LeftTrending"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                    <!--ADD MORE IMAGES HERE-->
-
-                    <ImageButton
-                        android:id="@+id/TrendingButton"
-                        android:layout_width="160dp"
-                        android:layout_height="180dp"
-                        android:src="@color/colorAccent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/RightTrending"
-                        app:layout_constraintStart_toEndOf="@id/LeftTrending"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
-                </ViewFlipper>
-
-                <Button
-                    android:id="@+id/LeftTrending"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper1"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/CategoryComedy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comedy"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftComedy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper2"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper2"
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightComedy"
-                    app:layout_constraintStart_toEndOf="@id/LeftComedy"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/ComedyButton"
+                    android:id="@+id/Trending1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    android:src="@color/backgroundSecondary"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightComedy"
-                    app:layout_constraintStart_toEndOf="@id/LeftComedy"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightComedy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Trending2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Trending3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Trending4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Trending5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Trending6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/CategoryComedy"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:text="Comedy"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Action/Adventure"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftAction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper3"
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightAction"
-                    app:layout_constraintStart_toEndOf="@id/LeftAction"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/ActionButton"
+                    android:id="@+id/Comedy1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightAction"
-                    app:layout_constraintStart_toEndOf="@id/LeftAction"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:srcCompat="@color/backgroundPrimary" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightAction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.838"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper3"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.575" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Comedy2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Comedy3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Comedy4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Comedy5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Comedy6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Comedy7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Comedy8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Comedy9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Comedy10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/CategoryAction"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:text="Action / Adventure"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Drama"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftDrama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper4"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper4"
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightDrama"
-                    app:layout_constraintStart_toEndOf="@id/LeftDrama"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/DramaButton"
+                    android:id="@+id/Action1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightDrama"
-                    app:layout_constraintStart_toEndOf="@id/LeftDrama"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@color/colorTextBody" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightDrama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper4"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Action2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Action3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Action4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/categoryDrama"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:text="Drama"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Romance"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftRomance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper5"
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightRomance"
-                    app:layout_constraintStart_toEndOf="@id/LeftRomance"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/RomanceButton"
+                    android:id="@+id/Drama1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/RightRomance"
-                    app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/LeftRomance"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:srcCompat="@color/backgroundPrimary" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightRomance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper5"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Drama2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Drama3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Drama4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Drama5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Drama6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Drama7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Drama8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Drama9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Drama10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/categoryRomance"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SciFi"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+            android:layout_height="match_parent"
+            android:text="Romance"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftSciFi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper6"
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightSciFi"
-                    app:layout_constraintStart_toEndOf="@id/LeftSciFi"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/SciFiButton"
+                    android:id="@+id/Romance1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/RightSciFi"
-                    app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/LeftSciFi"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:srcCompat="@color/backgroundPrimary" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightSciFi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper6"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-        <TableRow
+                <ImageButton
+                    android:id="@+id/Romance2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Romance3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Romance4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Romance5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Romance6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Romance7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Romance8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Romance9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Romance10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/categorySciFi"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Historical"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
+            android:layout_height="match_parent"
+            android:text="SciFi"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/LeftHist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003c"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ViewFlipper7"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ViewFlipper
-                    android:id="@+id/ViewFlipper7"
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/RightHist"
-                    app:layout_constraintStart_toEndOf="@id/LeftHist"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                <!--ADD MORE IMAGES HERE-->
                 <ImageButton
-                    android:id="@+id/HistButton"
+                    android:id="@+id/SciFi1"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/RightHist"
-                    app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/LeftHist"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:srcCompat="@color/backgroundPrimary" />
-                </ViewFlipper>
-                <Button
-                    android:id="@+id/RightHist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="46dp"
-                    android:layout_marginBottom="50dp"
-                    android:text="\u003e"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/ViewFlipper7"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    android:src="@color/colorPrimary" />
 
-    </TableLayout>
+                <ImageButton
+                    android:id="@+id/SciFi2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/SciFi3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/SciFi4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/SciFi5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/SciFi6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/SciFi7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/SciFi8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/SciFi9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/SciFi10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/categoryHistorical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Historical"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Historical1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Historical2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Historical3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Historical4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Historical5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Historical6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Historical7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Historical8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Historical9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Historical10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 </ScrollView>

@@ -759,9 +759,7 @@ public class AppDatabase {
             pstmt.setInt(6, review_ID);
             pstmt.setString(7, review_text);
             pstmt.executeUpdate();
-        }
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
+        } catch (SQLException ex) {
             throw new SQLException("An error occurred when adding the user rated on media relation");
         }
     }
@@ -769,7 +767,7 @@ public class AppDatabase {
 
 
 
-    public void load_reviews(Connection conn) {
+    public void load_reviews(Connection conn)throws SQLException {
         try {
             JSONArray query = new JSONArray();
             Statement stmt = conn.createStatement();
@@ -786,13 +784,13 @@ public class AppDatabase {
             }else{
                 throw new SQLException("An error occurred when getting the reviews on review  relation");
             }
-        }
-        catch (SQLException ex) {
+        }catch (SQLException ex) {
 
             throw new SQLException("An error occurred when loading review relation");
         }
     }
-    public void get_specific_review(int user_ID,Connection conn){
+
+    public void get_specific_review(int user_ID,Connection conn) throws SQLException{
         try {
             JSONArray query = new JSONArray();
             Statement stmt = conn.createStatement();
@@ -809,8 +807,7 @@ public class AppDatabase {
                 throw new SQLException("An error occurred when getting the reviews on review  relation");
 
             }
-        }
-        catch (SQLException ex) {
+        }catch (SQLException ex) {
 
             throw new SQLException("An error occurred when getting specific review");
         }

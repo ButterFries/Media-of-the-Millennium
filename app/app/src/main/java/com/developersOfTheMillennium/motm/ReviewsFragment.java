@@ -31,8 +31,8 @@ public class ReviewsFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.reviews_page_fragment, container, false);
+// Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.reviews_page_fragment, container, false);
         submit_review = v.findViewById(R.id.button);
         review = v.findViewById(R.id.review_text);
         review_title = v.findViewById(R.id.review_title);
@@ -53,7 +53,7 @@ public class ReviewsFragment extends Fragment {
                 }else{
                     submit_review.setEnabled(true);
                 }
-//                System.out.println(review_rating);
+// System.out.println(review_rating);
             }
         });
         submit_review.setOnClickListener(new View.OnClickListener() {

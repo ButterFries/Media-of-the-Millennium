@@ -24,11 +24,11 @@ import static com.developersOfTheMillennium.motm.MainActivity.PORT;
 public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
     private static MainActivity activity;
-
-    private static SecureHTTPClient HTTPSClient = new SecureHTTPClient(ADDR+":"+PORT);
+    private static SecureHTTPClient HTTPSClient;
 
     public ValidateAccount(MainActivity a) {
         activity = a;
+        HTTPSClient = new SecureHTTPClient(ADDR+":"+PORT, activity);
     }
 
     @Override
@@ -41,12 +41,14 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
     private boolean login(String usernameEmail, String password) {
 
-        //STAGE 1 - Email
+        //Email
         JSONObject data = new JSONObject();
 
         try {
             data.put("email", usernameEmail);
             data.put("pw", password);
+            Log.i("email", usernameEmail);
+            Log.i("pw", password);
 
             JSONObject rtn = postRequest("validateAccount", data);
             int error_code = rtn.getInt("error_code");
@@ -60,10 +62,12 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
         data = new JSONObject();
 
-        //STAGE 1 - Username
+        //Username
         try {
             data.put("u_name", usernameEmail);
             data.put("pw", password);
+            Log.i("u_name", usernameEmail);
+            Log.i("pw", password);
 
             JSONObject rtn = postRequest("validateAccount", data);
             int error_code = rtn.getInt("error_code");
@@ -82,7 +86,7 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
         JSONObject rtn = null;
 
         /***   create http client request  ***/
-        System.out.println("Creating "+context+" request");
+        Log.i("ValidateAccount", "Creating "+context+" request");
 
         RequestBody requestBody = RequestBody.create(JSON, data.toString());
 

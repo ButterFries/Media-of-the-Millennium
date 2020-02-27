@@ -11,8 +11,8 @@ import okhttp3.*;
 
 public class MainActivity extends AppCompatActivity implements FragmentChangeListener {
 
-    public static final int PORT = 8080;
-    public static final String ADDR = "192.168.50.253";
+    public static String PORT;
+    public static String ADDR;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PORT = this.getResources().getString(R.string.server_port);
+        ADDR = this.getResources().getString(R.string.server_address);
+
         super.onCreate(savedInstanceState);
 
         this.setContentView(R.layout.activity_main);

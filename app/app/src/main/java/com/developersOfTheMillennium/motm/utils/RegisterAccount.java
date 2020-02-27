@@ -23,18 +23,18 @@ import static com.developersOfTheMillennium.motm.MainActivity.PORT;
 public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
 
     private static MainActivity activity;
-
-    private static SecureHTTPClient HTTPSClient = new SecureHTTPClient(ADDR+":"+PORT);
+    private static SecureHTTPClient HTTPSClient;
 
     public RegisterAccount(MainActivity a) {
         activity = a;
+        HTTPSClient = new SecureHTTPClient(ADDR+":"+PORT, activity);
     }
 
     @Override
     protected Boolean doInBackground(String... params) {
         String username = params[0];
-        String email = params[0];
-        String password = params[1];
+        String email = params[1];
+        String password = params[2];
 
         return register(username, email, password);
     }
@@ -44,8 +44,8 @@ public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
         JSONObject data = new JSONObject();
 
         try {
-            data.put("email", username);
-            data.put("u_name", email);
+            data.put("email", email);
+            data.put("u_name", username);
             data.put("pw", password);
 
             JSONObject rtn = putRequest("registerAccount", data);
@@ -66,7 +66,7 @@ public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
         JSONObject rtn = null;
 
         /***   create http client request  ***/
-        System.out.println("Creating "+context+" request");
+        Log.i("RegisterAccount", "Creating "+context+" request");
 
         RequestBody requestBody = RequestBody.create(JSON, data.toString());
 

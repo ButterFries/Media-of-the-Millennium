@@ -138,31 +138,6 @@ public class SecureHTTPClient
     // https://publicobject.com (Comodo) and https://squareup.com (Entrust). But they aren't
     // sufficient to connect to most HTTPS sites including https://godaddy.com and https://visa.com.
     // Typically developers will need to get a PEM file from their organization's TLS administrator.
-
-    //REPLACE THIS WITH GENERATED CERTIFICATE
-    String MOTM_CA = ""
-        + "-----BEGIN CERTIFICATE-----\n"
-        + "MIIDqzCCApOgAwIBAgIEIXNLNDANBgkqhkiG9w0BAQsFADCBhTEQMA4GA1UECBMH\n"
-            +"T250YXJpbzELMAkGA1UEBhMCT04xFDASBgNVBAcTC01pc3Npc3NhdWdhMQ8wDQYD\n"
-            +"VQQKEwZVb2ZUOk0xJDAiBgNVBAsMG0RldmVsb3BlcnNfb2ZfdGhlX01pbGxlbml1\n"
-            +"bTEXMBUGA1UEAxMOMTM4LjUxLjE1Ny4yMDIwHhcNMjAwMjI3MTU1MDQ2WhcNMjEw\n"
-            +"MjIxMTU1MDQ2WjCBhTEQMA4GA1UECBMHT250YXJpbzELMAkGA1UEBhMCT04xFDAS\n"
-            +"BgNVBAcTC01pc3Npc3NhdWdhMQ8wDQYDVQQKEwZVb2ZUOk0xJDAiBgNVBAsMG0Rl\n"
-            +"dmVsb3BlcnNfb2ZfdGhlX01pbGxlbml1bTEXMBUGA1UEAxMOMTM4LjUxLjE1Ny4y\n"
-            +"MDIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCFvmgdOXG4Ho1Er6Iq\n"
-            +"CO03EWNrLQMNBkPJG7LZ0tI0xTvUN+XVj527O/s3kVy1Uf4UYl8CtLxsJrzOtQyQ\n"
-            +"J3RXvTWRPK76Ap4fvwk6dtO0nAdMOBGf7fZAyI3EJKFUpvR/m2CWnTPLuwYr5iem\n"
-            +"HW4Kdx+Xey7bazu64OtzMufBWAjdb7gAGy/V8d5bf1KKVHP+fODj8tuj/OjZJFuD\n"
-            +"CB4OTYJxGzbrIpmCewQ5t6/e/8LQQ5vQOxFOKKF/n35wY7ZxNzfncz/lso8SpL5q\n"
-            +"gU0wUhfWiMiTDmCQeWozyHQRB+egQTk6fE084gsyiwhxfh8hIpvpX0IqXicBYaMt\n"
-            +"LF9hAgMBAAGjITAfMB0GA1UdDgQWBBTxTiV0CjAl+BiBzPaWAS6kpKO1ZzANBgkq\n"
-            +"hkiG9w0BAQsFAAOCAQEANLcp6ldGEGdeAjFF9DDwiQFBAinh8CEqjBDpBGi+5cl+\n"
-            +"OvPfJwyztc5p9/JOdbiBBKwXEYP65zqrYh93u9QSkfihFt/OCqyHFIuEzDKjEMwo\n"
-            +"WZl1Ukkc7aklz+A8E+PtNpzaFFEWKX6WDzEtrBwedLKrJWkaci1tb+gnnPUIutE6\n"
-            +"s2Xp47eP2MpJ82cvwoHX04xqa+wynSZOD8DTxc+CVsLDBb6aXkM7REZC8b/Istzg\n"
-            +"mWCGoKNeoucBgmBPdLe8LnvaIYWGuJ/QKjS/YZHg69iy6QcKBqVCWULuUaAPlcuN\n"
-            +"tdkvGxAbXLOzhPcmtWkuqEkImlk43LnYOSllcJf5sg==\n"
-        +  "-----END CERTIFICATE-----\n";
     //SELF SIGNED CERTIFICATE
     return context.getResources().openRawResource(R.raw.motm_cert);
 

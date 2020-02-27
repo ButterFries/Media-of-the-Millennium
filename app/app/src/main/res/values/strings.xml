@@ -9,9 +9,15 @@
     <string name="tv_series">TV SERIES</string>
 
     <!-- Login Page -->
-    <string name="login_email_button">Email</string>
+    <string name="login_email_button">Username or Email</string>
     <string name="login_password_button">Password</string>
 
+    <!-- Signup Page -->
+    <string name="signup_password_button">Password</string>
+    <string name="signup_password_confirm_button">Confirm Password</string>
+    <string name="signup_username_button">Username</string>
+    <string name="signup_email_button">Email</string>
+    <string name="signup_email_hint_button">someone@example.com</string>
     <!-- Media Home Page -->
     <string name="new_media_button">New Releases</string>
     <string name="top_rated_media_button">Top Rated</string>

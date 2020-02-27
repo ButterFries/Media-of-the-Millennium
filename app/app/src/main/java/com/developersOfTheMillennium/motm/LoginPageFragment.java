@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.developersOfTheMillennium.motm.utils.ValidateAccount;
+
 public class LoginPageFragment extends Fragment {
 
     @Override
@@ -19,23 +21,23 @@ public class LoginPageFragment extends Fragment {
 
         View v = in.inflate(R.layout.activity_login_page_fragment, container, false);
 
-        final EditText email = v.findViewById(R.id.email_input);
-        final TextView email_text = v.findViewById(R.id.email_text);
+        final EditText username = v.findViewById(R.id.email_input);
+        final TextView username_text = v.findViewById(R.id.email_text);
 
         final EditText password = v.findViewById(R.id.password_input);
         final TextView password_text = v.findViewById(R.id.password_text);
 
-        email.addTextChangedListener(new TextWatcher() {
+        username.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length()!=0) {
-                    email_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    username_text.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
                 else {
-                    email_text.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    username_text.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
                 }
             }
             @Override
@@ -62,16 +64,9 @@ public class LoginPageFragment extends Fragment {
         final Button loginButton = v.findViewById(R.id.ActivityLoginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (login(email.getText().toString(), password.getText().toString())) {
-                    //TODO: take to main page
-                }
+                login(username.getText().toString(), password.getText().toString());
             }
         });
-
-
-
-
-
 
 
         return v;
@@ -79,8 +74,7 @@ public class LoginPageFragment extends Fragment {
 
     }
 
-    private boolean login(String email, String password){
-        //TODO: connect to server to check login credentials
-        return false;
+    private void login(String usernameEmail, String password){
+        ValidateAccount loginRequest = (ValidateAccount) new ValidateAccount((MainActivity) getActivity()).execute(usernameEmail, password);
     }
 }

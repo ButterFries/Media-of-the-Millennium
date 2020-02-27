@@ -7,7 +7,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import okhttp3.*;
+
 public class MainActivity extends AppCompatActivity implements FragmentChangeListener {
+
+    public static final int PORT = 8080;
+    public static final String ADDR = "192.168.50.253";
+
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -32,4 +41,6 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
         fragmentTransaction.addToBackStack(fragment.toString());
         fragmentTransaction.commit();
     }
+
+
 }

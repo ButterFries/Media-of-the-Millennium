@@ -1,13 +1,30 @@
 package com.developersOfTheMillennium.motm;
 
 import android.os.Bundle;
+import android.util.JsonReader;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
+
+import okhttp3.*;
+
 public class MainActivity extends AppCompatActivity implements FragmentChangeListener {
+
+    public static int PORT = 8080;
+    public static String ADDR = "192.168.50.253";
+
+    public static final OkHttpClient httpClient = new OkHttpClient();
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -32,4 +49,6 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
         fragmentTransaction.addToBackStack(fragment.toString());
         fragmentTransaction.commit();
     }
+
+
 }

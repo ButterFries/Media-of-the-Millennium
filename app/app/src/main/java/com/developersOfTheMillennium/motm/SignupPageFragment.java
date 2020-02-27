@@ -129,7 +129,7 @@ public class SignupPageFragment extends Fragment {
 
         m = emailRegex.matcher(email);
         boolean match = m.matches();
-        
+
         if (password.length()!=0 && passwordConfirm.length()!=0 && username.length()!=0 && email.length()!=0 &&
                 password.equals(passwordConfirm) && match) {
             Log.i("Signup", "Valid credentials");

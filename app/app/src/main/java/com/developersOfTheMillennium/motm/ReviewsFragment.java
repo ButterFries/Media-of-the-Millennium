@@ -1,5 +1,6 @@
 package com.developersOfTheMillennium.motm;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +24,8 @@ public class ReviewsFragment extends Fragment {
     private RatingBar review_bar;
     private EditText review_title;
     private EditText review;
+    private Button edit;
+    private Button delete_review;
     private float review_rating;
 
 
@@ -34,6 +37,8 @@ public class ReviewsFragment extends Fragment {
         review = v.findViewById(R.id.review_text);
         review_title = v.findViewById(R.id.review_title);
         review_bar = v.findViewById(R.id.ratingBar2);
+        edit = v.findViewById(R.id.edit_review);
+        delete_review = v.findViewById(R.id.delete_review);
 
         review.addTextChangedListener(review_watcher);
         review_title.addTextChangedListener(review_watcher);
@@ -49,6 +54,48 @@ public class ReviewsFragment extends Fragment {
                     submit_review.setEnabled(true);
                 }
 //                System.out.println(review_rating);
+            }
+        });
+        submit_review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                review_title.setFocusable(false);
+                review_title.setBackgroundColor(Color.TRANSPARENT);
+                review.setFocusable(false);
+                review.setBackgroundColor(Color.TRANSPARENT);
+                review_bar.setIsIndicator(true);
+                submit_review.setVisibility(View.INVISIBLE);
+                edit.setVisibility(View.VISIBLE);
+                delete_review.setVisibility(View.VISIBLE);
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                review_title.setFocusableInTouchMode(true);
+                review.setFocusableInTouchMode(true);
+                review_bar.setIsIndicator(false);
+                submit_review.setText("Submit Edit");
+                submit_review.setVisibility(View.VISIBLE);
+                edit.setVisibility(View.INVISIBLE);
+                delete_review.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        delete_review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                review_title.setText("");
+                review_title.setFocusableInTouchMode(true);
+                review.setFocusableInTouchMode(true);
+                review.setText("");
+                review_bar.setRating((float) 0.0);
+                review_bar.setIsIndicator(false);
+                submit_review.setText("Add Review");
+                submit_review.setVisibility(View.VISIBLE);
+                edit.setVisibility(View.INVISIBLE);
+                delete_review.setVisibility(View.INVISIBLE);
             }
         });
 

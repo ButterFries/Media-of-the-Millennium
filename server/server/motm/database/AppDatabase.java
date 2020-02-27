@@ -805,7 +805,7 @@ public class AppDatabase {
                 line.put("review_text",rs.getString("review_text"));
                 query.put(line);
             }else{
-                System.out.println("#  ERROR :  "+ex);
+
                 throw new SQLException("An error occurred when getting the reviews on review  relation");
 
             }

@@ -3,7 +3,6 @@ package com.developersOfTheMillennium.motm;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.developersOfTheMillennium.motm.utils.PostServer;
-import com.developersOfTheMillennium.motm.utils.applyHash;
-
-import org.json.JSONObject;
+import com.developersOfTheMillennium.motm.utils.ValidateAccount;
 
 public class LoginPageFragment extends Fragment {
-
-    private static applyHash ap = new applyHash();
 
     @Override
     public View onCreateView(LayoutInflater in, ViewGroup container, Bundle savedInstance){
@@ -81,6 +75,6 @@ public class LoginPageFragment extends Fragment {
     }
 
     private void login(String usernameEmail, String password){
-        PostServer loginRequest = (PostServer) new PostServer((MainActivity) getActivity()).execute(usernameEmail, password);
+        ValidateAccount loginRequest = (ValidateAccount) new ValidateAccount((MainActivity) getActivity()).execute(usernameEmail, password);
     }
 }

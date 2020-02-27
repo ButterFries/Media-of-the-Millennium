@@ -74,7 +74,7 @@ public class SecureHTTPClient
     }
   }
 
-  public SecureHTTPClient(String ADDR) {
+  public SecureHTTPClient(final String ADDR) {
     SSLSocketFactory sslSocketFactory;
     KeyAndTrustManagers keyAndTrustManagers;
     try {
@@ -109,6 +109,11 @@ public class SecureHTTPClient
     } catch (GeneralSecurityException e) {
       throw new RuntimeException(e);
     }
+
+
+
+
+
   }
 
   public Response run(Request request) throws Exception {
@@ -128,26 +133,26 @@ public class SecureHTTPClient
     // Typically developers will need to get a PEM file from their organization's TLS administrator.
     String MOTM_CA = ""
         + "-----BEGIN CERTIFICATE-----\n"
-        +  "MIIDoTCCAomgAwIBAgIES4h32jANBgkqhkiG9w0BAQsFADCBgDEQMA4GA1UECBMH\n"
-        +  "T250YXJpbzELMAkGA1UEBhMCT04xFDASBgNVBAcTC01pc3Npc3NhdWdhMQ8wDQYD\n"
-        +  "VQQKEwZVb2ZUOk0xJDAiBgNVBAsMG0RldmVsb3BlcnNfb2ZfdGhlX01pbGxlbml1\n"
-        +  "bTESMBAGA1UEAxMJbG9jYWxob3N0MB4XDTIwMDIyMjIwMTM1M1oXDTIxMDIxNjIw\n"
-        +  "MTM1M1owgYAxEDAOBgNVBAgTB09udGFyaW8xCzAJBgNVBAYTAk9OMRQwEgYDVQQH\n"
-        +  "EwtNaXNzaXNzYXVnYTEPMA0GA1UEChMGVW9mVDpNMSQwIgYDVQQLDBtEZXZlbG9w\n"
-        +  "ZXJzX29mX3RoZV9NaWxsZW5pdW0xEjAQBgNVBAMTCWxvY2FsaG9zdDCCASIwDQYJ\n"
-        +  "KoZIhvcNAQEBBQADggEPADCCAQoCggEBAJUfM7wg+WEn2h7WWsTWEthzSXPgYTpJ\n"
-        +  "H3AgoF4Xog5kwFHvmr4ytfJx8qV1ErX7s22rcTIxVxKn2bUXFxnxyxWdy2BX+Xbm\n"
-        +  "/IOfhXF4FI+XBe6ryJt+SlooIeNAMdJ1HY/LUKTlIT8zTArSUMSRyPY84A2ZBPWX\n"
-        +  "cOq7AVXgR2HbBeok4YdzpV4qzfaSTJ9Lo4ZOujZihHfuFXpyTkHsiKO1hbG5nUms\n"
-        +  "JFdZY5AbGvHmQiCBIT7ntBH3/QsyTdLIVSh8WSGcjB7SFX75XJH+DWdY4E6I3fTs\n"
-        +  "vxH+kP+cdNrBzan3HMzQwCdQr6f8BDsR6JwNrXOSaJjlwsZdF/GsMtsCAwEAAaMh\n"
-        +  "MB8wHQYDVR0OBBYEFJFBOvbWmEJpMVWiDJd44t5CvnsgMA0GCSqGSIb3DQEBCwUA\n"
-        +  "A4IBAQAOeB2uv///lSLPe7Zv341geJs/ie5KiLtM/MUO0PKfSFP/T8K4vN4MTJcE\n"
-        +  "oQQT2loCK4ZCQiyarSi6izUZOagb450SuQQs3zA0pq2dtLoFcoWWn39kEyoLyBNN\n"
-        +  "dD8UuUVH6uVN5nww/sAaGpqIrkT2lIn8ka530dHAuY3MBlXc4x9G1KvlBfmfeVRD\n"
-        +  "D/qYZ/UubhfDQUEFqbrQ2//9vLJN0UIrBUKfkchazob3QrqvpqYH2c3AwjpJerVZ\n"
-        +  "txJoLJgfH6uxkhX3jbZns+QkLDlP8nbvp2Qfx2gHgjQu7TAjLvY2u+/7WBMhU9f5\n"
-        +  "oJU8E/dypvPOxoHsmv1Ny0GijnHc\n"
+        +  "MIIDqzCCApOgAwIBAgIEDdjVVTANBgkqhkiG9w0BAQsFADCBhTEQMA4GA1UECBMH\n"
+        + "T250YXJpbzELMAkGA1UEBhMCT04xFDASBgNVBAcTC01pc3Npc3NhdWdhMQ8wDQYD\n"
+        + "VQQKEwZVb2ZUOk0xJDAiBgNVBAsMG0RldmVsb3BlcnNfb2ZfdGhlX01pbGxlbml1\n"
+        + "bTEXMBUGA1UEAxMOMTkyLjE2OC41MC4yNTMwHhcNMjAwMjI3MDEyNjQ2WhcNMjEw\n"
+        + "MjIxMDEyNjQ2WjCBhTEQMA4GA1UECBMHT250YXJpbzELMAkGA1UEBhMCT04xFDAS\n"
+        + "BgNVBAcTC01pc3Npc3NhdWdhMQ8wDQYDVQQKEwZVb2ZUOk0xJDAiBgNVBAsMG0Rl\n"
+        + "dmVsb3BlcnNfb2ZfdGhlX01pbGxlbml1bTEXMBUGA1UEAxMOMTkyLjE2OC41MC4y\n"
+        + "NTMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7VxKchbyUKzO8q2vw\n"
+        + "Yd/IRAXIiNkMGCs021uAi7LskgIYYMBnwtFQp5qXrBOvXFJqWdZxIe159e2AE7bi\n"
+        + "w4bK0WMcwmSVTqk87wH+IWZytdmlXAa+qDPyMnVatATB/PrK3FaBUjG4FVItqD5Z\n"
+        + "uMMiEFpz1OmL+ae5wBoNN5vYNiKU5cu1K1gxTsyl/SXsR3fst99hXgM4O/y8EYB4\n"
+        + "8f96sMzA+4pIYo8lMjGgrm39RhtSCVMor79I5YDAK4u4MuiINf/7hL4qhlSMWyFA\n"
+        + "pYlrTQYPghuZmv/s9v/2gu+BOZcZcPiLqktEfJHr2OnFLMVr8n6xk2pMT73BDeoV\n"
+        + "ESbrAgMBAAGjITAfMB0GA1UdDgQWBBTifgTEC2g4Uhipq/6ysrAxW4YT6jANBgkq\n"
+        + "hkiG9w0BAQsFAAOCAQEAfexGyR+W42zZ6oMQSxaWNnBiQrN4OJjafd3esuznnphk\n"
+        + "sU2n8M1B+JlTKzxxdxl1M6BUCsG9M7kpWwFzz7ug1mZnTOAojEQ4OZw+Cmf4ZzVn\n"
+        + "qRYSCnceNfKHmEsitucJ2FAE69lcFyxAr7E0maRJtNO5COegVBtt4CLUKNYq7BV8\n"
+        + "BCWD48NiJEyeBI54NBUo+0xFYnQe/qp6PIRPjkfwQGxMOdvdAyNqDB01LA8zOX46\n"
+        + "LPwQ6Og7brl3AjLZUL0rs0COodt1RcJIJHeGb1XvEdTZZSBNKOwe6Bs3MTl0T9kR\n"
+        + "5dxfIPtAelq8N/SJZu9wht91xY+f2BhENONe8PHgSg==\n"
         +  "-----END CERTIFICATE-----\n";
     String comodoRsaCertificationAuthority = ""
         + "-----BEGIN CERTIFICATE-----\n"

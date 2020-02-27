@@ -1,18 +1,11 @@
 package com.developersOfTheMillennium.motm;
 
 import android.os.Bundle;
-import android.util.JsonReader;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import java.io.IOException;
 
 import okhttp3.*;
 

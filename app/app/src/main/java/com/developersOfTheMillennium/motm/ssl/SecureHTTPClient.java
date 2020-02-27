@@ -19,6 +19,8 @@
 package com.developersOfTheMillennium.motm.ssl;
 
 
+import com.developersOfTheMillennium.motm.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;

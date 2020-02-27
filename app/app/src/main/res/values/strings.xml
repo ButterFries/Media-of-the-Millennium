@@ -9,7 +9,7 @@
     <string name="tv_series">TV SERIES</string>
 
     <!-- Login Page -->
-    <string name="login_email_button">Email</string>
+    <string name="login_email_button">Username or Email</string>
     <string name="login_password_button">Password</string>
 
     <!-- Signup Page -->

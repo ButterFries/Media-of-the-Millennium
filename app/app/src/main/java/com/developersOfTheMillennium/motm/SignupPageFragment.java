@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.developersOfTheMillennium.motm.utils.RegisterAccount;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,8 +41,8 @@ public class SignupPageFragment extends Fragment {
         final EditText password = v.findViewById(R.id.password_input);
         final TextView password_text = v.findViewById(R.id.password_text);
 
-        final EditText password_confirm = v.findViewById(R.id.password_input);
-        final TextView password_confirm_text = v.findViewById(R.id.password_text);
+        final EditText password_confirm = v.findViewById(R.id.password_confirm_input);
+        final TextView password_confirm_text = v.findViewById(R.id.password_confirm_text);
 
         username.addTextChangedListener(new TextWatcher() {
             @Override
@@ -113,7 +115,7 @@ public class SignupPageFragment extends Fragment {
             public void onClick(View v) {
                 if (signup(email.getText().toString(), username.getText().toString(),
                         password.getText().toString(), password_confirm.getText().toString())) {
-                    //TODO: take to main page
+
                 }
             }
         });
@@ -132,7 +134,9 @@ public class SignupPageFragment extends Fragment {
 
         if (password.length()!=0 && passwordConfirm.length()!=0 && username.length()!=0 && email.length()!=0 &&
                 password.equals(passwordConfirm) && match) {
+            RegisterAccount registerRequest = (RegisterAccount) new RegisterAccount((MainActivity) getActivity()).execute(username, email, password);
             Log.i("Signup", "Valid credentials");
+            Log.i(password, passwordConfirm);
             return true;
         }
         Log.i("Signup", "Invalid credentials");

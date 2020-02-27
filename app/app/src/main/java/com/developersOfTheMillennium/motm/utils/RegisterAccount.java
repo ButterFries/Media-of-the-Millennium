@@ -1,6 +1,5 @@
 package com.developersOfTheMillennium.motm.utils;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -21,34 +20,35 @@ import static com.developersOfTheMillennium.motm.MainActivity.ADDR;
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 import static com.developersOfTheMillennium.motm.MainActivity.PORT;
 
-public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
+public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
 
     private static MainActivity activity;
 
     private static SecureHTTPClient HTTPSClient = new SecureHTTPClient(ADDR+":"+PORT);
 
-    public ValidateAccount(MainActivity a) {
+    public RegisterAccount(MainActivity a) {
         activity = a;
     }
 
     @Override
     protected Boolean doInBackground(String... params) {
-        String usernameEmail = params[0];
+        String username = params[0];
+        String email = params[0];
         String password = params[1];
 
-        return login(usernameEmail, password);
+        return register(username, email, password);
     }
 
-    private boolean login(String usernameEmail, String password) {
+    private boolean register(String username, String email, String password) {
 
-        //STAGE 1 - Email
         JSONObject data = new JSONObject();
 
         try {
-            data.put("email", usernameEmail);
+            data.put("email", username);
+            data.put("u_name", email);
             data.put("pw", password);
 
-            JSONObject rtn = postRequest("validateAccount", data);
+            JSONObject rtn = putRequest("registerAccount", data);
             int error_code = rtn.getInt("error_code");
 
             if (error_code == 0) {
@@ -58,27 +58,11 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
             Log.e("ERROR Login", "JSON Parsing: " + e);
         }
 
-        data = new JSONObject();
-
-        //STAGE 1 - Username
-        try {
-            data.put("u_name", usernameEmail);
-            data.put("pw", password);
-
-            JSONObject rtn = postRequest("validateAccount", data);
-            int error_code = rtn.getInt("error_code");
-            if (error_code == 0) {
-                return true;
-            }
-        } catch (Exception e) {
-            Log.e("ERROR Login", "JSON Parsing");
-        }
-
         return false;
     }
 
 
-    private JSONObject postRequest(String context, JSONObject data) {
+    private JSONObject putRequest(String context, JSONObject data) {
         JSONObject rtn = null;
 
         /***   create http client request  ***/
@@ -89,7 +73,7 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
         Request request = new Request.Builder()
                 .url("https://"+ADDR+":"+PORT+"/"+context)
                 .addHeader("User-Agent", "motm "+context+" request")  // add request headers
-                .post(requestBody)
+                .put(requestBody)
                 .build();
 
         try (Response response = HTTPSClient.run(request)) {
@@ -111,7 +95,7 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
         } catch (Exception e) {
             Log.e("HTTPS Request Error", ""+e);
         }
-
+        /***   send request and wait to receive response   ***/
         return rtn;
     }
 

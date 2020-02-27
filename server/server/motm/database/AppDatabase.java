@@ -734,7 +734,7 @@ public class AppDatabase {
         private int review_ID;
         private String review_text;
 
-        public mediaRatingInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text){
+        public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text){
             this.user_ID = user_ID;
             this.username = username;
             this.media_ID = media_ID;

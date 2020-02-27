@@ -133,6 +133,8 @@ public class SecureHTTPClient
     // https://publicobject.com (Comodo) and https://squareup.com (Entrust). But they aren't
     // sufficient to connect to most HTTPS sites including https://godaddy.com and https://visa.com.
     // Typically developers will need to get a PEM file from their organization's TLS administrator.
+
+    //REPLACE THIS WITH GENERATED CERTIFICATE
     String MOTM_CA = ""
         + "-----BEGIN CERTIFICATE-----\n"
         +  "MIIDqzCCApOgAwIBAgIEDdjVVTANBgkqhkiG9w0BAQsFADCBhTEQMA4GA1UECBMH\n"

@@ -729,7 +729,7 @@ public class AppDatabase {
         private int user_ID;
         private String username;
         private String media_ID;
-        private int rating_FID;
+        private float rating_FID;
         private float rating;
         private int review_ID;
         private String review_text;
@@ -769,7 +769,7 @@ public class AppDatabase {
 
 
 
-    public void load_reviews() {
+    public void load_reviews(Connection conn) {
         try {
             JSONArray query = new JSONArray();
             Statement stmt = conn.createStatement();
@@ -784,18 +784,15 @@ public class AppDatabase {
                     query.put(line);
                 }
             }else{
-                System.out.println("#  ERROR :  "+ex);
                 throw new SQLException("An error occurred when getting the reviews on review  relation");
-
             }
-            return line;
         }
         catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
+
             throw new SQLException("An error occurred when loading review relation");
         }
     }
-    public void get_specific_review(int user_ID){
+    public void get_specific_review(int user_ID,Connection conn){
         try {
             JSONArray query = new JSONArray();
             Statement stmt = conn.createStatement();
@@ -812,10 +809,9 @@ public class AppDatabase {
                 throw new SQLException("An error occurred when getting the reviews on review  relation");
 
             }
-            return line;
         }
         catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
+
             throw new SQLException("An error occurred when getting specific review");
         }
     }

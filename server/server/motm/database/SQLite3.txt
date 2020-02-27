@@ -121,7 +121,7 @@ CREATE TABLE ratings (ratingID INTEGER PRIMARY KEY, rating FLOAT NOT NULL, userI
 ================================================================================
 ###   reviews   ###
 ================================================================================
-
+CREATE TABLE reviews (user_ID INTEGER PRIMARY KEY,media_ID TEXT(100) UNIQUE,rating_FID INTEGER UNIQUE, rating FLOAT, review_ID INTEGER UNIQUE,review_text TEXT(500))
 
 
 

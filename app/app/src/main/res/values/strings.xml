@@ -12,6 +12,10 @@
     <string name="login_email_button">Email</string>
     <string name="login_password_button">Password</string>
 
+    <!-- Media Home Page -->
+    <string name="new_media_button">New Releases</string>
+    <string name="top_rated_media_button">Top Rated</string>
+
     <!-- Media Profile Page -->
     <string name="media_profile_image">media_image</string>
     <string name="summary_info">summary_info</string>

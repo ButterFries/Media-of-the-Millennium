@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.developersOfTheMillennium.motm.HomePageFragment;
 import com.developersOfTheMillennium.motm.MainActivity;
+import com.developersOfTheMillennium.motm.R;
 import com.developersOfTheMillennium.motm.ssl.SecureHTTPClient;
 
 import org.json.JSONException;
@@ -17,9 +18,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.developersOfTheMillennium.motm.MainActivity.ADDR;
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
-import static com.developersOfTheMillennium.motm.MainActivity.PORT;
 
 public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
@@ -28,7 +27,8 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
     public ValidateAccount(MainActivity a) {
         activity = a;
-        HTTPSClient = new SecureHTTPClient(ADDR+":"+PORT, activity);
+        HTTPSClient = new SecureHTTPClient(activity.getResources().getString(R.string.server_address)
+                +":"+activity.getResources().getString(R.string.server_port), activity);
     }
 
     @Override
@@ -91,7 +91,8 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
         RequestBody requestBody = RequestBody.create(JSON, data.toString());
 
         Request request = new Request.Builder()
-                .url("https://"+ADDR+":"+PORT+"/"+context)
+                .url("https://"+activity.getResources().getString(R.string.server_address)+
+                        ":"+activity.getResources().getString(R.string.server_port)+"/"+context)
                 .addHeader("User-Agent", "motm "+context+" request")  // add request headers
                 .post(requestBody)
                 .build();

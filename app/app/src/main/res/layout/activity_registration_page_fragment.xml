@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundSecondary"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/registration_page_fragment">
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="120dp"
+        android:text="MotM"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="casual"
+        android:textSize="50dp"
+        android:paddingBottom="20dp"/>
+
+    <Button
+        android:id="@+id/ActivityRegistrationButtonLogin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/backgroundPrimary"
+        android:backgroundTintMode="src_in"
+        android:includeFontPadding="true"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="@string/registration_login_button"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/ActivityRegistrationButtonSignup"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="25dp"
+        android:backgroundTint="@color/backgroundPrimary"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="@string/registration_signup_button" />
+
+    <Button
+        android:id="@+id/ActivityRegistrationButtonGuest"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:duplicateParentState="false"
+        android:fontFamily="cursive"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/registration_guest_button" />
+</LinearLayout>

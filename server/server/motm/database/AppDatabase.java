@@ -4,11 +4,15 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import server.motm.utils.*;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 
 
 public class AppDatabase {
     public static String dbPath = "./server/motm/database/appdatabase.db";
+    private static String saltshaker = "||password_security++"; //using PBKDF2, this is extra and isn't necessary
 
     public static void main(String[] args) { //does this execute when making new class object? i dun remember
         System.out.println("AppDatabase running main");
@@ -131,6 +135,14 @@ public class AppDatabase {
         private String favorites;
 
 
+        public accountInfo(int id, String name, String email, String hash) {
+            this.userID = id;
+            this.username = name;
+            this.email = email;
+            this.passwordHash = hash;
+            this.favorites = "";
+        }
+        //overloading
         public accountInfo(int id, String name, String email, String hash, String fav) {
             this.userID = id;
             this.username = name;
@@ -215,9 +227,8 @@ public class AppDatabase {
         try {
             String sqlReq = "INSERT INTO accounts (username, email, passwordhash) VALUES(?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-
-            String saltshaker = "||password_security++"; //using PBKDF2, this is extra and isn't necessary
-            String pass_hash = hashingFunction(pw + saltshaker);
+        
+            String pass_hash = hashingFunction( pw );    
 
             pstmt.setString(1, u_name);
             pstmt.setString(2, e_addr);
@@ -238,7 +249,7 @@ public class AppDatabase {
      */
     public String hashingFunction(String pw) throws Exception {
         try {
-            return generatePasswordHash.generateStrongPasswordHash(pw);
+            return generatePasswordHash.generateStrongPasswordHash( pw + saltshaker );
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("An error occured when hashing the password using the hashing function");
@@ -254,15 +265,15 @@ public class AppDatabase {
      * --resumed due to change from http to https,
      *     enabling safe transfer of plain text password
      */
-    public boolean validatePassword_0(Connection conn, String s_pw, accountInfo acc) {
+    /*public boolean validatePassword_0(Connection conn, String s_pw, accountInfo acc){
         String storedPassword = acc.get_password();
         return s_pw.equals(storedPassword);
-    }
-
-    public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException {
+    }*/
+    public boolean validatePassword(Connection conn, String pw, accountInfo acc) throws Exception, SQLException{
         String storedPassword = acc.get_password();
         try {
-            return validatePasswordHash.validatePassword(pw, storedPassword);
+            return validatePasswordHash.validatePassword( pw + saltshaker , storedPassword);
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("An error occured when validating password with database entry");
@@ -370,8 +381,8 @@ public class AppDatabase {
         public String[] get_genres() {
             return this.genres;
         }
-        public String[] get_tags() { return.this.tags; }
-        public String get_url() {return.this.pictureUrl; }
+        public String[] get_tags() { return this.tags; }
+        public String get_url() {return this.pictureUrl; }
     }
 
     /*
@@ -714,13 +725,98 @@ public class AppDatabase {
             throw new SQLException("An error occurred when adding the user rated on media relation");
         }
     }
- 
+
+
+//==============================================================================
+//###   Reviews   ###
+//==============================================================================
+
+    public static class mediaReviewInfo {
+        private int user_ID;
+        private String username;
+        private String media_ID;
+        private float rating_FID;
+        private float rating;
+        private int review_ID;
+        private String review_text;
+
+        public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text){
+            this.user_ID = user_ID;
+            this.username = username;
+            this.media_ID = media_ID;
+            this.rating_FID = rating_FID;
+            this.rating = rating;
+            this.review_ID = review_ID;
+            this.review_text = review_text;
+        }
+//        public float get_rating(){ return this.rating; }
+//        public int get_raters(){ return this.numRaters; }
+    }
+
+    public void insert_review(Connection conn, int user_ID,String username, String media_ID,int rating_FID,float rating, int review_ID,String review_text) throws SQLException{
+        try {
+            String sqlReq = "INSERT INTO reviews (user_ID,username media_ID,rating_FID,rating,review_ID,review_text) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setInt(1, user_ID);
+            pstmt.setString(2,username);
+            pstmt.setString(3, media_ID);
+            pstmt.setInt(4, rating_FID);
+            pstmt.setFloat(5, rating);
+            pstmt.setInt(6, review_ID);
+            pstmt.setString(7, review_text);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when adding the user rated on media relation");
+        }
+    }
 
 
 
 
+    public void load_reviews(Connection conn)throws SQLException {
+        try {
+            JSONArray query = new JSONArray();
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT username,rating,review_text FROM reviews ORDER BY RANDOM() LIMIT 10";
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if(rs.next()){
+                while(rs.next()){
+                    JSONObject line = new JSONObject();
+                    line.put("username",rs.getString("username"));
+                    line.put("rating",rs.getInt("rating"));
+                    line.put("review_text",rs.getString("review_text"));
+                    query.put(line);
+                }
+            }else{
+                throw new SQLException("An error occurred when getting the reviews on review  relation");
+            }
+        }catch (SQLException ex) {
 
+            throw new SQLException("An error occurred when loading review relation");
+        }
+    }
 
+    public void get_specific_review(int user_ID,Connection conn) throws SQLException{
+        try {
+            JSONArray query = new JSONArray();
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT * FROM reviews WHERE user_ID = ?" ;
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if(rs.next()){
+                JSONObject line = new JSONObject();
+                line.put("username",rs.getString("username"));
+                line.put("rating",rs.getInt("rating"));
+                line.put("review_text",rs.getString("review_text"));
+                query.put(line);
+            }else{
 
+                throw new SQLException("An error occurred when getting the reviews on review  relation");
+
+            }
+        }catch (SQLException ex) {
+
+            throw new SQLException("An error occurred when getting specific review");
+        }
+    }
 }
 

@@ -136,6 +136,8 @@ public class registerAccount implements HttpHandler
 
             /*  send response  */
             try {
+                accountInfo acc = db.get_user_from_email(conn, email);
+
                 //get client addr (if forwarded then get that from header, otherwise get the remote addr)
                 Headers reqHeader = r.getRequestHeaders();
                 List<String> ipList = reqHeader.get("X-FORWARDED-FOR");

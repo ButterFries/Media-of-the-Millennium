@@ -38,20 +38,22 @@ public class validateAccount implements HttpHandler
 {
     private static AppDatabase db;
     private static SessionManager sm;
+    private static Connection conn = null;
 
     public validateAccount(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
+        conn = db.connect();
     }
 
     public void handle(HttpExchange r) {
         System.out.println("\n-Received request [validateAccount]");
-        Connection conn = null;
+        //Connection conn = null;
         HttpsExchange rs = (HttpsExchange) r;
         try {
             if (r.getRequestMethod().equals("POST")) {
                 System.out.println("--request type: POST (GET)"); //System.out.println("--request type: GET");
-                conn = db.connect();
+                //conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -60,21 +62,23 @@ public class validateAccount implements HttpHandler
             }
         } 
         catch (Exception e) {
-            System.out.println("# ERROR HelloWorld.handle ::  " + e);
-            try{
-                rs.sendResponseHeaders(500, -1);
-            }catch (Exception eH500) {
-                System.out.println("# handled error sending h500 ::  "+eH500);
+            if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
+                try{
+                    rs.sendResponseHeaders(500, -1);
+                }catch (Exception eH500) {
+                    System.out.println("# error sending h500 ::  "+eH500);
+                }
             }
         }
-        finally {
+        /*finally {
             try { //this is to safely disconnect from the db if a connection was made
-                db.disconnect(conn);
+                if (conn != null)
+                    db.disconnect(conn);
             }
             catch (Exception eDisconnect){
                 System.out.println("# handled error disconnecting :: "+eDisconnect);
             }
-        }
+        }*/
     }
 
     public void handleReq(HttpExchange r, Connection conn) throws Exception {

@@ -14,14 +14,6 @@ public class AppDatabase {
     public static String dbPath = "./server/motm/database/appdatabase.db";
     private static String saltshaker = "||password_security++"; //using PBKDF2, this is extra and isn't necessary
 
-    public static void main(String[] args) { //does this execute when making new class object? i dun remember
-        System.out.println("AppDatabase running main");
-        try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public AppDatabase() {
         try {
@@ -119,6 +111,29 @@ public class AppDatabase {
             throw new Exception("some error");
         }
     }
+
+
+//==============================================================================
+//###   main testing   ###
+//==============================================================================
+/* for testing database functions alone
+ * the pwd should be the same as if launching the server
+ */
+
+    public static void main(String[] args) throws Exception {
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        System.out.println("AppDatabase running main");
+
+        //put code to test here
+        //
+    }
+
+
 
 
 //==============================================================================
@@ -350,10 +365,10 @@ public class AppDatabase {
         private int mediaID;         //unique integer id, PRIMARY KEY
         private String title;        //the title/name of the movie/music/game/etc
         private String mediaType;    //type of media;  {'cinema', 'music', 'tv-series', 'video game', 'novel'}
-        private String summary;      //string of words
+        private String summary = "";      //string of words
         //private ArrayList<String> tags = new ArrayList<String>(); //list of tags (strings) associated to title, contents are different based on mediaType DEV-60
-        private String[] genres;
-        private String[] tags;
+        private String[] genres = null;
+        private String[] tags = null;
 
         public MediaProfilePage(int ID, String t, String mt, String s, String[] g, String[] tag) {
             this.mediaID = ID;
@@ -362,6 +377,11 @@ public class AppDatabase {
             this.summary = s;
             this.genres = g;
             this.tags = tag;
+        }
+        public MediaProfilePage(int ID, String t, String mt) {
+            this.mediaID = ID;
+            this.title = t;
+            this.mediaType = mt;
         }
 
         public int get_mediaID() {
@@ -384,14 +404,16 @@ public class AppDatabase {
 
     /*
      * Adds the media title to the database (careful duplicates are possible!)
+     * genres should be delimited by comma
      */
-    public void add_media_title(Connection conn, String title, String mediaType, String summary) throws SQLException{
-        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary) VALUES(?,?,?)";
+    public void add_media_title(Connection conn, String title, String mediaType, String summary, String genres) throws SQLException{
+        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres) VALUES(?,?,?,?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setString(1, title);
             pstmt.setString(2, mediaType);
             pstmt.setString(3, summary);
+            pstmt.setString(4, genres);
             pstmt.executeUpdate();
         } 
         catch (SQLException ex) {
@@ -399,11 +421,69 @@ public class AppDatabase {
             throw new SQLException("Failed to add media title");
         }
     }
+    /*
+     * Adds the media title to the database (careful duplicates are possible!)
+     * genres and tags should be delimited by comma
+     */
+    public void add_media_title(Connection conn, String title, String mediaType, String summary, String genres, String tags) throws SQLException{
+        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags) VALUES(?,?,?,?,?)";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setString(1, title);
+            pstmt.setString(2, mediaType);
+            pstmt.setString(3, summary);
+            pstmt.setString(4, genres);
+            pstmt.setString(5, tags);
+            pstmt.executeUpdate();
+        } 
+        catch (SQLException ex) {
+            System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("Failed to add media title");
+        }
+    }
+    /*
+     * Adds the media title to the database (careful duplicates are possible!)
+     */
+    public void add_media_title(Connection conn, String title, String mediaType, String summary, String[] genres) throws SQLException{
+        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres) VALUES(?,?,?,?)";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setString(1, title);
+            pstmt.setString(2, mediaType);
+            pstmt.setString(3, summary);
+            pstmt.setString(4, String.join(",",genres));
+            pstmt.executeUpdate();
+        } 
+        catch (SQLException ex) {
+            System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("Failed to add media title");
+        }
+    }
+    /*
+     * Adds the media title to the database (careful duplicates are possible!)
+     */
+    public void add_media_title(Connection conn, String title, String mediaType, String summary, String genres, String[] tags) throws SQLException{
+        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags) VALUES(?,?,?,?,?)";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setString(1, title);
+            pstmt.setString(2, mediaType);
+            pstmt.setString(3, summary);
+            pstmt.setString(4, String.join(",",genres));
+            pstmt.setString(5, String.join(",",tags));
+            pstmt.executeUpdate();
+        } 
+        catch (SQLException ex) {
+            System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("Failed to add media title");
+        }
+    }
+
     /**
      * Retrieves media title information of specified mediaID
      * RETURN: MediaProfilePage object with title information
      */
-    public MediaProfilePage get_mediaProfilePageInfo(Connection conn, int mediaID) throws SQLException {
+    public MediaProfilePage get_mediaProfilePage(Connection conn, int mediaID) throws SQLException {
         String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = \"" + mediaID + "\"";
         try {
             Statement stmt = conn.createStatement();
@@ -420,19 +500,67 @@ public class AppDatabase {
                 throw new SQLException("No ID found");
             }
         } catch (SQLException ex) {
-            //ex.printStackTrace();
-            //System.out.println("#  ERROR :  " + ex);
             throw new SQLException("Error while fetching MPP data");
         }
     }
 
+
+
     /**
-     *
-     * Returns a list of MediaProfilePage objects that have the associated mediaType
-     *
+     * Returns a list of n randomly chosen mediaIDs that have the associated mediaType
+     *  from all available objects with the mediaType
      */
-    public ArrayList<MediaProfilePage> get_mediaIDs(Connection conn, String mediaType) throws SQLException{
-        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaType = \"" + mediaType + "\"";
+    public ArrayList<Integer> get_mediaIDs_by_type(Connection conn, String mediaType, int n) throws SQLException{
+        if (n < 1) n = 1;
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID in (SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY RANDOM() LIMIT "+n+")";
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY RANDOM() LIMIT "+n+"";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches for mediaType ["+mediaType+"]");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using mediaType ["+type+"] :  "+ex);
+        }
+    }
+    /**
+     * Returns a list of n randomly chosen mediaIDs that have the associated mediaType
+     *  from all available objects with the mediaType, which are not in the given list of Ids
+     */
+    public ArrayList<Integer> get_mediaIDs_by_type(Connection conn, String mediaType, int n, String[] already_used_IDs) throws SQLException{
+        if (n < 1) n = 1;
+        String avoid = Arrays.toString(already_used_IDs);
+        avoid = avoid.substring(1, avoid.length()-1); //prune []
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID in (SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" AND mediaID NOT IN ("+avoid+") ORDER BY RANDOM() LIMIT "+n+")";
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" AND mediaID NOT IN ("+avoid+") ORDER BY RANDOM() LIMIT "+n+"";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches for mediaType ["+mediaType+"]");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using mediaType ["+type+"] :  "+ex);
+        }
+    }
+    /**
+     * Returns a list of n randomly chosen MediaProfilePage objects that have the associated mediaType
+     *  from all available objects with the mediaType
+     */
+    public ArrayList<MediaProfilePage> get_mediaProfilePages_by_type(Connection conn, String mediaType, int n) throws SQLException{
+        if (n < 1) n = 1;
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID IN (SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY RANDOM() LIMIT "+n+")";
         ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
         try {
             Statement stmt = conn.createStatement();
@@ -444,30 +572,74 @@ public class AppDatabase {
                 String [] media_tags = tg.split(",");
                 MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
                         rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
-
                 pages.add(m);
-
             }
             if (pages.isEmpty())
-                throw new SQLException("No objects created");
+            throw new SQLException("No matches for mediaType ["+mediaType+"]");
             else
                 return pages;
-
         } catch (SQLException ex) {
-            //ex.printStackTrace();
-            //System.out.println("#  ERROR :  " + ex);
-            throw new SQLException("Error while fetching MPP data using specified Type");
+            throw new SQLException("Error while fetching MPPs using mediaType ["+type+"] :  "+ex);
         }
-
     }
+
+
+
     /**
-     * Returns a list of MediaProfilePage objects that have the associated GENRE within its DB entry
+     * Returns a list of n randomly chosen mediaIDs that have the associated GENRE within its DB entry
      */
-    public ArrayList<MediaProfilePage> get_genrePages(Connection conn, String genre) throws SQLException{
-        String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
+    public ArrayList<Integer> get_mediaIDs_by_genre(Connection conn, String genre) throws SQLException{
+        if (n < 1) n = 1;
+        //String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
         //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
-
-
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\" ORDER BY RANDOM() LIMIT "+n+"";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches for genre ["+genre+"]");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using genre ["+genre+"] :  "+ex);
+        }
+    }
+    /**
+     * Returns a list of n randomly chosen mediaIDs that have the associated GENRE within its DB entry
+     * and is not in the list of given IDs
+     */
+    public ArrayList<Integer> get_mediaIDs_by_genre(Connection conn, String genre, String[] already_used_IDs) throws SQLException{
+        if (n < 1) n = 1;
+        String avoid = Arrays.toString(already_used_IDs);
+        avoid = avoid.substring(1, avoid.length()-1); //prune []
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\" AND mediaID NOT IN ("+avoid+") ORDER BY RANDOM() LIMIT "+n+"";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches for genre ["+genre+"]");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using genre ["+genre+"] :  "+ex);
+        }
+    }
+    /**
+     * Returns a list of n random MediaProfilePage objects that have the associated GENRE within its DB entry
+     */
+    public ArrayList<MediaProfilePage> get_MediaProfilePages_by_genre(Connection conn, String genre) throws SQLException{
+        if (n < 1) n = 1;
+        //String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID IN (SELECT mediaID FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\" ORDER BY RANDOM() LIMIT "+n+")";
         ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
         try {
             Statement stmt = conn.createStatement();
@@ -479,30 +651,72 @@ public class AppDatabase {
                 String[] media_genres = mg.split(","); //place each genre into a list
                 MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
                         rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
-
                 pages.add(m);
-
             }
             if (pages.isEmpty())
-                throw new SQLException("No objects created");
+                throw new SQLException("No matches for genre ["+genre+"]");
             else
                 return pages;
-
         } catch (SQLException ex) {
-            //ex.printStackTrace();
-            //System.out.println("#  ERROR :  " + ex);
-            throw new SQLException("Error while fetching MPP data using specified Genre");
+            throw new SQLException("Error while fetching MPPs using genre ["+genre+"] :  "+ex);
         }
     }
 
+
+
+    /**
+     * Returns a list of n randomly chosen mediaIDs that have the associated TAG within its DB entry
+     */
+    public ArrayList<Integer> get_mediaIDs_by_tag(Connection conn, String tag) throws SQLException{
+        if (n < 1) n = 1;
+        //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\" ORDER BY RANDOM() LIMIT "+n+"";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches for tag ["+tag+"]");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using tag ["+tag+"]:  "+ex);
+        }
+    }
+    /**
+     * Returns a list of n randomly chosen mediaIDs that have the associated TAG within its DB entry
+     * and is not in the list of given IDs
+     */
+    public ArrayList<Integer> get_mediaIDs_by_tag(Connection conn, String tag, String[] already_used_IDs) throws SQLException{
+        if (n < 1) n = 1;
+        String avoid = Arrays.toString(already_used_IDs);
+        avoid = avoid.substring(1, avoid.length()-1); //prune []
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\" AND mediaID NOT IN ("+avoid+") ORDER BY RANDOM() LIMIT "+n+"";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches for tag ["+tag+"]");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using tag ["+tag+"]:  "+ex);
+        }
+    }
     /**
      * Returns a list of MediaProfilePage objects that have the associated TAG within its DB entry
      */
-    public ArrayList<MediaProfilePage> get_tagPages(Connection conn, String tag) throws SQLException{
-        String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
-        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
-
-
+    public ArrayList<MediaProfilePage> get_MediaProfilePages_by_tag(Connection conn, String tag) throws SQLException{
+        //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
+        String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
         ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
         try {
             Statement stmt = conn.createStatement();
@@ -514,19 +728,14 @@ public class AppDatabase {
                 String [] media_tags = tg.split(",");
                 MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
                         rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
-
                 pages.add(m);
-
             }
             if (pages.isEmpty())
-                throw new SQLException("No objects created");
+                throw new SQLException("No matches for tag ["+tag+"]");
             else
                 return pages;
-
         } catch (SQLException ex) {
-            //ex.printStackTrace();
-            //System.out.println("#  ERROR :  " + ex);
-            throw new SQLException("Error while fetching MPP data using specified Genre");
+            throw new SQLException("Error while fetching MPPs using tag ["+tag+"]:  "+ex);
         }
     }
 

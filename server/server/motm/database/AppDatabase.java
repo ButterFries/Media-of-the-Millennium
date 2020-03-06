@@ -2,6 +2,8 @@ package server.motm.database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 
 import server.motm.utils.*;
 import org.json.JSONException;
@@ -738,6 +740,71 @@ public class AppDatabase {
             throw new SQLException("Error while fetching MPPs using tag ["+tag+"]:  "+ex);
         }
     }
+
+
+
+    /**
+     * Update the media title with the specified ID with the new tags
+     * 
+     * NOTE: tags are delimited by comma, but may have a space following the comma (trim when needed)
+     */
+    public void update_tags(Connection conn, int mediaID, String[] new_Tags) throws SQLException{
+        //get old tags
+        String sqlReq = "SELECT tags FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
+        String old_tags = null;
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                old_tags = rs.getString("tags");
+            }
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching tags using mediaID ["+mediaID+"]:  "+ex);
+        }
+        List<String> tags = new ArrayList<String>(Arrays.asList(old_tags.split(",")));
+        tags.addAll(Arrays.asList(new_Tags));
+        String updated_tags = tags.toSting();
+        updated_tags = updated_tags.substring(1, updated_tags.length()-1); //prune []
+        //update tags
+        try {
+            sqlReq = "UPDATE mediaTitles SET tags = (?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setString(1, updated_tags);
+            pstmt.executeUpdate();
+        } 
+        catch (SQLException ex) {
+            throw new SQLException("An error occurred when updating tags : "+ex);
+        }
+    }
+
+
+//-------------
+//  cinema
+//-------------
+
+
+//-------------
+//  music
+//-------------
+
+
+//-------------
+//  tvseries
+//-------------
+
+
+//-------------
+//  videogames
+//-------------
+
+
+//-------------
+//  novels
+//-------------
+
+
+
+
 
 
 

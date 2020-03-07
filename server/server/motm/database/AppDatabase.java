@@ -3,6 +3,7 @@ package server.motm.database;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Arrays;
 
 import org.json.*;
@@ -70,7 +71,7 @@ public class AppDatabase {
         try {
             conn.close();
         } catch (SQLException close_exception) {
-            System.out.println("#  ERROR:  error when closing db connection");
+            System.out.println("#  ERROR:  error when closing db connection :  "+close_exception);
             /* handle it */
         }
     }
@@ -87,9 +88,8 @@ public class AppDatabase {
             pstmt.setString(2, "attribute 2 value");
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            //ex.printStackTrace();
-            System.out.println("#  ERROR :  " + ex);
-            throw new Exception("some error");
+            //ex.printStackTrace(); 
+            throw new Exception("some error :  "+ex);
         }
     }
 
@@ -110,9 +110,8 @@ public class AppDatabase {
                 throw new Exception("some error");
             }
         } catch (SQLException ex) {
-            //ex.printStackTrace();
-            System.out.println("#  ERROR :  " + ex);
-            throw new Exception("some error");
+            //ex.printStackTrace(); 
+            throw new Exception("some error :  "+ex);
         }
     }
 
@@ -208,9 +207,8 @@ public class AppDatabase {
             } else {
                 throw new SQLException("Failed to fetch user with 'username' from 'accounts' table");
             }
-        } catch (SQLException ex) {
-            System.out.println("#  ERROR :  " + ex);
-            throw new SQLException("An error occurred when executing query to fetch user with 'username' from 'accounts' table");
+        } catch (SQLException ex) { 
+            throw new SQLException("An error occurred when executing query to fetch user with 'username' from 'accounts' table :  "+ex);
         }
     }
 
@@ -231,8 +229,7 @@ public class AppDatabase {
                 throw new SQLException("Failed to fetch user with 'email' from 'accounts' table");
             }
         } catch (SQLException ex) {
-            System.out.println("#  ERROR :  " + ex);
-            throw new SQLException("An error occurred when executing query to fetch user with 'email' from 'accounts' table");
+            throw new SQLException("An error occurred when executing query to fetch user with 'email' from 'accounts' table :  "+ex);
         }
     }
 
@@ -254,11 +251,9 @@ public class AppDatabase {
             pstmt.setString(3, pass_hash);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("#  ERROR :  " + ex);
-            throw new SQLException("Failed to add account to database");
+            throw new SQLException("Failed to add account to database :  "+ex);
         } catch (Exception e) {
-            System.out.println("#  ERROR :  " + e);
-            throw new SQLException("Failed to add account to database");
+            throw new SQLException("Failed to add account to database :  "+e);
         }
     }
 
@@ -314,8 +309,7 @@ public class AppDatabase {
                 throw new SQLException("Failed to fetch query on existence of 'username' from 'accounts' table");
             }
         } catch (SQLException ex) {
-            System.out.println("#  ERROR :  " + ex);
-            throw new SQLException("An error occurred when executing query on existence of 'username' from 'accounts' table");
+            throw new SQLException("An error occurred when executing query on existence of 'username' from 'accounts' table :  "+ex);
         }
     }
 
@@ -333,24 +327,22 @@ public class AppDatabase {
                 throw new SQLException("Failed to fetch query on existence of 'email' from 'accounts' table");
             }
         } catch (SQLException ex) {
-            System.out.println("#  ERROR :  " + ex);
-            throw new SQLException("An error occurred when executing query on existence of 'email' from 'accounts' table");
+            throw new SQLException("An error occurred when executing query on existence of 'email' from 'accounts' table :  "+ex);
         }
     }
 
     /**
      * Adds specified media title (ID) to User's favorite/watchlist
      */
-    public void add_titleToFavorites(Connection var1, int mediaID, int accountID) throws Exception {
+    public void add_titleToFavorites(Connection conn, int mediaID, int accountID) throws Exception {
         String ID = Integer.toString(mediaID);
-        String var3 = "UPDATE accounts SET favorites = favorites || \"" + ID + "\" WHERE userID = \"" + accountID + "\"";
+        String sqlReq = "UPDATE accounts SET favorites = favorites || \"" + ID + "\" WHERE userID = \"" + accountID + "\"";
 
         try {
-            PreparedStatement var4 = var1.prepareStatement(var3);
-            var4.executeUpdate();
-        } catch (SQLException var5) {
-            System.out.println("#  ERROR :  " + var5);
-            throw new Exception("Could not update account favorites");
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new Exception("Could not update account favorites :  "+ex);
         }
     }
     /*
@@ -433,9 +425,8 @@ public class AppDatabase {
             pstmt.setString(4, genres);
             pstmt.executeUpdate();
         } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("Failed to add media title");
+        catch (SQLException ex) { 
+            throw new SQLException("Failed to add media title :  "+ex);
         }
     }
     /*
@@ -454,8 +445,7 @@ public class AppDatabase {
             pstmt.executeUpdate();
         } 
         catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("Failed to add media title");
+            throw new SQLException("Failed to add media title :  "+ex);
         }
     }
     /*
@@ -472,8 +462,7 @@ public class AppDatabase {
             pstmt.executeUpdate();
         } 
         catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("Failed to add media title");
+            throw new SQLException("Failed to add media title :  "+ex);
         }
     }
     /*
@@ -491,8 +480,7 @@ public class AppDatabase {
             pstmt.executeUpdate();
         } 
         catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("Failed to add media title");
+            throw new SQLException("Failed to add media title :  "+ex);
         }
     }
 
@@ -500,9 +488,11 @@ public class AppDatabase {
      * Get the media info for that title, including the common info and the type specific info.
      * Returns the info as a JSON object.
      */
-    private JSONObject get_all_media_Info(Connection conn, int mediaID) throws SQLException, Exception{
+    public JSONObject get_all_media_Info(Connection conn, int mediaID) throws SQLException, Exception, SQLDataException {
         String sqlReq = "SELECT (mediaType, title, summary, genres, tags, rating, numRaters, links) FROM mediaTitles WHERE mediaID = "+mediaID;
         JSONObject json = new JSONObject();
+        JSONObject common = new JSONObject();
+        JSONObject distinct = new JSONObject();
         String mediaType = null;
         try {
             Statement stmt = conn.createStatement();
@@ -512,13 +502,13 @@ public class AppDatabase {
             if (rs.next()) { //found something
                 mediaType = rs.getString("mediaType");
                 for(int i = 0; i < cols; i++){
-                    json.put(md.getColumnName(i), rs.getObject(i)+"");
+                    common.put(md.getColumnName(i), rs.getObject(i)+"");
                 }
             }
             else
                 throw new SQLException("Failed to fetch with mediaID ["+mediaID+"] from 'mediaTitles' table");
         } catch (SQLException ex) {
-            throw new SQLException("Error while fetching common info using mediaID ["+mediaID+"]:  "+ex);
+            throw new Exception("Error while fetching common info using mediaID ["+mediaID+"]:  "+ex);
         }
         String sqlReq2 = null;
         if (mediaType.equals("cinema"))
@@ -532,7 +522,7 @@ public class AppDatabase {
         else if (mediaType.equals("novel"))
             sqlReq2 = "SELECT * FROM novelInfo WHERE mediaID = "+mediaID;
         else 
-            throw new Exception("!! CRITICAL ::  mediaID ["+mediaID+"] not found in table for mediaType: "+mediaType+"");
+            throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] with invalid mediaType: "+mediaType+"");
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlReq2);
@@ -540,15 +530,17 @@ public class AppDatabase {
             int cols = md.getColumnCount();
             if (rs.next()) { //found something
                 for(int i = 0; i < cols; i++){
-                    json.put(md.getColumnName(i), rs.getObject(i)+"");
+                    distinct.put(md.getColumnName(i), rs.getObject(i)+"");
                 }
             }
             else
-                throw new SQLException("Failed to fetch with mediaID ["+mediaID+"] from media type table ["+mediaType+"]");
+                throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] not found in table for mediaType: "+mediaType+"");
         } catch (SQLException ex) {
-            throw new SQLException("Error while fetching type info using mediaID ["+mediaID+"]:  "+ex);
+            throw new Exception("Error while fetching type info using mediaID ["+mediaID+"]:  "+ex);
         }    
-        return new JSONObject();
+        json.put("common", common);
+        json.put("distinct", distinct);
+        return json;
     }
 
     /** (DEPREC) -- use  `get_all_media_Info`  instead
@@ -887,8 +879,7 @@ public class AppDatabase {
             }
         } 
         catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("An error occurred when fetching media rating");
+            throw new SQLException("An error occurred when fetching media rating :  "+ex);
         }
     }
 
@@ -907,8 +898,7 @@ public class AppDatabase {
             }
         } 
         catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("An error occurred when fetching media info");
+            throw new SQLException("An error occurred when fetching media info :  "+ex);
         }
     }
 
@@ -926,9 +916,8 @@ public class AppDatabase {
                 throw new SQLException("Failed to fetch media info, usedID: "+userId+"    mediaID: "+mediaId);
             }
         } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("An error occurred when checking if user has rated");
+        catch (SQLException ex) { 
+            throw new SQLException("An error occurred when checking if user has rated :  "+ex);
         }
     }
 
@@ -957,9 +946,8 @@ public class AppDatabase {
                 pstmt.executeUpdate();
                 update_usersMediaRating(conn, userId, mediaId, newRating);
             } 
-            catch (SQLException ex) {
-                System.out.println("#  ERROR :  "+ex);
-                throw new SQLException("An error occurred when updating user rating on media");
+            catch (SQLException ex) { 
+                throw new SQLException("An error occurred when updating user rating on media :  "+ex);
             }
         }
 
@@ -976,9 +964,8 @@ public class AppDatabase {
                 pstmt.setInt(2, numRaters+1);
                 pstmt.executeUpdate();
             } 
-            catch (SQLException ex) {
-                System.out.println("#  ERROR :  "+ex);
-                throw new SQLException("An error occurred when adding user rating on media");
+            catch (SQLException ex) { 
+                throw new SQLException("An error occurred when adding user rating on media :  "+ex);
             }
         }
     }
@@ -998,9 +985,8 @@ public class AppDatabase {
                 throw new SQLException("Failed to fetch relation rating, usedID: "+userId+"    mediaID: "+mediaId);
             }
         } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("An error occurred when getting the rating value a user had on a media title");
+        catch (SQLException ex) { 
+            throw new SQLException("An error occurred when getting the rating value a user had on a media title :  "+ex);
         }
 
     }
@@ -1016,10 +1002,9 @@ public class AppDatabase {
             pstmt.setInt(2, userId);
             pstmt.setInt(3, mediaId);
             pstmt.executeUpdate();
-        } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("An error occurred when adding the user rated on media relation");
+        }  
+        catch (SQLException ex) { 
+            throw new SQLException("An error occurred when adding the user rated on media relation :  "+ex);
         }
     }
 
@@ -1035,9 +1020,8 @@ public class AppDatabase {
             pstmt.setInt(3, mediaId);
             pstmt.executeUpdate();
         } 
-        catch (SQLException ex) {
-            System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("An error occurred when adding the user rated on media relation");
+        catch (SQLException ex) { 
+            throw new SQLException("An error occurred when adding the user rated on media relation :  "+ex);
         }
     }
 

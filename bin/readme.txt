@@ -1,0 +1,1 @@
+current md files are located in the root dir, after each sprint the current files should be copied into their respective folders so that we can keep track of changes easily.  Also include a 'change-log.txt' with all removals or additions to those files

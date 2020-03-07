@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_page_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/ic_music_button">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/CategoryTitleTxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="MUSIC"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Trending"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Trending"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Trending1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Trending2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Trending3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Trending4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Trending5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Trending6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/CategoryHipHop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Hip Hop"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/HipHop1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/HipHop2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/HipHop3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/HipHop4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/HipHop5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/HipHop6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/HipHop7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/HipHop8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/HipHop9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/HipHop10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/CategoryPop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Pop"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Pop1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Pop2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Pop3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Pop4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Pop5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Pop6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Pop7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Pop8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Pop9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Pop10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/categoryRap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Rap"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Rap1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Rap2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Rap3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Rap4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rap5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rap6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rap7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rap8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rap9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rap10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/categoryRock"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Rock"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Rock1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Rock2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Rock3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Rock4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rock5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rock6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rock7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rock8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rock9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rock10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/categoryEdm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Electronic"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Edm1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Edm2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Edm3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Edm4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Edm5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Edm6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Edm7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Edm8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Edm9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Edm10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/categoryClassical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Classical"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Classical1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Classical2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Classical3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Classical4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Classical5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Classical6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Classical7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Classical8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Classical9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Classical10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</ScrollView>

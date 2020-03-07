@@ -1,0 +1,247 @@
+[
+  {
+    "name": "MainActivity",
+    "superclasses": "",
+    "subclasses": "FragmentChangeListener",
+    "type": 1,
+    "responsibilities": [
+      "Main container for all fragments",
+      "Contains global variables and methods"
+    ],
+    "collaborators": [
+      "Group Members",
+      "Clients"
+    ]
+  },
+  {
+    "name": "LoginPageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "This page allows the user to enter login information, including their email and password. The page has a login button which acts as a submit button."
+    ],
+    "collaborators": [
+      "RegistrationPageFragment"
+    ]
+  },
+  {
+    "name": "RegistrationPageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "This page allows the user to either login,  or register to the site. A client/user will also have the option to proceed as a guest but with limited functionality. "
+    ],
+    "collaborators": [
+      "LoginPageFragment",
+      ""
+    ]
+  },
+  {
+    "name": "MediaProfilePageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Shows the overall profile of the selected media. This includes current rating, media art , Title and the ability to add to favorites.",
+      ""
+    ],
+    "collaborators": [
+      "ReviewsFragment",
+      "MediaProfileFetcher",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "ReviewsFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "This allows a user/client to give a review on the selected media."
+    ],
+    "collaborators": [
+      "MediaProfilePageFragment",
+      ""
+    ]
+  },
+  {
+    "name": "FragmentChanageListener",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 3,
+    "responsibilities": [
+      "An interface implemented by activities and fragments which have changing parent fragments",
+      "It contains the replaceFragment method, which when implemented will allow the class to swap child fragments."
+    ],
+    "collaborators": [
+      "MainActivity",
+      ""
+    ]
+  },
+  {
+    "name": "MediaProfileFetcher",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Fetches information about the Media Profile from database on a server"
+    ],
+    "collaborators": [
+      "MediaProfilePageFragment",
+      ""
+    ]
+  },
+  {
+    "name": "HomePageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Shows all the media types",
+      "Lets the user pick which media type they want to view"
+    ],
+    "collaborators": [
+      "ArtistPageFragment",
+      "BookPageFragment",
+      "GamePageFragment",
+      "MoviePageFragment",
+      "MusicPageFragment",
+      "TvPageFragment"
+    ]
+  },
+  {
+    "name": "ArtistPageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Displays the artist's name and description",
+      "Displays albums and songs made by the artist"
+    ],
+    "collaborators": [
+      "HomePageFragment"
+    ]
+  },
+  {
+    "name": "BookPageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Lists books based on category and featured",
+      "Lets users click a book to get redirected to the book's media profile page",
+      "The user can click the back button to go back to the main media page"
+    ],
+    "collaborators": [
+      "HomePageFragment"
+    ]
+  },
+  {
+    "name": "GamePageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Lists games based on category and featured",
+      "Lets users click a game to get redirected to the game's media profile page",
+      "The user can click the back button to go back to the main media page"
+    ],
+    "collaborators": [
+      "HomePageFragment"
+    ]
+  },
+  {
+    "name": "MoviePageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Lists movies based on category and featured",
+      "Lets users click a movie to get redirected to the movie's media profile page",
+      "The user can click the back button to go back to the main media page"
+    ],
+    "collaborators": [
+      "HomePageFragment"
+    ]
+  },
+  {
+    "name": "MusicPageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Lists music based on category and featured",
+      "Lets users click a music to get redirected to the music's media profile page",
+      "The user can click the back button to go back to the main media page"
+    ],
+    "collaborators": [
+      "HomePageFragment"
+    ]
+  },
+  {
+    "name": "TvPageFragment",
+    "superclasses": "Fragment",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Lists TV shows based on category and featured",
+      "Lets users click a TV show to get redirected to the show's media profile page",
+      "The user can click the back button to go back to the main media page"
+    ],
+    "collaborators": [
+      "HomePageFragment"
+    ]
+  },
+  {
+    "name": "appDatabase",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Connects to database",
+      "Safely disconnects from database",
+      "Hashes passwords to be stored in database",
+      "Runs database queries including:",
+      " - Obtain account info where username matches",
+      " - Checks if hashed password is the same as the one stored in the database",
+      " - Checks if the username exists",
+      " - Checks if email exists",
+      " - Obtain rating of a media",
+      " - Check if a user has rated a media",
+      " - Updates the rating of a media",
+      " - Gets the rating value a user has given a media",
+      " - Adds a user's rating the the media"
+    ],
+    "collaborators": [
+      "generatePasswordHash",
+      "validatePasswordHash"
+    ]
+  },
+  {
+    "name": "generatePasswordHash",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Takes a given string and hashes it"
+    ],
+    "collaborators": [
+      "appDatabase"
+    ]
+  },
+  {
+    "name": "validatePasswordHash",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Validates a hashed string and a given string and checks if they match"
+    ],
+    "collaborators": [
+      "appDatabase"
+    ]
+  }
+]

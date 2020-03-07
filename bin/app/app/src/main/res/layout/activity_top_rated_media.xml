@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_rate_media_page_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/ic_top_rated_media_button">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TopRatedTitleTxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Top Rated"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Movies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Movies"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Movies1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Movies2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Movies3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Movies4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Movies5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Movies6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Movies7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Movies8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Movies9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Movies10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/NewReleasesTVShows"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="TV Series"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/TVShows1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/TVShows2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/TVShows3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/TVShows4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/TVShows5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/TVShows6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/TVShows7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/TVShows8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/TVShows9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/TVShows10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/NewReleasesMusic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Music"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Music1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Music2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Music3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Music4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Music5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Music6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Music7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Music8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Music9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Music10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/NewReleasesVideoGames"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Video Games"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/VideoGames1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/VideoGames10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/NewReleasesNovels"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Novels"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Novels1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Novels2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Novels3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Novels4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Novels5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Novels6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Novels7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Novels8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Novels9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Novels10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</ScrollView>
+
+

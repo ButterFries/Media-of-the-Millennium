@@ -4,47 +4,70 @@ https://www.sqlite.org/download.html
 	--on ubuntu64 the binary for 32 might not work, just `sudo apt-get install sqlite3` and use `sqlite3 database.db`
 
 
-javac appServer.java
-java -classpath '.:sqlite-jdbc-3.27.2.1.jar' appServer
-//not sure what to do to include in the app build, add to classpath somewhere
-
-
-
 
 
 -- notes -----------------------------------------------------------------------
-### print outs for debug and logging have not been added
-### code is not complete! modify and verify after copy-pasting
 
+### to open sqlite shell
+./sqlite3 appdatabase.db
+>.tables
+>.schema ---table---
+### to execute single line on db without shell
+./sqlite3 appdatabase.db "---STATEMENT/QUERY/REQUEST---"
 
-### accounts table and insert
-./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, favorites TEXT DEFAULT '');"
-./sqlite3 appdatabase.db "INSERT INTO accounts (username, email, password) VALUES ('example', 'email', 'passwordhash');"
-
-
-### extra safety by using pbkdf2
-https://security.stackexchange.com/questions/16354/whats-the-advantage-of-using-pbkdf2-vs-sha256-to-generate-an-aes-encryption-key
+## command can be delimited by semicolon, similar to bash commands
 
 
 ### foreign key support
 http://code-know-how.blogspot.com/2011/10/how-to-enable-foreign-keys-in-sqlite3.html
-sqlite> PRAGMA foreign_keys = ON;
+> PRAGMA foreign_keys = ON;
+
+## this must be done for each session of opening the sqlite shell or executing a command
 
 
 
-### administrator table
-CREATE TABLE admins (adminID INTEGER PRIMARY KEY, adminLevel SHORT NOT NULL DEFAULT 1, userID INTEGER NOT NULL, FOREIGN KEY (userID) REFERENCES accounts (userID));
-### we could have something like adminLevels where each level has different privledges. otherwise ignore it when adding
+
+### accounts table and insert
+CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, favorites TEXT DEFAULT '');
+INSERT INTO accounts (username, email, password) VALUES ('example', 'email', 'passwordhash');
+
+
+
+
+### administrator table (child of accounts)
+CREATE TABLE admins (adminID INTEGER PRIMARY KEY REFERENCES accounts(userID), adminLevel SHORT NOT NULL DEFAULT 1);
+## we could have something like adminLevels where each level has different privledges. otherwise ignore it when adding
 INSERT INTO admins (userID) VALUES (~~~);
 INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
+
+(deprec) //CREATE TABLE admins (adminID INTEGER PRIMARY KEY, adminLevel SHORT NOT NULL DEFAULT 1, userID INTEGER NOT NULL, FOREIGN KEY (userID) REFERENCES accounts (userID));
+
 
 
 
 ### media titles table and insert
-./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, tags TEXT, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0, pictureUrl TEXT NOT NULL);
-./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags, pictureUrl) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror', 'sword,fun,blood', 'https://google.com/picture')";
+CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, mediaType TEXT NOT NULL, summary TEXT DEFAULT '', genres TEXT NOT NULL, tags TEXT DEFAULT '', rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0, links STRING DEFAULT '', image BLOB);
+INSERT INTO mediaTitles (title, mediaType, summary, genres, tags) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror', 'sword,fun,blood');
 # use media types {'cinema', 'music', 'tv-series', 'video game', 'novel'}
 # use genre types {'depends on media type'}
+
+### cinema table (child of mediaTitles)
+CREATE TABLE cinemaInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(mediaID), producer STRING DEFAULT '', director STRING DEFAULT '', writter STRING DEFAULT '', editor STRING DEFAULT '', starring STRING DEFAULT '', productionCompanies STRING DEFAULT '', distributors STRING DEFAULT '', releaseDate STRING DEFAULT '', runningTime STRING DEFAULT '', language STRING DEFAULT '', musicBy STRING DEFAULT '', cinematography STRING DEFAULT '', budget STRING DEFAULT '', boxOffice STRING DEFAULT '');
+
+### music table (child of mediaTitles)
+CREATE TABLE musicInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(mediaID), album STRING DEFAULT '', artist STRING DEFAULT '', duration FLOAT DEFAULT 0.0, year STRING DEFAULT '');
+# duration in seconds
+
+### tvseries table (child of mediaTitles)
+CREATE TABLE tvseriesInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(mediaID), producer STRING DEFAULT '', director STRING DEFAULT '', writter STRING DEFAULT '', starring STRING DEFAULT '', cinematography STRING DEFAULT '', releases STRING DEFAULT '', seasons STRING DEFAULT '', episodes STRING DEFAULT '', episodeLength STRING DEFAULT '', language STRING DEFAULT '');
+#episodes could be delimited by comma for seasons; ex (13,12,15) for season 1,2,3
+
+### videogames table (child of mediaTitles)
+CREATE TABLE videogameInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(mediaID), developers STRING DEFAULT '', publishers STRING DEFAULT '', directors STRING DEFAULT '', designers STRING DEFAULT '', programmers STRING DEFAULT '', artists STRING DEFAULT '', writers STRING DEFAULT '', composers STRING DEFAULT '', engine STRING DEFAULT '', platforms STRING DEFAULT '', release STRING DEFAULT '', modesOfPlay STRING DEFAULT '');
+
+### novels table (child of mediaTitles)
+CREATE TABLE novelInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(mediaID), author STRING DEFAULT '', country STRING DEFAULT '', language STRING DEFAULT '', publisher STRING DEFAULT '', publishedDate STRING DEFAULT '', numBooks SHORT DEFAULT 0, numChapters SHORT DEFAULT 0, status STRING DEFAULT '');
+
 
 
 
@@ -52,6 +75,10 @@ INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 CREATE TABLE ratings (ratingID INTEGER PRIMARY KEY, rating FLOAT NOT NULL, userID INTEGER NOT NULL, mediaID INTEGER NOT NULL, FOREIGN KEY (userID) REFERENCES accounts (userID), FOREIGN KEY (mediaID) REFERENCES mediaTitles (mediaID));
 
 
+
+
+### reviews tables
+TODO
 
 
 

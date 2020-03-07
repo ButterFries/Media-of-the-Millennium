@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_page_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/ic_videogames_button">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/CategoryTitleTxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="VIDEO GAMES"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Trending"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Trending"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Trending1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Trending2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Trending3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Trending4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Trending5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Trending6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+
+                <ImageButton
+                    android:id="@+id/Trending10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/lightgrey" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/CategoryAction"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Action"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Action1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Action2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Action3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Action4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Action10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/CategoryAdventure"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Adventure"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Adventure1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Adventure2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Adventure3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Adventure4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Adventure10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/categoryRpg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="RPG"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Rpg1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Rpg2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Rpg3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Rpg4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Rpg10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/categoryFps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="FPS"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Fps1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Fps2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Fps3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Fps4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Fps10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/categorySports"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Sports"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Sports1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Sports2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Sports3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Sports4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Sports10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/categoryStrategy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Strategy"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/Strategy1"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Strategy2"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorPrimary" />
+
+                <ImageButton
+                    android:id="@+id/Strategy3"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/colorAccent" />
+
+                <ImageButton
+                    android:id="@+id/Strategy4"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy5"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy6"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy7"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy8"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy9"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+
+                <ImageButton
+                    android:id="@+id/Strategy10"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:src="@color/blue" />
+                <!--CAN ADD MORE LATER-->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</ScrollView>

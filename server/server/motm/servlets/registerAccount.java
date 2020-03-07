@@ -22,9 +22,17 @@ import java.sql.*;
 
 import com.sun.net.httpserver.HttpsExchange;
 
-/* Send { u_name: "my_username", email: "my_email@example", s_pw: "hashed_password" }
- * and it will return (TBD) something like { error_code: int } 
- * if successful (error_code 0) then a session_token will be returned
+/* 
+ * Client sends { u_name: "my_username", email: "my_email@example", pw: "password" }
+ * and it will return something like { error_code: int, session_token: "x-yy-zzzz" } 
+ * if successful (error_code 0) and a session_token will be returned
+ * 
+ * Error Codes: 
+ *      0 --  successfully verified
+ *      1 --  username already taken
+ *      2 --  email already taken
+ *      3 --  SQL error (DEPREC)
+ *      ~~
  */
 
 public class registerAccount implements HttpHandler

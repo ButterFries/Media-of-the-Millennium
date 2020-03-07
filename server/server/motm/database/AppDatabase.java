@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
+import org.json.*;
+
 import server.motm.utils.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -360,8 +362,21 @@ public class AppDatabase {
 //###   mediaTitles   ###
 //==============================================================================
 
-//TODO this needs to be more developed when we establish a structure behind media titles
-// as of now we have a very simplistic notion of a media title
+    /* not used at the moment */
+    public static enum mediaType{
+        cinema, 
+        music,
+        tvseries,
+        videogame,
+        novel
+    }
+    /*
+    if mediaType.cinema then "cinema"
+    else if mediaType.music then "music"
+    else if mediaType.tvseries then "tvseries"
+    else if mediaType.videogame then "videogame"
+    else if mediaType.novel then "novel"
+     */
 
     public static class MediaProfilePage {
         private int mediaID;         //unique integer id, PRIMARY KEY
@@ -481,7 +496,63 @@ public class AppDatabase {
         }
     }
 
-    /**
+    /*
+     * Get the media info for that title, including the common info and the type specific info.
+     * Returns the info as a JSON object.
+     */
+    private JSONObject get_all_media_Info(Connection conn, int mediaID) throws SQLException, Exception{
+        String sqlReq = "SELECT (mediaType, title, summary, genres, tags, rating, numRaters, links) FROM mediaTitles WHERE mediaID = "+mediaID;
+        JSONObject json = new JSONObject();
+        String mediaType = null;
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            ResultSetMetaData md = rs.getMetaData();
+            int cols = md.getColumnCount();
+            if (rs.next()) { //found something
+                mediaType = rs.getString("mediaType");
+                for(int i = 0; i < cols; i++){
+                    json.put(md.getColumnName(i), rs.getObject(i)+"");
+                }
+            }
+            else
+                throw new SQLException("Failed to fetch with mediaID ["+mediaID+"] from 'mediaTitles' table");
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching common info using mediaID ["+mediaID+"]:  "+ex);
+        }
+        String sqlReq2 = null;
+        if (mediaType.equals("cinema"))
+            sqlReq2 = "SELECT * FROM cinemaInfo WHERE mediaID = "+mediaID;
+        else if (mediaType.equals("music"))
+            sqlReq2 = "SELECT * FROM musicInfo WHERE mediaID = "+mediaID;
+        else if (mediaType.equals("tvseriesInfo"))
+            sqlReq2 = "SELECT * FROM tvseriesInfo WHERE mediaID = "+mediaID;
+        else if (mediaType.equals(""))
+            sqlReq2 = "SELECT * FROM videogameInfo WHERE mediaID = "+mediaID;
+        else if (mediaType.equals("novel"))
+            sqlReq2 = "SELECT * FROM novelInfo WHERE mediaID = "+mediaID;
+        else 
+            throw new Exception("!! CRITICAL ::  mediaID ["+mediaID+"] not found in table for mediaType: "+mediaType+"");
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq2);
+            ResultSetMetaData md = rs.getMetaData();
+            int cols = md.getColumnCount();
+            if (rs.next()) { //found something
+                for(int i = 0; i < cols; i++){
+                    json.put(md.getColumnName(i), rs.getObject(i)+"");
+                }
+            }
+            else
+                throw new SQLException("Failed to fetch with mediaID ["+mediaID+"] from media type table ["+mediaType+"]");
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching type info using mediaID ["+mediaID+"]:  "+ex);
+        }    
+        return new JSONObject();
+    }
+
+    /** (DEPREC) -- use  `get_all_media_Info`  instead
+     * 
      * Retrieves media title information of specified mediaID
      * RETURN: MediaProfilePage object with title information
      */
@@ -497,7 +568,6 @@ public class AppDatabase {
                 String [] media_tags = tg.split(",");
                 return new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
                         rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
-
             } else { //didnt find
                 throw new SQLException("No ID found");
             }
@@ -528,7 +598,7 @@ public class AppDatabase {
             else
                 return ids;
         } catch (SQLException ex) {
-            throw new SQLException("Error while fetching mediaIDs using mediaType ["+type+"] :  "+ex);
+            throw new SQLException("Error while fetching mediaIDs using mediaType ["+mediaType+"] :  "+ex);
         }
     }
     /**
@@ -553,7 +623,7 @@ public class AppDatabase {
             else
                 return ids;
         } catch (SQLException ex) {
-            throw new SQLException("Error while fetching mediaIDs using mediaType ["+type+"] :  "+ex);
+            throw new SQLException("Error while fetching mediaIDs using mediaType ["+mediaType+"] :  "+ex);
         }
     }
     /**
@@ -581,7 +651,7 @@ public class AppDatabase {
             else
                 return pages;
         } catch (SQLException ex) {
-            throw new SQLException("Error while fetching MPPs using mediaType ["+type+"] :  "+ex);
+            throw new SQLException("Error while fetching MPPs using mediaType ["+mediaType+"] :  "+ex);
         }
     }
 
@@ -590,7 +660,7 @@ public class AppDatabase {
     /**
      * Returns a list of n randomly chosen mediaIDs that have the associated GENRE within its DB entry
      */
-    public ArrayList<Integer> get_mediaIDs_by_genre(Connection conn, String genre) throws SQLException{
+    public ArrayList<Integer> get_mediaIDs_by_genre(Connection conn, String genre, int n) throws SQLException{
         if (n < 1) n = 1;
         //String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
         //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
@@ -614,7 +684,7 @@ public class AppDatabase {
      * Returns a list of n randomly chosen mediaIDs that have the associated GENRE within its DB entry
      * and is not in the list of given IDs
      */
-    public ArrayList<Integer> get_mediaIDs_by_genre(Connection conn, String genre, String[] already_used_IDs) throws SQLException{
+    public ArrayList<Integer> get_mediaIDs_by_genre(Connection conn, String genre, String[] already_used_IDs, int n) throws SQLException{
         if (n < 1) n = 1;
         String avoid = Arrays.toString(already_used_IDs);
         avoid = avoid.substring(1, avoid.length()-1); //prune []
@@ -637,7 +707,7 @@ public class AppDatabase {
     /**
      * Returns a list of n random MediaProfilePage objects that have the associated GENRE within its DB entry
      */
-    public ArrayList<MediaProfilePage> get_MediaProfilePages_by_genre(Connection conn, String genre) throws SQLException{
+    public ArrayList<MediaProfilePage> get_MediaProfilePages_by_genre(Connection conn, String genre, int n) throws SQLException{
         if (n < 1) n = 1;
         //String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
         //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
@@ -669,7 +739,7 @@ public class AppDatabase {
     /**
      * Returns a list of n randomly chosen mediaIDs that have the associated TAG within its DB entry
      */
-    public ArrayList<Integer> get_mediaIDs_by_tag(Connection conn, String tag) throws SQLException{
+    public ArrayList<Integer> get_mediaIDs_by_tag(Connection conn, String tag, int n) throws SQLException{
         if (n < 1) n = 1;
         //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
         //String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
@@ -693,7 +763,7 @@ public class AppDatabase {
      * Returns a list of n randomly chosen mediaIDs that have the associated TAG within its DB entry
      * and is not in the list of given IDs
      */
-    public ArrayList<Integer> get_mediaIDs_by_tag(Connection conn, String tag, String[] already_used_IDs) throws SQLException{
+    public ArrayList<Integer> get_mediaIDs_by_tag(Connection conn, String tag, String[] already_used_IDs, int n) throws SQLException{
         if (n < 1) n = 1;
         String avoid = Arrays.toString(already_used_IDs);
         avoid = avoid.substring(1, avoid.length()-1); //prune []
@@ -714,9 +784,9 @@ public class AppDatabase {
         }
     }
     /**
-     * Returns a list of MediaProfilePage objects that have the associated TAG within its DB entry
+     * Returns a list of n random MediaProfilePage objects that have the associated TAG within its DB entry
      */
-    public ArrayList<MediaProfilePage> get_MediaProfilePages_by_tag(Connection conn, String tag) throws SQLException{
+    public ArrayList<MediaProfilePage> get_MediaProfilePages_by_tag(Connection conn, String tag, int n) throws SQLException{
         //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
         String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
         ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
@@ -750,7 +820,7 @@ public class AppDatabase {
      */
     public void update_tags(Connection conn, int mediaID, String[] new_Tags) throws SQLException{
         //get old tags
-        String sqlReq = "SELECT tags FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
+        String sqlReq = "SELECT tags FROM mediaTitles WHERE mediaID = "+mediaID;
         String old_tags = null;
         try {
             Statement stmt = conn.createStatement();
@@ -763,8 +833,9 @@ public class AppDatabase {
         }
         List<String> tags = new ArrayList<String>(Arrays.asList(old_tags.split(",")));
         tags.addAll(Arrays.asList(new_Tags));
-        String updated_tags = tags.toSting();
-        updated_tags = updated_tags.substring(1, updated_tags.length()-1); //prune []
+        String updated_tags = String.join(",",tags);
+        //updated_tags = updated_tags.substring(1, updated_tags.length()-1); //prune []
+
         //update tags
         try {
             sqlReq = "UPDATE mediaTitles SET tags = (?)";
@@ -776,32 +847,6 @@ public class AppDatabase {
             throw new SQLException("An error occurred when updating tags : "+ex);
         }
     }
-
-
-//-------------
-//  cinema
-//-------------
-
-
-//-------------
-//  music
-//-------------
-
-
-//-------------
-//  tvseries
-//-------------
-
-
-//-------------
-//  videogames
-//-------------
-
-
-//-------------
-//  novels
-//-------------
-
 
 
 

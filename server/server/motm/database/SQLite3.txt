@@ -66,7 +66,7 @@ CREATE TABLE tvseriesInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(me
 CREATE TABLE videogameInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(mediaID), developers STRING DEFAULT '', publishers STRING DEFAULT '', directors STRING DEFAULT '', designers STRING DEFAULT '', programmers STRING DEFAULT '', artists STRING DEFAULT '', writers STRING DEFAULT '', composers STRING DEFAULT '', engine STRING DEFAULT '', platforms STRING DEFAULT '', release STRING DEFAULT '', modesOfPlay STRING DEFAULT '');
 
 ### novels table (child of mediaTitles)
-CREATE TABLE novelInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(mediaID), author STRING DEFAULT '', country STRING DEFAULT '', language STRING DEFAULT '', publisher STRING DEFAULT '', publishedDate STRING DEFAULT '', numBooks SHORT DEFAULT 0);
+CREATE TABLE novelInfo (mediaID INTEGER PRIMARY KEY REFERENCES mediaTitles(mediaID), author STRING DEFAULT '', country STRING DEFAULT '', language STRING DEFAULT '', publisher STRING DEFAULT '', publishedDate STRING DEFAULT '', numBooks SHORT DEFAULT 0, numChapters SHORT DEFAULT 0, status STRING DEFAULT '');
 
 
 

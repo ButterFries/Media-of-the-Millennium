@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
+    android:id="@+id/home_page_frag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,9 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="-39dp"
-        tools:layout_editor_absoluteY="201dp">
+        android:orientation="vertical">
 
 
         <ImageButton
@@ -20,15 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_cinema"
+            android:background="@drawable/ic_cinema_button"
             android:paddingRight="200dp"
-            android:background="@drawable/ic_cinema_button"/>
--->
+            app:srcCompat="@drawable/ic_cinema" />
 
         <ImageButton
             android:id="@+id/HomePageTvSeries"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@drawable/ic_tvseries_button"
             android:paddingRight="200dp"
@@ -39,37 +36,53 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_music"
+            android:background="@drawable/ic_music_button"
             android:paddingRight="200dp"
-            android:background="@drawable/ic_music_button"/>
+            app:srcCompat="@drawable/ic_music" />
 
         <ImageButton
             android:id="@+id/HomePageGames"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_videogames"
+            android:background="@drawable/ic_videogames_button"
             android:paddingRight="200dp"
-            android:background="@drawable/ic_videogames_button"/>
+            app:srcCompat="@drawable/ic_videogames" />
 
         <ImageButton
             android:id="@+id/HomePageBooks"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_novels"
+            android:background="@drawable/ic_novels_button"
             android:paddingRight="200dp"
-            android:background="@drawable/ic_novels_button"/>
+            app:srcCompat="@drawable/ic_novels" />
+
+        <ImageButton
+            android:id="@+id/HomePageNewMedia"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_top_rated_media_button"
+            android:paddingRight="200dp"
+            app:srcCompat="@drawable/ic_new_media" />
+
+        <ImageButton
+            android:id="@+id/HomePageTopRatedMedia"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_new_media_button"
+            android:paddingRight="200dp"
+            app:srcCompat="@drawable/ic_top_rated_media" />
 
         <ImageButton
             android:id="@+id/HomePageSettings"
-            style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/feldgrau"
             android:paddingRight="200dp"
-            android:scaleType="centerInside"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
     </LinearLayout>

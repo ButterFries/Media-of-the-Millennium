@@ -26,6 +26,8 @@ public class RegistrationPageFragment extends Fragment {
         signupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TAKE TO SIGNUP PAGE
+                SignupPageFragment signupFragment = new SignupPageFragment();
+                ((MainActivity)getActivity()).replaceFragment(signupFragment);
             }
         });
         final Button guestButton = v.findViewById(R.id.ActivityRegistrationButtonGuest);

@@ -1,10 +1,14 @@
 package com.developersOfTheMillennium.motm;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,10 +18,22 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater in, ViewGroup container, Bundle savedInstance){
         //NEED TO CHANGE ONCLICK LATER SO SENDS TO ACTUAL REVIEW FOR SPECIFIC
         //BUTTON/IMG BUTTON
+        PictureHandler handler = new PictureHandler();
         View v = in.inflate(R.layout.activity_movies, container, false);
 
         final ImageButton Trending1 = v.findViewById(R.id.Trending1);
         Trending1.setOnClickListener(this);
+        //TESTING TO SEE IF BYTE[] gets outputted properly still haven't tested yet
+        //byte[] byteArray = handler.getByteArrayImage("https://www.bigstockphoto.com/images/homepage/module-6.jpg");
+        //Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        //Trending1.setImageBitmap(Bitmap.createScaledBitmap(bmp, Trending1.getWidth(), Trending1.getHeight(), false));
+
+        //ACTUAL CODE to test
+        //String bytesString = get_picture_bytes(conn, mediaId);
+        //byte[] bytes = bytesString.getBytes();
+        //Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        //Trending1.setImageBitmap(Bitmap.createScaledBitmap(bmp, Trending1.getWidth(), Trending1.getHeight(), false));
+
         final ImageButton Trending2 = v.findViewById(R.id.Trending2);
         Trending2.setOnClickListener(this);
         final ImageButton Trending3 = v.findViewById(R.id.Trending3);

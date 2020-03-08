@@ -20,36 +20,26 @@ import java.sql.*;
 
 import com.sun.net.httpserver.HttpsExchange;
 
-public class HelloWorld implements HttpHandler
+public class addPicture implements HttpHandler
 {
     private static AppDatabase db;
     private static SessionManager sm;
     private static Connection conn = null;
-
-    public HelloWorld(AppDatabase appDB, SessionManager appSM) {
+    //adding pictures should come right after we submit a new media piece
+    //unless we don't have a pic for it
+    public addPicture(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
         conn = db.connect();
     }
 
     public void handle(HttpExchange r) {
-        System.out.println("\n-Received request [HelloWorld]");
+        System.out.println("\n-Received request [addPicture]");
         //Connection conn = null;
         HttpsExchange rs = (HttpsExchange) r;
         try {
-            if (r.getRequestMethod().equals("GET")) {
-                System.out.println("--request type: GET");
-                rs.sendResponseHeaders(200, -1); 
-                //cant use GET (with body) using okHTTP instead use POST
-                //conn = db.connect();
-                //handleReq(r, conn);
-            } else if (r.getRequestMethod().equals("POST")) {
+            if (r.getRequestMethod().equals("POST")) {
                 System.out.println("--request type: POST");
-                //conn = db.connect();
-                handleReq(r, conn);
-            }
-            else if (r.getRequestMethod().equals("PUT")) {
-                System.out.println("--request type: PUT");
                 //conn = db.connect();
                 handleReq(r, conn);
             }
@@ -59,7 +49,7 @@ public class HelloWorld implements HttpHandler
             }
         } 
         catch (Exception e) {
-            System.out.println("# ERROR HelloWorld.handle ::  " + e);
+            System.out.println("# ERROR addPicture.handle ::  " + e);
             if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
                 try{
                     rs.sendResponseHeaders(500, -1);
@@ -82,28 +72,21 @@ public class HelloWorld implements HttpHandler
     public void handleReq(HttpExchange r, Connection conn) throws Exception {
         String body = Utils.convert(r.getRequestBody());
         JSONObject requestJSON = new JSONObject(body);
-
-        HttpsExchange rs = (HttpsExchange) r;
-
-        if (requestJSON.has("hello"))
-            System.out.println("--client said hello: "+requestJSON.get("hello").toString());
-
-        System.out.println("--replying with {hello: client}");
         JSONObject responseJSON = new JSONObject();
-        responseJSON.put("hello", "client");
-
-        try {
-            String response = responseJSON.toString() + "\n";
-            rs.sendResponseHeaders(200, response.length());
-            OutputStream os = rs.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
-            System.out.println("--responese :   "+response.trim());
-            System.out.println("--request fufilled");
+        HttpsExchange rs = (HttpsExchange) r;
+        if (requestJSON.has("mediaID")) {
+            int mediaID = requestJSON.getInt("mediaID");
+            System.out.println("--client send mediaID: " + mediaID);
+            JSONObject profile = null;
         }
-        catch (Exception e){
-            System.out.println("## ERROR ::  " + e);
-            throw new Exception("(handleReq) -- something went wrong when sending response");
+        try {
+            JSONObject mediaProfile = get_all_media_Info(conn, mediaID);
+            String url = mediaProfile.get("pictureUrl");
+            byte[] bytes = getByteArrayImage(url);
+            db.add_picture();
+        }
+        catch(Exception e) {
+            System.out.println(e.toString());
         }
     }
 }

@@ -42,8 +42,7 @@
                 <ImageButton
                     android:id="@+id/Trending1"
                     android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    android:src="@color/colorPrimary" />
+                    android:layout_height="180dp" />
 
                 <ImageButton
                     android:id="@+id/Trending2"

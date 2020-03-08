@@ -59,6 +59,25 @@ public class HomePageFragment extends Fragment {
                 ((MainActivity)getActivity()).replaceFragment(bookFragment);
             }
         });
+
+        final ImageButton NewMediaButton = v.findViewById(R.id.HomePageNewMedia);
+        NewMediaButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TAKE TO NewMedia PAGE
+                NewMediaPageFragment newMediaFragment = new NewMediaPageFragment();
+                ((MainActivity)getActivity()).replaceFragment(newMediaFragment);
+            }
+        });
+
+        final ImageButton TopRatedMediaButton = v.findViewById(R.id.HomePageTopRatedMedia);
+        TopRatedMediaButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TAKE TO TopRated PAGE
+                TopRatedMediaPageFragment topRatedMediaFragment = new TopRatedMediaPageFragment();
+                ((MainActivity)getActivity()).replaceFragment(topRatedMediaFragment);
+            }
+        });
+
         final ImageButton SettingsButton = v.findViewById(R.id.HomePageSettings);
         SettingsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

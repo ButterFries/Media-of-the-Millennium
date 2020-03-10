@@ -1,27 +1,67 @@
 package com.developersOfTheMillennium.motm;
 
+import android.app.Application;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 
 import androidx.fragment.app.Fragment;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import jp.wasabeef.picasso.transformations.CropSquareTransformation;
+import jp.wasabeef.picasso.transformations.MaskTransformation;
 
 public class MoviePageFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater in, ViewGroup container, Bundle savedInstance){
+
         //NEED TO CHANGE ONCLICK LATER SO SENDS TO ACTUAL REVIEW FOR SPECIFIC
         //BUTTON/IMG BUTTON
+        PictureHandler handler = new com.developersOfTheMillennium.motm.PictureHandler();
         View v = in.inflate(R.layout.activity_movies, container, false);
 
         final ImageButton Trending1 = v.findViewById(R.id.Trending1);
         Trending1.setOnClickListener(this);
+        Picasso.get().setLoggingEnabled(true);
+        Picasso.get().load("https://m.media-amazon.com/images/M/MV5BZTliNWJhM2YtNDc1MC00YTk1LWE2MGYtZmE4M2Y5ODdlNzQzXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg").fit().centerCrop().transform(new CropSquareTransformation()).into(Trending1);
+        //new ImageLoadTask("https://www.bigstockphoto.com/images/homepage/module-6.jpg", Trending1).execute();
+        //TESTING TO SEE IF BYTE[] gets outputted properly still haven't tested yet
+        //Glide.with(this).load("https://www.bigstockphoto.com/images/homepage/module-6.jpg").centerInside().error(R.drawable.ic_cinema).into(Trending1);
+
+        //try {
+        //    byte[] byteArray = handler.getByteArrayImage("https://www.bigstockphoto.com/images/homepage/module-6.jpg");
+        //    Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        //    Trending1.setImageBitmap(Bitmap.createScaledBitmap(bmp, Trending1.getWidth(), Trending1.getHeight(), false));
+        //} catch(Exception e) {
+        //    Log.d("ImageManager", "Error: " + e.toString());
+        //}
+        //ACTUAL CODE to test
+        //String bytesString = get_picture_bytes(conn, mediaId);
+        //byte[] bytes = bytesString.getBytes();
+        //Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        //Trending1.setImageBitmap(Bitmap.createScaledBitmap(bmp, Trending1.getWidth(), Trending1.getHeight(), false));
+
         final ImageButton Trending2 = v.findViewById(R.id.Trending2);
         Trending2.setOnClickListener(this);
+        Picasso.get().load("https://cdn.britannica.com/89/149189-050-68D7613E/Bengal-tiger.jpg").fit().centerCrop().into(Trending2);
         final ImageButton Trending3 = v.findViewById(R.id.Trending3);
         Trending3.setOnClickListener(this);
+        Picasso.get().load("https://m.media-amazon.com/images/M/MV5BNDc1ZTlmOWUtNDY2YS00OGU5LTg2MTYtYTk2MmQzMGE2NzUwXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_.jpg").fit().centerInside().error(R.drawable.ic_cinema).into(Trending3);
         final ImageButton Trending4 = v.findViewById(R.id.Trending4);
         Trending4.setOnClickListener(this);
         final ImageButton Trending5 = v.findViewById(R.id.Trending5);

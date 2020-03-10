@@ -345,6 +345,46 @@ public class AppDatabase {
             throw new Exception("Could not update account favorites :  "+ex);
         }
     }
+
+    /**
+     * Retrieves favorite string for given user account
+     */
+    public void retrieve_favorites(Connection conn, int accountID) throws Exception {
+        try {
+            String uID = Integer.toString(accountID);
+            Statement var3 = conn.createStatement();
+            String var4 = "SELECT favorites FROM accounts WHERE userID = \"" + uID + "\"";
+            ResultSet var5 = var3.executeQuery(var4);
+            if (var5.next()) {
+                return var5.getString("favorites");
+            } else {
+                throw new SQLException("Failed to retrieve user favorites, UserID: " + uID);
+            }
+        } catch (SQLException var6) {
+            throw new SQLException("An error occurred when fetching user favorites :  " + var6);
+        }
+    }
+
+    /**
+     * retrieves title (only)  for given media ID, maybe retireve images later
+     */
+    public void retrieve_title(Connection conn, String mediaID) throws Exception {
+        try {
+            //String mID = Integer.toString(mediaID);
+            Statement var3 = conn.createStatement();
+            String var4 = "SELECT (title) FROM mediaTitles WHERE mediaID = \"" + mediaID + "\"";
+            ResultSet var5 = var3.executeQuery(var4);
+            if (var5.next()) {
+                return var5.getString("title");
+            } else {
+                throw new SQLException("Failed to retrieve user title, mediaID: " + uID);
+            }
+        } catch (SQLException var6) {
+            throw new SQLException("An error occurred when fetching title give mediaID (favorites) :  " + var6);
+        }
+    }
+
+
     /*
      * TODO add update methods for username and email (low priority)
      */
@@ -567,6 +607,8 @@ public class AppDatabase {
             throw new SQLException("Error while fetching MPP data");
         }
     }
+
+
 
 
 

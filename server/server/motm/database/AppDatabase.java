@@ -1119,3 +1119,56 @@ public class AppDatabase {
     }
 }
 
+//==============================================================================
+//###   user media list   ###
+//==============================================================================
+
+public static class userMediaList {
+
+    private int listID;
+    private int userID;
+    private String items;
+    public userMediaList(int listID,int userID,String items){
+        this.listID = listID;
+        this.userID = userID;
+        this.items = items;
+    }
+    public void insert_media_item(Connection conn, int listID,int userID,String items) throws SQLException{
+        try {
+            String sqlReq = "INSERT INTO user_list (listID,userID,items) VALUES (?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setInt(1, listID);
+            pstmt.setInt(2,userID);
+            pstmt.setString(3, items);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when adding the user rated on media relation");
+        }
+    }
+
+    public void get_media_list(int listID,Connection conn)throws SQLException{
+        try {
+            JSONArray query = new JSONArray();
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT * FROM user_list WHERE listID = ?" ;
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if(rs.next()){
+                JSONObject line = new JSONObject();
+                line.put("username",rs.getString("username"));
+                line.put("rating",rs.getInt("rating"));
+                line.put("review_text",rs.getString("review_text"));
+                query.put(line);
+            }else{
+
+                throw new SQLException("An error occurred when getting the reviews on review  relation");
+
+            }
+        }catch (SQLException ex) {
+
+            throw new SQLException("An error occurred when getting specific review");
+        }
+    }
+
+//        public float get_rating(){ return this.rating; }
+//        public int get_raters(){ return this.numRaters; }
+}

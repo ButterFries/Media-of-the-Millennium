@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.json.*;
 
 import server.motm.utils.*;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -446,6 +447,9 @@ public class AppDatabase {
         catch (SQLException ex) { 
             throw new SQLException("Failed to add media title :  "+ex);
         }
+        finally {
+            conn.close();
+        }
     }
 
     public byte[] getByteArrayImage(String img) {
@@ -482,6 +486,37 @@ public class AppDatabase {
 		return null;
 	}
 
+    public byte[] get_picture(Connection conn, int mediaID) throws SQLException, Exception, SQLDataException {
+        
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = "+mediaID;
+        JSONObject json = new JSONObject();
+        JSONObject common = new JSONObject();
+        JSONObject distinct = new JSONObject();
+        String mediaType = null;
+        ByteArrayOutputStream buffer = null;
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            ResultSetMetaData md = rs.getMetaData();
+            int cols = md.getColumnCount();
+            // write binary stream into file
+			while (rs.next()) {
+
+			    //fos = new FileOutputStream();
+                InputStream input = rs.getBinaryStream("image");
+                byte[] data = new byte[50];
+                buffer = new ByteArrayOutputStream();
+			    int current = 0;
+			    while ((current = input.read(data,0,data.length)) != -1) {
+				    buffer.write(data,0, current);
+			    }
+            }
+            return buffer.toByteArray();
+        } catch (SQLException ex) {
+            throw new Exception("Error while fetching common info using mediaID ["+mediaID+"]:  "+ex);
+        }
+			
+    }
 
     /*
      * Get the media info for that title, including the common info and the type specific info.
@@ -500,8 +535,9 @@ public class AppDatabase {
             int cols = md.getColumnCount();
             if (rs.next()) { //found something
                 mediaType = rs.getString("mediaType");
-                for(int i = 0; i < cols; i++){
-                    common.put(md.getColumnName(i), rs.getObject(i)+"");
+                for(int i = 1; i <= cols; i++){
+                    json.put(md.getColumnName(i), rs.getObject(i)+"");
+                    //common.put(md.getColumnName(i), rs.getObject(i)+"");
                 }
             }
             else
@@ -509,36 +545,36 @@ public class AppDatabase {
         } catch (SQLException ex) {
             throw new Exception("Error while fetching common info using mediaID ["+mediaID+"]:  "+ex);
         }
-        String sqlReq2 = null;
-        if (mediaType.equals("cinema"))
-            sqlReq2 = "SELECT * FROM cinemaInfo WHERE mediaID = "+mediaID;
-        else if (mediaType.equals("music"))
-            sqlReq2 = "SELECT * FROM musicInfo WHERE mediaID = "+mediaID;
-        else if (mediaType.equals("tvseriesInfo"))
-            sqlReq2 = "SELECT * FROM tvseriesInfo WHERE mediaID = "+mediaID;
-        else if (mediaType.equals(""))
-            sqlReq2 = "SELECT * FROM videogameInfo WHERE mediaID = "+mediaID;
-        else if (mediaType.equals("novel"))
-            sqlReq2 = "SELECT * FROM novelInfo WHERE mediaID = "+mediaID;
-        else 
-            throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] with invalid mediaType: "+mediaType+"");
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlReq2);
-            ResultSetMetaData md = rs.getMetaData();
-            int cols = md.getColumnCount();
-            if (rs.next()) { //found something
-                for(int i = 0; i < cols; i++){
-                    distinct.put(md.getColumnName(i), rs.getObject(i)+"");
-                }
-            }
-            else
-                throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] not found in table for mediaType: "+mediaType+"");
-        } catch (SQLException ex) {
-            throw new Exception("Error while fetching type info using mediaID ["+mediaID+"]:  "+ex);
-        }    
-        json.put("common", common);
-        json.put("distinct", distinct);
+        // String sqlReq2 = null;
+        // if (mediaType.equals("cinema"))
+        //     sqlReq2 = "SELECT * FROM cinemaInfo WHERE mediaID = "+mediaID;
+        // else if (mediaType.equals("music"))
+        //     sqlReq2 = "SELECT * FROM musicInfo WHERE mediaID = "+mediaID;
+        // else if (mediaType.equals("tvseriesInfo"))
+        //     sqlReq2 = "SELECT * FROM tvseriesInfo WHERE mediaID = "+mediaID;
+        // else if (mediaType.equals(""))
+        //     sqlReq2 = "SELECT * FROM videogameInfo WHERE mediaID = "+mediaID;
+        // else if (mediaType.equals("novel"))
+        //     sqlReq2 = "SELECT * FROM novelInfo WHERE mediaID = "+mediaID;
+        // else 
+        //     throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] with invalid mediaType: "+mediaType+"");
+        // try {
+        //     Statement stmt = conn.createStatement();
+        //     ResultSet rs = stmt.executeQuery(sqlReq2);
+        //     ResultSetMetaData md = rs.getMetaData();
+        //     int cols = md.getColumnCount();
+        //     if (rs.next()) { //found something
+        //         for(int i = 1; i < cols; i++){
+        //             distinct.put(md.getColumnName(i), rs.getObject(i)+"");
+        //         }
+        //     }
+        //     else
+        //         throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] not found in table for mediaType: "+mediaType+"");
+        // } catch (SQLException ex) {
+        //     throw new Exception("Error while fetching type info using mediaID ["+mediaID+"]:  "+ex);
+        // }
+        //json.put("common", common);
+        //json.put("distinct", distinct);
         return json;
     }
 

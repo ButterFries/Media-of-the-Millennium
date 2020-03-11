@@ -26,7 +26,7 @@ public class getFavorites implements HttpHandler
     private static SessionManager sm;
     private static Connection conn = null;
 
-    public getFavourties(AppDatabase appDB, SessionManager appSM) {
+    public getFavorites(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
         conn = db.connect();
@@ -44,7 +44,7 @@ public class getFavorites implements HttpHandler
      *      ~~
      */
     public void handle(HttpExchange r) {
-        System.out.println("\n-Received request [getFavorites]");
+        System.out.println("\n-Received request [getFavorites.java]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
             if (r.getRequestMethod().equals("PUT")) {
@@ -92,7 +92,9 @@ public class getFavorites implements HttpHandler
             System.out.println("--client send accountID: "+accountID);
 
             /* check if user already has existing mediaID in favorites */
+
             if (db.hasFavorite(conn, mediaID, accountID)){
+                System.out.println("--favorited ID already exists");
                 responseJSON.put("error_code", 3);
                 responseJSON.put("error_description", "error: user already has exisiting favorites in DB");
                 String response = responseJSON.toString() + "\n";
@@ -103,7 +105,7 @@ public class getFavorites implements HttpHandler
                 return;
             }
             /* add mediaID to user favorites */
-            System.out.println("User favorites does not contain mediaID yet")
+            System.out.println("User favorites does not contain mediaID yet");
             try {
                 db.add_titleToFavorites(conn, mediaID, accountID);
 
@@ -153,8 +155,8 @@ public class getFavorites implements HttpHandler
                 os.close();
                 return;
             }
-            /* add mediaID to user favorites */
-            System.out.println("User favorites does not contain mediaID yet")
+
+            System.out.println("User favorites has contain mediaID yet.. attempting to delete");
             try {
                 db.remove_favorite(conn, mediaID, accountID);
 
@@ -187,13 +189,13 @@ public class getFavorites implements HttpHandler
         JSONObject responseJSON = new JSONObject();
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("mediaID") && requestJSON.has("accountID")){
-            int mediaID = requestJSON.getInt("mediaID");
+        if (requestJSON.has("accountID")){
+            //int mediaID = requestJSON.getInt("mediaID");
             int accountID = requestJSON.getInt("accountID");
-            String mID = Integer.toString(mediaID);
+            //String mID = Integer.toString(mediaID);
             String uID = Integer.toString(accountID);
 
-            System.out.println("--client send mediaID: "+mediaID);
+            //System.out.println("--client send mediaID: "+mediaID);
             System.out.println("--client send accountID: "+accountID);
             try {
                 String fav_string = db.retrieve_favorites(conn, accountID);
@@ -204,9 +206,9 @@ public class getFavorites implements HttpHandler
                     try {
                         String title = db.retrieve_title(conn, f);
                         JSONObject title_and_id = new JSONObject();
-                        title_and_id.put("mediaId", mID);
+                        title_and_id.put("mediaId", f);
                         title_and_id.put("title", title);
-                        favs.add(title_and_id);
+                        favs.put(title_and_id);
                     } catch (SQLException ex) {
                         throw new SQLException("Error while retrieving title");
                     }

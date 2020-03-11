@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8066ba94-c694-4b67-8e67-de63a1d0da82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/motm/servlets/getFavorites" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/res/raw/motm_cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/res/raw/motm_cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/motm_key.jks" beforeDir="false" afterPath="$PROJECT_DIR$/motm_key.jks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$MediaProfilePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$MediaProfilePage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$accountInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$accountInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaRatingInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaRatingInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaReviewInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaReviewInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaType.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/appdatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/appdatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/servlets/getFavorites" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/servlets/getFavorites.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +30,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../app/app/src/main/res/values/strings.xml" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

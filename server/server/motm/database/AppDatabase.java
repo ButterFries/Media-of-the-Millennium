@@ -1152,10 +1152,10 @@ public static class userMediaList {
     public void get_media_list(int listID,Connection conn)throws SQLException{
         try {
             JSONArray query = new JSONArray();
-            Statement stmt = conn.createStatement();
+            PreparedStatement pstmt = conn.createStatement();
             String sqlReq = "SELECT * FROM user_list WHERE listID = ?" ;
             pstmt.setInt(1,listID);
-            ResultSet rs = stmt.executeQuery(sqlReq);
+            ResultSet rs = pstmt.executeQuery(sqlReq);
             if(rs.next()){
                 JSONObject line = new JSONObject();
                 line.put("listID",rs.getString("listID"));
@@ -1175,10 +1175,10 @@ public static class userMediaList {
     public void get_user_lists(int userID,Connection conn)throws SQLException{
         try {
             JSONArray query = new JSONArray();
-            Statement stmt = conn.createStatement();
+            PreparedStatement pstmt = conn.createStatement();
             String sqlReq = "SELECT * FROM user_list WHERE userID = ?" ;
             pstmt.setInt(1,userID);
-            ResultSet rs = stmt.executeQuery(sqlReq);
+            ResultSet rs = pstmt.executeQuery(sqlReq);
             if(rs.next()){
                 JSONObject line = new JSONObject();
                 line.put("listID",rs.getString("listID"));

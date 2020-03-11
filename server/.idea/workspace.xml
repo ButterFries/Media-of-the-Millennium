@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/motm/database/AppDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="1143" column="35" lean-forward="true" selection-start-line="1143" selection-start-column="35" selection-end-line="1143" selection-end-column="35" />
+            <state relative-caret-position="-282">
+              <caret line="1156" column="33" selection-start-line="1156" selection-start-column="33" selection-end-line="1156" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -31,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/server/motm/database/SQLite3.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
+              <caret column="19" selection-start-column="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -135,7 +135,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.16227607" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.16227607" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -145,7 +145,7 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="3" side_tool="true" visible="true" weight="0.3290461" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
@@ -163,14 +163,14 @@
     <entry file="file://$PROJECT_DIR$/server/motm/database/SQLite3.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/motm/database/AppDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="1143" column="35" lean-forward="true" selection-start-line="1143" selection-start-column="35" selection-end-line="1143" selection-end-column="35" />
+        <state relative-caret-position="-282">
+          <caret line="1156" column="33" selection-start-line="1156" selection-start-column="33" selection-end-line="1156" selection-end-column="33" />
         </state>
       </provider>
     </entry>

@@ -1127,19 +1127,22 @@ public static class userMediaList {
 
     private int listID;
     private int userID;
+    private String list_name
     private String items;
-    public userMediaList(int listID,int userID,String items){
+    public userMediaList(int listID,int userID,String list_name,String items){
         this.listID = listID;
         this.userID = userID;
+        this.list_name =list_name;
         this.items = items;
     }
-    public void insert_media_item(Connection conn, int listID,int userID,String items) throws SQLException{
+    public void insert_media_item(Connection conn, int listID,int userID,String list_name,String items) throws SQLException{
         try {
-            String sqlReq = "INSERT INTO user_list (listID,userID,items) VALUES (?,?,?)";
+            String sqlReq = "INSERT INTO user_list (listID,userID,list_name,items) VALUES (?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setInt(1, listID);
             pstmt.setInt(2,userID);
-            pstmt.setString(3, items);
+            pstmt.setString(3,list_name);
+            pstmt.setString(4, items);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw new SQLException("An error occurred when adding the user rated on media relation");
@@ -1151,12 +1154,13 @@ public static class userMediaList {
             JSONArray query = new JSONArray();
             Statement stmt = conn.createStatement();
             String sqlReq = "SELECT * FROM user_list WHERE listID = ?" ;
+            pstmt.setInt(1,listID);
             ResultSet rs = stmt.executeQuery(sqlReq);
             if(rs.next()){
                 JSONObject line = new JSONObject();
-                line.put("username",rs.getString("username"));
-                line.put("rating",rs.getInt("rating"));
-                line.put("review_text",rs.getString("review_text"));
+                line.put("listID",rs.getString("listID"));
+                line.put("List Title",rs.getString("list_name"));
+                line.put("list_items",rs.getInt("items"));
                 query.put(line);
             }else{
 
@@ -1168,7 +1172,29 @@ public static class userMediaList {
             throw new SQLException("An error occurred when getting specific review");
         }
     }
+    public void get_user_lists(int userID,Connection conn)throws SQLException{
+        try {
+            JSONArray query = new JSONArray();
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT * FROM user_list WHERE userID = ?" ;
+            pstmt.setInt(1,userID);
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if(rs.next()){
+                JSONObject line = new JSONObject();
+                line.put("listID",rs.getString("listID"));
+                line.put("List Title",rs.getString("list_name"));
+                line.put("list_items",rs.getInt("items"));
+                query.put(line);
+            }else{
 
+                throw new SQLException("An error occurred when getting the reviews on review  relation");
+
+            }
+        }catch (SQLException ex) {
+
+            throw new SQLException("An error occurred when getting specific review");
+        }
+    }
 //        public float get_rating(){ return this.rating; }
 //        public int get_raters(){ return this.numRaters; }
 }

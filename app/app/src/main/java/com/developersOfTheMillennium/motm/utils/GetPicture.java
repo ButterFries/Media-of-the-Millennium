@@ -2,6 +2,7 @@ package com.developersOfTheMillennium.motm.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -52,8 +53,6 @@ public class GetPicture extends AsyncTask<Object, ImageButton, Boolean> {
             Log.i("mediaID", mediaId);
             byte[] rtn = postRequest("getPicture", data);
             //String rtn = postRequest("getPicture", data);
-
-            System.out.println("Bruh" + rtn);
             byte[] byteArray = rtn;
             //int error_code = rtn.getInt("error_code");
             //String session_token = rtn.getString("session_token");
@@ -75,8 +74,12 @@ public class GetPicture extends AsyncTask<Object, ImageButton, Boolean> {
             //}
         } catch (Exception e) {
             Log.e("ERROR Getting Picture", "JSON Parsing: " + e);
+            //error case just set to image of cinema (MAY CHANGE TO GENERAL IMAGE
+            // FOR SOME REASON THIS BREAKS THE CODE???
+            //btn.setImageResource(R.drawable.ic_cinema);
+            return false;
         }
-        return false;
+
     }
 
 
@@ -110,14 +113,17 @@ public class GetPicture extends AsyncTask<Object, ImageButton, Boolean> {
         } catch (Exception e) {
             Log.e("HTTPS Request Error", ""+e);
         }
-
         return rtn;
     }
 
 //    // the onPostexecute method receives the return type of doInBackGround()
-//    protected byte[] onPostExecute(JSONObject rtn) {
+//    protected void onPostExecute(Boolean rtn) {
 //        // do something with the result, for example display the received Data in a ListView
 //        // in this case, "result" would contain the "someLong" variable returned by doInBackground();
-//
+//        if (rtn) {
+//            return;
+//        } else {
+//            throw new Exception("(handleReq) -- something went wrong when sending response");
+//        }
 //    }
 }

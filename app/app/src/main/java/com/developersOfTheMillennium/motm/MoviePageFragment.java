@@ -39,7 +39,12 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener 
         View v = in.inflate(R.layout.activity_movies, container, false);
 
         final ImageButton Trending1 = v.findViewById(R.id.Trending1);
-        getPicture("2", Trending1);
+        try {
+            getPicture("4", Trending1);
+        } catch (Exception e) {
+            //catch but never happens because getPicture never throws exception? might need to fix?
+            Trending1.setImageResource(R.drawable.ic_cinema);
+        }
         Trending1.setOnClickListener(this);
         //Trending1.setImageBitmap(BitmapFactory.decodeByteArray( currentAccount.accImage,0,currentAccount.accImage.length));
 
@@ -64,7 +69,11 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener 
 
         final ImageButton Trending2 = v.findViewById(R.id.Trending2);
         Trending2.setOnClickListener(this);
-        //getPicture("3", Trending2);
+        try {
+            getPicture("3", Trending2);
+        } catch (Exception e) {
+            Trending1.setImageResource(R.drawable.ic_cinema);
+        }
         //Picasso.get().load(getPicture("4")).fit().centerCrop().into(Trending2);
         final ImageButton Trending3 = v.findViewById(R.id.Trending3);
         Trending3.setOnClickListener(this);
@@ -243,7 +252,11 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener 
         ((MainActivity)getActivity()).replaceFragment(Frag);
     }
 
-    private void getPicture(String mediaId, ImageButton imgButton){
-        GetPicture pic = (GetPicture) new GetPicture((MainActivity) getActivity()).execute(mediaId, imgButton);
+    private void getPicture(String mediaId, ImageButton imgButton) throws Exception{
+        try {
+            GetPicture pic = (GetPicture) new GetPicture((MainActivity) getActivity()).execute(mediaId, imgButton);
+        } catch (Exception e) {
+            throw new Exception("(getPicture) -- something went wrong when retrieving picture");
+        }
     }
 }

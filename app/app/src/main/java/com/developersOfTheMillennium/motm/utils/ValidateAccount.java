@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.HomePageFragment;
 import com.developersOfTheMillennium.motm.MainActivity;
 import com.developersOfTheMillennium.motm.R;
@@ -53,15 +52,8 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
             JSONObject rtn = postRequest("validateAccount", data);
             int error_code = rtn.getInt("error_code");
-            String session_token = rtn.getString("session_token");
 
             if (error_code == 0) {
-                AppGlobals.userType = "email";
-                AppGlobals.user = usernameEmail;
-                AppGlobals.session = session_token;
-                Log.i("global user type",AppGlobals.userType);
-                Log.i("global username/email",AppGlobals.user);
-                Log.i("global session token",AppGlobals.session);
                 return true;
             }
         } catch (Exception e) {
@@ -79,15 +71,7 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
             JSONObject rtn = postRequest("validateAccount", data);
             int error_code = rtn.getInt("error_code");
-            String session_token = rtn.getString("session_token");
-
             if (error_code == 0) {
-                AppGlobals.userType = "username";
-                AppGlobals.user = usernameEmail;
-                AppGlobals.session = session_token;
-                Log.i("global user type",AppGlobals.userType);
-                Log.i("global username/email",AppGlobals.user);
-                Log.i("global session token",AppGlobals.session);
                 return true;
             }
         } catch (Exception e) {

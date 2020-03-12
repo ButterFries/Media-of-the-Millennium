@@ -1195,6 +1195,55 @@ public static class userMediaList {
             throw new SQLException("An error occurred when getting specific review");
         }
     }
+
+
+    public void delete_item(int listID, String item,Connection conn)throws SQLException{
+        try {
+            String items= "";
+            PreparedStatement pstmt = conn.createStatement();
+            String sqlReq = "SELECT items FROM user_list WHERE listID = ?" ;
+            pstmt.setInt(1,userID);
+            ResultSet rs = pstmt.executeQuery(sqlReq);
+            if(rs.next()){
+                items = rs.getString("items");
+            }else{
+
+                throw new SQLException("An error occurred when getting the reviews on review  relation");
+
+            }
+            if(items.contains(item)){
+                String updated_items = items.replace(item,"");
+                try{
+                    PreparedStatement pstmt = conn.createStatement();
+                    String sqlReq = "UPDATE user_list SET items = ?" ;
+                    pstmt.setString(1,updated_items);
+                    ResultSet rs = pstmt.executeQuery(sqlReq);
+                }catch (SQLException ex){
+                    throw new SQLException("An error occurred when deleting specific list item");
+                }
+            }else{
+                System.out.println("Error");//will send back a message to the server for the code to interpet what to do with this info.
+            }
+
+
+
+        }catch (SQLException ex) {
+
+            throw new SQLException("An error occurred when getting specific review");
+        }
+    }
+
+    public void delete_list(int listID,Connection conn)throws SQLException{
+        try {
+            PreparedStatement pstmt = conn.createStatement();
+            String sqlReq = "DELETE * FROM user_list WHERE listID = ?" ;
+            pstmt.setInt(1,listID);
+            pstmt.executeUpdate(sqlReq);
+        }catch (SQLException ex) {
+
+            throw new SQLException("An error occurred when getting specific review");
+        }
+    }
 //        public float get_rating(){ return this.rating; }
 //        public int get_raters(){ return this.numRaters; }
 }

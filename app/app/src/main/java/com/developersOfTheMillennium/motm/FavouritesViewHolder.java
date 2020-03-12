@@ -8,6 +8,7 @@ public class FavouritesViewHolder {
 
     public int get_mediaID() { return this.mediaID; }
     public void set_mediaID(int ID) { this.mediaID = ID;}
+    public String get_String() { return this.titleDisplayText.toString();}
 
 
 }

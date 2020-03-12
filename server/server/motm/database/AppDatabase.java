@@ -344,10 +344,13 @@ public class AppDatabase {
     /**
      * Adds specified media title (ID) to User's favorite/
      */
-    public void add_titleToFavorites(Connection conn, int mediaID, int accountID) throws SQLException {
-        //if (!hasFavorite(conn, mediaID, accountID)) { //if mediaID does NOT exist in user favorites
+    public void add_titleToFavorites(Connection conn, int mediaID, String accountInfo, String accountType) throws SQLException {
+        String var3 = "";
         String ID = Integer.toString(mediaID);
-        String var3 = "UPDATE accounts SET favorites = favorites || \"" + ID + ",\" WHERE userID = \"" + accountID + "\"";
+        if (accountType.equals("username"))
+            var3 = "UPDATE accounts SET favorites = favorites || \"" + ID + ",\" WHERE username = \"" + accountInfo + "\"";
+        else
+            var3 = "UPDATE accounts SET favorites = favorites || \"" + ID + ",\" WHERE email = \"" + accountInfo + "\"";
 
         try {
             PreparedStatement var4 = conn.prepareStatement(var3);
@@ -356,36 +359,41 @@ public class AppDatabase {
             System.out.println("#  ERROR :  " + var5);
             throw new SQLException("Could not update account favorites");
         }
-        //}
+
     }
     /**
      * Adds specified media title (ID) to User's bookmarks
      */
-    public void add_titleToBookmarks(Connection conn, int mediaID, int accountID) throws SQLException {
-        if (!hasBookmark(conn, mediaID, accountID)) { //if mediaID does NOT exist in user bookmarks
-            String ID = Integer.toString(mediaID);
-            String var3 = "UPDATE accounts SET bookmarks = bookmarks || \"" + ID + "\" WHERE userID = \"" + accountID + "\"";
+    public void add_titleToBookmarks(Connection conn, int mediaID, String accountInfo, String accountType) throws SQLException {
+        String var3 = "";
+        String ID = Integer.toString(mediaID);
+        if (accountType.equals("username"))
+            var3 = "UPDATE accounts SET bookmarks = bookmarks || \"" + ID + "\" WHERE username = \"" + accountInfo + "\"";
+        else
+            var3 = "UPDATE accounts SET bookmarks = bookmarks || \"" + ID + "\" WHERE email = \"" + accountInfo + "\"";
 
-            try {
-                PreparedStatement var4 = conn.prepareStatement(var3);
-                var4.executeUpdate();
-            } catch (SQLException var5) {
-                //System.out.println("#  ERROR :  " + var5);
-                throw new SQLException("Could not update account bookmarks");
-            }
+        try {
+            PreparedStatement var4 = conn.prepareStatement(var3);
+            var4.executeUpdate();
+        } catch (SQLException var5) {
+            //System.out.println("#  ERROR :  " + var5);
+            throw new SQLException("Could not update account bookmarks");
         }
+
     }
 
     /**
      * Remove favorite if media title exists in user favorites
      * Note: strings are indexed from 1 in SQLite
      */
-    public void remove_favorite(Connection conn, int mediaID, int accountID) throws SQLException {
-        //if (hasFavorite(conn, mediaID, accountID)){
-
+    public void remove_favorite(Connection conn, int mediaID, String accountInfo, String accountType) throws SQLException {
+        String SQLreq = "";
         String mID = Integer.toString(mediaID);
-        String uID = Integer.toString(accountID);
-        String SQLreq = "UPDATE accounts SET favorites = replace(favorites, \"" + mID + "\", '') WHERE userID = \"" + uID + "\"";
+        if (accountType.equals("username"))
+            SQLreq = "UPDATE accounts SET favorites = replace(favorites, \"" + mID + ",\", '') WHERE username = \"" + accountInfo + "\"";
+        else
+            SQLreq = "UPDATE accounts SET favorites = replace(favorites, \"" + mID + ",\", '') WHERE email = \"" + accountInfo + "\"";
+
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQLreq);
             pstmt.executeUpdate();
@@ -394,48 +402,48 @@ public class AppDatabase {
             //System.out.println("#  ERROR :  "+ex);
             throw new SQLException("Failed to remove media title from user favorites");
         }
-        //}
+
     }
     /**
      * Remove bookmark if media title exists in user bookmarks
      * Note: strings are indexed from 1 in SQLite
      */
-    public void remove_bookmark(Connection conn, int mediaID, int accountID) throws SQLException {
-        if (hasBookmark(conn, mediaID, accountID)){
+    public void remove_bookmark(Connection conn, int mediaID, String accountInfo, String accountType) throws SQLException {
+        String SQLreq = "";
+        String mID = Integer.toString(mediaID);
+        if (accountType.equals("username"))
+            SQLreq = "UPDATE accounts SET bookmarks = replace(bookmarks, \"" + mID + "\", '') WHERE username = \"" + accountInfo + "\"";
+        else
+            SQLreq = "UPDATE accounts SET bookmarks = replace(bookmarks, \"" + mID + "\", '') WHERE email = \"" + accountInfo + "\"";
 
-            String mID = Integer.toString(mediaID);
-            String uID = Integer.toString(accountID);
-            String SQLreq = "UPDATE accounts SET bookmarks = replace(bookmarks, \"" + mID + "\", '') WHERE userID = \"" + uID + "\"";
-            try {
-                PreparedStatement pstmt = conn.prepareStatement(SQLreq);
-                pstmt.executeUpdate();
-            }
-            catch (SQLException ex) {
-                //System.out.println("#  ERROR :  "+ex);
-                throw new SQLException("Failed to remove media title from user bookmarks");
-            }
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQLreq);
+            pstmt.executeUpdate();
         }
+        catch (SQLException ex) {
+            //System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("Failed to remove media title from user bookmarks");
+        }
+
     }
 
 
     /**
     * Returns True if user already has mediaId in their favorites list (string)
      */
-    public boolean hasFavorite(Connection conn, int mediaID, int accountID) throws SQLException {
+    public boolean hasFavorite(Connection conn, int mediaID, String accountInfo, String accountType) throws SQLException {
         Statement stmt = conn.createStatement();
-        String mID = Integer.toString(mediaID);
-        String uID = Integer.toString(accountID);
         try {
-            String sqlReq = "SELECT *, INSTR(favorites, \"" + mID + "\") fav FROM accounts WHERE fav > 0 AND userID = \"" + uID + "\"";
+            String sqlReq = "";
+            String mID = Integer.toString(mediaID);
+            if (accountType.equals("username"))
+                sqlReq = "SELECT *, INSTR(favorites, \"" + mID + "\") fav FROM accounts WHERE fav > 0 AND username = \"" + accountInfo + "\"";
+            else
+                sqlReq = "SELECT *, INSTR(favorites, \"" + mID + "\") fav FROM accounts WHERE fav > 0 AND email = \"" + accountInfo + "\"";
+
             ResultSet rs = stmt.executeQuery(sqlReq);
             return rs.next();
-//            if (rs.next()){
-//                return rs.getBoolean(1); //0 is false
-//            } else
-////                System.out.println("here!!!!!!!!!!");
-//              throw new SQLException("Failed to fetch query on existence of 'mediaId' in favorites from 'accounts' table");
-//            //return rs.getBoolean(0);
-////            }
+
         }
         catch (SQLException ex) {
             //System.out.println("#  ERROR :  "+ex);
@@ -446,13 +454,17 @@ public class AppDatabase {
     /**
      * Returns True if user already has mediaId in their favorites list (string)
      */
-    public boolean hasBookmark(Connection conn, int mediaID, int accountID) throws SQLException {
+    public boolean hasBookmark(Connection conn, int mediaID, String accountInfo, String accountType) throws SQLException {
         try {
             Statement stmt = conn.createStatement();
-            String mID = Integer.toString(mediaID);
-            String uID = Integer.toString(accountID);
 
-            String sqlReq = "SELECT *, INSTR(bookmarks, \"" + mID + "\") bk FROM accounts WHERE bk > 0 AND userID = \"" + uID + "\"";
+            String sqlReq = "";
+            String mID = Integer.toString(mediaID);
+            if (accountType.equals("username"))
+                sqlReq = "SELECT *, INSTR(bookmarks, \"" + mID + "\") bk FROM accounts WHERE bk > 0 AND username = \"" + accountInfo + "\"";
+            else
+                sqlReq = "SELECT *, INSTR(bookmarks, \"" + mID + "\") bk FROM accounts WHERE bk > 0 AND email = \"" + accountInfo + "\"";
+
             ResultSet rs = stmt.executeQuery( sqlReq );
             if (rs.next()){
                 return rs.getBoolean(1); //0 is false
@@ -469,16 +481,21 @@ public class AppDatabase {
     /**
      * Retrieves favorite string for given user account
      */
-    public String retrieve_favorites(Connection conn, int accountID) throws Exception {
+    public String retrieve_favorites(Connection conn, String accountInfo, String accountType) throws Exception {
         try {
-            String uID = Integer.toString(accountID);
             Statement var3 = conn.createStatement();
-            String var4 = "SELECT favorites FROM accounts WHERE userID = \"" + uID + "\"";
+
+            String var4 = "";
+            if (accountType.equals("username"))
+                var4 = "SELECT favorites FROM accounts WHERE username = \"" + accountInfo + "\"";
+            else
+                var4 = "SELECT favorites FROM accounts WHERE email = \"" + accountInfo + "\"";
+
             ResultSet var5 = var3.executeQuery(var4);
             if (var5.next()) {
                 return var5.getString("favorites");
             } else {
-                throw new SQLException("Failed to retrieve user favorites, UserID: " + uID);
+                throw new SQLException("Failed to retrieve user favorites, UserID: " + accountInfo);
             }
         } catch (SQLException var6) {
             throw new SQLException("An error occurred when fetching user favorites :  " + var6);

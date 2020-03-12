@@ -43,6 +43,8 @@
 
     <!-- User Favorites Page -->
     <string name="my_favourites">My Favourites</string>
+    <!-- User Bookmarks Page -->
+    <string name="my_bookmarks">My Bookmarks</string>
 
     <!-- User Profile Page -->
     <string name="profile">PROFILE</string>
@@ -54,10 +56,14 @@
     <string name="favourites">Favourites</string>
 
     <!-- Base Layout for ListView in User Favourites Page -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="my_bookmarks">My Bookmarks</string>
     <string name="view_favorite_button">view_favorite_button</string>
     <string name="delete_favorite_button">delete_favorite_button</string>
+    <string name="user">User</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="x">X</string>
+    <string name="view">View</string>
 
 
 </resources>

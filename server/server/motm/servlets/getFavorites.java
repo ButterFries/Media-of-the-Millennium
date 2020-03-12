@@ -85,15 +85,17 @@ public class getFavorites implements HttpHandler
         JSONObject responseJSON = new JSONObject();
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("mediaID") && requestJSON.has("accountID")){
+        if (requestJSON.has("mediaID") && requestJSON.has("accountInfo") && requestJSON.has("accountType")){
             int mediaID = requestJSON.getInt("mediaID");
-            int accountID = requestJSON.getInt("accountID");
+            String accountInfo = requestJSON.getString("accountInfo");
+            String accountType = requestJSON.getString("accountType");
+
             System.out.println("--client send mediaID: "+mediaID);
-            System.out.println("--client send accountID: "+accountID);
+            System.out.println("--client send accountInfo: "+accountInfo);
 
             /* check if user already has existing mediaID in favorites */
 
-            if (db.hasFavorite(conn, mediaID, accountID)){
+            if (db.hasFavorite(conn, mediaID, accountInfo, accountType)){
                 System.out.println("--favorited ID already exists");
                 responseJSON.put("error_code", 3);
                 responseJSON.put("error_description", "error: user already has exisiting favorites in DB");
@@ -107,7 +109,7 @@ public class getFavorites implements HttpHandler
             /* add mediaID to user favorites */
             System.out.println("User favorites does not contain mediaID yet");
             try {
-                db.add_titleToFavorites(conn, mediaID, accountID);
+                db.add_titleToFavorites(conn, mediaID, accountInfo, accountType);
 
                 responseJSON.put("error_code", 0);
                 responseJSON.put("error_description", "successfully added media profile to favorites");
@@ -138,14 +140,16 @@ public class getFavorites implements HttpHandler
         JSONObject responseJSON = new JSONObject();
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("mediaID") && requestJSON.has("accountID")){
+        if (requestJSON.has("mediaID") && requestJSON.has("accountInfo") && requestJSON.has("accountType")){
             int mediaID = requestJSON.getInt("mediaID");
-            int accountID = requestJSON.getInt("accountID");
+            String accountInfo = requestJSON.getString("accountInfo");
+            String accountType = requestJSON.getString("accountType");
+
             System.out.println("--client send mediaID: "+mediaID);
-            System.out.println("--client send accountID: "+accountID);
+            System.out.println("--client send accountInfo: "+accountInfo);
 
             /* check if user does NOT have existing mediaID in favorites */
-            if (!db.hasFavorite(conn, mediaID, accountID)){
+            if (!db.hasFavorite(conn, mediaID, accountInfo, accountType)){
                 responseJSON.put("error_code", 3);
                 responseJSON.put("error_description", "error: cant delete, user does not have ID as a favorite");
                 String response = responseJSON.toString() + "\n";
@@ -158,7 +162,7 @@ public class getFavorites implements HttpHandler
 
             System.out.println("User favorites has contain mediaID yet.. attempting to delete");
             try {
-                db.remove_favorite(conn, mediaID, accountID);
+                db.remove_favorite(conn, mediaID, accountInfo, accountType);
 
                 responseJSON.put("error_code", 0);
                 responseJSON.put("error_description", "successfully removed media profile from favorites");
@@ -189,16 +193,19 @@ public class getFavorites implements HttpHandler
         JSONObject responseJSON = new JSONObject();
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("accountID")){
+        if (requestJSON.has("accountInfo") && requestJSON.has("accountType")){
             //int mediaID = requestJSON.getInt("mediaID");
-            int accountID = requestJSON.getInt("accountID");
+            //int accountID = requestJSON.getInt("accountID");
             //String mID = Integer.toString(mediaID);
-            String uID = Integer.toString(accountID);
+            //String uID = Integer.toString(accountID);
+
+            String accountInfo = requestJSON.getString("accountInfo");
+            String accountType = requestJSON.getString("accountType");
 
             //System.out.println("--client send mediaID: "+mediaID);
-            System.out.println("--client send accountID: "+accountID);
+            System.out.println("--client send accountInfo: "+accountInfo);
             try {
-                String fav_string = db.retrieve_favorites(conn, accountID);
+                String fav_string = db.retrieve_favorites(conn, accountInfo, accountType);
                 String[] fav_list = fav_string.split(",");
                 JSONArray favs = new JSONArray();
 

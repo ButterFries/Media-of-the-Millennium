@@ -9,11 +9,17 @@ import java.util.Arrays;
 import org.json.*;
 
 import server.motm.utils.*;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
-
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.BufferedInputStream;
 
 public class AppDatabase {
     public static String dbPath = "./server/motm/database/appdatabase.db";
@@ -376,22 +382,29 @@ public class AppDatabase {
         private String mediaType;    //type of media;  {'cinema', 'music', 'tv-series', 'video game', 'novel'}
         private String summary = "";      //string of words
         //private ArrayList<String> tags = new ArrayList<String>(); //list of tags (strings) associated to title, contents are different based on mediaType DEV-60
-        private String[] genres = null;
-        private String[] tags = null;
+        private String genres = "";
+        private String tags = "";
+        private String links = "";
 
-        public MediaProfilePage(int ID, String t, String mt, String s, String[] g, String[] tag) {
+        //private String genres;
+        //private String tags;
+        private String image;         //string url to picture
+
+        public MediaProfilePage(int ID, String t, String mt, String s, String g, String tag, String l, String img) {
             this.mediaID = ID;
             this.title = t;
             this.mediaType = mt;
             this.summary = s;
             this.genres = g;
             this.tags = tag;
+            this.links = l;
+            this.image = img;
         }
-        public MediaProfilePage(int ID, String t, String mt) {
-            this.mediaID = ID;
-            this.title = t;
-            this.mediaType = mt;
-        }
+        //public MediaProfilePage(int ID, String t, String mt) {
+        //    this.mediaID = ID;
+        //    this.title = t;
+        //    this.mediaType = mt;
+        //}
 
         public int get_mediaID() {
             return this.mediaID;
@@ -405,83 +418,104 @@ public class AppDatabase {
         public String get_summary() {
             return this.summary;
         }
-        public String[] get_genres() {
+        public String get_genres() {
             return this.genres;
         }
-        public String[] get_tags() { return this.tags; }
+        public String get_tags() { return this.tags; }
+        public String get_links() { return this.links; }
+        public String get_image() {return this.image; }
     }
 
     /*
      * Adds the media title to the database (careful duplicates are possible!)
-     * genres should be delimited by comma
+     * genres and tags should be delimited by comma
      */
-    public void add_media_title(Connection conn, String title, String mediaType, String summary, String genres) throws SQLException{
-        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres) VALUES(?,?,?,?)";
+
+    public void add_media_title(Connection conn, String title, String mediaType, String summary, String genres, String tags, String links, String img) throws IOException, SQLException{
+        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags, links, image) VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setString(1, title);
             pstmt.setString(2, mediaType);
             pstmt.setString(3, summary);
-            pstmt.setString(4, genres);
+            pstmt.setString(4, genres); //NOT SURE IF U SET STRING MIGHT HAVE TO LOOP?
+            pstmt.setString(5, tags);
+            pstmt.setString(6, links);
+            pstmt.setBytes(7, getByteArrayImage(img));
             pstmt.executeUpdate();
         } 
         catch (SQLException ex) { 
             throw new SQLException("Failed to add media title :  "+ex);
         }
-    }
-    /*
-     * Adds the media title to the database (careful duplicates are possible!)
-     * genres and tags should be delimited by comma
-     */
-    public void add_media_title(Connection conn, String title, String mediaType, String summary, String genres, String tags) throws SQLException{
-        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags) VALUES(?,?,?,?,?)";
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setString(1, title);
-            pstmt.setString(2, mediaType);
-            pstmt.setString(3, summary);
-            pstmt.setString(4, genres);
-            pstmt.setString(5, tags);
-            pstmt.executeUpdate();
-        } 
-        catch (SQLException ex) {
-            throw new SQLException("Failed to add media title :  "+ex);
+        finally {
+            conn.close();
         }
     }
-    /*
-     * Adds the media title to the database (careful duplicates are possible!)
-     */
-    public void add_media_title(Connection conn, String title, String mediaType, String summary, String[] genres) throws SQLException{
-        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres) VALUES(?,?,?,?)";
+
+    public byte[] getByteArrayImage(String img) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		InputStream is = null;
+		//URL imageURL = null;
+		try {
+			//imageURL = new URL(url);
+            //URLConnection ucon = imageURL.openConnection();
+			is = new FileInputStream(img);
+			BufferedInputStream bis = new BufferedInputStream(is);
+			byte[] data = new byte[50];
+
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int current = 0;
+			while ((current = bis.read(data,0,data.length)) != -1) {
+				buffer.write(data,0, current);
+			}
+
+			return buffer.toByteArray();
+		} catch (IOException e) {
+			//System.err.printf("Failed while reading bytes from %s: %s", imageURL.toExternalForm(), e.getMessage());
+			e.printStackTrace();
+			// Perform any other exception handling that's appropriate.
+		} finally {
+			if (is != null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+
+    public byte[] get_picture(Connection conn, int mediaID) throws SQLException, Exception, SQLDataException {
+        
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = "+mediaID;
+        JSONObject json = new JSONObject();
+        JSONObject common = new JSONObject();
+        JSONObject distinct = new JSONObject();
+        String mediaType = null;
+        ByteArrayOutputStream buffer = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setString(1, title);
-            pstmt.setString(2, mediaType);
-            pstmt.setString(3, summary);
-            pstmt.setString(4, String.join(",",genres));
-            pstmt.executeUpdate();
-        } 
-        catch (SQLException ex) {
-            throw new SQLException("Failed to add media title :  "+ex);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            ResultSetMetaData md = rs.getMetaData();
+            int cols = md.getColumnCount();
+            // write binary stream into file
+			while (rs.next()) {
+
+			    //fos = new FileOutputStream();
+                InputStream input = rs.getBinaryStream("image");
+                byte[] data = new byte[50];
+                buffer = new ByteArrayOutputStream();
+			    int current = 0;
+			    while ((current = input.read(data,0,data.length)) != -1) {
+				    buffer.write(data,0, current);
+			    }
+            }
+            return buffer.toByteArray();
+        } catch (SQLException ex) {
+            throw new Exception("Error while fetching common info using mediaID ["+mediaID+"]:  "+ex);
         }
-    }
-    /*
-     * Adds the media title to the database (careful duplicates are possible!)
-     */
-    public void add_media_title(Connection conn, String title, String mediaType, String summary, String genres, String[] tags) throws SQLException{
-        String sqlReq = "INSERT INTO mediaTitles (title, mediaType, summary, genres, tags) VALUES(?,?,?,?,?)";
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setString(1, title);
-            pstmt.setString(2, mediaType);
-            pstmt.setString(3, summary);
-            pstmt.setString(4, String.join(",",genres));
-            pstmt.setString(5, String.join(",",tags));
-            pstmt.executeUpdate();
-        } 
-        catch (SQLException ex) {
-            throw new SQLException("Failed to add media title :  "+ex);
-        }
+			
     }
 
     /*
@@ -489,7 +523,7 @@ public class AppDatabase {
      * Returns the info as a JSON object.
      */
     public JSONObject get_all_media_Info(Connection conn, int mediaID) throws SQLException, Exception, SQLDataException {
-        String sqlReq = "SELECT (mediaType, title, summary, genres, tags, rating, numRaters, links) FROM mediaTitles WHERE mediaID = "+mediaID;
+        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = "+mediaID;
         JSONObject json = new JSONObject();
         JSONObject common = new JSONObject();
         JSONObject distinct = new JSONObject();
@@ -501,8 +535,9 @@ public class AppDatabase {
             int cols = md.getColumnCount();
             if (rs.next()) { //found something
                 mediaType = rs.getString("mediaType");
-                for(int i = 0; i < cols; i++){
-                    common.put(md.getColumnName(i), rs.getObject(i)+"");
+                for(int i = 1; i <= cols; i++){
+                    json.put(md.getColumnName(i), rs.getObject(i)+"");
+                    //common.put(md.getColumnName(i), rs.getObject(i)+"");
                 }
             }
             else
@@ -510,36 +545,36 @@ public class AppDatabase {
         } catch (SQLException ex) {
             throw new Exception("Error while fetching common info using mediaID ["+mediaID+"]:  "+ex);
         }
-        String sqlReq2 = null;
-        if (mediaType.equals("cinema"))
-            sqlReq2 = "SELECT * FROM cinemaInfo WHERE mediaID = "+mediaID;
-        else if (mediaType.equals("music"))
-            sqlReq2 = "SELECT * FROM musicInfo WHERE mediaID = "+mediaID;
-        else if (mediaType.equals("tvseriesInfo"))
-            sqlReq2 = "SELECT * FROM tvseriesInfo WHERE mediaID = "+mediaID;
-        else if (mediaType.equals(""))
-            sqlReq2 = "SELECT * FROM videogameInfo WHERE mediaID = "+mediaID;
-        else if (mediaType.equals("novel"))
-            sqlReq2 = "SELECT * FROM novelInfo WHERE mediaID = "+mediaID;
-        else 
-            throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] with invalid mediaType: "+mediaType+"");
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlReq2);
-            ResultSetMetaData md = rs.getMetaData();
-            int cols = md.getColumnCount();
-            if (rs.next()) { //found something
-                for(int i = 0; i < cols; i++){
-                    distinct.put(md.getColumnName(i), rs.getObject(i)+"");
-                }
-            }
-            else
-                throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] not found in table for mediaType: "+mediaType+"");
-        } catch (SQLException ex) {
-            throw new Exception("Error while fetching type info using mediaID ["+mediaID+"]:  "+ex);
-        }    
-        json.put("common", common);
-        json.put("distinct", distinct);
+        // String sqlReq2 = null;
+        // if (mediaType.equals("cinema"))
+        //     sqlReq2 = "SELECT * FROM cinemaInfo WHERE mediaID = "+mediaID;
+        // else if (mediaType.equals("music"))
+        //     sqlReq2 = "SELECT * FROM musicInfo WHERE mediaID = "+mediaID;
+        // else if (mediaType.equals("tvseriesInfo"))
+        //     sqlReq2 = "SELECT * FROM tvseriesInfo WHERE mediaID = "+mediaID;
+        // else if (mediaType.equals(""))
+        //     sqlReq2 = "SELECT * FROM videogameInfo WHERE mediaID = "+mediaID;
+        // else if (mediaType.equals("novel"))
+        //     sqlReq2 = "SELECT * FROM novelInfo WHERE mediaID = "+mediaID;
+        // else 
+        //     throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] with invalid mediaType: "+mediaType+"");
+        // try {
+        //     Statement stmt = conn.createStatement();
+        //     ResultSet rs = stmt.executeQuery(sqlReq2);
+        //     ResultSetMetaData md = rs.getMetaData();
+        //     int cols = md.getColumnCount();
+        //     if (rs.next()) { //found something
+        //         for(int i = 1; i < cols; i++){
+        //             distinct.put(md.getColumnName(i), rs.getObject(i)+"");
+        //         }
+        //     }
+        //     else
+        //         throw new SQLDataException("!! CRITICAL ::  mediaID ["+mediaID+"] not found in table for mediaType: "+mediaType+"");
+        // } catch (SQLException ex) {
+        //     throw new Exception("Error while fetching type info using mediaID ["+mediaID+"]:  "+ex);
+        // }
+        //json.put("common", common);
+        //json.put("distinct", distinct);
         return json;
     }
 
@@ -548,25 +583,26 @@ public class AppDatabase {
      * Retrieves media title information of specified mediaID
      * RETURN: MediaProfilePage object with title information
      */
-    public MediaProfilePage get_mediaProfilePage(Connection conn, int mediaID) throws SQLException {
-        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = \"" + mediaID + "\"";
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            if (rs.next()) { //found something
-                String mg = rs.getString("genres");
-                String[] media_genres = mg.split(","); //place each genre into a list
-                String tg = rs.getString("tags");
-                String [] media_tags = tg.split(",");
-                return new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
-                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
-            } else { //didnt find
-                throw new SQLException("No ID found");
-            }
-        } catch (SQLException ex) {
-            throw new SQLException("Error while fetching MPP data");
-        }
-    }
+    // public MediaProfilePage get_mediaProfilePage(Connection conn, int mediaID) throws SQLException {
+    //     String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = \"" + mediaID + "\"";
+    //     try {
+    //         Statement stmt = conn.createStatement();
+    //         ResultSet rs = stmt.executeQuery(sqlReq);
+    //         if (rs.next()) { //found something
+    //             //String mg = rs.getString("genres");
+    //             //String [] media_genres = mg.split(","); //place each genre into a list
+    //             //String tg = rs.getString("tags");
+    //             //String [] media_tags = tg.split(",");
+    //             return new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
+    //                     rs.getString("mediaType"), rs.getString("summary"), rs.getString("genres"), rs.getString("tags"), rs.getString("pictureUrl"));
+
+    //         } else { //didnt find
+    //             throw new SQLException("No ID found");
+    //         }
+    //     } catch (SQLException ex) {
+    //         throw new SQLException("Error while fetching MPP data");
+    //     }
+    // }
 
 
 
@@ -630,12 +666,11 @@ public class AppDatabase {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlReq);
             while (rs.next()) { //found something
-                String mg = rs.getString("genres");
-                String[] media_genres = mg.split(","); //place each genre into a list
-                String tg = rs.getString("tags");
-                String [] media_tags = tg.split(",");
-                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
-                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
+                //String mg = rs.getString("genres");
+                //String media_genres = mg.split(","); //place each genre into a list
+                //String tg = rs.getString("tags");
+                //String [] media_tags = tg.split(",");
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"), rs.getString("mediaType"), rs.getString("summary"), rs.getString("genres"), rs.getString("tags"), rs.getString("links"), rs.getString("image"));
                 pages.add(m);
             }
             if (pages.isEmpty())
@@ -709,12 +744,12 @@ public class AppDatabase {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlReq);
             while (rs.next()) { //found something
-                String mg = rs.getString("genres");
-                String tg = rs.getString("tags");
-                String [] media_tags = tg.split(",");
-                String[] media_genres = mg.split(","); //place each genre into a list
-                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
-                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
+                //String mg = rs.getString("genres");
+                //String tg = rs.getString("tags");
+                //String [] media_tags = tg.split(",");
+                //String media_genres = mg.split(","); //place each genre into a list
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"), rs.getString("mediaType"), rs.getString("summary"), rs.getString("genres"), rs.getString("tags"), rs.getString("links"), rs.getString("image"));
+
                 pages.add(m);
             }
             if (pages.isEmpty())
@@ -786,12 +821,12 @@ public class AppDatabase {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlReq);
             while (rs.next()) { //found something
-                String mg = rs.getString("genres");
-                String tg = rs.getString("tags");
-                String[] media_genres = mg.split(",");
-                String [] media_tags = tg.split(",");
-                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
-                        rs.getString("mediaType"), rs.getString("summary"), media_genres, media_tags);
+                //String mg = rs.getString("genres");
+                //String tg = rs.getString("tags");
+                //String media_genres = mg.split(",");
+                //String [] media_tags = tg.split(",");
+                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"), rs.getString("mediaType"), rs.getString("summary"), rs.getString("genres"), rs.getString("tags"), rs.getString("links"), rs.getString("image"));
+
                 pages.add(m);
             }
             if (pages.isEmpty())
@@ -810,9 +845,9 @@ public class AppDatabase {
      * 
      * NOTE: tags are delimited by comma, but may have a space following the comma (trim when needed)
      */
-    public void update_tags(Connection conn, int mediaID, String[] new_Tags) throws SQLException{
+    public void update_tags(Connection conn, int mediaID, String[] new_Tags) throws SQLException {
         //get old tags
-        String sqlReq = "SELECT tags FROM mediaTitles WHERE mediaID = "+mediaID;
+        String sqlReq = "SELECT tags FROM mediaTitles WHERE mediaID = " + mediaID;
         String old_tags = null;
         try {
             Statement stmt = conn.createStatement();
@@ -821,11 +856,11 @@ public class AppDatabase {
                 old_tags = rs.getString("tags");
             }
         } catch (SQLException ex) {
-            throw new SQLException("Error while fetching tags using mediaID ["+mediaID+"]:  "+ex);
+            throw new SQLException("Error while fetching tags using mediaID [" + mediaID + "]:  " + ex);
         }
         List<String> tags = new ArrayList<String>(Arrays.asList(old_tags.split(",")));
         tags.addAll(Arrays.asList(new_Tags));
-        String updated_tags = String.join(",",tags);
+        String updated_tags = String.join(",", tags);
         //updated_tags = updated_tags.substring(1, updated_tags.length()-1); //prune []
 
         //update tags
@@ -834,14 +869,45 @@ public class AppDatabase {
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setString(1, updated_tags);
             pstmt.executeUpdate();
-        } 
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when updating tags : " + ex);
+        }
+    }
+    /*
+    * Adds the picture for the mediaId
+    */
+    public void add_picture(Connection conn, int mediaId, byte[] byteArrayImage) throws SQLException{
+        try {
+            //String byteString= Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+            String sqlReq = "INSERT INTO pictures (mediaId, byteString) VALUES (?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setInt(1, mediaId);
+            //pstmt.setString(2, byteString);
+            pstmt.executeUpdate();
+        }
         catch (SQLException ex) {
-            throw new SQLException("An error occurred when updating tags : "+ex);
+            throw new SQLException("An error occurred when adding the picture :  "+ex);
         }
     }
 
-
-
+    /*
+    * Obtains the byte array for the picture from mediaId
+    */
+    public String get_picture_bytes(Connection conn, int mediaId) throws SQLException{
+        try {
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT * FROM pictures WHERE mediaID = "+mediaId;
+            ResultSet rs = stmt.executeQuery( sqlReq );
+            if (rs.next()){
+                return rs.getString("byteString");    //this should be in the table, no need to 'try/catch'
+            } else {
+                throw new SQLException("Failed to fetch byte array, mediaID: "+mediaId);
+            }
+        }
+        catch (SQLException ex) {
+            throw new SQLException("An error occurred when fetching media rating :  "+ex);
+        }
+    }
 
 
 
@@ -1127,7 +1193,7 @@ public static class userMediaList {
 
     private int listID;
     private int userID;
-    private String list_name
+    private String list_name;
     private String items;
     public userMediaList(int listID,int userID,String list_name,String items){
         this.listID = listID;

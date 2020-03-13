@@ -1,4 +1,4 @@
-package com.developersOfTheMillennium.motm.utils;
+package com.developersOfTheMillennium.motm.utils.Favorites;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -25,6 +25,7 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
 
     private static MainActivity activity;
     private static View activity_view;
+    //String contextType;
 
     private static SecureHTTPClient HTTPSClient;
     //private JSONArray lstItems = null;
@@ -32,6 +33,8 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
     public AddFavorite(MainActivity a, View v) {
         activity = a;
         activity_view = v;
+        //contextType = c;
+
 
         HTTPSClient = new SecureHTTPClient(activity.getResources().getString(R.string.server_address)
                 +":"+activity.getResources().getString(R.string.server_port), activity);
@@ -42,7 +45,6 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
         int mediaID = Integer.parseInt(params[0]);
         String accountInfo = params[1];
         String accountType = params[2];
-        //contextType = TODO: to reuse code for bookmarks
         return run(mediaID, accountInfo, accountType);
     }
 
@@ -55,6 +57,11 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
             data.put("accountInfo", accountInfo);
             data.put("accountType", accountType);
 
+//            String context = "";
+//            if (contextType.equals("favorites"))
+//                context = "getFavorites";
+//            else
+//                context = "getBookmarks";
 
             JSONObject rtn = putRequest("getFavorites", data);
             int error_code = rtn.getInt("error_code");
@@ -73,7 +80,7 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
         JSONObject rtn = null;
 
         /***   create http client request  ***/
-        Log.i("AddFavorite", "Creating "+context+" request");
+        Log.i("AddFavorite/Bookmark", "Creating "+context+" request");
 
         RequestBody requestBody = RequestBody.create(data.toString(), JSON);
 
@@ -116,6 +123,10 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
         if (result) {
             Context context = activity.getApplicationContext(); //might be another context function
             CharSequence text = "Added to Favorites";
+//            if (contextType.equals("favorites"))
+//                text = "Added to Favorites";
+//            else
+//                text = "Added to Bookmarks";
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);

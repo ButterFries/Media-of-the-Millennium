@@ -368,9 +368,9 @@ public class AppDatabase {
         String var3 = "";
         String ID = Integer.toString(mediaID);
         if (accountType.equals("username"))
-            var3 = "UPDATE accounts SET bookmarks = bookmarks || \"" + ID + "\" WHERE username = \"" + accountInfo + "\"";
+            var3 = "UPDATE accounts SET bookmarks = bookmarks || \"" + ID + ",\" WHERE username = \"" + accountInfo + "\"";
         else
-            var3 = "UPDATE accounts SET bookmarks = bookmarks || \"" + ID + "\" WHERE email = \"" + accountInfo + "\"";
+            var3 = "UPDATE accounts SET bookmarks = bookmarks || \"" + ID + ",\" WHERE email = \"" + accountInfo + "\"";
 
         try {
             PreparedStatement var4 = conn.prepareStatement(var3);
@@ -412,9 +412,9 @@ public class AppDatabase {
         String SQLreq = "";
         String mID = Integer.toString(mediaID);
         if (accountType.equals("username"))
-            SQLreq = "UPDATE accounts SET bookmarks = replace(bookmarks, \"" + mID + "\", '') WHERE username = \"" + accountInfo + "\"";
+            SQLreq = "UPDATE accounts SET bookmarks = replace(bookmarks, \"" + mID + ",\", '') WHERE username = \"" + accountInfo + "\"";
         else
-            SQLreq = "UPDATE accounts SET bookmarks = replace(bookmarks, \"" + mID + "\", '') WHERE email = \"" + accountInfo + "\"";
+            SQLreq = "UPDATE accounts SET bookmarks = replace(bookmarks, \"" + mID + ",\", '') WHERE email = \"" + accountInfo + "\"";
 
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQLreq);
@@ -466,11 +466,7 @@ public class AppDatabase {
                 sqlReq = "SELECT *, INSTR(bookmarks, \"" + mID + "\") bk FROM accounts WHERE bk > 0 AND email = \"" + accountInfo + "\"";
 
             ResultSet rs = stmt.executeQuery( sqlReq );
-            if (rs.next()){
-                return rs.getBoolean(1); //0 is false
-            } else {    //error occurred
-                throw new SQLException("Failed to fetch query on existence of 'mediaId' from bookmarks in 'accounts' table");
-            }
+            return rs.next();
         }
         catch (SQLException ex) {
             //System.out.println("#  ERROR :  "+ex);
@@ -499,6 +495,30 @@ public class AppDatabase {
             }
         } catch (SQLException var6) {
             throw new SQLException("An error occurred when fetching user favorites :  " + var6);
+        }
+    }
+
+    /**
+     * Retrieves bookmarks string for given user account
+     */
+    public String retrieve_bookmarks(Connection conn, String accountInfo, String accountType) throws Exception {
+        try {
+            Statement var3 = conn.createStatement();
+
+            String var4 = "";
+            if (accountType.equals("username"))
+                var4 = "SELECT bookmarks FROM accounts WHERE username = \"" + accountInfo + "\"";
+            else
+                var4 = "SELECT bookmarks FROM accounts WHERE email = \"" + accountInfo + "\"";
+
+            ResultSet var5 = var3.executeQuery(var4);
+            if (var5.next()) {
+                return var5.getString("bookmarks");
+            } else {
+                throw new SQLException("Failed to retrieve user bookmarks, UserID: " + accountInfo);
+            }
+        } catch (SQLException var6) {
+            throw new SQLException("An error occurred when fetching user bookmarks :  " + var6);
         }
     }
 

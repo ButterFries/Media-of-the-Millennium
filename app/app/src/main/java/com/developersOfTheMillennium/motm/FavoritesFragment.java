@@ -7,12 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import com.developersOfTheMillennium.motm.utils.DisplayFavorites;
-
-import java.util.ArrayList;
+import com.developersOfTheMillennium.motm.utils.Favorites.DisplayFavorites;
 
 
 public class FavoritesFragment extends Fragment {
@@ -32,7 +28,7 @@ public class FavoritesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_favorites, container, false);
 
         //accountInfo / accountType
-        DisplayFavorites displayRequest = (DisplayFavorites) new DisplayFavorites((MainActivity) getActivity(), v).execute(AppGlobals.user, AppGlobals.userType);
+        DisplayFavorites displayFavRequest = (DisplayFavorites) new DisplayFavorites((MainActivity) getActivity(), v).execute(AppGlobals.user, AppGlobals.userType);
         return v;
 
     }

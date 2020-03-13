@@ -1,4 +1,4 @@
-package com.developersOfTheMillennium.motm.utils;
+package com.developersOfTheMillennium.motm.utils.Bookmarks;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -21,17 +21,20 @@ import okhttp3.Response;
 
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
-public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
+public class AddBookmark extends AsyncTask<String, Void, Boolean> {
 
     private static MainActivity activity;
     private static View activity_view;
+    //String contextType;
 
     private static SecureHTTPClient HTTPSClient;
     //private JSONArray lstItems = null;
 
-    public RemoveFavorite(MainActivity a, View v) {
+    public AddBookmark(MainActivity a, View v) {
         activity = a;
         activity_view = v;
+        //contextType = c;
+
 
         HTTPSClient = new SecureHTTPClient(activity.getResources().getString(R.string.server_address)
                 +":"+activity.getResources().getString(R.string.server_port), activity);
@@ -42,8 +45,6 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
         int mediaID = Integer.parseInt(params[0]);
         String accountInfo = params[1];
         String accountType = params[2];
-        //contextType = TODO: to reuse code for bookmarks
-
         return run(mediaID, accountInfo, accountType);
     }
 
@@ -56,7 +57,13 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
             data.put("accountInfo", accountInfo);
             data.put("accountType", accountType);
 
-            JSONObject rtn = putRequest("getFavorites", data);
+//            String context = "";
+//            if (contextType.equals("favorites"))
+//                context = "getFavorites";
+//            else
+//                context = "getBookmarks";
+
+            JSONObject rtn = putRequest("getBookmarks", data);
             int error_code = rtn.getInt("error_code");
             //String session_token = rtn.getString("session_token");
             if (error_code == 0) {
@@ -73,7 +80,7 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
         JSONObject rtn = null;
 
         /***   create http client request  ***/
-        Log.i("AddFavorite", "Creating "+context+" request");
+        Log.i("AddBookmark", "Creating "+context+" request");
 
         RequestBody requestBody = RequestBody.create(data.toString(), JSON);
 
@@ -81,7 +88,7 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
                 .url("https://"+activity.getResources().getString(R.string.server_address)
                         +":"+activity.getResources().getString(R.string.server_port)+"/"+context)
                 .addHeader("User-Agent", "motm "+context+" request")  // add request headers
-                .delete(requestBody)
+                .put(requestBody)
                 .build();
 
         try (Response response = HTTPSClient.run(request)) {
@@ -94,7 +101,7 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
 
             try {
                 rtn = new JSONObject(responseData);
-                Log.i("deleteRequest", "--complete");
+                Log.i("putRequest", "--complete");
             }catch (JSONException e) {
                 Log.e("ERROR postRequest "+context, "String to Json Parse Error");
                 throw new JSONException("String to Json Parse Error");
@@ -115,7 +122,11 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
         //display toast if favorites was succesfully added
         if (result) {
             Context context = activity.getApplicationContext(); //might be another context function
-            CharSequence text = "Removed from Favorites";
+            CharSequence text = "Added to Bookmarks";
+//            if (contextType.equals("favorites"))
+//                text = "Added to Favorites";
+//            else
+//                text = "Added to Bookmarks";
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);

@@ -97,7 +97,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/review"
-        app:layout_constraintEnd_toStartOf="@+id/addToFavorites"
+        app:layout_constraintEnd_toStartOf="@+id/addToBookmarks"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -107,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:text="@string/add_to_favorites"
+        android:text="@string/favorite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -121,18 +122,12 @@
         tools:layout_editor_absoluteY="731dp" />
 
     <Button
-        android:id="@+id/userButton"
+        android:id="@+id/addToBookmarks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="300dp"
-        android:layout_marginBottom="91dp"
-        android:text="@string/user"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewButton" />
+        android:layout_marginTop="16dp"
+        android:text="@string/bookmark"
+        app:layout_constraintEnd_toStartOf="@+id/addToFavorites"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

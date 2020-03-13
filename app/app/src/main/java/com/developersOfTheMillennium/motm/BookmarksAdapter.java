@@ -11,18 +11,18 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.developersOfTheMillennium.motm.utils.Favorites.RemoveFavorite;
+import com.developersOfTheMillennium.motm.utils.Bookmarks.RemoveBookmark;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class FavouritesAdapter extends BaseAdapter {
+public class BookmarksAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
     private final JSONArray items; //fix MPP is inside AppDB
     //String contextType;
 
-    public FavouritesAdapter(Context context, JSONArray items) {
+    public BookmarksAdapter(Context context, JSONArray items) {
         this.inflater = LayoutInflater.from(context);
         this.items = items;
         //this.contextType = c;
@@ -58,7 +58,7 @@ public class FavouritesAdapter extends BaseAdapter {
 
         final JSONObject item = getItem(position);
 
-        if(convertView == null) {
+        if (convertView == null) {
             // If convertView is null we have to inflate a new layout
             convertView = this.inflater.inflate(R.layout.favourites_layout, parent, false); //is parent = FavoritesFrag?
             final FavouritesViewHolder viewHolder = new FavouritesViewHolder();
@@ -90,7 +90,7 @@ public class FavouritesAdapter extends BaseAdapter {
         deleteView.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
                 Log.e("Click Error", "Click error");
-                AlertDialog.Builder adb=new AlertDialog.Builder(parent.getContext());
+                AlertDialog.Builder adb = new AlertDialog.Builder(parent.getContext());
                 adb.setTitle("Remove?");
                 adb.setMessage("Are you sure you want to remove " + viewHolder.titleDisplayText.getText().toString());
                 final int positionToRemove = position; //may have bug with FINAL INT POSITION USAGE
@@ -99,9 +99,10 @@ public class FavouritesAdapter extends BaseAdapter {
                     public void onClick(DialogInterface dialog, int which) {
                         items.remove(positionToRemove);
                         //TODO: media ID / user info / user type
-                        RemoveFavorite removeRequest = (RemoveFavorite) new RemoveFavorite((MainActivity) parent.getContext(), v).execute(Integer.toString(viewHolder.get_mediaID()), AppGlobals.user, AppGlobals.userType);
+                        RemoveBookmark removeRequest2 = (RemoveBookmark) new RemoveBookmark((MainActivity) parent.getContext(), v).execute(Integer.toString(viewHolder.get_mediaID()), AppGlobals.user, AppGlobals.userType);
                         notifyDataSetChanged(); //USED TO NOTIFY ADAPTER, MAY NOT BE NEEDED INSIDE ADAPTER CLASS
-                    }});
+                    }
+                });
                 adb.show();
             }
         });

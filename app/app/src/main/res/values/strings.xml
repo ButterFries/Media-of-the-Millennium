@@ -1,7 +1,7 @@
 <resources>
     <!-- Global -->
     <!-- For debugging purposes change server_address to your computer's IPv4 Address -->
-    <!-- string name="server_address">138.51.157.202</string -->
+    <!-- string name="server_address">ipv4</string -->
     <string name="server_address">192.168.0.114</string>
     <string name="server_port">8080</string>
 
@@ -34,8 +34,9 @@
     <string name="tags">tags</string>
     <string name="rate">rate</string>
     <string name="review">review</string>
-    <string name="add_to_favorites">add to favorites</string>
+    <string name="favorite">Favorite</string>
     <string name="media_image" />
+    <string name="bookmark">Bookmark</string>
 
     <!-- Media Reviews Page -->
     <string name="AddReview">Add Review</string>
@@ -60,10 +61,10 @@
     <string name="delete_favorite_button">delete_favorite_button</string>
     <string name="user">User</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Single favorite/bookmark layout entry -->
     <string name="x">X</string>
     <string name="view">View</string>
+
 
 
 </resources>

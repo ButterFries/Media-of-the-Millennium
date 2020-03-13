@@ -6,8 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+
+import com.developersOfTheMillennium.motm.utils.GetPicture;
 
 //import com.example.motm.R;  //TODO?
 
@@ -19,8 +23,20 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.media_profile_page_fragment, container, false);
 
-
         View rootView = inflater.inflate(R.layout.media_profile_page_fragment, container, false);
+
+        //Picture setting
+
+        Bundle args = getArguments();
+        int mediaID = args.getInt("mediaID", 0);
+        System.out.println("MEDIA IDbrul: " + mediaID);
+        //final ImageView picture = rootView.findViewById(R.id.imageView2);
+        //try {
+        //    getPicture(Integer.toString(mediaID), picture);
+        //} catch (Exception e) {
+            //catch but never happens because getPicture never throws exception? might need to fix?
+        //    picture.setImageResource(R.drawable.ic_cinema);
+        //}
 
         // Review Button
         final Button reviewBtn = rootView.findViewById(R.id.reviewButton);
@@ -56,6 +72,14 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         transaction.replace(R.id.fragment_view, someFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void getPicture(String mediaId, ImageView imgView) throws Exception{
+        try {
+            GetPicture pic = (GetPicture) new GetPicture((MainActivity) getActivity()).execute(mediaId, imgView);
+        } catch (Exception e) {
+            throw new Exception("(getPicture) -- something went wrong when retrieving picture");
+        }
     }
 
 }

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +31,8 @@ import jp.wasabeef.picasso.transformations.MaskTransformation;
 
 public class MoviePageFragment extends Fragment implements View.OnClickListener {
 
+    private static MainActivity activity;
+
     @Override
     public View onCreateView(LayoutInflater in, ViewGroup container, Bundle savedInstance){
 
@@ -39,8 +42,9 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener 
         View v = in.inflate(R.layout.activity_movies, container, false);
 
         final ImageButton Trending1 = v.findViewById(R.id.Trending1);
+        Trending1.setTag(2);
         try {
-            getPicture("4", Trending1);
+            //getPicture("2", Trending1);
         } catch (Exception e) {
             //catch but never happens because getPicture never throws exception? might need to fix?
             Trending1.setImageResource(R.drawable.ic_cinema);
@@ -69,6 +73,7 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener 
 
         final ImageButton Trending2 = v.findViewById(R.id.Trending2);
         Trending2.setOnClickListener(this);
+        Trending2.setTag(3);
         try {
             getPicture("3", Trending2);
         } catch (Exception e) {
@@ -247,9 +252,28 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         //Take to the Proper Review
         //MIGHT NEED TO ADD CASE SWITCH FOR EACH BUTTON CREATE FRAG DEPENDING ON WHAT ITS ID IS
-        //Integer id = v.getId();
+        Object id = v.getTag();
+        System.out.println("ID OF BUTTON : " + id);
+        Bundle args = new Bundle();
+        args.putInt("mediaID", (Integer) id);
         MediaProfilePageFragment Frag = new MediaProfilePageFragment();
+        Frag.setArguments(args);
         ((MainActivity)getActivity()).replaceFragment(Frag);
+        //Fragment fragment = new MediaProfilePageFragment();
+        //fragment.setArguments(args);
+        //replaceFragment(fragment);
+    }
+
+    public void replaceFragment(Fragment someFragment) {
+        //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        //androidx.fragment.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        //transaction.replace(R.id.fragment_view, someFragment);
+        //transaction.addToBackStack(null);
+        //transaction.addToBackStack(someFragment.toString());
+        //transaction.commit();
+        MediaProfilePageFragment mediaProfilePageFragment = (MediaProfilePageFragment) someFragment;
+        activity.replaceFragment(mediaProfilePageFragment);
     }
 
     private void getPicture(String mediaId, ImageButton imgButton) throws Exception{

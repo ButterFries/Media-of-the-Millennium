@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.MainActivity;
@@ -39,12 +40,18 @@ public class GetPicture extends AsyncTask<Object, ImageButton, Boolean> {
     @Override
     protected Boolean doInBackground(Object...params) {
         String mediaID = (String) params[0];
-        ImageButton image = (ImageButton) params[1];
-        return getPic(mediaID, image);
+        //try {
+        //    ImageButton image = (ImageButton) params[1];
+        //    return getPic(mediaID, image);
+        //} catch (ClassCastException e) {
+            ImageView image = (ImageView) params[1];
+            return getPic(mediaID, image);
+        //}
+
     }
 
-    private Boolean getPic(String mediaId, ImageButton btn) {
-
+    //private Boolean getPic(String mediaId, ImageButton btn) {
+    private Boolean getPic(String mediaId, ImageView btn) {
         //Picture
         JSONObject data = new JSONObject();
         byte[] image = null;
@@ -61,7 +68,9 @@ public class GetPicture extends AsyncTask<Object, ImageButton, Boolean> {
             //byte[] byteArray = rtn;
             //Picasso.get().load(rtn).fit().centerCrop().into(btn);
             Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getWidth(), btn.getHeight(), false));
+            System.out.println("WIDTH: " + btn.getWidth() + "HEIGHT : " + btn.getHeight());
+            btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false));
+
             return true;
             //if (error_code == 0) {
                 //AppGlobals.userType = "email";

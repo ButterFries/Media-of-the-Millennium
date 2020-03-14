@@ -30,13 +30,15 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         Bundle args = getArguments();
         int mediaID = args.getInt("mediaID", 0);
         System.out.println("MEDIA IDbrul: " + mediaID);
-        //final ImageView picture = rootView.findViewById(R.id.imageView2);
-        //try {
-        //    getPicture(Integer.toString(mediaID), picture);
-        //} catch (Exception e) {
+        final ImageView image = rootView.findViewById(R.id.imageView2);
+        try {
+            //get info should be first
+            //getInfo(Integer.toString(mediaID));
+            getPicture(Integer.toString(mediaID), image);
+        } catch (Exception e) {
             //catch but never happens because getPicture never throws exception? might need to fix?
         //    picture.setImageResource(R.drawable.ic_cinema);
-        //}
+        }
 
         // Review Button
         final Button reviewBtn = rootView.findViewById(R.id.reviewButton);

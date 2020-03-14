@@ -44,7 +44,7 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener 
         final ImageButton Trending1 = v.findViewById(R.id.Trending1);
         Trending1.setTag(2);
         try {
-            //getPicture("2", Trending1);
+            getPicture("2", Trending1);
         } catch (Exception e) {
             //catch but never happens because getPicture never throws exception? might need to fix?
             Trending1.setImageResource(R.drawable.ic_cinema);

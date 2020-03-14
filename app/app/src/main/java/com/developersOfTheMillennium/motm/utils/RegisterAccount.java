@@ -18,6 +18,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.os.SystemClock.sleep;
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
 public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
@@ -42,6 +43,9 @@ public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
 
     private boolean register(String username, String email, String password) {
 
+        //Loading Spinner On
+        activity.enableLoadingAnimation();
+
         JSONObject data = new JSONObject();
 
         try {
@@ -60,12 +64,17 @@ public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
                 Log.i("global user type",AppGlobals.userType);
                 Log.i("global username/email",AppGlobals.user);
                 Log.i("global session token",AppGlobals.session);
+
+                //Loading Spinner Off
+                activity.disableLoadingAnimation();
                 return true;
             }
         } catch (Exception e) {
             Log.e("ERROR Login", "JSON Parsing: " + e);
         }
 
+        //Loading Spinner Off
+        activity.disableLoadingAnimation();
         return false;
     }
 

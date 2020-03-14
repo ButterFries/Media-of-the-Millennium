@@ -3,6 +3,9 @@ package com.developersOfTheMillennium.motm.utils;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.os.SystemClock.*;
 
 import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.HomePageFragment;
@@ -19,6 +22,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.os.SystemClock.sleep;
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
 public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
@@ -42,6 +46,9 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
     private boolean login(String usernameEmail, String password) {
 
+        //Loading Spinner On
+        activity.enableLoadingAnimation();
+
         //Email
         JSONObject data = new JSONObject();
 
@@ -62,6 +69,9 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
                 Log.i("global user type",AppGlobals.userType);
                 Log.i("global username/email",AppGlobals.user);
                 Log.i("global session token",AppGlobals.session);
+
+                //Loading Spinner Off
+                activity.disableLoadingAnimation();
                 return true;
             }
         } catch (Exception e) {
@@ -88,11 +98,18 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
                 Log.i("global user type",AppGlobals.userType);
                 Log.i("global username/email",AppGlobals.user);
                 Log.i("global session token",AppGlobals.session);
+
+                //Loading Spinner Off
+                activity.disableLoadingAnimation();
                 return true;
+
             }
         } catch (Exception e) {
             Log.e("ERROR Login", "JSON Parsing");
         }
+
+        //Loading Spinner Off
+        activity.disableLoadingAnimation();
 
         return false;
     }

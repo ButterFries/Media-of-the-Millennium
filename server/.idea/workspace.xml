@@ -2,6 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8066ba94-c694-4b67-8e67-de63a1d0da82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/BookmarksAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/Bookmarks/AddBookmark.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/Bookmarks/DisplayBookmarks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/Bookmarks/RemoveBookmark.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/motm/servlets/getBookmarks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/BookmarksFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/BookmarksFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/FavoritesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/FavoritesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/FavouritesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/FavouritesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/MediaProfilePageFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/MediaProfilePageFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/UserProfilePageFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/UserProfilePageFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/AddFavorite.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/Favorites/AddFavorite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/DisplayFavorites.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/Favorites/DisplayFavorites.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/RemoveFavorite.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/java/com/developersOfTheMillennium/motm/utils/Favorites/RemoveFavorite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/res/layout/favourites_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/res/layout/favourites_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/res/layout/fragment_bookmarks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/res/layout/fragment_bookmarks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/res/layout/media_profile_page_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/res/layout/media_profile_page_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/res/raw/motm_cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/res/raw/motm_cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/motm_cert.crt" beforeDir="false" afterPath="$PROJECT_DIR$/motm_cert.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/motm_cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/motm_cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/motm_key.jks" beforeDir="false" afterPath="$PROJECT_DIR$/motm_key.jks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$MediaProfilePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$MediaProfilePage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaRatingInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaRatingInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaReviewInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaReviewInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaType.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase$mediaType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/motm/database/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/motm/database/AppDatabase.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

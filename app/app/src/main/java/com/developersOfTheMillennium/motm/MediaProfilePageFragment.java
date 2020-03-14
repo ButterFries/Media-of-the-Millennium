@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.developersOfTheMillennium.motm.utils.Bookmarks.AddBookmark;
+import com.developersOfTheMillennium.motm.utils.Favorites.AddFavorite;
+
 import androidx.fragment.app.Fragment;
 
 //import com.example.motm.R;  //TODO?
@@ -26,6 +29,16 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         final Button reviewBtn = rootView.findViewById(R.id.reviewButton);
         reviewBtn.setOnClickListener(this);
 
+        //Add to favorites
+        final Button addFavoritesBtn = rootView.findViewById(R.id.addToFavorites);
+        addFavoritesBtn.setOnClickListener(this);
+
+        //Add to bookmarks
+//        final Button addBookmarksBtn = rootView.findViewById(R.id.addToBookmarks);
+//        addBookmarksBtn.setOnClickListener(this);
+
+
+
         // Rating Bar and rating button
         //final RatingBar ratingBar = rootView.findViewById(R.id.ratingBar);
         //Button ratingButton = rootView.findViewById(R.id.ratingButton);
@@ -44,10 +57,16 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
                 fragment = new ReviewsFragment();
                 replaceFragment(fragment);
                 break;
-            //case R.id.ratingBar:
-                //ratingScore = ratingBar.getRating();
-                //String rating = "Rating is :" + ratingBar.getRating();
-
+            case R.id.addToFavorites:
+                //TODO: CHANGE MEDIAID (1)
+                //Media ID / account Info / accountType
+                AddFavorite addRequest = (AddFavorite) new AddFavorite((MainActivity) getActivity(), view).execute("1", AppGlobals.user, AppGlobals.userType);
+                break;
+//            case R.id.addToBookmarks:
+//                //TODO: CHANGE MEDIAID (1)
+//                //Media ID / account Info / accountType
+//                AddBookmark addRequest2 = (AddBookmark) new AddBookmark((MainActivity) getActivity(), view).execute("1", AppGlobals.user, AppGlobals.userType);
+//                break;
         }
     }
     public void replaceFragment(Fragment someFragment) {

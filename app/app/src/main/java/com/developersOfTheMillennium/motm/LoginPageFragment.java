@@ -89,7 +89,7 @@ public class LoginPageFragment extends Fragment {
 
     }
 
-    private void login(String usernameEmail, String password){
+    private void login(String usernameEmail, String password) {
         ValidateAccount loginRequest = (ValidateAccount) new ValidateAccount((MainActivity) getActivity()).execute(usernameEmail, password);
     }
 }

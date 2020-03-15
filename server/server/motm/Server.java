@@ -140,6 +140,11 @@ public class Server
         httpsServer.createContext("/registerAccount", new registerAccount(db, sm));
         httpsServer.createContext("/validateAccount", new validateAccount(db, sm));
         httpsServer.createContext("/getMediaProfile", new getMediaProfile(db, sm));
+        httpsServer.createContext("/getFavorites", new getFavorites(db, sm));
+        httpsServer.createContext("/getBookmarks", new getBookmarks(db, sm));
+
+        httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
+        httpsServer.createContext("/getPicture", new getPicture(db, sm));
         //httpsServer.createContext("/x", new x(db, sm));
 
 

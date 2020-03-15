@@ -230,19 +230,19 @@ _• Additionally, all stories in PB.md, need be recorded on Jira._
 **Cost-of-Delay** :  3  
 **Priority** :  3  
   
-- **Description** :  x  
-**Difficulty** :  x  
-**Value** :  x  
-**Return-on-Investment** :  (Value / Difficulty) = x  
-**Cost-of-Delay** :  x  
-**Priority** :  x  
+- **Description** :  As a user I would like to have pages dedicated to Artist info  
+**Difficulty** :  2  
+**Value** :  2  
+**Return-on-Investment** :  (Value / Difficulty) = 1  
+**Cost-of-Delay** :  1  
+**Priority** :  1  
   
-- **Description** :  x  
-**Difficulty** :  x  
-**Value** :  x  
-**Return-on-Investment** :  (Value / Difficulty) = x  
-**Cost-of-Delay** :  x  
-**Priority** :  x  
+- **Description** :  As a user I would like to have a searching function so that I can find media titles that match some string  
+**Difficulty** :  3  
+**Value** :  5  
+**Return-on-Investment** :  (Value / Difficulty) = 1.67  
+**Cost-of-Delay** :  3  
+**Priority** :  3  
   
 - **Description** :  x  
 **Difficulty** :  x  

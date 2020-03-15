@@ -1,4 +1,4 @@
-https://www.sqlitetutorial.net/sqlite-java/
+https://www.sqlitet utorial.net/sqlite-java/
 https://www.sqlite.org/download.html
 	--run binary file with `./sqlite3 database.db` or equivalent command to exec from commandline
 	--on ubuntu64 the binary for 32 might not work, just `sudo apt-get install sqlite3` and use `sqlite3 database.db`

@@ -148,10 +148,5 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
         Bitmap bmp = (Bitmap) rtn[0];
         ImageView btn = (ImageView) rtn[1];
         btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false));
-
-        //Glide.with(activity).load("https://www.bigstockphoto.com/images/homepage/module-6.jpg").centerInside().error(R.drawable.ic_cinema).into(btn);
-        //} else {
-        //    throw new Exception("(handleReq) -- something went wrong when sending response");
-        //}
     }
 }

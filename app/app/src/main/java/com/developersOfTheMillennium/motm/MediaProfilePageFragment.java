@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.developersOfTheMillennium.motm.utils.GetMediaProfile;
 import com.developersOfTheMillennium.motm.utils.GetPicture;
+
+import org.w3c.dom.Text;
 
 //import com.example.motm.R;  //TODO?
 
@@ -31,9 +35,13 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         int mediaID = args.getInt("mediaID", 0);
         System.out.println("MEDIA IDbrul: " + mediaID);
         final ImageView image = rootView.findViewById(R.id.imageView2);
+        final TextView title = rootView.findViewById(R.id.textView);
+        final TextView tags = rootView.findViewById(R.id.textView5);
+        final TextView summary = rootView.findViewById(R.id.textView6);
+
         try {
             //get info should be first
-            //getInfo(Integer.toString(mediaID));
+            getMediaProfile(Integer.toString(mediaID), image, title, tags, summary);
             getPicture(Integer.toString(mediaID), image);
         } catch (Exception e) {
             //catch but never happens because getPicture never throws exception? might need to fix?
@@ -74,6 +82,14 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         transaction.replace(R.id.fragment_view, someFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void getMediaProfile(String mediaId, ImageView imgView, TextView titleView, TextView tagsView, TextView summaryView) throws Exception{
+        try {
+            GetMediaProfile mediaInfo = (GetMediaProfile) new GetMediaProfile((MainActivity) getActivity()).execute(mediaId, imgView, titleView, tagsView, summaryView);
+        } catch (Exception e) {
+            throw new Exception("(getMediaProfile) -- something went wrong when retrieving media profile");
+        }
     }
 
     private void getPicture(String mediaId, ImageView imgView) throws Exception{

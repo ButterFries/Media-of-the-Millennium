@@ -68,22 +68,21 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
             byte[] rtn = postRequest("getPicture", data);
             //String rtn = postRequest("getPicture", data);
             byte[] byteArray = rtn;
-            //int error_code = rtn.getInt("error_code");
-            //String session_token = rtn.getString("session_token");
-            //String imageStr = rtn.getString("image");
-            //System.out.println(imageStr);
-            //byte[] byteArray = rtn;
-            //Picasso.get().load(rtn).fit().centerCrop().into(btn);
-            Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            System.out.println("WIDTH: " + btn.getWidth() + "HEIGHT : " + btn.getHeight());
-            Bitmap bm = Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false);
+            Bitmap bmp = null;
+            if(byteArray != null) {
+                //int error_code = rtn.getInt("error_code");
+                //String session_token = rtn.getString("session_token");
+                bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                System.out.println("WIDTH: " + btn.getWidth() + "HEIGHT : " + btn.getHeight());
+            }
+            //Bitmap bm = Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false);
             //Picasso.get().load("https://m.media-amazon.com/images/M/MV5BZTliNWJhM2YtNDc1MC00YTk1LWE2MGYtZmE4M2Y5ODdlNzQzXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg").fit().centerCrop().transform(new CropSquareTransformation()).into(btn);
             //Glide.with(context).load("https://www.bigstockphoto.com/images/homepage/module-6.jpg").centerInside().error(R.drawable.ic_cinema).into(btn);
             //btn.setImageBitmap(bm);
             //btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false));
             //btn.set(R.drawable.ic_cinema);
             Object[] fin = new Object[2];
-            fin[0] = bm;
+            fin[0] = bmp;
             fin[1] = btn;
             return fin;
             //return true;
@@ -147,6 +146,10 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
         // in this case, "result" would contain the "someLong" variable returned by doInBackground();
         Bitmap bmp = (Bitmap) rtn[0];
         ImageView btn = (ImageView) rtn[1];
+        if(bmp == null) {
+            btn.setImageResource(R.drawable.ic_cinema);
+            return;
+        }
         btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false));
     }
 }

@@ -1,12 +1,22 @@
 package com.developersOfTheMillennium.motm;
 
+import android.graphics.Movie;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+
+import com.developersOfTheMillennium.motm.utils.GetMediaIDs;
+import com.developersOfTheMillennium.motm.utils.GetPicture;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class NewMediaPageFragment extends Fragment implements View.OnClickListener {
 
@@ -16,29 +26,47 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
         //BUTTON/IMG BUTTON
         View v = in.inflate(R.layout.activity_new_media, container, false);
 
+        ImageButton[] movieButtons = new ImageButton[10];
         final ImageButton Movies1 = v.findViewById(R.id.Movies1);
-        Movies1.setOnClickListener(this);
+        Movies1.setOnClickListener(this);movieButtons[0] = Movies1;
         final ImageButton Movies2 = v.findViewById(R.id.Movies2);
-        Movies2.setOnClickListener(this);
+        Movies2.setOnClickListener(this);movieButtons[1] = Movies2;
         final ImageButton Movies3 = v.findViewById(R.id.Movies3);
-        Movies3.setOnClickListener(this);
+        Movies3.setOnClickListener(this);movieButtons[2] = Movies3;
         final ImageButton Movies4 = v.findViewById(R.id.Movies4);
-        Movies4.setOnClickListener(this);
+        Movies4.setOnClickListener(this);movieButtons[3] = Movies4;
         final ImageButton Movies5 = v.findViewById(R.id.Movies5);
-        Movies5.setOnClickListener(this);
+        Movies5.setOnClickListener(this);movieButtons[4] = Movies5;
         final ImageButton Movies6 = v.findViewById(R.id.Movies6);
-        Movies6.setOnClickListener(this);
+        Movies6.setOnClickListener(this);movieButtons[5] = Movies6;
         final ImageButton Movies7 = v.findViewById(R.id.Movies7);
-        Movies7.setOnClickListener(this);
+        Movies7.setOnClickListener(this);movieButtons[6] = Movies7;
         final ImageButton Movies8 = v.findViewById(R.id.Movies8);
-        Movies8.setOnClickListener(this);
+        Movies8.setOnClickListener(this);movieButtons[7] = Movies8;
         final ImageButton Movies9 = v.findViewById(R.id.Movies9);
-        Movies9.setOnClickListener(this);
+        Movies9.setOnClickListener(this);movieButtons[8] = Movies9;
         final ImageButton Movies10 = v.findViewById(R.id.Movies10);
-        Movies10.setOnClickListener(this);
+        Movies10.setOnClickListener(this);movieButtons[9] = Movies10;
         //END OF Movies
-        //EXPAND LATER? CHANGE THE MEDIAFRAG
 
+        //Retrieve mediaIds
+        JSONArray cinemaArray = null;
+        try {
+            cinemaArray = getMediaIDs("cinema");
+            System.out.println("OVER HERE" + cinemaArray);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //iterate through the list then start setting tags and getpicture
+        for(int i=0; i < cinemaArray.length(); i++) {
+            try {
+                Integer mediaID = (Integer) cinemaArray.get(i);
+                movieButtons[i].setTag(mediaID);
+                getPicture(Integer.toString(mediaID), movieButtons[i]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         //TVShows START
         final ImageButton TVShows1 = v.findViewById(R.id.TVShows1);
         TVShows1.setOnClickListener(this);
@@ -142,8 +170,29 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         //Take to the Proper Review
         //MIGHT NEED TO ADD CASE SWITCH FOR EACH BUTTON CREATE FRAG DEPENDING ON WHAT ITS ID IS
-        //Integer id = v.getId();
+        Object id = v.getTag();
+        Bundle args = new Bundle();
+        args.putInt("mediaID", (Integer) id);
         MediaProfilePageFragment Frag = new MediaProfilePageFragment();
+        Frag.setArguments(args);
         ((MainActivity)getActivity()).replaceFragment(Frag);
+    }
+
+    private JSONArray getMediaIDs(String mediaType) throws Exception{
+        try {
+            JSONObject result = new GetMediaIDs((MainActivity) getActivity()).execute(mediaType).get();
+            return result.getJSONArray("New Media");
+            //GetMediaIDs IDs = (GetMediaIDs) new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, array).get();
+        } catch (Exception e) {
+            throw new Exception("(getMediaIDs) -- something went wrong when retrieving mediaIDs");
+        }
+    }
+
+    private void getPicture(String mediaId, ImageButton imgButton) throws Exception{
+        try {
+            GetPicture pic = (GetPicture) new GetPicture((MainActivity) getActivity()).execute(mediaId, imgButton);
+        } catch (Exception e) {
+            throw new Exception("(getPicture) -- something went wrong when retrieving picture");
+        }
     }
 }

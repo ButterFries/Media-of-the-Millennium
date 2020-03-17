@@ -77,6 +77,10 @@ public class getMediaProfile implements HttpHandler
             System.out.println("--client send mediaID: "+mediaID);
             JSONObject profile = null;
             try{
+                if ( !db.mediaExists(conn, mediaID) ){
+                    response_no_media(r, responseJSON, mediaID);
+                    return;
+                }
                 responseJSON = db.get_all_media_Info(conn, mediaID);
             } catch (SQLDataException data_ex){ 
                 System.out.println("#  ERROR ::  "+ data_ex);
@@ -84,16 +88,6 @@ public class getMediaProfile implements HttpHandler
                 responseJSON.put("error_description", "critical error:  database is missing data; profile cannot be fetched");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(500, response.length());
-                OutputStream os = rs.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                return;
-            } catch (SQLException sql_ex){
-                System.out.println("#  ERROR ::  "+ sql_ex);
-                responseJSON.put("error_code", 1);
-                responseJSON.put("error_description", "invalid mediaID");
-                String response = responseJSON.toString() + "\n";
-                rs.sendResponseHeaders(404, response.length());
                 OutputStream os = rs.getResponseBody();
                 os.write(response.getBytes());
                 os.close();
@@ -122,5 +116,18 @@ public class getMediaProfile implements HttpHandler
         else {
             rs.sendResponseHeaders(400, -1);
         }        
+    }
+
+    private void response_no_media(HttpExchange r, JSONObject responseJSON, int mediaID) throws Exception {
+        System.out.println("----mediaID ["+mediaID+"] doesn't exist");
+        responseJSON.put("error_code", 1);
+        responseJSON.put("error_description", "invalid mediaID");
+        String response = responseJSON.toString() + "\n";
+        r.sendResponseHeaders(404, response.length());
+        OutputStream os = r.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+        System.out.println("--responese :   "+response.trim());
+        System.out.println("--request fufilled");
     }
 }

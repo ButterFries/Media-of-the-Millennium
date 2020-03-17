@@ -634,6 +634,24 @@ public class AppDatabase {
         }
     }
 
+/*
+     * Checks if mediaID exists in 'mediaTitles' table, returns true if it does exist.
+     */
+    public boolean mediaExists(Connection conn, int mediaId) throws SQLException {
+        Statement stmt = conn.createStatement();
+        String sqlReq = "SELECT (count(*) > 0) FROM mediaTitles WHERE mediaID = \"" + mediaId + "\"";
+        try {
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if (rs.next()) {
+                return rs.getBoolean(1);
+            } else {
+                throw new SQLException("Failed to fetch query on existence of 'mediaID' from 'mediaTitles' table");
+            }
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when executing query on existence of 'mediaID' from 'mediaTitles' table :  " + ex);
+        }
+    }
+
     public byte[] getByteArrayImage(String img) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		InputStream is = null;

@@ -53,8 +53,8 @@ public class mediaTitleSearch implements HttpHandler
         System.out.println("\n-Received request [mediaTitleSearch]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
-            if (r.getRequestMethod().equals("PUT")) {
-                System.out.println("--request type: PUT");
+            if (r.getRequestMethod().equals("POST")) {
+                System.out.println("--request type: POST (GET)");
                 handleReq(r, conn);
             }
             else {

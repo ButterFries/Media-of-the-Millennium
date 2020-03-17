@@ -955,8 +955,10 @@ public class AppDatabase {
             }
             if (ids.isEmpty())
                 throw new SQLException("No matches using rating");
-            else
+            else {
+                System.out.println(ids);
                 return ids;
+            }
         } catch (SQLException ex) {
             throw new SQLException("Error while fetching mediaIDs using rating:  " + ex);
         }
@@ -1440,4 +1442,3 @@ public class AppDatabase {
     }
 
 }
-

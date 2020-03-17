@@ -570,54 +570,7 @@ public class AppDatabase {
     else if mediaType.videogame then "videogame"
     else if mediaType.novel then "novel"
      */
-
-    public static class MediaProfilePage {
-        private int mediaID;         //unique integer id, PRIMARY KEY
-        private String title;        //the title/name of the movie/music/game/etc
-        private String mediaType;    //type of media;  {'cinema', 'music', 'tv-series', 'video game', 'novel'}
-        private String summary = "";      //string of words
-        //private ArrayList<String> tags = new ArrayList<String>(); //list of tags (strings) associated to title, contents are different based on mediaType DEV-60
-        private String genres = "";
-        private String tags = "";
-        private String links = "";
-
-        //private String genres;
-        //private String tags;
-        private String image;         //string url to picture
-
-        public MediaProfilePage(int ID, String t, String mt, String s, String g, String tag, String l, String img) {
-            this.mediaID = ID;
-            this.title = t;
-            this.mediaType = mt;
-            this.summary = s;
-            this.genres = g;
-            this.tags = tag;
-            this.links = l;
-            this.image = img;
-        }
-
-        public int get_mediaID() {
-            return this.mediaID;
-        }
-
-        public String get_title() {
-            return this.title;
-        }
-
-        public String get_mediaType() {
-            return this.mediaType;
-        }
-
-        public String get_summary() {
-            return this.summary;
-        }
-        public String get_genres() {
-            return this.genres;
-        }
-        public String get_tags() { return this.tags; }
-        public String get_links() { return this.links; }
-        public String get_image() {return this.image; }
-    }
+ 
 
     /*
      * Adds the media title to the database (careful duplicates are possible!)
@@ -747,6 +700,7 @@ public class AppDatabase {
 			
     }
 
+
     /*
      * Get the media info for that title, including the common info and the type specific info.
      * Returns the info as a JSON object.
@@ -806,35 +760,29 @@ public class AppDatabase {
         return json;
     }
 
+ 
+
+
+
     /**
-     * (DEPREC) -- use  `get_all_media_Info`  instead
-     * <p>
-     * Retrieves media title information of specified mediaID
-     * RETURN: MediaProfilePage object with title information
+     * Returns a list of n (default 50) randomly chosen mediaIDs that contain the search string in its title.
      */
+    public ArrayList<Integer> get_mediaIDs_by_search(Connection conn, String search_query, int n) throws SQLException {
 
-    // public MediaProfilePage get_mediaProfilePage(Connection conn, int mediaID) throws SQLException {
-    //     String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID = \"" + mediaID + "\"";
-    //     try {
-    //         Statement stmt = conn.createStatement();
-    //         ResultSet rs = stmt.executeQuery(sqlReq);
-    //         if (rs.next()) { //found something
-    //             //String mg = rs.getString("genres");
-    //             //String [] media_genres = mg.split(","); //place each genre into a list
-    //             //String tg = rs.getString("tags");
-    //             //String [] media_tags = tg.split(",");
-    //             return new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"),
-    //                     rs.getString("mediaType"), rs.getString("summary"), rs.getString("genres"), rs.getString("tags"), rs.getString("pictureUrl"));
-
-    //         } else { //didnt find
-    //             throw new SQLException("No ID found");
-    //         }
-    //     } catch (SQLException ex) {
-    //         throw new SQLException("Error while fetching MPP data");
-    //     }
-    // }
-
-
+        if (n < 1) n = 1;
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE title LIKE \"%" + search_query + "%\" COLLATE NOCASE ORDER BY RANDOM() LIMIT " + n + "";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while searching matching media titles using query string [" + search_query + "] :  " + ex);
+        }
+    }
 
 
     /**
@@ -886,35 +834,7 @@ public class AppDatabase {
             throw new SQLException("Error while fetching mediaIDs using mediaType [" + mediaType + "] :  " + ex);
         }
     }
-
-    /**
-     * Returns a list of n randomly chosen MediaProfilePage objects that have the associated mediaType
-     * from all available objects with the mediaType
-     */
-    public ArrayList<MediaProfilePage> get_mediaProfilePages_by_type(Connection conn, String mediaType, int n) throws SQLException {
-        if (n < 1) n = 1;
-        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID IN (SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY RANDOM() LIMIT " + n + ")";
-        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            while (rs.next()) { //found something
-
-                //String mg = rs.getString("genres");
-                //String media_genres = mg.split(","); //place each genre into a list
-                //String tg = rs.getString("tags");
-                //String [] media_tags = tg.split(",");
-                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"), rs.getString("mediaType"), rs.getString("summary"), rs.getString("genres"), rs.getString("tags"), rs.getString("links"), rs.getString("image"));
-                pages.add(m);
-            }
-            if (pages.isEmpty())
-                throw new SQLException("No matches for mediaType [" + mediaType + "]");
-            else
-                return pages;
-        } catch (SQLException ex) {
-            throw new SQLException("Error while fetching MPPs using mediaType [" + mediaType + "] :  " + ex);
-        }
-    }
+ 
 
 
     /**
@@ -964,38 +884,7 @@ public class AppDatabase {
         } catch (SQLException ex) {
             throw new SQLException("Error while fetching mediaIDs using genre [" + genre + "] :  " + ex);
         }
-    }
-
-    /**
-     * Returns a list of n random MediaProfilePage objects that have the associated GENRE within its DB entry
-     */
-    public ArrayList<MediaProfilePage> get_MediaProfilePages_by_genre(Connection conn, String genre, int n) throws SQLException {
-        if (n < 1) n = 1;
-        //String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
-        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
-        String sqlReq = "SELECT * FROM mediaTitles WHERE mediaID IN (SELECT mediaID FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\" ORDER BY RANDOM() LIMIT " + n + ")";
-        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            while (rs.next()) { //found something
-
-                //String mg = rs.getString("genres");
-                //String tg = rs.getString("tags");
-                //String [] media_tags = tg.split(",");
-                //String media_genres = mg.split(","); //place each genre into a list
-                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"), rs.getString("mediaType"), rs.getString("summary"), rs.getString("genres"), rs.getString("tags"), rs.getString("links"), rs.getString("image"));
-
-                pages.add(m);
-            }
-            if (pages.isEmpty())
-                throw new SQLException("No matches for genre [" + genre + "]");
-            else
-                return pages;
-        } catch (SQLException ex) {
-            throw new SQLException("Error while fetching MPPs using genre [" + genre + "] :  " + ex);
-        }
-    }
+    } 
 
 
     /**
@@ -1047,34 +936,6 @@ public class AppDatabase {
         }
     }
 
-    /**
-     * Returns a list of n random MediaProfilePage objects that have the associated TAG within its DB entry
-     */
-    public ArrayList<MediaProfilePage> get_MediaProfilePages_by_tag(Connection conn, String tag, int n) throws SQLException {
-        //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
-        String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
-        ArrayList<MediaProfilePage> pages = new ArrayList<MediaProfilePage>();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            while (rs.next()) { //found something
-
-                //String mg = rs.getString("genres");
-                //String tg = rs.getString("tags");
-                //String media_genres = mg.split(",");
-                //String [] media_tags = tg.split(",");
-                MediaProfilePage m = new MediaProfilePage(rs.getInt("mediaID"), rs.getString("title"), rs.getString("mediaType"), rs.getString("summary"), rs.getString("genres"), rs.getString("tags"), rs.getString("links"), rs.getString("image"));
-
-                pages.add(m);
-            }
-            if (pages.isEmpty())
-                throw new SQLException("No matches for tag [" + tag + "]");
-            else
-                return pages;
-        } catch (SQLException ex) {
-            throw new SQLException("Error while fetching MPPs using tag [" + tag + "]:  " + ex);
-        }
-    }
 
     /**
      * Returns a list of 10 mediaIDs sorted by mediaID's and ordered in descending order
@@ -1464,24 +1325,26 @@ public class AppDatabase {
         }
     }
 
-
-}
 //==============================================================================
 //###   user media list   ###
 //==============================================================================
 
-public static class userMediaList {
+    public static class userMediaList {
 
-    private int listID;
-    private int userID;
-    private String list_name;
-    private String items;
-    public userMediaList(int listID,int userID,String list_name,String items){
-        this.listID = listID;
-        this.userID = userID;
-        this.list_name =list_name;
-        this.items = items;
+        private int listID;
+        private int userID;
+        private String list_name;
+        private String items;
+        public userMediaList(int listID,int userID,String list_name,String items){
+            this.listID = listID;
+            this.userID = userID;
+            this.list_name =list_name;
+            this.items = items;
+        }
+        //        public float get_rating(){ return this.rating; }
+        //        public int get_raters(){ return this.numRaters; }
     }
+
     public void insert_media_item(Connection conn, int listID,int userID,String list_name,String items) throws SQLException{
         try {
             String sqlReq = "INSERT INTO user_list (listID,userID,list_name,items) VALUES (?,?,?,?)";
@@ -1499,10 +1362,9 @@ public static class userMediaList {
     public void get_media_list(int listID,Connection conn)throws SQLException{
         try {
             JSONArray query = new JSONArray();
-            PreparedStatement pstmt = conn.createStatement();
-            String sqlReq = "SELECT * FROM user_list WHERE listID = ?" ;
-            pstmt.setInt(1,listID);
-            ResultSet rs = pstmt.executeQuery(sqlReq);
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT * FROM user_list WHERE listID = "+listID ;
+            ResultSet rs = stmt.executeQuery(sqlReq);
             if(rs.next()){
                 JSONObject line = new JSONObject();
                 line.put("listID",rs.getString("listID"));
@@ -1510,22 +1372,19 @@ public static class userMediaList {
                 line.put("list_items",rs.getInt("items"));
                 query.put(line);
             }else{
-
                 throw new SQLException("An error occurred when getting the reviews on review  relation");
-
             }
         }catch (SQLException ex) {
-
             throw new SQLException("An error occurred when getting specific review");
         }
     }
+
     public void get_user_lists(int userID,Connection conn)throws SQLException{
         try {
             JSONArray query = new JSONArray();
-            PreparedStatement pstmt = conn.createStatement();
-            String sqlReq = "SELECT * FROM user_list WHERE userID = ?" ;
-            pstmt.setInt(1,userID);
-            ResultSet rs = pstmt.executeQuery(sqlReq);
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT * FROM user_list WHERE userID = "+userID ;
+            ResultSet rs = stmt.executeQuery(sqlReq);
             if(rs.next()){
                 JSONObject line = new JSONObject();
                 line.put("listID",rs.getString("listID"));
@@ -1533,64 +1392,52 @@ public static class userMediaList {
                 line.put("list_items",rs.getInt("items"));
                 query.put(line);
             }else{
-
                 throw new SQLException("An error occurred when getting the reviews on review  relation");
-
             }
         }catch (SQLException ex) {
-
             throw new SQLException("An error occurred when getting specific review");
         }
-    }
-
+    } 
 
     public void delete_item(int listID, String item,Connection conn)throws SQLException{
         try {
             String items= "";
-            PreparedStatement pstmt = conn.createStatement();
-            String sqlReq = "SELECT items FROM user_list WHERE listID = ?" ;
-            pstmt.setInt(1,userID);
-            ResultSet rs = pstmt.executeQuery(sqlReq);
+            Statement stmt = conn.createStatement();
+            String sqlReq = "SELECT items FROM user_list WHERE listID = "+listID ;
+            ResultSet rs = stmt.executeQuery(sqlReq);
             if(rs.next()){
                 items = rs.getString("items");
             }else{
-
                 throw new SQLException("An error occurred when getting the reviews on review  relation");
-
             }
             if(items.contains(item)){
                 String updated_items = items.replace(item,"");
                 try{
-                    PreparedStatement pstmt = conn.createStatement();
-                    String sqlReq = "UPDATE user_list SET items = ?" ;
+                    String sqlReq2 = "UPDATE user_list SET items = ?" ;
+                    PreparedStatement pstmt = conn.prepareStatement(sqlReq2);
                     pstmt.setString(1,updated_items);
-                    ResultSet rs = pstmt.executeQuery(sqlReq);
+                    pstmt.executeUpdate();
                 }catch (SQLException ex){
                     throw new SQLException("An error occurred when deleting specific list item");
                 }
             }else{
                 System.out.println("Error");//will send back a message to the server for the code to interpet what to do with this info.
             }
-
-
-
         }catch (SQLException ex) {
-
             throw new SQLException("An error occurred when getting specific review");
         }
     }
 
     public void delete_list(int listID,Connection conn)throws SQLException{
         try {
-            PreparedStatement pstmt = conn.createStatement();
             String sqlReq = "DELETE * FROM user_list WHERE listID = ?" ;
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setInt(1,listID);
-            pstmt.executeUpdate(sqlReq);
+            pstmt.executeUpdate();
         }catch (SQLException ex) {
-
             throw new SQLException("An error occurred when getting specific review");
         }
     }
-//        public float get_rating(){ return this.rating; }
-//        public int get_raters(){ return this.numRaters; }
+
 }
+

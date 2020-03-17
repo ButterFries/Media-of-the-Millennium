@@ -39,10 +39,11 @@ public class GetMediaIDs extends AsyncTask<Object, JSONArray, JSONObject> {
     @Override
     protected JSONObject doInBackground(Object...params) {
         String mediaType = (String) params[0];
-        return getIds(mediaType);
+        String requestType = (String) params[1];
+        return getIds(mediaType, requestType);
     }
 
-    private JSONObject getIds(String mediaType) {
+    private JSONObject getIds(String mediaType, String requestType) {
         //Picture
         JSONObject data = new JSONObject();
         JSONObject returnJSON = new JSONObject();
@@ -51,8 +52,15 @@ public class GetMediaIDs extends AsyncTask<Object, JSONArray, JSONObject> {
             Log.i("mediaType", mediaType);
 
             //MIGHT NEED TO CHECK SOMETHING ELSE FOR DIFF MEDIA TYPES
-            returnJSON = postRequest("getNewMedia", data);
-
+            switch(requestType) {
+                case "getNewMedia":
+                    returnJSON = postRequest("getNewMedia", data);
+                    break;
+                case "getTopRatedMedia":
+                    returnJSON = postRequest("getTopRatedMedia", data);
+                    break;
+                    //NOT SURE IF WE NEED MORE?
+            }
             //int error_code = rtn.getInt("error_code");
             //String session_token = rtn.getString("session_token");
             return returnJSON;

@@ -1463,9 +1463,67 @@ public class AppDatabase {
             throw new SQLException("An error occurred when getting specific review");
         }
     }
+//==============================================================================
+//###   Reviews   ###
+//==============================================================================
+
+    public static class Report {
+        private int report_ID;
+        private int review_ID;
+        private String report_text;
+
+        public mediaReviewInfo(int reportID, int reviewID, String text) {
+            this.report_ID = reportID;
+            this.review_ID = reviewID;
+            this.report_text = text;
+        }
+
+        public int getReport_ID() {
+            return report_ID;
+        }
+
+        public int getReview_ID() {
+            return review_ID;
+        }
+
+        public String getReport_text() {
+            return report_text;
+        }
+    }
+
+    public void add_report(Connection conn, int reviewID) throws SQLException{
+        try {
+            String sqlReq = "INSERT INTO reports (reviewID) VALUES (?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setInt(1, reviewID);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when adding the user rated on media relation");
+        }
+    }
+
+    public void delete_report(Connection conn, int reportID) throws SQLException{
+        try {
+            String sqlReq = "DELETE FROM reports WHERE reportID = \"" + reportID + "\"";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when deleting a report");
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 }
+
+
 //==============================================================================
 //###   user media list   ###
 //==============================================================================
@@ -1593,4 +1651,30 @@ public static class userMediaList {
     }
 //        public float get_rating(){ return this.rating; }
 //        public int get_raters(){ return this.numRaters; }
+// ==============================================================================
+//###   Reviews   ###
+//==============================================================================
+
+    public static class mediaReviewInfo {
+        private int user_ID;
+        private String username;
+        private String media_ID;
+        private float rating_FID;
+        private float rating;
+        private int review_ID;
+        private String review_text;
+
+        public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text) {
+            this.user_ID = user_ID;
+            this.username = username;
+            this.media_ID = media_ID;
+            this.rating_FID = rating_FID;
+            this.rating = rating;
+            this.review_ID = review_ID;
+            this.review_text = review_text;
+        }
+//        public float get_rating(){ return this.rating; }
+//        public int get_raters(){ return this.numRaters; }
+    }
 }
+

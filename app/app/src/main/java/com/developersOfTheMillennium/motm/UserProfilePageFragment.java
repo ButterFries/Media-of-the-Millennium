@@ -20,8 +20,8 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
         final Button favoritesBtn = rootView.findViewById(R.id.favoritesButton);
         favoritesBtn.setOnClickListener(this);
 
-//        final Button bookmarksBtn = rootView.findViewById(R.id.bookmarksButton);
-//        bookmarksBtn.setOnClickListener(this);
+        final Button bookmarksBtn = rootView.findViewById(R.id.bookmarksButton);
+        bookmarksBtn.setOnClickListener(this);
 
         return rootView;
     }
@@ -33,7 +33,10 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
                 fragment = new FavoritesFragment();
                 replaceFragment(fragment);
                 break;
-//            case R.id.bookmarksButton:
+            case R.id.bookmarksButton:
+                fragment = new TemporaryReportButtonFrag();
+                replaceFragment(fragment);
+                break;
 //                //Log.d("MediaProfileFrag","review button pressed");
 //                fragment = new BookmarksFragment();
 //                replaceFragment(fragment);

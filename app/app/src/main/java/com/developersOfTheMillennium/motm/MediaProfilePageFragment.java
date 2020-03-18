@@ -88,7 +88,8 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
                 //Media ID / account Info / accountType
                 AddFavorite addRequest = (AddFavorite) new AddFavorite((MainActivity) getActivity(), view).execute("1", AppGlobals.user, AppGlobals.userType);
                 break;
-//            case R.id.addToBookmarks:
+           // case R.id.addToBookmarks:
+
 //                //TODO: CHANGE MEDIAID (1)
 //                //Media ID / account Info / accountType
 //                AddBookmark addRequest2 = (AddBookmark) new AddBookmark((MainActivity) getActivity(), view).execute("1", AppGlobals.user, AppGlobals.userType);

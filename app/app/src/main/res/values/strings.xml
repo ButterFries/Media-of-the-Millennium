@@ -65,6 +65,8 @@
     <string name="x">X</string>
     <string name="view">View</string>
 
+    <!-- Report button -->
+    <string name="report">Report</string>
 
 
 </resources>

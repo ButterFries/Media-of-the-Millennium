@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.developersOfTheMillennium.motm.utils.GetMediaIDs;
 import com.developersOfTheMillennium.motm.utils.GetPicture;
@@ -19,7 +21,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NewMediaPageFragment extends Fragment implements View.OnClickListener {
+public class NewMediaPageFragment extends Fragment implements View.OnClickListener, FragmentChangeListener {
+
+    private FragmentManager fragmentManager = getFragmentManager();
 
     @Override
     public View onCreateView(LayoutInflater in, ViewGroup container, Bundle savedInstance){
@@ -60,28 +64,28 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
         movieButtons[9] = Movies10;
         //END OF Movies
 
-        //Retrieve mediaIds
-        JSONArray cinemaArray = null;
-        try {
-            cinemaArray = getMediaIDs("cinema", "getNewMedia");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(cinemaArray != null) {
-            //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < cinemaArray.length(); i++) {
-                try {
-                    Integer mediaID = (Integer) cinemaArray.get(i);
-                    movieButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), movieButtons[i]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-            Log.i("Retrieving media IDs", "--Error");
-        }
+//        //Retrieve mediaIds
+//        JSONArray cinemaArray = null;
+//        try {
+//            cinemaArray = getMediaIDs("cinema", "getNewMedia");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if(cinemaArray != null) {
+//            //iterate through the list then start setting tags and getpicture
+//            for (int i = 0; i < cinemaArray.length(); i++) {
+//                try {
+//                    Integer mediaID = (Integer) cinemaArray.get(i);
+//                    movieButtons[i].setTag(mediaID);
+//                    getPicture(Integer.toString(mediaID), movieButtons[i]);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        } else {
+//            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
+//            Log.i("Retrieving media IDs", "--Error");
+//        }
         //TVShows START
         ImageButton[] tvButtons = new ImageButton[10];
         final ImageButton TVShows1 = v.findViewById(R.id.TVShows1);
@@ -117,27 +121,27 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
         //END OF TVShows
 
         //Retrieve mediaIds
-        JSONArray tvArray = null;
-        try {
-            tvArray = getMediaIDs("tvseries", "getNewMedia");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(tvArray != null) {
-            //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < tvArray.length(); i++) {
-                try {
-                    Integer mediaID = (Integer) tvArray.get(i);
-                    tvButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), tvButtons[i]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-            Log.i("Retrieving media IDs", "--Error");
-        }
+//        JSONArray tvArray = null;
+//        try {
+//            tvArray = getMediaIDs("tvseries", "getNewMedia");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if(tvArray != null) {
+//            //iterate through the list then start setting tags and getpicture
+//            for (int i = 0; i < tvArray.length(); i++) {
+//                try {
+//                    Integer mediaID = (Integer) tvArray.get(i);
+//                    tvButtons[i].setTag(mediaID);
+//                    getPicture(Integer.toString(mediaID), tvButtons[i]);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        } else {
+//            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
+//            Log.i("Retrieving media IDs", "--Error");
+//        }
 
         //Music START
         ImageButton[] musicButtons = new ImageButton[10];
@@ -173,28 +177,28 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
         musicButtons[9] = Music10;
         //END OF Music
 
-        //Retrieve mediaIds
-        JSONArray musicArray = null;
-        try {
-            musicArray = getMediaIDs("music", "getNewMedia");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(musicArray != null) {
-            //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < musicArray.length(); i++) {
-                try {
-                    Integer mediaID = (Integer) musicArray.get(i);
-                    musicButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), musicButtons[i]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-            Log.i("Retrieving media IDs", "--Error");
-        }
+//        //Retrieve mediaIds
+//        JSONArray musicArray = null;
+//        try {
+//            musicArray = getMediaIDs("music", "getNewMedia");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if(musicArray != null) {
+//            //iterate through the list then start setting tags and getpicture
+//            for (int i = 0; i < musicArray.length(); i++) {
+//                try {
+//                    Integer mediaID = (Integer) musicArray.get(i);
+//                    musicButtons[i].setTag(mediaID);
+//                    getPicture(Integer.toString(mediaID), musicButtons[i]);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        } else {
+//            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
+//            Log.i("Retrieving media IDs", "--Error");
+//        }
 
         //START VideoGames
         ImageButton[] videogameButtons = new ImageButton[10];
@@ -230,28 +234,28 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
         videogameButtons[9] = VideoGames10;
         //END OF VideoGames
 
-        //Retrieve mediaIds
-        JSONArray videogameArray = null;
-        try {
-            videogameArray = getMediaIDs("videogame", "getNewMedia");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(videogameArray != null) {
-            //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < videogameArray.length(); i++) {
-                try {
-                    Integer mediaID = (Integer) videogameArray.get(i);
-                    videogameButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), videogameButtons[i]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-            Log.i("Retrieving media IDs", "--Error");
-        }
+//        //Retrieve mediaIds
+//        JSONArray videogameArray = null;
+//        try {
+//            videogameArray = getMediaIDs("videogame", "getNewMedia");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if(videogameArray != null) {
+//            //iterate through the list then start setting tags and getpicture
+//            for (int i = 0; i < videogameArray.length(); i++) {
+//                try {
+//                    Integer mediaID = (Integer) videogameArray.get(i);
+//                    videogameButtons[i].setTag(mediaID);
+//                    getPicture(Integer.toString(mediaID), videogameButtons[i]);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        } else {
+//            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
+//            Log.i("Retrieving media IDs", "--Error");
+//        }
 
         //START Novels
         ImageButton[] novelButtons = new ImageButton[10];
@@ -287,20 +291,54 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
         novelButtons[9] = Novels10;
         //END OF Novels
 
+//        //Retrieve mediaIds
+//        JSONArray novelsArray = null;
+//        try {
+//            novelsArray = getMediaIDs("novel", "getNewMedia");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if(novelsArray != null) {
+//            //iterate through the list then start setting tags and getpicture
+//            for (int i = 0; i < novelsArray.length(); i++) {
+//                try {
+//                    Integer mediaID = (Integer) novelsArray.get(i);
+//                    novelButtons[i].setTag(mediaID);
+//                    getPicture(Integer.toString(mediaID), novelButtons[i]);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        } else {
+//            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
+//            Log.i("Retrieving media IDs", "--Error");
+//        }
+
+        //CHANGE TRENDING
+        retrieveAndDisplay(movieButtons,"cinema", "getNewMedia", "");
+        retrieveAndDisplay(tvButtons,  "tvseries", "getMediaByGenreAndType", "");
+        retrieveAndDisplay(musicButtons,  "music", "getMediaByGenreAndType", "");
+        retrieveAndDisplay(videogameButtons,  "videogame", "getMediaByGenreAndType", "");
+        retrieveAndDisplay(novelButtons, "novel", "getMediaByGenreAndType", "");
+
+        return v;
+    }
+
+    private void retrieveAndDisplay(ImageButton[] genreButtons, String mediaType, String requestType, String genre) {
         //Retrieve mediaIds
-        JSONArray novelsArray = null;
+        JSONArray genreArray = null;
         try {
-            novelsArray = getMediaIDs("novel", "getNewMedia");
+            genreArray = getMediaIDs(mediaType, requestType, genre);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(novelsArray != null) {
+        if(genreArray != null) {
             //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < novelsArray.length(); i++) {
+            for (int i = 0; i < genreArray.length(); i++) {
                 try {
-                    Integer mediaID = (Integer) novelsArray.get(i);
-                    novelButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), novelButtons[i]);
+                    Integer mediaID = (Integer) genreArray.get(i);
+                    genreButtons[i].setTag(mediaID);
+                    getPicture(Integer.toString(mediaID), genreButtons[i]);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -309,8 +347,18 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
             //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
             Log.i("Retrieving media IDs", "--Error");
         }
+    }
 
-        return v;
+    @Override
+    public void replaceFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.add(R.id.fragment_view, fragment);
+        fragmentTransaction.hide(fragment);
+        fragmentTransaction.addToBackStack(fragment.toString());
+        //fragmentTransaction.replace(R.id.fragment_view, fragment, fragment.toString());
+        //fragmentTransaction.addToBackStack(fragment.toString());
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -327,10 +375,10 @@ public class NewMediaPageFragment extends Fragment implements View.OnClickListen
         ((MainActivity)getActivity()).replaceFragment(Frag);
     }
 
-    private JSONArray getMediaIDs(String mediaType, String requestType) throws Exception{
+    private JSONArray getMediaIDs(String mediaType, String requestType, String genre) throws Exception{
         try {
-            JSONObject result = new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, requestType).get();
-            return result.getJSONArray("New Media");
+            JSONObject result = new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, requestType, "").get();
+            return result.getJSONArray("mediaIDs");
             //GetMediaIDs IDs = (GetMediaIDs) new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, array).get();
         } catch (Exception e) {
             throw new Exception("(getMediaIDs) -- something went wrong when retrieving mediaIDs");

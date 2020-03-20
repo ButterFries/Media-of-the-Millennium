@@ -325,8 +325,8 @@ public class TopRatedMediaPageFragment extends Fragment implements View.OnClickL
 
     private JSONArray getMediaIDs(String mediaType, String requestType) throws Exception{
         try {
-            JSONObject result = new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, requestType).get();
-            return result.getJSONArray("Top Rated");
+            JSONObject result = new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, requestType, "").get();
+            return result.getJSONArray("mediaIDs");
             //GetMediaIDs IDs = (GetMediaIDs) new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, array).get();
         } catch (Exception e) {
             throw new Exception("(getMediaIDs) -- something went wrong when retrieving mediaIDs");

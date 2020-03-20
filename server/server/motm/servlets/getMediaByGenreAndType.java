@@ -20,13 +20,13 @@ import java.sql.*;
 
 import com.sun.net.httpserver.HttpsExchange;
 
-public class getNewMedia implements HttpHandler
+public class getMediaByGenreAndType implements HttpHandler
 {
     private static AppDatabase db;
     private static SessionManager sm;
     private static Connection conn = null;
 
-    public getNewMedia(AppDatabase appDB, SessionManager appSM) {
+    public getMediaByGenreAndType(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
         conn = db.connect();
@@ -42,7 +42,7 @@ public class getNewMedia implements HttpHandler
      *      ~~
      */
     public void handle(HttpExchange r) {
-        System.out.println("\n-Received request [getNewMedia]");
+        System.out.println("\n-Received request [getMediaByGenreAndType]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
             if (r.getRequestMethod().equals("POST")) {
@@ -72,16 +72,17 @@ public class getNewMedia implements HttpHandler
         JSONObject responseJSON = new JSONObject();
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("mediaType")){
+        if (requestJSON.has("genre") && requestJSON.has("mediaType")){
+            String genre = requestJSON.getString("genre");
             String mediaType = requestJSON.getString("mediaType");
-            System.out.println("--client send mediaType: "+mediaType);
+            System.out.println("--client send genre , mediaType: "+ genre + ", "+mediaType);
             JSONObject profile = null;
             try{
-                responseJSON.put("mediaIDs", db.get_mediaIDs_by_NewMedia(conn, mediaType));
+                responseJSON.put("mediaIDs", db.get_mediaIDs_by_genre_and_type(conn, genre, mediaType, 10));
             } catch (SQLDataException data_ex){
                 System.out.println("#  ERROR ::  "+ data_ex);
                 responseJSON.put("error_code", 2);
-                responseJSON.put("error_description", "critical error:  database is missing data; rating cannot be fetched");
+                responseJSON.put("error_description", "critical error:  database is missing data;  genres cannot be fetched");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(500, response.length());
                 OutputStream os = rs.getResponseBody();
@@ -91,7 +92,7 @@ public class getNewMedia implements HttpHandler
             } catch (SQLException sql_ex){
                 System.out.println("#  ERROR ::  "+ sql_ex);
                 responseJSON.put("error_code", 1);
-                responseJSON.put("error_description", "invalid mediaType");
+                responseJSON.put("error_description", "invalid genre");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(404, response.length());
                 OutputStream os = rs.getResponseBody();
@@ -105,7 +106,7 @@ public class getNewMedia implements HttpHandler
             }
             try {
                 responseJSON.put("error_code", 0);
-                responseJSON.put("error_description", "successfully fetched top rated media");
+                responseJSON.put("error_description", "successfully fetched media by genre");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(200, response.length());
                 OutputStream os = rs.getResponseBody();

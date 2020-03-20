@@ -863,6 +863,33 @@ public class AppDatabase {
 
     /**
      * Returns a list of n randomly chosen mediaIDs that have the associated GENRE within its DB entry
+     */
+    public ArrayList<Integer> get_mediaIDs_by_genre_and_type(Connection conn, String genre, String mediaType, int n) throws SQLException {
+        if (n < 1) n = 1;
+        //String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
+        //String sqlReq = "SELECT mediaID FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\" AND mediaType = \"%" + mediaType + "%\" ORDER BY RANDOM() LIMIT " + n + "";
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\" AND mediaType = \"" + mediaType + "\" ORDER BY RANDOM() LIMIT " + n + "";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches for genre [" + genre + "]");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using genre [" + genre + "] :  " + ex);
+        }
+    }
+
+
+
+    /**
+     * Returns a list of n randomly chosen mediaIDs that have the associated GENRE within its DB entry
      * and is not in the list of given IDs
      */
     public ArrayList<Integer> get_mediaIDs_by_genre(Connection conn, String genre, String[] already_used_IDs, int n) throws SQLException {
@@ -959,6 +986,31 @@ public class AppDatabase {
                 System.out.println(ids);
                 return ids;
             }
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using rating:  " + ex);
+        }
+    }
+
+    /**
+     * Returns a list of 10 mediaIDs sorted by rating and ordered in descending order
+     */
+    public JSONArray get_mediaIDs_by_TopRating(Connection conn, String mediaType) throws SQLException {
+        //if (n < 1) n = 1;
+        //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
+        //String sqlReq = "SELECT mediaID FROM mediaTitles ORDER BY rating DESC"; //change query to search for top rated
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY rating DESC LIMIT 10";
+        JSONArray ids = new JSONArray();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.put(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches using rating");
+            else
+                return ids;
         } catch (SQLException ex) {
             throw new SQLException("Error while fetching mediaIDs using rating:  " + ex);
         }
@@ -1208,31 +1260,6 @@ public class AppDatabase {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw new SQLException("An error occurred when adding the user rated on media relation :  " + ex);
-        }
-    }
-
-    /**
-     * Returns a list of 10 mediaIDs sorted by rating and ordered in descending order
-     */
-    public JSONArray get_mediaIDs_by_TopRating(Connection conn, String mediaType) throws SQLException {
-        //if (n < 1) n = 1;
-        //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
-        //String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
-        //String sqlReq = "SELECT mediaID FROM mediaTitles ORDER BY rating DESC"; //change query to search for top rated
-        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY rating DESC LIMIT 10";
-        JSONArray ids = new JSONArray();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            while (rs.next()) { //found something
-                ids.put(rs.getInt("mediaID"));
-            }
-            if (ids.isEmpty())
-                throw new SQLException("No matches using rating");
-            else
-                return ids;
-        } catch (SQLException ex) {
-            throw new SQLException("Error while fetching mediaIDs using rating:  " + ex);
         }
     }
 

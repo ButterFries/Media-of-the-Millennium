@@ -142,7 +142,7 @@ public class Server
         httpsServer.createContext("/getMediaProfile", new getMediaProfile(db, sm));
         httpsServer.createContext("/getFavorites", new getFavorites(db, sm));
         httpsServer.createContext("/getBookmarks", new getBookmarks(db, sm));
-
+        httpsServer.createContext("/getReports", new getReports(db, sm));
         httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
         httpsServer.createContext("/getPicture", new getPicture(db, sm));
         

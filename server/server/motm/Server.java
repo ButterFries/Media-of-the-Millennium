@@ -148,6 +148,9 @@ public class Server
         
         httpsServer.createContext("/getNewMedia", new getNewMedia(db, sm));
         httpsServer.createContext("/getTopRatedMedia", new getTopRatedMedia(db, sm));
+
+        httpsServer.createContext("/getSuggestionsFromFavorites", new getSuggestionsFromFavorites(db, sm));
+
         //httpsServer.createContext("/x", new x(db, sm));
 
 

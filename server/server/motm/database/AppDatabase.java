@@ -884,6 +884,31 @@ public class AppDatabase {
         } catch (SQLException ex) {
             throw new SQLException("Error while fetching mediaIDs using genre [" + genre + "] :  " + ex);
         }
+    }
+
+
+    /**
+     * Get a list of genres of a given list of favorites
+     */
+    public ArrayList<String> get_genres_from_favorites(Connection conn, String[] favorites) throws SQLException {
+        String favs = Arrays.toString(favorites);
+        favs = favs.substring(1, favs.length() - 1); //prune []
+        String sqlReq = "SELECT genres FROM mediaTitles WHERE mediaID IN (" + favs + ")";
+        ArrayList<String> uniqueGenres = new ArrayList<String>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                String[] genres = rs.getString("genres").split(",");
+                for (String genre : genres){
+                    if (!uniqueGenres.contains(genre))
+                        uniqueGenres.add(genre);
+                }
+            }
+            return uniqueGenres;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching genres from favorites :  " + ex);
+        }
     } 
 
 
@@ -967,7 +992,7 @@ public class AppDatabase {
 
     /**
      * Update the media title with the specified ID with the new tags
-     * <p>
+     * 
      * NOTE: tags are delimited by comma, but may have a space following the comma (trim when needed)
      */
     public void update_tags(Connection conn, int mediaID, String[] new_Tags) throws SQLException {
@@ -999,6 +1024,27 @@ public class AppDatabase {
 
         }
     }
+
+
+    /**
+     * Get a list of n random media titles
+     */
+    public ArrayList<Integer> get_random_media(Connection conn, int n) throws SQLException {
+        String sqlReq = "SELECT mediaID FROM mediaTitles ORDER BY RANDOM() LIMIT " + n;
+        ArrayList<Integer> randomIds = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                randomIds.add(rs.getInt("mediaID"));
+            }
+            return randomIds;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while randomly fetching mediaIDs :  " + ex);
+        }
+    } 
+
+
     /*
     * Adds the picture for the mediaId
     */

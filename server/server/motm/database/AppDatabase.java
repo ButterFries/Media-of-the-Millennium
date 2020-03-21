@@ -1472,7 +1472,7 @@ public class AppDatabase {
         private int review_ID;
         private String report_text;
 
-        public mediaReviewInfo(int reportID, int reviewID, String text) {
+        public Report(int reportID, int reviewID, String text) {
             this.report_ID = reportID;
             this.review_ID = reviewID;
             this.report_text = text;
@@ -1491,11 +1491,13 @@ public class AppDatabase {
         }
     }
 
-    public void add_report(Connection conn, int reviewID) throws SQLException{
+    public void add_report(Connection conn, int reviewID, String accountInfo, String sessionID) throws SQLException{
         try {
-            String sqlReq = "INSERT INTO reports (reviewID) VALUES (?)";
+            String sqlReq = "INSERT INTO reports (reviewID, accountInfo, sessionID) VALUES (?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setInt(1, reviewID);
+            pstmt.setString(2, accountInfo);
+            pstmt.setString(3, sessionID);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw new SQLException("An error occurred when adding the user rated on media relation");
@@ -1511,6 +1513,23 @@ public class AppDatabase {
             throw new SQLException("An error occurred when deleting a report");
         }
     }
+    /**
+     * Returns True if user already made a report for specific review
+     */
+    public boolean hasReport(Connection conn, int reviewID, String accountInfo) throws SQLException {
+        Statement stmt = conn.createStatement();
+        try {
+            String rID = Integer.toString(reviewID);
+            String sqlReq = "SELECT * FROM reports WHERE reviewID = \"" + rID + "\" AND accountInfo = \"" + accountInfo + "\"";
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            return rs.next();
+
+        }
+        catch (SQLException ex) {
+            //System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("An error occurred when checking if user has favorited");
+        }
+    }
 
 
 
@@ -1524,157 +1543,157 @@ public class AppDatabase {
 }
 
 
-//==============================================================================
-//###   user media list   ###
-//==============================================================================
-
-public static class userMediaList {
-
-    private int listID;
-    private int userID;
-    private String list_name;
-    private String items;
-    public userMediaList(int listID,int userID,String list_name,String items){
-        this.listID = listID;
-        this.userID = userID;
-        this.list_name =list_name;
-        this.items = items;
-    }
-    public void insert_media_item(Connection conn, int listID,int userID,String list_name,String items) throws SQLException{
-        try {
-            String sqlReq = "INSERT INTO user_list (listID,userID,list_name,items) VALUES (?,?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setInt(1, listID);
-            pstmt.setInt(2,userID);
-            pstmt.setString(3,list_name);
-            pstmt.setString(4, items);
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            throw new SQLException("An error occurred when adding the user rated on media relation");
-        }
-    }
-
-    public void get_media_list(int listID,Connection conn)throws SQLException{
-        try {
-            JSONArray query = new JSONArray();
-            PreparedStatement pstmt = conn.createStatement();
-            String sqlReq = "SELECT * FROM user_list WHERE listID = ?" ;
-            pstmt.setInt(1,listID);
-            ResultSet rs = pstmt.executeQuery(sqlReq);
-            if(rs.next()){
-                JSONObject line = new JSONObject();
-                line.put("listID",rs.getString("listID"));
-                line.put("List Title",rs.getString("list_name"));
-                line.put("list_items",rs.getInt("items"));
-                query.put(line);
-            }else{
-
-                throw new SQLException("An error occurred when getting the reviews on review  relation");
-
-            }
-        }catch (SQLException ex) {
-
-            throw new SQLException("An error occurred when getting specific review");
-        }
-    }
-    public void get_user_lists(int userID,Connection conn)throws SQLException{
-        try {
-            JSONArray query = new JSONArray();
-            PreparedStatement pstmt = conn.createStatement();
-            String sqlReq = "SELECT * FROM user_list WHERE userID = ?" ;
-            pstmt.setInt(1,userID);
-            ResultSet rs = pstmt.executeQuery(sqlReq);
-            if(rs.next()){
-                JSONObject line = new JSONObject();
-                line.put("listID",rs.getString("listID"));
-                line.put("List Title",rs.getString("list_name"));
-                line.put("list_items",rs.getInt("items"));
-                query.put(line);
-            }else{
-
-                throw new SQLException("An error occurred when getting the reviews on review  relation");
-
-            }
-        }catch (SQLException ex) {
-
-            throw new SQLException("An error occurred when getting specific review");
-        }
-    }
-
-
-    public void delete_item(int listID, String item,Connection conn)throws SQLException{
-        try {
-            String items= "";
-            PreparedStatement pstmt = conn.createStatement();
-            String sqlReq = "SELECT items FROM user_list WHERE listID = ?" ;
-            pstmt.setInt(1,userID);
-            ResultSet rs = pstmt.executeQuery(sqlReq);
-            if(rs.next()){
-                items = rs.getString("items");
-            }else{
-
-                throw new SQLException("An error occurred when getting the reviews on review  relation");
-
-            }
-            if(items.contains(item)){
-                String updated_items = items.replace(item,"");
-                try{
-                    PreparedStatement pstmt = conn.createStatement();
-                    String sqlReq = "UPDATE user_list SET items = ?" ;
-                    pstmt.setString(1,updated_items);
-                    ResultSet rs = pstmt.executeQuery(sqlReq);
-                }catch (SQLException ex){
-                    throw new SQLException("An error occurred when deleting specific list item");
-                }
-            }else{
-                System.out.println("Error");//will send back a message to the server for the code to interpet what to do with this info.
-            }
-
-
-
-        }catch (SQLException ex) {
-
-            throw new SQLException("An error occurred when getting specific review");
-        }
-    }
-
-    public void delete_list(int listID,Connection conn)throws SQLException{
-        try {
-            PreparedStatement pstmt = conn.createStatement();
-            String sqlReq = "DELETE * FROM user_list WHERE listID = ?" ;
-            pstmt.setInt(1,listID);
-            pstmt.executeUpdate(sqlReq);
-        }catch (SQLException ex) {
-
-            throw new SQLException("An error occurred when getting specific review");
-        }
-    }
-//        public float get_rating(){ return this.rating; }
-//        public int get_raters(){ return this.numRaters; }
-// ==============================================================================
-//###   Reviews   ###
-//==============================================================================
-
-    public static class mediaReviewInfo {
-        private int user_ID;
-        private String username;
-        private String media_ID;
-        private float rating_FID;
-        private float rating;
-        private int review_ID;
-        private String review_text;
-
-        public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text) {
-            this.user_ID = user_ID;
-            this.username = username;
-            this.media_ID = media_ID;
-            this.rating_FID = rating_FID;
-            this.rating = rating;
-            this.review_ID = review_ID;
-            this.review_text = review_text;
-        }
-//        public float get_rating(){ return this.rating; }
-//        public int get_raters(){ return this.numRaters; }
-    }
-}
-
+////==============================================================================
+////###   user media list   ###
+////==============================================================================
+//
+//public static class userMediaList {
+//
+//    private int listID;
+//    private int userID;
+//    private String list_name;
+//    private String items;
+//    public userMediaList(int listID,int userID,String list_name,String items){
+//        this.listID = listID;
+//        this.userID = userID;
+//        this.list_name =list_name;
+//        this.items = items;
+//    }
+//    public void insert_media_item(Connection conn, int listID,int userID,String list_name,String items) throws SQLException{
+//        try {
+//            String sqlReq = "INSERT INTO user_list (listID,userID,list_name,items) VALUES (?,?,?,?)";
+//            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+//            pstmt.setInt(1, listID);
+//            pstmt.setInt(2,userID);
+//            pstmt.setString(3,list_name);
+//            pstmt.setString(4, items);
+//            pstmt.executeUpdate();
+//        } catch (SQLException ex) {
+//            throw new SQLException("An error occurred when adding the user rated on media relation");
+//        }
+//    }
+//
+//    public void get_media_list(int listID,Connection conn)throws SQLException{
+//        try {
+//            JSONArray query = new JSONArray();
+//            PreparedStatement pstmt = conn.createStatement();
+//            String sqlReq = "SELECT * FROM user_list WHERE listID = ?" ;
+//            pstmt.setInt(1,listID);
+//            ResultSet rs = pstmt.executeQuery(sqlReq);
+//            if(rs.next()){
+//                JSONObject line = new JSONObject();
+//                line.put("listID",rs.getString("listID"));
+//                line.put("List Title",rs.getString("list_name"));
+//                line.put("list_items",rs.getInt("items"));
+//                query.put(line);
+//            }else{
+//
+//                throw new SQLException("An error occurred when getting the reviews on review  relation");
+//
+//            }
+//        }catch (SQLException ex) {
+//
+//            throw new SQLException("An error occurred when getting specific review");
+//        }
+//    }
+//    public void get_user_lists(int userID,Connection conn)throws SQLException{
+//        try {
+//            JSONArray query = new JSONArray();
+//            PreparedStatement pstmt = conn.createStatement();
+//            String sqlReq = "SELECT * FROM user_list WHERE userID = ?" ;
+//            pstmt.setInt(1,userID);
+//            ResultSet rs = pstmt.executeQuery(sqlReq);
+//            if(rs.next()){
+//                JSONObject line = new JSONObject();
+//                line.put("listID",rs.getString("listID"));
+//                line.put("List Title",rs.getString("list_name"));
+//                line.put("list_items",rs.getInt("items"));
+//                query.put(line);
+//            }else{
+//
+//                throw new SQLException("An error occurred when getting the reviews on review  relation");
+//
+//            }
+//        }catch (SQLException ex) {
+//
+//            throw new SQLException("An error occurred when getting specific review");
+//        }
+//    }
+//
+//
+//    public void delete_item(int listID, String item,Connection conn)throws SQLException{
+//        try {
+//            String items= "";
+//            PreparedStatement pstmt = conn.createStatement();
+//            String sqlReq = "SELECT items FROM user_list WHERE listID = ?" ;
+//            pstmt.setInt(1,userID);
+//            ResultSet rs = pstmt.executeQuery(sqlReq);
+//            if(rs.next()){
+//                items = rs.getString("items");
+//            }else{
+//
+//                throw new SQLException("An error occurred when getting the reviews on review  relation");
+//
+//            }
+//            if(items.contains(item)){
+//                String updated_items = items.replace(item,"");
+//                try{
+//                    PreparedStatement pstmt = conn.createStatement();
+//                    String sqlReq = "UPDATE user_list SET items = ?" ;
+//                    pstmt.setString(1,updated_items);
+//                    ResultSet rs = pstmt.executeQuery(sqlReq);
+//                }catch (SQLException ex){
+//                    throw new SQLException("An error occurred when deleting specific list item");
+//                }
+//            }else{
+//                System.out.println("Error");//will send back a message to the server for the code to interpet what to do with this info.
+//            }
+//
+//
+//
+//        }catch (SQLException ex) {
+//
+//            throw new SQLException("An error occurred when getting specific review");
+//        }
+//    }
+//
+//    public void delete_list(int listID,Connection conn)throws SQLException{
+//        try {
+//            PreparedStatement pstmt = conn.createStatement();
+//            String sqlReq = "DELETE * FROM user_list WHERE listID = ?" ;
+//            pstmt.setInt(1,listID);
+//            pstmt.executeUpdate(sqlReq);
+//        }catch (SQLException ex) {
+//
+//            throw new SQLException("An error occurred when getting specific review");
+//        }
+//    }
+////        public float get_rating(){ return this.rating; }
+////        public int get_raters(){ return this.numRaters; }
+//// ==============================================================================
+////###   Reviews   ###
+////==============================================================================
+//
+//    public static class mediaReviewInfo {
+//        private int user_ID;
+//        private String username;
+//        private String media_ID;
+//        private float rating_FID;
+//        private float rating;
+//        private int review_ID;
+//        private String review_text;
+//
+//        public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text) {
+//            this.user_ID = user_ID;
+//            this.username = username;
+//            this.media_ID = media_ID;
+//            this.rating_FID = rating_FID;
+//            this.rating = rating;
+//            this.review_ID = review_ID;
+//            this.review_text = review_text;
+//        }
+////        public float get_rating(){ return this.rating; }
+////        public int get_raters(){ return this.numRaters; }
+//    }
+//}
+//

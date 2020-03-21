@@ -48,7 +48,7 @@ public class TemporaryReportButtonFrag extends Fragment implements View.OnClickL
             case R.id.report_button:
                 //TODO: CHANGE MEDIAID (1)
                 //Media ID / account Info / accountType
-                AddReport addReportRequest = (AddReport) new AddReport((MainActivity) getActivity(), view).execute("1");
+                AddReport addReportRequest = (AddReport) new AddReport((MainActivity) getActivity(), view).execute("1", AppGlobals.user, AppGlobals.session);
                 break;
             // case R.id.addToBookmarks:
 

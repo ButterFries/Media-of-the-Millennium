@@ -77,18 +77,31 @@ public class getReports implements HttpHandler
         JSONObject responseJSON = new JSONObject();
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("reviewID")){
+        if (requestJSON.has("reviewID") && (requestJSON.has("accountInfo") && (requestJSON.has("sessionID")))){
             int reviewID = requestJSON.getInt("reviewID");
-
+            String sessionID = requestJSON.getString("sessionID");
+            String accountInfo = requestJSON.getString("accountInfo");
 
             System.out.println("--client send reviewID: "+reviewID);
 
+
+            if (db.hasReport(conn, reviewID, accountInfo)){
+                System.out.println("--user already reported on review");
+                responseJSON.put("error_code", 1);
+                responseJSON.put("error_description", "error: user already reported on this review");
+                String response = responseJSON.toString() + "\n";
+                rs.sendResponseHeaders(200, response.length());
+                OutputStream os = rs.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+                return;
+            }
             /* add report to reports table */
             try {
-                db.add_report(conn, reviewID);
+                db.add_report(conn, reviewID, accountInfo, sessionID);
 
                 responseJSON.put("error_code", 0);
-                responseJSON.put("error_description", "successfully added report to reports);
+                responseJSON.put("error_description", "successfully added report to reports");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(200, response.length());
                 OutputStream os = rs.getResponseBody();

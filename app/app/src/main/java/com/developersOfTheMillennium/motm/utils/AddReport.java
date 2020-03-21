@@ -42,17 +42,22 @@ public class AddReport extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... params ) {
         int reviewID = Integer.parseInt(params[0]);
-        return run(reviewID);
+        String accountInfo = params[1];
+        String sessionID = params[2];
+        return run(reviewID, accountInfo, sessionID);
     }
 
-    private boolean run(int reviewID) {
+    private boolean run(int reviewID, String accountInfo, String sessionID) {
 
         JSONObject data = new JSONObject();
 
         try {
             data.put("reviewID", reviewID);
+            data.put("accountInfo", accountInfo);
+            data.put("sessionID",sessionID);
 
-            JSONObject rtn = putRequest("getReport", data);
+
+            JSONObject rtn = putRequest("getReports", data);
             int error_code = rtn.getInt("error_code");
             if (error_code == 0) {
                 return true;

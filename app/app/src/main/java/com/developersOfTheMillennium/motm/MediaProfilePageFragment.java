@@ -33,22 +33,26 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         View rootView = inflater.inflate(R.layout.media_profile_page_fragment, container, false);
 
         //Picture setting
-
-        Bundle args = getArguments();
-        int mediaID = args.getInt("mediaID", 0);
-        System.out.println("MEDIA IDbrul: " + mediaID);
         final ImageView image = rootView.findViewById(R.id.imageView2);
         final TextView title = rootView.findViewById(R.id.textView);
         final TextView tags = rootView.findViewById(R.id.textView5);
         final TextView summary = rootView.findViewById(R.id.textView6);
 
-        try {
-            //get info should be first
-            getMediaProfile(Integer.toString(mediaID), image, title, tags, summary);
-            getPicture(Integer.toString(mediaID), image);
-        } catch (Exception e) {
-            //catch but never happens because getPicture never throws exception? might need to fix?
-        //    picture.setImageResource(R.drawable.ic_cinema);
+        Bundle args = getArguments();
+        if(args != null) {
+            int mediaID = args.getInt("mediaID", 0);
+            System.out.println("MEDIA ID: " + mediaID);
+            try {
+                //get info should be first
+                getMediaProfile(Integer.toString(mediaID), image, title, tags, summary);
+                getPicture(Integer.toString(mediaID), image);
+            } catch (Exception e) {
+                //catch but never happens because getPicture never throws exception? might need to fix?
+                //    picture.setImageResource(R.drawable.ic_cinema);
+            }
+        } else {
+            //ERROR CASE SO LEAVE BLANK
+            Log.i("Cannot find mediaID", "--error retrieving mediaID");
         }
 
         // Review Button

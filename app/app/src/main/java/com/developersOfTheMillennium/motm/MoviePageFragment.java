@@ -37,6 +37,14 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
 
     private static MainActivity activity;
     private FragmentManager fragmentManager = getFragmentManager();
+    private ImageButton[] TrendingButtons = new ImageButton[10];
+    private ImageButton[] ComedyButtons = new ImageButton[10];
+    private ImageButton[] ActionButtons = new ImageButton[10];
+    private ImageButton[] DramaButtons = new ImageButton[10];
+    private ImageButton[] RomanceButtons = new ImageButton[10];
+    private ImageButton[] SciFiButtons = new ImageButton[10];
+    private ImageButton[] HistoricalButtons = new ImageButton[10];
+
 
     @Override
     public View onCreateView(LayoutInflater in, ViewGroup container, Bundle savedInstance){
@@ -44,7 +52,6 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         View v = in.inflate(R.layout.activity_movies, container, false);
 
         //NOT SURE WHAT WE DOING FOR TRENDING
-        ImageButton[] TrendingButtons = new ImageButton[10];
         final ImageButton Trending1 = v.findViewById(R.id.Trending1);
         Trending1.setOnClickListener(this);
         TrendingButtons[0] = Trending1;
@@ -78,7 +85,6 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         //END OF TRENDING
 
         //COMEDY START
-        ImageButton[] ComedyButtons = new ImageButton[10];
         final ImageButton Comedy1 = v.findViewById(R.id.Comedy1);
         Comedy1.setOnClickListener(this);
         ComedyButtons[0] = Comedy1;
@@ -112,7 +118,6 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         //END OF COMEDY
 
         //ACTION START
-        ImageButton[] ActionButtons = new ImageButton[10];
         final ImageButton Action1 = v.findViewById(R.id.Action1);
         Action1.setOnClickListener(this);
         ActionButtons[0] = Action1;
@@ -133,10 +138,10 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         ActionButtons[5] = Action6;
         final ImageButton Action7 = v.findViewById(R.id.Action7);
         Action7.setOnClickListener(this);
-        ComedyButtons[6] = Action7;
+        ActionButtons[6] = Action7;
         final ImageButton Action8 = v.findViewById(R.id.Action8);
         Action8.setOnClickListener(this);
-        ComedyButtons[7] = Action8;
+        ActionButtons[7] = Action8;
         final ImageButton Action9 = v.findViewById(R.id.Action9);
         Action9.setOnClickListener(this);
         ActionButtons[8] = Action9;
@@ -146,7 +151,6 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         //END OF ACTION
 
         //START DRAMA
-        ImageButton[] DramaButtons = new ImageButton[10];
         final ImageButton Drama1 = v.findViewById(R.id.Drama1);
         Drama1.setOnClickListener(this);
         DramaButtons[0] = Drama1;
@@ -180,7 +184,6 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         //END OF DRAMA
 
         //START ROMANCE
-        ImageButton[] RomanceButtons = new ImageButton[10];
         final ImageButton Romance1 = v.findViewById(R.id.Romance1);
         Romance1.setOnClickListener(this);
         RomanceButtons[0] = Romance1;
@@ -214,7 +217,6 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         //END OF ROMANCE
 
         //START SCIFI
-        ImageButton[] SciFiButtons = new ImageButton[10];
         final ImageButton SciFi1 = v.findViewById(R.id.SciFi1);
         SciFi1.setOnClickListener(this);
         SciFiButtons[0] = SciFi1;
@@ -248,7 +250,6 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         //END OF SCIFI
 
         //START HISTORICAL
-        ImageButton[] HistoricalButtons = new ImageButton[10];
         final ImageButton Historical1 = v.findViewById(R.id.Historical1);
         Historical1.setOnClickListener(this);
         HistoricalButtons[0] = Historical1;
@@ -281,16 +282,18 @@ public class MoviePageFragment extends Fragment implements View.OnClickListener,
         HistoricalButtons[9] = Historical10;
         //END OF HISTORICAL
 
-        //CHANGE TRENDING
-        retrieveAndDisplay(TrendingButtons, "trending", "cinema","getTopRatedMedia");
+        return v;
+    }
+    @Override
+    public void onViewCreated(View v, Bundle savedInstance) {
+        //Currently freezes and doesn't load until all retrieve and display is done
+        retrieveAndDisplay(TrendingButtons, "trending", "cinema", "getTopRatedMedia");
         retrieveAndDisplay(ComedyButtons, "comedy", "cinema", "getMediaByGenreAndType");
         retrieveAndDisplay(ActionButtons, "action", "cinema", "getMediaByGenreAndType");
         retrieveAndDisplay(DramaButtons, "drama", "cinema", "getMediaByGenreAndType");
         retrieveAndDisplay(RomanceButtons, "romance", "cinema", "getMediaByGenreAndType");
         retrieveAndDisplay(SciFiButtons, "scifi", "cinema", "getMediaByGenreAndType");
         retrieveAndDisplay(HistoricalButtons, "historical", "cinema", "getMediaByGenreAndType");
-
-        return v;
     }
 
     @Override

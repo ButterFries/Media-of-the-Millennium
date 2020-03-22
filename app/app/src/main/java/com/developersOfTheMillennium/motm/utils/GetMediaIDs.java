@@ -40,24 +40,29 @@ public class GetMediaIDs extends AsyncTask<Object, JSONArray, JSONObject> {
     protected JSONObject doInBackground(Object...params) {
         String mediaType = (String) params[0];
         String requestType = (String) params[1];
-        return getIds(mediaType, requestType);
+        String genre = (String) params[2];
+        return getIds(mediaType, requestType, genre);
     }
 
-    private JSONObject getIds(String mediaType, String requestType) {
+    private JSONObject getIds(String mediaType, String requestType, String genre) {
         //Picture
         JSONObject data = new JSONObject();
         JSONObject returnJSON = new JSONObject();
         try {
-            data.put("mediaType", mediaType);
-            Log.i("mediaType", mediaType);
-
             //MIGHT NEED TO CHECK SOMETHING ELSE FOR DIFF MEDIA TYPES
             switch(requestType) {
                 case "getNewMedia":
+                    data.put("mediaType", mediaType);
                     returnJSON = postRequest("getNewMedia", data);
                     break;
                 case "getTopRatedMedia":
+                    data.put("mediaType", mediaType);
                     returnJSON = postRequest("getTopRatedMedia", data);
+                    break;
+                case "getMediaByGenreAndType":
+                    data.put("mediaType", mediaType);
+                    data.put("genre", genre);
+                    returnJSON = postRequest("getMediaByGenreAndType", data);
                     break;
                     //NOT SURE IF WE NEED MORE?
             }
@@ -74,7 +79,7 @@ public class GetMediaIDs extends AsyncTask<Object, JSONArray, JSONObject> {
             //    return true;
             //}
         } catch (Exception e) {
-            Log.e("ERROR Get NewMediaIds", "JSON Parsing: " + e);
+            Log.e("ERROR GetMediaIds", "JSON Parsing: " + e);
             //error case need to figure out general error case
             return null;
         }

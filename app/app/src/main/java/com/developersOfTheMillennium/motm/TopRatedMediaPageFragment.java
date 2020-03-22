@@ -17,13 +17,18 @@ import org.json.JSONObject;
 
 public class TopRatedMediaPageFragment extends Fragment implements View.OnClickListener {
 
+    private ImageButton[] novelButtons = new ImageButton[10];
+    private ImageButton[] videogameButtons = new ImageButton[10];
+    private ImageButton[] musicButtons = new ImageButton[10];
+    private ImageButton[] tvButtons = new ImageButton[10];
+    private ImageButton[] movieButtons = new ImageButton[10];
+
     @Override
     public View onCreateView(LayoutInflater in, ViewGroup container, Bundle savedInstance){
         //NEED TO CHANGE ONCLICK LATER SO SENDS TO ACTUAL REVIEW FOR SPECIFIC
         //BUTTON/IMG BUTTON
         View v = in.inflate(R.layout.activity_top_rated_media, container, false);
 
-        ImageButton[] movieButtons = new ImageButton[10];
         final ImageButton Movies1 = v.findViewById(R.id.Movies1);
         Movies1.setOnClickListener(this);
         movieButtons[0] = Movies1;
@@ -56,30 +61,7 @@ public class TopRatedMediaPageFragment extends Fragment implements View.OnClickL
         movieButtons[9] = Movies10;
         //END OF Movies
 
-        //Retrieve mediaIds
-        JSONArray cinemaArray = null;
-        try {
-            cinemaArray = getMediaIDs("cinema", "getTopRatedMedia");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(cinemaArray != null) {
-            //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < cinemaArray.length(); i++) {
-                try {
-                    Integer mediaID = (Integer) cinemaArray.get(i);
-                    movieButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), movieButtons[i]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-            Log.i("Retrieving media IDs", "--Error");
-        }
         //TVShows START
-        ImageButton[] tvButtons = new ImageButton[10];
         final ImageButton TVShows1 = v.findViewById(R.id.TVShows1);
         TVShows1.setOnClickListener(this);
         tvButtons[0] = TVShows1;
@@ -112,31 +94,7 @@ public class TopRatedMediaPageFragment extends Fragment implements View.OnClickL
         tvButtons[9] = TVShows10;
         //END OF TVShows
 
-        //Retrieve mediaIds
-        JSONArray tvArray = null;
-        try {
-            tvArray = getMediaIDs("tvseries", "getTopRatedMedia");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(tvArray != null) {
-            //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < tvArray.length(); i++) {
-                try {
-                    Integer mediaID = (Integer) tvArray.get(i);
-                    tvButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), tvButtons[i]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-            Log.i("Retrieving media IDs", "--Error");
-        }
-
         //Music START
-        ImageButton[] musicButtons = new ImageButton[10];
         final ImageButton Music1 = v.findViewById(R.id.Music1);
         Music1.setOnClickListener(this);
         musicButtons[0] = Music1;
@@ -169,31 +127,7 @@ public class TopRatedMediaPageFragment extends Fragment implements View.OnClickL
         musicButtons[9] = Music10;
         //END OF Music
 
-        //Retrieve mediaIds
-        JSONArray musicArray = null;
-        try {
-            musicArray = getMediaIDs("music", "getTopRatedMedia");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(musicArray != null) {
-            //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < musicArray.length(); i++) {
-                try {
-                    Integer mediaID = (Integer) musicArray.get(i);
-                    musicButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), musicButtons[i]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-            Log.i("Retrieving media IDs", "--Error");
-        }
-
         //START VideoGames
-        ImageButton[] videogameButtons = new ImageButton[10];
         final ImageButton VideoGames1 = v.findViewById(R.id.VideoGames1);
         VideoGames1.setOnClickListener(this);
         videogameButtons[0] = VideoGames1;
@@ -226,31 +160,7 @@ public class TopRatedMediaPageFragment extends Fragment implements View.OnClickL
         videogameButtons[9] = VideoGames10;
         //END OF VideoGames
 
-        //Retrieve mediaIds
-        JSONArray videogameArray = null;
-        try {
-            videogameArray = getMediaIDs("videogame", "getTopRatedMedia");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(videogameArray != null) {
-            //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < videogameArray.length(); i++) {
-                try {
-                    Integer mediaID = (Integer) videogameArray.get(i);
-                    videogameButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), videogameButtons[i]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-            Log.i("Retrieving media IDs", "--Error");
-        }
-
         //START Novels
-        ImageButton[] novelButtons = new ImageButton[10];
         final ImageButton Novels1 = v.findViewById(R.id.Novels1);
         Novels1.setOnClickListener(this);
         novelButtons[0] = Novels1;
@@ -283,20 +193,35 @@ public class TopRatedMediaPageFragment extends Fragment implements View.OnClickL
         novelButtons[9] = Novels10;
         //END OF Novels
 
+        return v;
+    }
+
+    @Override
+    public void onViewCreated(View v, Bundle savedInstance) {
+        //Currently freezes and doesn't load until all retrieve and display is done
+        retrieveAndDisplay(movieButtons,"cinema");
+        retrieveAndDisplay(tvButtons,  "tvseries");
+        retrieveAndDisplay(musicButtons,  "music");
+        retrieveAndDisplay(videogameButtons,  "videogame");
+        retrieveAndDisplay(novelButtons, "novel");
+        return;
+    }
+
+    private void retrieveAndDisplay(ImageButton[] genreButtons, String mediaType) {
         //Retrieve mediaIds
-        JSONArray novelsArray = null;
+        JSONArray genreArray = null;
         try {
-            novelsArray = getMediaIDs("novel", "getTopRatedMedia");
+            genreArray = getMediaIDs(mediaType, "getTopRatedMedia", "");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(novelsArray != null) {
+        if(genreArray != null) {
             //iterate through the list then start setting tags and getpicture
-            for (int i = 0; i < novelsArray.length(); i++) {
+            for (int i = 0; i < genreArray.length(); i++) {
                 try {
-                    Integer mediaID = (Integer) novelsArray.get(i);
-                    novelButtons[i].setTag(mediaID);
-                    getPicture(Integer.toString(mediaID), novelButtons[i]);
+                    Integer mediaID = (Integer) genreArray.get(i);
+                    genreButtons[i].setTag(mediaID);
+                    getPicture(Integer.toString(mediaID), genreButtons[i]);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -305,8 +230,6 @@ public class TopRatedMediaPageFragment extends Fragment implements View.OnClickL
             //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
             Log.i("Retrieving media IDs", "--Error");
         }
-
-        return v;
     }
 
     @Override
@@ -323,10 +246,10 @@ public class TopRatedMediaPageFragment extends Fragment implements View.OnClickL
         ((MainActivity)getActivity()).replaceFragment(Frag);
     }
 
-    private JSONArray getMediaIDs(String mediaType, String requestType) throws Exception{
+    private JSONArray getMediaIDs(String mediaType, String requestType, String genre) throws Exception{
         try {
-            JSONObject result = new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, requestType).get();
-            return result.getJSONArray("Top Rated");
+            JSONObject result = new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, requestType, "").get();
+            return result.getJSONArray("mediaIDs");
             //GetMediaIDs IDs = (GetMediaIDs) new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, array).get();
         } catch (Exception e) {
             throw new Exception("(getMediaIDs) -- something went wrong when retrieving mediaIDs");

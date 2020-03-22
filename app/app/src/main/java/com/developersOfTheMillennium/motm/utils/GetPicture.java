@@ -76,8 +76,6 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
                 System.out.println("WIDTH: " + btn.getWidth() + "HEIGHT : " + btn.getHeight());
             }
             //Bitmap bm = Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false);
-            //Picasso.get().load("https://m.media-amazon.com/images/M/MV5BZTliNWJhM2YtNDc1MC00YTk1LWE2MGYtZmE4M2Y5ODdlNzQzXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg").fit().centerCrop().transform(new CropSquareTransformation()).into(btn);
-            //Glide.with(context).load("https://www.bigstockphoto.com/images/homepage/module-6.jpg").centerInside().error(R.drawable.ic_cinema).into(btn);
             //btn.setImageBitmap(bm);
             //btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false));
             //btn.set(R.drawable.ic_cinema);
@@ -129,7 +127,7 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
             // Get response body
             byte[] responseData = response.body().bytes();
             //String responseData = response.body().string();
-            System.out.println("RESPONSE DAAATTA :" + responseData);
+            //System.out.println("RESPONSE DAAATTA :" + responseData);
             rtn = responseData;
             Log.i("postRequest", "--complete");
 
@@ -147,7 +145,7 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
         Bitmap bmp = (Bitmap) rtn[0];
         ImageView btn = (ImageView) rtn[1];
         if(bmp == null) {
-            btn.setImageResource(R.drawable.ic_cinema);
+            btn.setImageResource(R.drawable.ic_cinema); //change image to general error case
             return;
         }
         btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false));

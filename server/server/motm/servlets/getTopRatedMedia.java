@@ -77,7 +77,7 @@ public class getTopRatedMedia implements HttpHandler
             System.out.println("--client send mediaType: "+mediaType);
             JSONObject profile = null;
             try{
-                responseJSON.put("Top Rated", db.get_mediaIDs_by_TopRating(conn, mediaType));
+                responseJSON.put("mediaIDs", db.get_mediaIDs_by_TopRating(conn, mediaType));
             } catch (SQLDataException data_ex){
                 System.out.println("#  ERROR ::  "+ data_ex);
                 responseJSON.put("error_code", 2);

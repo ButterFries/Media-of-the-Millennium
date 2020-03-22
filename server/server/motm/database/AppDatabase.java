@@ -570,6 +570,19 @@ public class AppDatabase {
     else if mediaType.videogame then "videogame"
     else if mediaType.novel then "novel"
      */
+
+
+
+    public void add_image(Connection conn, String img) throws IOException, SQLException{
+        try {
+            String sqlReq = "UPDATE mediaTitles SET image = (?) WHERE mediaID = last_insert_rowid()";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setBytes(1, getByteArrayImage(img));
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("Failed to add image :  " + ex);
+        }
+    }
  
 
     /*

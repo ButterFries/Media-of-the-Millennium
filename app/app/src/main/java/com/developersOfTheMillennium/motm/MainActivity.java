@@ -2,6 +2,8 @@ package com.developersOfTheMillennium.motm;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,18 +19,30 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 import okhttp3.*;
 
+import static android.os.SystemClock.sleep;
+
 public class MainActivity extends AppCompatActivity implements FragmentChangeListener {
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
 
-
+    private LoadingSpinnerFragment spinnerFragment = new LoadingSpinnerFragment();
     private FragmentManager fragmentManager = getSupportFragmentManager();
+    private boolean loading = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+
+        //Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if (getSupportActionBar()!=null)
+            this.getSupportActionBar().hide();
+
+        this.setContentView(R.layout.activity_main);
+
 
         // Initializes the SDK and calls back a completion listener
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -37,13 +51,6 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
                 Log.i("Admob", "SDK successfully initialized");
             }
         });
-
-        //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        if (getSupportActionBar()!=null)
-            this.getSupportActionBar().hide();
-
-        this.setContentView(R.layout.activity_main);
 
         // Loads ad to ad bar
         AdView adView = (AdView)findViewById(R.id.adView);
@@ -56,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
 
         RegistrationPageFragment rpf = new RegistrationPageFragment();
         fragmentTransaction.add(R.id.fragment_view, rpf);
+
+        fragmentTransaction.detach(spinnerFragment).add(R.id.fragment_loading, spinnerFragment);
         fragmentTransaction.commit();
     }
 
@@ -66,6 +75,25 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
         fragmentTransaction.replace(R.id.fragment_view, fragment, fragment.toString());
         fragmentTransaction.addToBackStack(fragment.toString());
         fragmentTransaction.commit();
+    }
+
+    public void enableLoadingAnimation() {
+        if (!loading) {
+            loading = true;
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.attach(spinnerFragment);
+            fragmentTransaction.commit();
+
+            sleep(1000); //TODO: Remove for final release
+        }
+    }
+    public void disableLoadingAnimation() {
+        if (loading) {
+            loading = false;
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.detach(spinnerFragment);
+            fragmentTransaction.commit();
+        }
     }
 
 

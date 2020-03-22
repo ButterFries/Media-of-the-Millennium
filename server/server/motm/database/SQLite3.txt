@@ -1,4 +1,4 @@
-https://www.sqlitetutorial.net/sqlite-java/
+https://www.sqlitet utorial.net/sqlite-java/
 https://www.sqlite.org/download.html
 	--run binary file with `./sqlite3 database.db` or equivalent command to exec from commandline
 	--on ubuntu64 the binary for 32 might not work, just `sudo apt-get install sqlite3` and use `sqlite3 database.db`
@@ -22,6 +22,10 @@ https://www.sqlite.org/download.html
 http://code-know-how.blogspot.com/2011/10/how-to-enable-foreign-keys-in-sqlite3.html
 > PRAGMA foreign_keys = ON;
 
+### accounts table and insert
+### include values for favorites and bookmarks if needed (INSERT)
+./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, favorites TEXT DEFAULT '', bookmarks TEXT DEFAULT '');"
+./sqlite3 appdatabase.db "INSERT INTO accounts (username, email, password) VALUES ('example', 'email', 'passwordhash');"
 ## this must be done for each session of opening the sqlite shell or executing a command
 
 
@@ -91,12 +95,13 @@ TODO
 # 	https://www.sqlitetutorial.net/sqlite-autoincrement/
 
 
-./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, passwordhash TEXT NOT NULL);"
+./sqlite3 appdatabase.db "CREATE TABLE accounts (userID INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, passwordhash TEXT NOT NULL, favorites TEXT DEFAULT '', bookmarks TEXT DEFAULT '');"
 
 ### password should be converted to a hash via hashing function such as md5 or sha256 for security
 ### can also salt passwords (add something to the password string before hashing) to make it even safer   
 ### https://www.thesslstore.com/blog/difference-encryption-hashing-salting/
 
+### include values for favorites and bookmarks if needed
 ./sqlite3 appdatabase.db "INSERT INTO accounts (username, email, passwordhash) VALUES ('example', 'email', 'passwordhash');"
 
 ### example of hashing
@@ -129,15 +134,16 @@ INSERT INTO admins (userID, adminLevel) VALUES (~~~,  X);
 ##  rating -- float, current rating
 ##  numRaters -- total number of all people who've rated this title
 ##  genres -- string of associated genres (comma separated) 'action,horror'
+##  tags -- string of associated tags (comma separated) 'yoda,swords'
 
 ### to calculate the new rating, take the current rating (say 3.4) and current numRaters (9000)
 ###    updatedRating = (numRaters/(numRaters+1))*rating + newRating*(1/(numRaters+1))
 ###    this preserves the ratio of ratings
 
 
-./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
+./sqlite3 appdatabase.db "CREATE TABLE mediaTitles (mediaID INTEGER PRIMARY KEY, title TEXT NOT NULL, summary TEXT, genres TEXT NOT NULL, tags TEXT DEFAULT '', rating FLOAT DEFAULT 0.0, numRaters INTEGER DEFAULT 0);
 
-./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror')";
+./sqlite3 appdatabase.db "INSERT INTO mediaTitles (title, mediaType, summary) VALUES ('example', 'testtype', 'this is very nice media, much good', 'action,horror', 'swords,yoda')";
 
 ================================================================================
 ###   ratings   ###
@@ -149,6 +155,13 @@ CREATE TABLE ratings (ratingID INTEGER PRIMARY KEY, rating FLOAT NOT NULL, userI
 ###   reviews   ###
 ================================================================================
 CREATE TABLE reviews (user_ID INTEGER PRIMARY KEY,media_ID TEXT(100) UNIQUE,rating_FID INTEGER UNIQUE, rating FLOAT, review_ID INTEGER UNIQUE,review_text TEXT(500))
+
+================================================================================
+###   reports   ###
+================================================================================
+CREATE TABLE reports (reportID INTEGER PRIMARY KEY, reviewID INTEGER NOT NULL, sessionID INT, accountInfo TEXT NOT NULL);
+
+
 
 
 

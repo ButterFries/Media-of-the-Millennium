@@ -22,16 +22,13 @@ import java.sql.*;
 
 import com.sun.net.httpserver.HttpsExchange;
 
-/* 
- * Client sends { u_name: "my_username", email: "my_email@example", pw: "password" }
- * and it will return something like { error_code: int, session_token: "x-yy-zzzz" } 
- * if successful (error_code 0) and a session_token will be returned
+/* (NOT USED YET)
+ * Client sends {} and gets {}
  * 
  * Error Codes: 
- *      0 --  successfully verified
- *      1 --  username already taken
- *      2 --  email already taken
- *      3 --  SQL error (DEPREC)
+ *      0 --  
+ *      1 --  
+ *      2 --  
  *      ~~
  */
 
@@ -49,12 +46,10 @@ public class addMediaProfile implements HttpHandler
 
     public void handle(HttpExchange r) {
         System.out.println("\n-Received request [addMediaProfile]");
-        //Connection conn = null;
         HttpsExchange rs = (HttpsExchange) r;
         try {
             if (r.getRequestMethod().equals("PUT")) {
                 System.out.println("--request type: PUT");
-                //conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -72,15 +67,6 @@ public class addMediaProfile implements HttpHandler
                 }
             }
         }
-        /*finally {
-            try { //this is to safely disconnect from the db if a connection was made
-                if (conn != null)
-                    db.disconnect(conn);
-            }
-            catch (Exception eDisconnect){
-                System.out.println("# handled error disconnecting :: "+eDisconnect);
-            }
-        }*/
     }
 
     public void handleReq(HttpExchange r, Connection conn) throws Exception {
@@ -103,7 +89,7 @@ public class addMediaProfile implements HttpHandler
 
             JSONObject responseJSON = new JSONObject();
 
-            /*  register the account;  both username and email can be used  */
+            /*  register the title to db  */
             System.out.println("--adding media to database");
             db.add_media_title(conn, title, mediaType, summary, genres, tags, links, img); //exception will be forwarded up to .handle
             System.out.println("----successfully added media to database");

@@ -1355,9 +1355,75 @@ public class AppDatabase {
     }
 
 //==============================================================================
-//###   user media list   ###
+//###   Reports   ###
 //==============================================================================
+    public static class Report {
+        private int report_ID;
+        private int review_ID;
+        private String report_text;
 
+        public Report(int reportID, int reviewID, String text) {
+            this.report_ID = reportID;
+            this.review_ID = reviewID;
+            this.report_text = text;
+        }
+
+        public int getReport_ID() {
+            return report_ID;
+        }
+
+        public int getReview_ID() {
+            return review_ID;
+        }
+
+        public String getReport_text() {
+            return report_text;
+        }
+    }
+
+    public void add_report(Connection conn, int reviewID, String accountInfo, String sessionID) throws SQLException{
+        try {
+            String sqlReq = "INSERT INTO reports (reviewID, accountInfo, sessionID) VALUES (?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setInt(1, reviewID);
+            pstmt.setString(2, accountInfo);
+            pstmt.setString(3, sessionID);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when adding the user rated on media relation");
+        }
+    }
+
+    public void delete_report(Connection conn, int reportID) throws SQLException{
+        try {
+            String sqlReq = "DELETE FROM reports WHERE reportID = \"" + reportID + "\"";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when deleting a report");
+        }
+    }
+    /**
+     * Returns True if user already made a report for specific review
+     */
+    public boolean hasReport(Connection conn, int reviewID, String accountInfo) throws SQLException {
+        Statement stmt = conn.createStatement();
+        try {
+            String rID = Integer.toString(reviewID);
+            String sqlReq = "SELECT * FROM reports WHERE reviewID = \"" + rID + "\" AND accountInfo = \"" + accountInfo + "\"";
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            return rs.next();
+
+        }
+        catch (SQLException ex) {
+            //System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("An error occurred when checking if user has favorited");
+        }
+    }
+
+//==============================================================================
+//###   Reviews   ###
+//==============================================================================
     public static class userMediaList {
 
         private int listID;
@@ -1373,23 +1439,9 @@ public class AppDatabase {
         //        public float get_rating(){ return this.rating; }
         //        public int get_raters(){ return this.numRaters; }
     }
-
+    
     public void insert_media_item(Connection conn, int listID,int userID,String list_name,String items) throws SQLException{
-        try {
-            String sqlReq = "INSERT INTO user_list (listID,userID,list_name,items) VALUES (?,?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setInt(1, listID);
-            pstmt.setInt(2,userID);
-            pstmt.setString(3,list_name);
-            pstmt.setString(4, items);
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            throw new SQLException("An error occurred when adding the user rated on media relation");
-        }
-    }
-
-    public void get_media_list(int listID,Connection conn)throws SQLException{
-        try {
+        try {    
             JSONArray query = new JSONArray();
             Statement stmt = conn.createStatement();
             String sqlReq = "SELECT * FROM user_list WHERE listID = "+listID ;

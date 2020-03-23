@@ -1277,95 +1277,7 @@ public class AppDatabase {
     }
 
 
-//==============================================================================
-//###   Reviews   ###
-//==============================================================================
 
-    public static class mediaReviewInfo {
-        private int user_ID;
-        private String username;
-        private String media_ID;
-        private float rating_FID;
-        private float rating;
-        private int review_ID;
-        private String review_text;
-
-        public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text) {
-            this.user_ID = user_ID;
-            this.username = username;
-            this.media_ID = media_ID;
-            this.rating_FID = rating_FID;
-            this.rating = rating;
-            this.review_ID = review_ID;
-            this.review_text = review_text;
-        }
-//        public float get_rating(){ return this.rating; }
-//        public int get_raters(){ return this.numRaters; }
-    }
-
-    public void insert_review(Connection conn, int user_ID, String username, String media_ID, int rating_FID, float rating, int review_ID, String review_text) throws SQLException {
-        try {
-            String sqlReq = "INSERT INTO reviews (user_ID,username media_ID,rating_FID,rating,review_ID,review_text) VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setInt(1, user_ID);
-            pstmt.setString(2, username);
-            pstmt.setString(3, media_ID);
-            pstmt.setInt(4, rating_FID);
-            pstmt.setFloat(5, rating);
-            pstmt.setInt(6, review_ID);
-            pstmt.setString(7, review_text);
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            throw new SQLException("An error occurred when adding the user rated on media relation");
-        }
-    }
-
-
-    public void load_reviews(Connection conn) throws SQLException {
-        try {
-            JSONArray query = new JSONArray();
-            Statement stmt = conn.createStatement();
-            String sqlReq = "SELECT username,rating,review_text FROM reviews ORDER BY RANDOM() LIMIT 10";
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            if (rs.next()) {
-                while (rs.next()) {
-                    JSONObject line = new JSONObject();
-                    line.put("username", rs.getString("username"));
-                    line.put("rating", rs.getInt("rating"));
-                    line.put("review_text", rs.getString("review_text"));
-                    query.put(line);
-                }
-            } else {
-                throw new SQLException("An error occurred when getting the reviews on review  relation");
-            }
-        } catch (SQLException ex) {
-
-            throw new SQLException("An error occurred when loading review relation");
-        }
-    }
-
-    public void get_specific_review(int user_ID, Connection conn) throws SQLException {
-        try {
-            JSONArray query = new JSONArray();
-            Statement stmt = conn.createStatement();
-            String sqlReq = "SELECT * FROM reviews WHERE user_ID = ?";
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            if (rs.next()) {
-                JSONObject line = new JSONObject();
-                line.put("username", rs.getString("username"));
-                line.put("rating", rs.getInt("rating"));
-                line.put("review_text", rs.getString("review_text"));
-                query.put(line);
-            } else {
-
-                throw new SQLException("An error occurred when getting the reviews on review  relation");
-
-            }
-        } catch (SQLException ex) {
-
-            throw new SQLException("An error occurred when getting specific review");
-        }
-    }
 
 //==============================================================================
 //###   Reports   ###
@@ -1532,5 +1444,139 @@ public class AppDatabase {
             throw new SQLException("An error occurred when getting specific review");
         }
     }
+    
+  //==============================================================================
+  //###   Reviews   ###
+  //==============================================================================
+
+      public static class mediaReviewInfo {
+          private int user_ID;
+          private String username;
+          private String media_ID;
+          private float rating_FID;
+          private float rating;
+          private int review_ID;
+          private String review_text;
+
+          public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text) {
+              this.user_ID = user_ID;
+              this.username = username;
+              this.media_ID = media_ID;
+              this.rating_FID = rating_FID;
+              this.rating = rating;
+              this.review_ID = review_ID;
+              this.review_text = review_text;
+          }
+//          public float get_rating(){ return this.rating; }
+//          public int get_raters(){ return this.numRaters; }
+      }
+
+      public void insert_review(Connection conn, int user_ID, String username, String media_ID, int rating_FID, float rating, int review_ID, String review_text) throws SQLException {
+          try {
+              String sqlReq = "INSERT INTO reviews (user_ID,username,media_ID,rating_FID,rating,review_ID,review_text) VALUES (?,?,?,?,?,?,?)";
+              PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+              pstmt.setInt(1, user_ID);
+              pstmt.setString(2, username);
+              pstmt.setString(3, media_ID);
+              pstmt.setInt(4, rating_FID);
+              pstmt.setFloat(5, rating);
+              pstmt.setInt(6, review_ID);
+              pstmt.setString(7, review_text);
+              pstmt.executeUpdate();
+          } catch (SQLException ex) {
+              throw new SQLException("An error occurred when adding the user rated on media relation");
+          }
+      }
+
+
+      public void load_reviews(Connection conn) throws SQLException {
+          try {
+              JSONArray query = new JSONArray();
+              Statement stmt = conn.createStatement();
+              String sqlReq = "SELECT username,rating,review_text FROM reviews ORDER BY RANDOM() LIMIT 10";
+              ResultSet rs = stmt.executeQuery(sqlReq);
+              if (rs.next()) {
+                  while (rs.next()) {
+                      JSONObject line = new JSONObject();
+                      line.put("username", rs.getString("username"));
+                      line.put("rating", rs.getInt("rating"));
+                      line.put("review_text", rs.getString("review_text"));
+                      query.put(line);
+                  }
+              } else {
+                  throw new SQLException("An error occurred when getting the reviews on review  relation");
+              }
+          } catch (SQLException ex) {
+
+              throw new SQLException("An error occurred when loading review relation");
+          }
+      }
+
+      public void get_specific_review(int user_ID, Connection conn) throws SQLException {
+          try {
+              JSONArray query = new JSONArray();
+              Statement stmt = conn.createStatement();
+              String sqlReq = "SELECT * FROM reviews WHERE user_ID = ?";
+              ResultSet rs = stmt.executeQuery(sqlReq);
+              if (rs.next()) {
+                  JSONObject line = new JSONObject();
+                  line.put("username", rs.getString("username"));
+                  line.put("rating", rs.getInt("rating"));
+                  line.put("review_text", rs.getString("review_text"));
+                  query.put(line);
+              } else {
+
+                  throw new SQLException("An error occurred when getting the reviews on review  relation");
+
+              }
+          } catch (SQLException ex) {
+
+              throw new SQLException("An error occurred when getting specific review");
+          }
+      }
+      
+      
+      
+      
+      //TODO implement database interactions for reviews
+      public void add_review(Connection conn, int userID, int mediaID, String reviewText) {
+    	  //TODO
+      }
+      
+      // throw error if review not found
+      public void delete_review(Connection conn, int userID, int mediaID) {
+    	  //TODO
+      }
+      
+      // returns JSONObject array of all reviews of a mediaID with reviews' username and text
+      // throw error if media not found
+      public ArrayList<JSONObject> get_all_reviews(Connection conn, int mediaID) {
+    	  
+    	  ArrayList<JSONObject> rtn = new ArrayList<JSONObject>();
+    	  
+    	  JSONObject sampleReview = new JSONObject();
+    	  sampleReview.put("username", "");
+    	  sampleReview.put("text", "");
+    	  
+    	  rtn.add(sampleReview);
+    	  
+    	  return rtn;
+    	  //TODO
+      }
+      
+      // returns JSONObject with review's username and text
+      // throw error if review not found
+      public JSONObject get_review(Connection conn, int userID, int mediaID) {
+    	  JSONObject rtn = new JSONObject();
+    	  rtn.put("username", "");
+    	  rtn.put("text", "");
+    	  return rtn;
+    	  //TODO
+      }
+      
+      public boolean hasReviewed(Connection conn, int userID, int mediaID) {
+      	  //TODO
+      }
+      
 
 }

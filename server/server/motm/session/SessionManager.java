@@ -97,6 +97,10 @@ public class SessionManager
     public boolean isValidSession_e(String email, String sID){
         return sessions.containsKey(sID) ? (sessions.get(sID).getEmail() == email) : false;
     }
+    
+    public String getUID(String sID) {
+    	return sessions.containsKey(sID) ? sessions.get(sID).getUID() : "";
+    }
 
 
     /* The session ID consists of both a random number and a 

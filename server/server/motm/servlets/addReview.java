@@ -35,13 +35,13 @@ import com.sun.net.httpserver.HttpsExchange;
  *      ~~
  */
 
-public class addMediaProfile implements HttpHandler
+public class addReview implements HttpHandler
 {
     private static AppDatabase db;
     private static SessionManager sm;
     private static Connection conn = null;
 
-    public addMediaProfile(AppDatabase appDB, SessionManager appSM) {
+    public addReview(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
         conn = db.connect();
@@ -97,7 +97,7 @@ public class addMediaProfile implements HttpHandler
             if (!validID) {
             	throw new CredentialException("sessionID doesn't match the given username/email or sessionID is invalid");
             }
-            int userID = sm.getUID();
+            int userID = Integer.parseInt(sm.getUID(sessionId));
             
             /*  register the title to db  */
             System.out.println("--adding review to database");

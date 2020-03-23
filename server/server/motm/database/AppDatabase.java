@@ -1575,7 +1575,8 @@ public class AppDatabase {
       }
       
       public boolean hasReviewed(Connection conn, int userID, int mediaID) {
-      	  //TODO
+    	  return false;
+    	  //TODO
       }
       
 

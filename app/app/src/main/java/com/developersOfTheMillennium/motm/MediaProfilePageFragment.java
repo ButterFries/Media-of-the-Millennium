@@ -1,5 +1,6 @@
 package com.developersOfTheMillennium.motm;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.developersOfTheMillennium.motm.utils.Bookmarks.AddBookmark;
@@ -17,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.developersOfTheMillennium.motm.utils.GetMediaProfile;
 import com.developersOfTheMillennium.motm.utils.GetPicture;
+import com.developersOfTheMillennium.motm.utils.Ratings.GetMediaRating;
 
 import org.w3c.dom.Text;
 
@@ -34,22 +37,23 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
 
         //Picture setting
 
-        Bundle args = getArguments();
-        int mediaID = args.getInt("mediaID", 0);
-        System.out.println("MEDIA IDbrul: " + mediaID);
-        final ImageView image = rootView.findViewById(R.id.imageView2);
-        final TextView title = rootView.findViewById(R.id.textView);
-        final TextView tags = rootView.findViewById(R.id.textView5);
-        final TextView summary = rootView.findViewById(R.id.textView6);
-
-        try {
-            //get info should be first
-            getMediaProfile(Integer.toString(mediaID), image, title, tags, summary);
-            getPicture(Integer.toString(mediaID), image);
-        } catch (Exception e) {
-            //catch but never happens because getPicture never throws exception? might need to fix?
-        //    picture.setImageResource(R.drawable.ic_cinema);
-        }
+//        Bundle args = getArguments();
+//        int mediaID = args.getInt("mediaID", 1);
+//        System.out.println("MEDIA IDbrul: " + mediaID);
+//        final ImageView image = rootView.findViewById(R.id.imageView2);
+//        final TextView title = rootView.findViewById(R.id.textView);
+//        final TextView tags = rootView.findViewById(R.id.textView5);
+//        final TextView summary = rootView.findViewById(R.id.textView6);
+//
+//        try {
+//            //get info should be first
+//            //getMediaProfile(Integer.toString(mediaID), image, title, tags, summary);
+//            //getPicture(Integer.toString(mediaID), image);
+//            getMediaRating(Integer.toString(mediaID), rootView);
+//        } catch (Exception e) {
+//            //catch but never happens because getPicture never throws exception? might need to fix?
+//        //    picture.setImageResource(R.drawable.ic_cinema);
+//        }
 
         // Review Button
         final Button reviewBtn = rootView.findViewById(R.id.reviewButton);
@@ -63,13 +67,15 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
 //        final Button addBookmarksBtn = rootView.findViewById(R.id.addToBookmarks);
 //        addBookmarksBtn.setOnClickListener(this);
 
+        //Rating button
+        final Button ratingButton = rootView.findViewById(R.id.ratingButton);
+        //if (AppGlobals.userType != "Guest")
+        ratingButton.setOnClickListener(this);
 
 
-        // Rating Bar and rating button
+        // Rating Bar(s)
         //final RatingBar ratingBar = rootView.findViewById(R.id.ratingBar);
-        //Button ratingButton = rootView.findViewById(R.id.ratingButton);
-        //ratingButton.setOnClickListener(this);
-
+        //final TextView publicRatingText = rootView.findViewById(R.id.publicRating);
         return rootView;
 
 
@@ -84,9 +90,32 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
                 replaceFragment(fragment);
                 break;
             case R.id.addToFavorites:
-                //TODO: CHANGE MEDIAID (1)
-                //Media ID / account Info / accountType
-                AddFavorite addRequest = (AddFavorite) new AddFavorite((MainActivity) getActivity(), view).execute("1", AppGlobals.user, AppGlobals.userType);
+                //TODO: CHANGE MEDIAID TO ONE ASSOCIATED WITH THIS FRAG(1)
+                //Media ID
+                AddFavorite addRequest = (AddFavorite) new AddFavorite((MainActivity) getActivity(), view).execute("1");
+                break;
+            case R.id.ratingButton:
+                final Dialog rankDialog = new Dialog(getActivity(), R.style.FullHeightDialog);
+                rankDialog.setContentView(R.layout.rating_overlay);
+                rankDialog.setCancelable(true);
+                RatingBar ratingBar = (RatingBar)rankDialog.findViewById(R.id.dialog_ratingbar);
+                ratingBar.setRating(0); //set to users rating if exist
+
+                TextView text = (TextView) rankDialog.findViewById(R.id.rank_dialog_text1);
+                text.setText("Your Rating");
+
+                Button updateButton = (Button) rankDialog.findViewById(R.id.rank_dialog_button);
+                updateButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        rankDialog.dismiss();
+                    }
+                });
+
+
+                //now that the dialog is set up, it's time to show it
+                rankDialog.show();
                 break;
 //            case R.id.addToBookmarks:
 //                //TODO: CHANGE MEDIAID (1)
@@ -116,6 +145,14 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
             GetPicture pic = (GetPicture) new GetPicture((MainActivity) getActivity()).execute(mediaId, imgView);
         } catch (Exception e) {
             throw new Exception("(getPicture) -- something went wrong when retrieving picture");
+        }
+    }
+
+    private void getMediaRating(String mediaId, View v) throws Exception{
+        try {
+            GetMediaRating publicRate = (GetMediaRating) new GetMediaRating((MainActivity) getActivity(), v).execute(mediaId);
+        } catch (Exception e) {
+            throw new Exception("(getMediaRating) -- something went wrong when retrieving picture");
         }
     }
 

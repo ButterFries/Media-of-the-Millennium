@@ -28,7 +28,7 @@ public class FavoritesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_favorites, container, false);
 
         //accountInfo / accountType
-        DisplayFavorites displayFavRequest = (DisplayFavorites) new DisplayFavorites((MainActivity) getActivity(), v).execute(AppGlobals.user, AppGlobals.userType);
+        DisplayFavorites displayFavRequest = (DisplayFavorites) new DisplayFavorites((MainActivity) getActivity(), v).execute();
         return v;
 
     }

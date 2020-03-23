@@ -148,7 +148,14 @@ public class Server
         httpsServer.createContext("/updateUsersRating", new updateUsersRating(db, sm));
 
         //httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
+        httpsServer.createContext("/getReports", new getReports(db, sm));
+        httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
         httpsServer.createContext("/getPicture", new getPicture(db, sm));
+        httpsServer.createContext("/addReview", new addReview(db, sm));
+        
+        httpsServer.createContext("/getNewMedia", new getNewMedia(db, sm));
+        httpsServer.createContext("/getTopRatedMedia", new getTopRatedMedia(db, sm));
+        httpsServer.createContext("/getMediaByGenreAndType", new getMediaByGenreAndType(db, sm));
         //httpsServer.createContext("/x", new x(db, sm));
 
 

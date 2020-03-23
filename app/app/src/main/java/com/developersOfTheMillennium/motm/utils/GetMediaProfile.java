@@ -141,9 +141,9 @@ public class GetMediaProfile extends AsyncTask<Object, Void, Object[]> {
             //Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             //Bitmap bm = (Bitmap.createScaledBitmap(bmp, imgView.getMeasuredWidth(), imgView.getMeasuredHeight(), false));
             //imgView.setImageBitmap(Bitmap.createScaledBitmap(bmp, imgView.getMeasuredWidth(), imgView.getMeasuredHeight(), false));
-            titleView.setText(title);
-            tagsView.setText(tags);
-            summaryView.setText(summary);
+            titleView.setText("TITLE: " + title);
+            tagsView.setText("TAGS: " + tags);
+            summaryView.setText("SUMMARY: " + summary);
 
         } catch (JSONException e) {
             e.printStackTrace();

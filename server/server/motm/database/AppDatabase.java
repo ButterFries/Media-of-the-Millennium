@@ -570,6 +570,19 @@ public class AppDatabase {
     else if mediaType.videogame then "videogame"
     else if mediaType.novel then "novel"
      */
+
+
+
+    public void add_image(Connection conn, String img) throws IOException, SQLException{
+        try {
+            String sqlReq = "UPDATE mediaTitles SET image = (?) WHERE mediaID = last_insert_rowid()";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.setBytes(1, getByteArrayImage(img));
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("Failed to add image :  " + ex);
+        }
+    }
  
 
     /*
@@ -881,6 +894,33 @@ public class AppDatabase {
 
     /**
      * Returns a list of n randomly chosen mediaIDs that have the associated GENRE within its DB entry
+     */
+    public ArrayList<Integer> get_mediaIDs_by_genre_and_type(Connection conn, String genre, String mediaType, int n) throws SQLException {
+        if (n < 1) n = 1;
+        //String sqlReq = "SELECT *, INSTR(genres, \"" + genre + "\") gen FROM mediaTitles WHERE gen > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\"";
+        //String sqlReq = "SELECT mediaID FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\" AND mediaType = \"%" + mediaType + "%\" ORDER BY RANDOM() LIMIT " + n + "";
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE genres LIKE \"%" + genre + "%\" AND mediaType = \"" + mediaType + "\" ORDER BY RANDOM() LIMIT " + n + "";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.add(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches for genre [" + genre + "]");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using genre [" + genre + "] :  " + ex);
+        }
+    }
+
+
+
+    /**
+     * Returns a list of n randomly chosen mediaIDs that have the associated GENRE within its DB entry
      * and is not in the list of given IDs
      */
     public ArrayList<Integer> get_mediaIDs_by_genre(Connection conn, String genre, String[] already_used_IDs, int n) throws SQLException {
@@ -964,6 +1004,33 @@ public class AppDatabase {
         //String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
         //String sqlReq = "SELECT mediaID FROM mediaTitles ORDER BY rating DESC"; //change query to search for top rated
         String sqlReq = "SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY mediaID DESC LIMIT 10";
+        JSONArray ids = new JSONArray();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.put(rs.getInt("mediaID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No matches using rating");
+            else {
+                System.out.println(ids);
+                return ids;
+            }
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching mediaIDs using rating:  " + ex);
+        }
+    }
+
+    /**
+     * Returns a list of 10 mediaIDs sorted by rating and ordered in descending order
+     */
+    public JSONArray get_mediaIDs_by_TopRating(Connection conn, String mediaType) throws SQLException {
+        //if (n < 1) n = 1;
+        //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
+        //String sqlReq = "SELECT mediaID FROM mediaTitles ORDER BY rating DESC"; //change query to search for top rated
+        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY rating DESC LIMIT 10";
         JSONArray ids = new JSONArray();
         try {
             Statement stmt = conn.createStatement();
@@ -1227,126 +1294,79 @@ public class AppDatabase {
         }
     }
 
-    /**
-     * Returns a list of 10 mediaIDs sorted by rating and ordered in descending order
-     */
-    public JSONArray get_mediaIDs_by_TopRating(Connection conn, String mediaType) throws SQLException {
-        //if (n < 1) n = 1;
-        //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
-        //String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
-        //String sqlReq = "SELECT mediaID FROM mediaTitles ORDER BY rating DESC"; //change query to search for top rated
-        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE mediaType = \"" + mediaType + "\" ORDER BY rating DESC LIMIT 10";
-        JSONArray ids = new JSONArray();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            while (rs.next()) { //found something
-                ids.put(rs.getInt("mediaID"));
-            }
-            if (ids.isEmpty())
-                throw new SQLException("No matches using rating");
-            else
-                return ids;
-        } catch (SQLException ex) {
-            throw new SQLException("Error while fetching mediaIDs using rating:  " + ex);
-        }
-    }
+
 
 
 //==============================================================================
-//###   Reviews   ###
+//###   Reports   ###
 //==============================================================================
-
-    public static class mediaReviewInfo {
-        private int user_ID;
-        private String username;
-        private String media_ID;
-        private float rating_FID;
-        private float rating;
+    public static class Report {
+        private int report_ID;
         private int review_ID;
-        private String review_text;
+        private String report_text;
 
-        public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text) {
-            this.user_ID = user_ID;
-            this.username = username;
-            this.media_ID = media_ID;
-            this.rating_FID = rating_FID;
-            this.rating = rating;
-            this.review_ID = review_ID;
-            this.review_text = review_text;
+        public Report(int reportID, int reviewID, String text) {
+            this.report_ID = reportID;
+            this.review_ID = reviewID;
+            this.report_text = text;
         }
-//        public float get_rating(){ return this.rating; }
-//        public int get_raters(){ return this.numRaters; }
+
+        public int getReport_ID() {
+            return report_ID;
+        }
+
+        public int getReview_ID() {
+            return review_ID;
+        }
+
+        public String getReport_text() {
+            return report_text;
+        }
     }
 
-    public void insert_review(Connection conn, int user_ID, String username, String media_ID, int rating_FID, float rating, int review_ID, String review_text) throws SQLException {
+    public void add_report(Connection conn, int reviewID, String accountInfo, String sessionID) throws SQLException{
         try {
-            String sqlReq = "INSERT INTO reviews (user_ID,username media_ID,rating_FID,rating,review_ID,review_text) VALUES (?,?,?,?,?,?,?)";
+            String sqlReq = "INSERT INTO reports (reviewID, accountInfo, sessionID) VALUES (?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setInt(1, user_ID);
-            pstmt.setString(2, username);
-            pstmt.setString(3, media_ID);
-            pstmt.setInt(4, rating_FID);
-            pstmt.setFloat(5, rating);
-            pstmt.setInt(6, review_ID);
-            pstmt.setString(7, review_text);
+            pstmt.setInt(1, reviewID);
+            pstmt.setString(2, accountInfo);
+            pstmt.setString(3, sessionID);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw new SQLException("An error occurred when adding the user rated on media relation");
         }
     }
 
-
-    public void load_reviews(Connection conn) throws SQLException {
+    public void delete_report(Connection conn, int reportID) throws SQLException{
         try {
-            JSONArray query = new JSONArray();
-            Statement stmt = conn.createStatement();
-            String sqlReq = "SELECT username,rating,review_text FROM reviews ORDER BY RANDOM() LIMIT 10";
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            if (rs.next()) {
-                while (rs.next()) {
-                    JSONObject line = new JSONObject();
-                    line.put("username", rs.getString("username"));
-                    line.put("rating", rs.getInt("rating"));
-                    line.put("review_text", rs.getString("review_text"));
-                    query.put(line);
-                }
-            } else {
-                throw new SQLException("An error occurred when getting the reviews on review  relation");
-            }
+            String sqlReq = "DELETE FROM reports WHERE reportID = \"" + reportID + "\"";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
-
-            throw new SQLException("An error occurred when loading review relation");
+            throw new SQLException("An error occurred when deleting a report");
         }
     }
-
-    public void get_specific_review(int user_ID, Connection conn) throws SQLException {
+    /**
+     * Returns True if user already made a report for specific review
+     */
+    public boolean hasReport(Connection conn, int reviewID, String accountInfo) throws SQLException {
+        Statement stmt = conn.createStatement();
         try {
-            JSONArray query = new JSONArray();
-            Statement stmt = conn.createStatement();
-            String sqlReq = "SELECT * FROM reviews WHERE user_ID = ?";
+            String rID = Integer.toString(reviewID);
+            String sqlReq = "SELECT * FROM reports WHERE reviewID = \"" + rID + "\" AND accountInfo = \"" + accountInfo + "\"";
             ResultSet rs = stmt.executeQuery(sqlReq);
-            if (rs.next()) {
-                JSONObject line = new JSONObject();
-                line.put("username", rs.getString("username"));
-                line.put("rating", rs.getInt("rating"));
-                line.put("review_text", rs.getString("review_text"));
-                query.put(line);
-            } else {
+            return rs.next();
 
-                throw new SQLException("An error occurred when getting the reviews on review  relation");
-
-            }
-        } catch (SQLException ex) {
-
-            throw new SQLException("An error occurred when getting specific review");
+        }
+        catch (SQLException ex) {
+            //System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("An error occurred when checking if user has favorited");
         }
     }
 
 //==============================================================================
-//###   user media list   ###
+//###   Reviews   ###
 //==============================================================================
-
     public static class userMediaList {
 
         private int listID;
@@ -1362,23 +1382,9 @@ public class AppDatabase {
         //        public float get_rating(){ return this.rating; }
         //        public int get_raters(){ return this.numRaters; }
     }
-
+    
     public void insert_media_item(Connection conn, int listID,int userID,String list_name,String items) throws SQLException{
-        try {
-            String sqlReq = "INSERT INTO user_list (listID,userID,list_name,items) VALUES (?,?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setInt(1, listID);
-            pstmt.setInt(2,userID);
-            pstmt.setString(3,list_name);
-            pstmt.setString(4, items);
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            throw new SQLException("An error occurred when adding the user rated on media relation");
-        }
-    }
-
-    public void get_media_list(int listID,Connection conn)throws SQLException{
-        try {
+        try {    
             JSONArray query = new JSONArray();
             Statement stmt = conn.createStatement();
             String sqlReq = "SELECT * FROM user_list WHERE listID = "+listID ;
@@ -1456,6 +1462,140 @@ public class AppDatabase {
             throw new SQLException("An error occurred when getting specific review");
         }
     }
+    
+  //==============================================================================
+  //###   Reviews   ###
+  //==============================================================================
+
+      public static class mediaReviewInfo {
+          private int user_ID;
+          private String username;
+          private String media_ID;
+          private float rating_FID;
+          private float rating;
+          private int review_ID;
+          private String review_text;
+
+          public mediaReviewInfo(int user_ID, String username, String media_ID, float rating_FID, int rating, int review_ID, String review_text) {
+              this.user_ID = user_ID;
+              this.username = username;
+              this.media_ID = media_ID;
+              this.rating_FID = rating_FID;
+              this.rating = rating;
+              this.review_ID = review_ID;
+              this.review_text = review_text;
+          }
+//          public float get_rating(){ return this.rating; }
+//          public int get_raters(){ return this.numRaters; }
+      }
+
+      public void insert_review(Connection conn, int user_ID, String username, String media_ID, int rating_FID, float rating, int review_ID, String review_text) throws SQLException {
+          try {
+              String sqlReq = "INSERT INTO reviews (user_ID,username,media_ID,rating_FID,rating,review_ID,review_text) VALUES (?,?,?,?,?,?,?)";
+              PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+              pstmt.setInt(1, user_ID);
+              pstmt.setString(2, username);
+              pstmt.setString(3, media_ID);
+              pstmt.setInt(4, rating_FID);
+              pstmt.setFloat(5, rating);
+              pstmt.setInt(6, review_ID);
+              pstmt.setString(7, review_text);
+              pstmt.executeUpdate();
+          } catch (SQLException ex) {
+              throw new SQLException("An error occurred when adding the user rated on media relation");
+          }
+      }
+
+
+      public void load_reviews(Connection conn) throws SQLException {
+          try {
+              JSONArray query = new JSONArray();
+              Statement stmt = conn.createStatement();
+              String sqlReq = "SELECT username,rating,review_text FROM reviews ORDER BY RANDOM() LIMIT 10";
+              ResultSet rs = stmt.executeQuery(sqlReq);
+              if (rs.next()) {
+                  while (rs.next()) {
+                      JSONObject line = new JSONObject();
+                      line.put("username", rs.getString("username"));
+                      line.put("rating", rs.getInt("rating"));
+                      line.put("review_text", rs.getString("review_text"));
+                      query.put(line);
+                  }
+              } else {
+                  throw new SQLException("An error occurred when getting the reviews on review  relation");
+              }
+          } catch (SQLException ex) {
+
+              throw new SQLException("An error occurred when loading review relation");
+          }
+      }
+
+      public void get_specific_review(int user_ID, Connection conn) throws SQLException {
+          try {
+              JSONArray query = new JSONArray();
+              Statement stmt = conn.createStatement();
+              String sqlReq = "SELECT * FROM reviews WHERE user_ID = ?";
+              ResultSet rs = stmt.executeQuery(sqlReq);
+              if (rs.next()) {
+                  JSONObject line = new JSONObject();
+                  line.put("username", rs.getString("username"));
+                  line.put("rating", rs.getInt("rating"));
+                  line.put("review_text", rs.getString("review_text"));
+                  query.put(line);
+              } else {
+
+                  throw new SQLException("An error occurred when getting the reviews on review  relation");
+
+              }
+          } catch (SQLException ex) {
+
+              throw new SQLException("An error occurred when getting specific review");
+          }
+      }
+      
+      
+      
+      
+      //TODO implement database interactions for reviews
+      public void add_review(Connection conn, int userID, int mediaID, String reviewText) {
+    	  //TODO
+      }
+      
+      // throw error if review not found
+      public void delete_review(Connection conn, int userID, int mediaID) {
+    	  //TODO
+      }
+      
+      // returns JSONObject array of all reviews of a mediaID with reviews' username and text
+      // throw error if media not found
+      public ArrayList<JSONObject> get_all_reviews(Connection conn, int mediaID) {
+    	  
+    	  ArrayList<JSONObject> rtn = new ArrayList<JSONObject>();
+    	  
+    	  JSONObject sampleReview = new JSONObject();
+    	  sampleReview.put("username", "");
+    	  sampleReview.put("text", "");
+    	  
+    	  rtn.add(sampleReview);
+    	  
+    	  return rtn;
+    	  //TODO
+      }
+      
+      // returns JSONObject with review's username and text
+      // throw error if review not found
+      public JSONObject get_review(Connection conn, int userID, int mediaID) {
+    	  JSONObject rtn = new JSONObject();
+    	  rtn.put("username", "");
+    	  rtn.put("text", "");
+    	  return rtn;
+    	  //TODO
+      }
+      
+      public boolean hasReviewed(Connection conn, int userID, int mediaID) {
+    	  return false;
+    	  //TODO
+      }
+      
 
 }
-

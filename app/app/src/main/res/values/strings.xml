@@ -64,7 +64,8 @@
     <!-- Single favorite/bookmark layout entry -->
     <string name="x">X</string>
     <string name="view">View</string>
-
+    <string name="CreateAList">createAList</string>
+    <string name="Create_A_List">createAList</string>
 
 
 </resources>

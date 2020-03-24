@@ -18,8 +18,9 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
         // Need to add button functioning here.
 
         final Button favoritesBtn = rootView.findViewById(R.id.favoritesButton);
+        final Button createAList = rootView.findViewById(R.id.CreateList);
         favoritesBtn.setOnClickListener(this);
-
+        createAList.setOnClickListener(this);
 //        final Button bookmarksBtn = rootView.findViewById(R.id.bookmarksButton);
 //        bookmarksBtn.setOnClickListener(this);
 
@@ -31,6 +32,10 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
             case R.id.favoritesButton:
                 //Log.d("MediaProfileFrag","review button pressed");
                 fragment = new FavoritesFragment();
+                replaceFragment(fragment);
+                break;
+            case R.id.CreateList:
+                fragment = new MediaListPageFragment();
                 replaceFragment(fragment);
                 break;
 //            case R.id.bookmarksButton:

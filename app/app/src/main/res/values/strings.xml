@@ -2,7 +2,7 @@
     <!-- Global -->
     <!-- For debugging purposes change server_address to your computer's IPv4 Address -->
     <!-- string name="server_address">ipv4</string -->
-    <string name="server_address">192.168.0.114</string>
+    <string name="server_address">192.168.2.54</string>
     <string name="server_port">8080</string>
 
     <string name="app_name">MotM</string>
@@ -31,12 +31,13 @@
     <string name="media_profile_image">media_image</string>
     <string name="summary_info">summary_info</string>
     <string name="title">title</string>
-    <string name="tags">tags</string>
+    <string name="genres">genres</string>
     <string name="rate">rate</string>
     <string name="review">review</string>
     <string name="favorite">Favorite</string>
     <string name="media_image" />
     <string name="bookmark">Bookmark</string>
+    <string name="links">links</string>
 
     <!-- Media Reviews Page -->
     <string name="AddReview">Add Review</string>

@@ -37,6 +37,7 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         final TextView title = rootView.findViewById(R.id.textView);
         final TextView tags = rootView.findViewById(R.id.textView5);
         final TextView summary = rootView.findViewById(R.id.textView6);
+        final TextView links = rootView.findViewById(R.id.linksView);
 
         Bundle args = getArguments();
         if(args != null) {
@@ -44,7 +45,7 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
             System.out.println("MEDIA ID: " + mediaID);
             try {
                 //get info should be first
-                getMediaProfile(Integer.toString(mediaID), image, title, tags, summary);
+                getMediaProfile(Integer.toString(mediaID), image, title, tags, summary, links);
                 getPicture(Integer.toString(mediaID), image);
             } catch (Exception e) {
                 //catch but never happens because getPicture never throws exception? might need to fix?
@@ -108,9 +109,9 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         transaction.commit();
     }
 
-    private void getMediaProfile(String mediaId, ImageView imgView, TextView titleView, TextView tagsView, TextView summaryView) throws Exception{
+    private void getMediaProfile(String mediaId, ImageView imgView, TextView titleView, TextView tagsView, TextView summaryView, TextView linksView) throws Exception{
         try {
-            GetMediaProfile mediaInfo = (GetMediaProfile) new GetMediaProfile((MainActivity) getActivity()).execute(mediaId, imgView, titleView, tagsView, summaryView);
+            GetMediaProfile mediaInfo = (GetMediaProfile) new GetMediaProfile((MainActivity) getActivity()).execute(mediaId, imgView, titleView, tagsView, summaryView, linksView);
         } catch (Exception e) {
             throw new Exception("(getMediaProfile) -- something went wrong when retrieving media profile");
         }

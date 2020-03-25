@@ -365,6 +365,7 @@ public class AppDatabase {
             throw new SQLException("Could not update account favorites");
         }
 
+
     }
     /**
      * Adds specified media title (ID) to User's bookmarks
@@ -384,6 +385,7 @@ public class AppDatabase {
             //System.out.println("#  ERROR :  " + var5);
             throw new SQLException("Could not update account bookmarks");
         }
+
 
     }
 
@@ -642,9 +644,7 @@ public class AppDatabase {
         catch (SQLException ex) { 
             throw new SQLException("Failed to add media title :  "+ex);
         }
-        finally {
-            conn.close();
-        }
+
     }
 
 /*
@@ -663,6 +663,7 @@ public class AppDatabase {
         } catch (SQLException ex) {
             throw new SQLException("An error occurred when executing query on existence of 'mediaID' from 'mediaTitles' table :  " + ex);
         }
+
     }
 
     public byte[] getByteArrayImage(String img) {
@@ -758,6 +759,7 @@ public class AppDatabase {
         } catch (SQLException ex) {
             throw new Exception("Error while fetching common info using mediaID [" + mediaID + "]:  " + ex);
         }
+
         // String sqlReq2 = null;
         // if (mediaType.equals("cinema"))
         //     sqlReq2 = "SELECT * FROM cinemaInfo WHERE mediaID = "+mediaID;
@@ -1073,7 +1075,7 @@ public class AppDatabase {
 
         //update tags
         try {
-            sqlReq = "UPDATE mediaTitles SET tags = (?)";
+            sqlReq = "UPDATE mediaTitles SET tags = (?) ";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setString(1, updated_tags);
             pstmt.executeUpdate();
@@ -1213,10 +1215,10 @@ public class AppDatabase {
             mediaRatingInfo r_i = get_mediaRatingInfo(conn, mediaId);
             float currentRating = r_i.get_rating();
             int numRaters = r_i.get_raters();
-            float revertedRating = currentRating - previousRating * (1 / numRaters);
-            float updatedRating = revertedRating + newRating * (1 / numRaters);
+            float revertedRating = currentRating - previousRating * ((float) (1.0/ numRaters));
+            float updatedRating = revertedRating + newRating * ((float)(1.0 / numRaters));
             try {
-                String sqlReq = "UPDATE mediaTitles SET rating = (?)";
+                String sqlReq = "UPDATE mediaTitles SET rating = (?) WHERE mediaID = " + mediaId;
                 PreparedStatement pstmt = conn.prepareStatement(sqlReq);
                 pstmt.setFloat(1, updatedRating);
                 pstmt.executeUpdate();
@@ -1229,9 +1231,9 @@ public class AppDatabase {
             mediaRatingInfo r_i = get_mediaRatingInfo(conn, mediaId);
             float rating = r_i.get_rating();
             int numRaters = r_i.get_raters();
-            float updatedRating = (numRaters / (numRaters + 1)) * rating + newRating * (1 / (numRaters + 1));
+            float updatedRating = ((float) numRaters / (numRaters + 1)) * rating + newRating * ((float)(1.0 / (numRaters + 1)));
             try {
-                String sqlReq = "UPDATE mediaTitles SET rating = (?), numRaters = (?)";
+                String sqlReq = "UPDATE mediaTitles SET rating = (?), numRaters = (?) WHERE mediaID = " + mediaId;
                 PreparedStatement pstmt = conn.prepareStatement(sqlReq);
                 pstmt.setFloat(1, updatedRating);
                 pstmt.setInt(2, numRaters + 1);

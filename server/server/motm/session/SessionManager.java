@@ -89,13 +89,13 @@ public class SessionManager
      * otherwise or if user doesn't have a session entry then return false
      */
     public boolean isValidSession(String uID, String sID){
-        return sessions.containsKey(sID) ? (sessions.get(sID).getUID() == uID) : false;
+        return sessions.containsKey(sID) ? (sessions.get(sID).getUID().equals(uID)) : false;
     }
     public boolean isValidSession_u(String username, String sID){
-        return sessions.containsKey(sID) ? (sessions.get(sID).getUsername() == username) : false;
+        return sessions.containsKey(sID) ? (sessions.get(sID).getUsername().equals(username)) : false;
     }
     public boolean isValidSession_e(String email, String sID){
-        return sessions.containsKey(sID) ? (sessions.get(sID).getEmail() == email) : false;
+        return sessions.containsKey(sID) ? (sessions.get(sID).getEmail().equals(email)) : false;
     }
     
     public String getUID(String sID) {
@@ -151,7 +151,7 @@ public class SessionManager
                 err += (e+": sID ["+this.sID+"] not found in sessions;  ");
             }
             try {
-                if (actives.get(uID) == this.sID)
+                if (actives.get(uID).equals(this.sID))
                     actives.remove(uID);
                 else 
                     System.out.println("\n%% session with sID ["+this.sID+"] expired but was overwritten while deleting.\n");

@@ -67,7 +67,7 @@ public class UpdateRating extends AsyncTask<String, Void, Boolean> {
 //            else
 //                context = "getBookmarks";
 
-            JSONObject rtn = putRequest("getFavorites", data);
+            JSONObject rtn = putRequest("updateUsersRating", data);
             int error_code = rtn.getInt("error_code");
             //String session_token = rtn.getString("session_token");
             if (error_code == 0) {
@@ -126,7 +126,7 @@ public class UpdateRating extends AsyncTask<String, Void, Boolean> {
         //display toast if favorites was succesfully added
         if (result) {
             Context context = activity.getApplicationContext(); //might be another context function
-            CharSequence text = "Added to Favorites";
+            CharSequence text = "Rating updated";
 //            if (contextType.equals("favorites"))
 //                text = "Added to Favorites";
 //            else

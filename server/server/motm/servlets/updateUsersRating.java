@@ -1,4 +1,4 @@
-package server.motm.servlets;
+        package server.motm.servlets;
 import server.motm.database.*;
 import server.motm.utils.*;
 import server.motm.session.*;
@@ -48,7 +48,7 @@ public class updateUsersRating implements HttpHandler
     public updateUsersRating(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+
     }
 
     public void handle(HttpExchange r) {
@@ -57,6 +57,7 @@ public class updateUsersRating implements HttpHandler
         try {
             if (r.getRequestMethod().equals("PUT")) {
                 System.out.println("--request type: PUT");
+                conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -72,6 +73,15 @@ public class updateUsersRating implements HttpHandler
                 }catch (Exception eH500) {
                     System.out.println("# error sending h500 ::  "+eH500);
                 }
+            }
+        }
+        finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
             }
         }
     }
@@ -90,6 +100,8 @@ public class updateUsersRating implements HttpHandler
             Integer mediaID = requestJSON.getInt("mediaID");
             String sessionID = requestJSON.getString("session_token");
             float newRating = requestJSON.getFloat("new_rating");
+
+            System.out.println("new_rating is " + newRating);
 
 
             /*  check if mediaID is valid  */

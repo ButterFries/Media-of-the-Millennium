@@ -41,7 +41,7 @@ public class addMediaProfile implements HttpHandler
     public addMediaProfile(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+
     }
 
     public void handle(HttpExchange r) {
@@ -50,6 +50,7 @@ public class addMediaProfile implements HttpHandler
         try {
             if (r.getRequestMethod().equals("PUT")) {
                 System.out.println("--request type: PUT");
+                conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -65,6 +66,15 @@ public class addMediaProfile implements HttpHandler
                 }catch (Exception eH500) {
                     System.out.println("# error sending h500 ::  "+eH500);
                 }
+            }
+        }
+        finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
             }
         }
     }

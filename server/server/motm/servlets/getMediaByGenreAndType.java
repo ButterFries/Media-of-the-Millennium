@@ -29,7 +29,7 @@ public class getMediaByGenreAndType implements HttpHandler
     public getMediaByGenreAndType(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+
     }
 
     /* Client sends a rating (and maybe a sessionID) and in return gets
@@ -47,6 +47,7 @@ public class getMediaByGenreAndType implements HttpHandler
         try {
             if (r.getRequestMethod().equals("POST")) {
                 System.out.println("--request type: POST (GET)");
+                conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -62,6 +63,15 @@ public class getMediaByGenreAndType implements HttpHandler
                 }catch (Exception eH500) {
                     System.out.println("# error sending h500 ::  "+eH500);
                 }
+            }
+        }
+        finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
             }
         }
     }

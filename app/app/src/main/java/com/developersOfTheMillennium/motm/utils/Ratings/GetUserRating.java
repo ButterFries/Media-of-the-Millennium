@@ -122,7 +122,6 @@ public class GetUserRating extends AsyncTask<String, Void, Boolean> {
             try {
                 float ratingVal = (float)rating.getDouble("rating");
                 userRating.setRating(ratingVal);
-                userRating.setStepSize(ratingVal);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

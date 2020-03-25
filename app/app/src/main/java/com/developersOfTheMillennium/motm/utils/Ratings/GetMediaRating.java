@@ -1,6 +1,7 @@
 package com.developersOfTheMillennium.motm.utils.Ratings;
 
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -109,14 +110,20 @@ public class GetMediaRating extends AsyncTask<String, Void, Boolean> {
     }
 
     // the onPostexecute method receives the return type of doInBackGround()
+    @SuppressLint("SetTextI18n")
     protected void onPostExecute(Boolean result) {
         // do something with the result, for example display the received Data in a ListView
         // in this case, "result" would contain the "someLong" variable returned by doInBackground();
 
         if (result) {
             TextView publicRating = activity_view.findViewById(R.id.publicRating);
+            TextView numRating = activity_view.findViewById(R.id.numRatings);
             try {
-                publicRating.setText(Double.toString(rating.getDouble("rating")));
+                String s = String.format("%.1f", rating.getDouble("rating"));
+                publicRating.setText(s);
+                String ratings = rating.getInt("num_raters") + " ratings";
+                numRating.setText(ratings);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

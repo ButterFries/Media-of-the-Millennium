@@ -44,6 +44,32 @@
                     android:saveEnabled="true"
                     android:stepSize="1" />
 
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:clickable="false"
+        android:numStars="5"
+        android:rating="0"
+        android:saveEnabled="true"
+        android:stepSize="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:isIndicator="true"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/tags"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
                 <Button
                     android:id="@+id/ratingButton"
                     android:layout_width="125dp"
@@ -112,6 +138,51 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:text="@string/favorite" />
+
+    <RatingBar
+        android:id="@+id/public_rating_bar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:isIndicator="true"
+        android:numStars="1"
+        android:progressTint="@color/yellow"
+        android:rating="1"
+        android:saveEnabled="true"
+        android:stepSize="1"
+        app:layout_constraintBottom_toTopOf="@+id/ratingButton"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/publicRating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/rate"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/ratingButton"
+        app:layout_constraintStart_toEndOf="@+id/public_rating_bar"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/numRatings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/numratings"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+        app:layout_constraintStart_toEndOf="@+id/publicRating"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                 <Button
                     android:id="@+id/addToBookmarks"

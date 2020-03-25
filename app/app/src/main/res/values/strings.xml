@@ -68,6 +68,7 @@
 
     <!-- Report button -->
     <string name="report">Report</string>
+    <string name="numratings">numRatings</string>
 
 
 </resources>

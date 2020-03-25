@@ -29,7 +29,7 @@ public class getReports implements HttpHandler
     public getReports(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+
     }
 
     /* Client sends the reviewID, text and type and in return the report gets added
@@ -45,10 +45,12 @@ public class getReports implements HttpHandler
         try {
             if (r.getRequestMethod().equals("PUT")) {
                 System.out.println("--request type: PUT");
+                conn = db.connect();
                 handlePut(r, conn);
             }
             else if (r.getRequestMethod().equals("DELETE")) {
                 System.out.println("--request type: DELETE");
+                conn = db.connect();
                 handleDelete(r, conn);
             }
             else {
@@ -64,6 +66,15 @@ public class getReports implements HttpHandler
                 }catch (Exception eH500) {
                     System.out.println("# error sending h500 ::  "+eH500);
                 }
+            }
+        }
+        finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
             }
         }
     }

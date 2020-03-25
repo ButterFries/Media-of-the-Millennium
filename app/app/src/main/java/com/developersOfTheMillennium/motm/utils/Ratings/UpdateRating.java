@@ -1,4 +1,4 @@
-package com.developersOfTheMillennium.motm.utils.Favorites;
+package com.developersOfTheMillennium.motm.utils.Ratings;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -22,7 +22,7 @@ import okhttp3.Response;
 
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
-public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
+public class UpdateRating extends AsyncTask<String, Void, Boolean> {
 
     private static MainActivity activity;
     private static View activity_view;
@@ -31,10 +31,11 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
     private static SecureHTTPClient HTTPSClient;
     //private JSONArray lstItems = null;
 
-    public RemoveFavorite(MainActivity a, View v) {
+    public UpdateRating(MainActivity a, View v) {
         activity = a;
         activity_view = v;
         //contextType = c;
+
 
         HTTPSClient = new SecureHTTPClient(activity.getResources().getString(R.string.server_address)
                 +":"+activity.getResources().getString(R.string.server_port), activity);
@@ -43,18 +44,22 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... params ) {
         int mediaID = Integer.parseInt(params[0]);
+        float newRating =  Float.parseFloat(params[1]);
+        //email/username in global
+        //session in global
 
-        return run(mediaID);
+        return run(mediaID, newRating);
     }
 
-    private boolean run(int mediaID) {
+    private boolean run(int mediaID, float newRatingVal) {
 
         JSONObject data = new JSONObject();
 
         try {
             data.put("mediaID", mediaID);
-            data.put("accountInfo", AppGlobals.user);
-            data.put("accountType", AppGlobals.userType);
+            data.put(AppGlobals.userType, AppGlobals.user);
+            data.put("new_rating", newRatingVal);
+            data.put("session_token", AppGlobals.session);
 
 //            String context = "";
 //            if (contextType.equals("favorites"))
@@ -62,7 +67,7 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
 //            else
 //                context = "getBookmarks";
 
-            JSONObject rtn = putRequest("getFavorites", data);
+            JSONObject rtn = putRequest("updateUsersRating", data);
             int error_code = rtn.getInt("error_code");
             //String session_token = rtn.getString("session_token");
             if (error_code == 0) {
@@ -79,7 +84,7 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
         JSONObject rtn = null;
 
         /***   create http client request  ***/
-        Log.i("RemoveBookmark", "Creating "+context+" request");
+        Log.i("AddFavorite/Bookmark", "Creating "+context+" request");
 
         RequestBody requestBody = RequestBody.create(data.toString(), JSON);
 
@@ -87,7 +92,7 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
                 .url("https://"+activity.getResources().getString(R.string.server_address)
                         +":"+activity.getResources().getString(R.string.server_port)+"/"+context)
                 .addHeader("User-Agent", "motm "+context+" request")  // add request headers
-                .delete(requestBody)
+                .put(requestBody)
                 .build();
 
         try (Response response = HTTPSClient.run(request)) {
@@ -100,7 +105,7 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
 
             try {
                 rtn = new JSONObject(responseData);
-                Log.i("deleteRequest", "--complete");
+                Log.i("putRequest", "--complete");
             }catch (JSONException e) {
                 Log.e("ERROR postRequest "+context, "String to Json Parse Error");
                 throw new JSONException("String to Json Parse Error");
@@ -121,11 +126,11 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
         //display toast if favorites was succesfully added
         if (result) {
             Context context = activity.getApplicationContext(); //might be another context function
-            CharSequence text = "Removed from Favorites";
+            CharSequence text = "Rating updated";
 //            if (contextType.equals("favorites"))
-//                text = "Removed from Favorites";
+//                text = "Added to Favorites";
 //            else
-//                text = "Removed from Bookmarks";
+//                text = "Added to Bookmarks";
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);
@@ -134,3 +139,4 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
     }
 
 }
+

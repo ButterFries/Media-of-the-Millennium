@@ -1,12 +1,14 @@
-package com.developersOfTheMillennium.motm.utils.Favorites;
+package com.developersOfTheMillennium.motm.utils.Ratings;
 
-import android.content.Context;
+
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import com.developersOfTheMillennium.motm.AppGlobals;
+import com.developersOfTheMillennium.motm.FavouritesAdapter;
 import com.developersOfTheMillennium.motm.MainActivity;
 import com.developersOfTheMillennium.motm.R;
 import com.developersOfTheMillennium.motm.ssl.SecureHTTPClient;
@@ -22,19 +24,17 @@ import okhttp3.Response;
 
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
-public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
+public class GetMediaRating extends AsyncTask<String, Void, Boolean> {
 
     private static MainActivity activity;
     private static View activity_view;
-    //String contextType;
 
     private static SecureHTTPClient HTTPSClient;
-    //private JSONArray lstItems = null;
+    private JSONObject rating = null;
 
-    public RemoveFavorite(MainActivity a, View v) {
+    public GetMediaRating(MainActivity a, View v) {
         activity = a;
         activity_view = v;
-        //contextType = c;
 
         HTTPSClient = new SecureHTTPClient(activity.getResources().getString(R.string.server_address)
                 +":"+activity.getResources().getString(R.string.server_port), activity);
@@ -43,43 +43,39 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... params ) {
         int mediaID = Integer.parseInt(params[0]);
+        // String accountInfo = params[0];
 
-        return run(mediaID);
+        rating = run(mediaID);
+        if (rating != null) {
+            System.out.println("rating wasnt null");
+            return true;
+        }
+        return false;
     }
 
-    private boolean run(int mediaID) {
+    private JSONObject run(int mediaID) {
 
         JSONObject data = new JSONObject();
 
         try {
             data.put("mediaID", mediaID);
-            data.put("accountInfo", AppGlobals.user);
-            data.put("accountType", AppGlobals.userType);
 
-//            String context = "";
-//            if (contextType.equals("favorites"))
-//                context = "getFavorites";
-//            else
-//                context = "getBookmarks";
 
-            JSONObject rtn = putRequest("getFavorites", data);
-            int error_code = rtn.getInt("error_code");
-            //String session_token = rtn.getString("session_token");
-            if (error_code == 0) {
-                return true;
-            }
+            JSONObject rtn = postRequest("getMediaRating", data);
+
+            return rtn;
         } catch (Exception e) {
             Log.e("ERROR POST", "JSON Parsing: " + e);
         }
-        return false;
+        return null; //BAD
     }
 
 
-    private JSONObject putRequest(String context, JSONObject data) {
+    private JSONObject postRequest(String context, JSONObject data) {
         JSONObject rtn = null;
 
         /***   create http client request  ***/
-        Log.i("RemoveBookmark", "Creating "+context+" request");
+        Log.i("DisplayFavorites", "Creating "+context+" request");
 
         RequestBody requestBody = RequestBody.create(data.toString(), JSON);
 
@@ -87,7 +83,7 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
                 .url("https://"+activity.getResources().getString(R.string.server_address)
                         +":"+activity.getResources().getString(R.string.server_port)+"/"+context)
                 .addHeader("User-Agent", "motm "+context+" request")  // add request headers
-                .delete(requestBody)
+                .post(requestBody)
                 .build();
 
         try (Response response = HTTPSClient.run(request)) {
@@ -96,11 +92,11 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
             // Get response body
-            String responseData = response.body().string();
+            String responseData = response.body().string(); //[{"mediaId":"1","title":"example"},{"mediaId":"2","title":"Pog"},{"mediaId":"3","title":"Pepe"}]"
 
             try {
                 rtn = new JSONObject(responseData);
-                Log.i("deleteRequest", "--complete");
+                Log.i("postRequest", "--complete");
             }catch (JSONException e) {
                 Log.e("ERROR postRequest "+context, "String to Json Parse Error");
                 throw new JSONException("String to Json Parse Error");
@@ -114,22 +110,23 @@ public class RemoveFavorite extends AsyncTask<String, Void, Boolean> {
     }
 
     // the onPostexecute method receives the return type of doInBackGround()
+    @SuppressLint("SetTextI18n")
     protected void onPostExecute(Boolean result) {
         // do something with the result, for example display the received Data in a ListView
         // in this case, "result" would contain the "someLong" variable returned by doInBackground();
 
-        //display toast if favorites was succesfully added
         if (result) {
-            Context context = activity.getApplicationContext(); //might be another context function
-            CharSequence text = "Removed from Favorites";
-//            if (contextType.equals("favorites"))
-//                text = "Removed from Favorites";
-//            else
-//                text = "Removed from Bookmarks";
-            int duration = Toast.LENGTH_SHORT;
+            TextView publicRating = activity_view.findViewById(R.id.publicRating);
+            TextView numRating = activity_view.findViewById(R.id.numRatings);
+            try {
+                String s = String.format("%.1f", rating.getDouble("rating"));
+                publicRating.setText(s);
+                String ratings = rating.getInt("num_raters") + " ratings";
+                numRating.setText(ratings);
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

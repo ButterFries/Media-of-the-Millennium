@@ -85,17 +85,13 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         addFavoritesBtn.setOnClickListener(this);
 
         //Add to bookmarks
-//        final Button addBookmarksBtn = rootView.findViewById(R.id.addToBookmarks);
-//        addBookmarksBtn.setOnClickListener(this);
+        final Button addBookmarksBtn = rootView.findViewById(R.id.addToBookmarks);
+        addBookmarksBtn.setOnClickListener(this);
 
         //Rating button
         final Button ratingButton = rootView.findViewById(R.id.ratingButton);
         ratingButton.setOnClickListener(this);
 
-
-        // Rating Bar(s)
-        //final RatingBar ratingBar = rootView.findViewById(R.id.ratingBar);
-        //final TextView publicRatingText = rootView.findViewById(R.id.publicRating);
         return rootView;
 
 
@@ -111,9 +107,28 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
                 replaceFragment(fragment);
                 break;
             case R.id.addToFavorites:
-                //TODO: CHANGE MEDIAID TO ONE ASSOCIATED WITH THIS FRAG(1)
                 //Media ID
-                AddFavorite addRequest = (AddFavorite) new AddFavorite((MainActivity) getActivity(), view).execute(mediaID);
+                if (AppGlobals.userType.equals("guest")) {
+                    CharSequence text = "Please sign in to favorite";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getContext(), text, duration);
+                    toast.show();
+                }
+                else {
+                    AddFavorite addRequest = (AddFavorite) new AddFavorite((MainActivity) getActivity(), view).execute(mediaID); }
+                break;
+             case R.id.addToBookmarks:
+                 if (AppGlobals.userType.equals("guest")) {
+                     CharSequence text = "Please sign in to bookmark";
+                     int duration = Toast.LENGTH_SHORT;
+
+                     Toast toast = Toast.makeText(getContext(), text, duration);
+                     toast.show();
+                 }
+                 else {
+                //TODO: CHANGE MEDIAID (1)
+                AddBookmark addRequest2 = (AddBookmark) new AddBookmark((MainActivity) getActivity(), view).execute(mediaID); }
                 break;
             case R.id.ratingButton:
                 if (AppGlobals.userType.equals("guest")) {
@@ -163,12 +178,7 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
                 }
 
                 break;
-           // case R.id.addToBookmarks:
 
-//                //TODO: CHANGE MEDIAID (1)
-//                //Media ID / account Info / accountType
-//                AddBookmark addRequest2 = (AddBookmark) new AddBookmark((MainActivity) getActivity(), view).execute("1", AppGlobals.user, AppGlobals.userType);
-//                break;
         }
     }
     public void replaceFragment(Fragment someFragment) {

@@ -99,7 +99,7 @@ public class BookmarksAdapter extends BaseAdapter {
                     public void onClick(DialogInterface dialog, int which) {
                         items.remove(positionToRemove);
                         //TODO: media ID / user info / user type
-                        RemoveBookmark removeRequest2 = (RemoveBookmark) new RemoveBookmark((MainActivity) parent.getContext(), v).execute(Integer.toString(viewHolder.get_mediaID()), AppGlobals.user, AppGlobals.userType);
+                        RemoveBookmark removeRequest2 = (RemoveBookmark) new RemoveBookmark((MainActivity) parent.getContext(), v).execute(Integer.toString(viewHolder.get_mediaID()));
                         notifyDataSetChanged(); //USED TO NOTIFY ADAPTER, MAY NOT BE NEEDED INSIDE ADAPTER CLASS
                     }
                 });

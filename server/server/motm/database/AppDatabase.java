@@ -1326,13 +1326,12 @@ public class AppDatabase {
         }
     }
 
-    public void add_report(Connection conn, int reviewID, String accountInfo, String sessionID) throws SQLException{
+    public void add_report(Connection conn, int reviewID, String user) throws SQLException{
         try {
-            String sqlReq = "INSERT INTO reports (reviewID, accountInfo, sessionID) VALUES (?, ?, ?)";
+            String sqlReq = "INSERT INTO reports (reviewID, user) VALUES (?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setInt(1, reviewID);
-            pstmt.setString(2, accountInfo);
-            pstmt.setString(3, sessionID);
+            pstmt.setString(2, user);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw new SQLException("An error occurred when adding the user rated on media relation");
@@ -1355,14 +1354,14 @@ public class AppDatabase {
         Statement stmt = conn.createStatement();
         try {
             String rID = Integer.toString(reviewID);
-            String sqlReq = "SELECT * FROM reports WHERE reviewID = \"" + rID + "\" AND accountInfo = \"" + accountInfo + "\"";
+            String sqlReq = "SELECT * FROM reports WHERE reviewID = \"" + rID + "\" AND user = \"" + accountInfo + "\"";
             ResultSet rs = stmt.executeQuery(sqlReq);
             return rs.next();
 
         }
         catch (SQLException ex) {
             //System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("An error occurred when checking if user has favorited");
+            throw new SQLException("An error occurred when checking if user has reported");
         }
     }
 

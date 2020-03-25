@@ -117,10 +117,7 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
         if (result) {
             Context context = activity.getApplicationContext(); //might be another context function
             CharSequence text = "Added to Favorites";
-//            if (contextType.equals("favorites"))
-//                text = "Added to Favorites";
-//            else
-//                text = "Added to Bookmarks";
+
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);

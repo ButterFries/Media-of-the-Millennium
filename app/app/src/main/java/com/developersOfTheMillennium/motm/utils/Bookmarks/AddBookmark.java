@@ -123,6 +123,15 @@ public class AddBookmark extends AsyncTask<String, Void, Boolean> {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+        else {
+            Context context = activity.getApplicationContext(); //might be another context function
+            CharSequence text = "Already added!";
+
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
 }

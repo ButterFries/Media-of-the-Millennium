@@ -3,6 +3,7 @@ package com.developersOfTheMillennium.motm;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,6 +86,22 @@ public class FavouritesAdapter extends BaseAdapter {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        Button mppView = convertView.findViewById(R.id.viewButton);
+        mppView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View v) {
+                Bundle args = new Bundle();
+                MediaProfilePageFragment Frag = new MediaProfilePageFragment();
+                args.putInt("mediaID", viewHolder.get_mediaID());
+                Frag.setArguments(args);
+
+                ( (MainActivity) v.getContext()).replaceFragment(Frag);
+
+            }
+        });
+
+
+
 
         Button deleteView = convertView.findViewById(R.id.deleteButton);
         deleteView.setOnClickListener(new View.OnClickListener() {

@@ -86,7 +86,6 @@ public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
         Log.i("RegisterAccount", "Creating "+context+" request");
 
         RequestBody requestBody = RequestBody.create(JSON, data.toString());
-
         Request request = new Request.Builder()
                 .url("https://"+activity.getResources().getString(R.string.server_address)
                         +":"+activity.getResources().getString(R.string.server_port)+"/"+context)

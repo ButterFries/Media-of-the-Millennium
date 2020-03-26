@@ -1,6 +1,8 @@
 package com.developersOfTheMillennium.motm;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +24,7 @@ import java.util.List;
 
 public class MediaListPageFragment extends Fragment implements View.OnClickListener {
     private List<ImageButton> add_media = new ArrayList<ImageButton>();
-    private EditText review_title;
+    private EditText list_title;
     private TextView username;
     private ImageButton media1;
     private ImageButton media2;
@@ -57,35 +59,72 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
         add_media.add(media12 = v.findViewById(R.id.imageButton12));
         username = v.findViewById(R.id.username_text);
         username.setText(AppGlobals.user);
+
         searchView = v.findViewById(R.id.search);
 
         for(int i = 0; i<add_media.size();i++){
             add_media.get(i).setOnClickListener(this);
         }
+        list_title.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         return v;
 
 
     }
     public void onClick(View view) {
-        Fragment fragment;
-        for(int i =0;i<add_media.size();i++){
-            if(add_media.get(i).getTag().equals("0")){
-                try {
-                    change_image(add_media,"2");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
 
-            }else if(add_media.get(i).getTag().equals("1")){
-                System.out.println(add_media.get(i).getTag());
-                Log.d("MediaProfileFrag","media ");
-                fragment = new MediaProfilePageFragment();
-                replaceFragment(fragment);
+        switch(view.getId()){
+            case R.id.imageButton:
+                case_switch(add_media,media1,"2");
                 break;
-            }
+            case R.id.imageButton2:
+                case_switch(add_media,media2,"2");
+                break;
+            case R.id.imageButton3:
+                case_switch(add_media,media3,"2");
+                break;
+            case R.id.imageButton4:
+                case_switch(add_media,media4,"2");
+                break;
+            case R.id.imageButton5:
+                case_switch(add_media,media5,"2");
+                break;
+            case R.id.imageButton6:
+                case_switch(add_media,media6,"2");
+                break;
+            case R.id.imageButton7:
+                case_switch(add_media,media7,"2");
+                break;
+            case R.id.imageButton8:
+                case_switch(add_media,media8,"2");
+                break;
+            case R.id.imageButton9:
+                case_switch(add_media,media9,"2");
+                break;
+            case R.id.imageButton10:
+                case_switch(add_media,media10,"2");
+                break;
+            case R.id.imageButton11:
+                case_switch(add_media,media11,"2");
+                break;
+            case R.id.imageButton12:
+                case_switch(add_media,media12,"2");
+                break;
         }
 
 
@@ -113,6 +152,23 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
             holds_image = 0;
         }
         return holds_image;
+    }
+    public void case_switch(List<ImageButton>add_media, ImageButton media,String mediaId){
+        Fragment fragment;
+        int check = check_case(media);
+        switch(check){
+            case 0:
+                try{
+                    change_image(add_media,mediaId);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            case 1:
+                fragment = new MediaProfilePageFragment();
+                replaceFragment(fragment);
+                break;
+        }
     }
 
     public void replaceFragment(Fragment someFragment) {

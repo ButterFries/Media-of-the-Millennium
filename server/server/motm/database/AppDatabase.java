@@ -1049,6 +1049,27 @@ public class AppDatabase {
         }
     }
 
+    public JSONArray get_list_of_reportIDs(Connection conn, int numOfReports) throws SQLException {
+        //if (n < 1) n = 1;
+        //String sqlReq = "SELECT *, INSTR(tags, \"" + tag + "\") tg FROM mediaTitles WHERE tg > 0";
+        //String sqlReq = "SELECT * FROM mediaTitles WHERE tags LIKE \"%" + tag + "%\"";
+        //String sqlReq = "SELECT mediaID FROM mediaTitles ORDER BY rating DESC"; //change query to search for top rated
+        String sqlReq = "SELECT reportID FROM reports ORDER BY reportID DESC LIMIT "+numOfReports+"";
+        JSONArray ids = new JSONArray();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            while (rs.next()) { //found something
+                ids.put(rs.getInt("reportID"));
+            }
+            if (ids.isEmpty())
+                throw new SQLException("No reports available");
+            else
+                return ids;
+        } catch (SQLException ex) {
+            throw new SQLException("Error while fetching reportIDs:  " + ex);
+        }
+    }
 
     /**
      * Update the media title with the specified ID with the new tags
@@ -1563,8 +1584,14 @@ public class AppDatabase {
       }
       
       // throw error if review not found
-      public void delete_review(Connection conn, int userID, int mediaID) {
-    	  //TODO
+      public void delete_review(Connection conn, int reviewID) throws SQLException{
+          try {
+              String sqlReq = "DELETE FROM reviews WHERE reviewID = \"" + reviewID + "\"";
+              PreparedStatement pstmt = conn.prepareStatement(sqlReq);
+              pstmt.executeUpdate();
+          } catch (SQLException ex) {
+              throw new SQLException("An error occurred when deleting a review");
+          }
       }
       
       // returns JSONObject array of all reviews of a mediaID with reviews' username and text
@@ -1597,6 +1624,22 @@ public class AppDatabase {
     	  return false;
     	  //TODO
       }
-      
+
+    public boolean hasReview(Connection conn, int reviewID) throws SQLException {
+        Statement stmt = conn.createStatement();
+        try {
+            String rID = Integer.toString(reviewID);
+            String sqlReq = "SELECT * FROM reviews WHERE reviewID = " + rID + "";
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            return rs.next();
+
+        }
+        catch (SQLException ex) {
+            //System.out.println("#  ERROR :  "+ex);
+            throw new SQLException("An error occurred when checking if review exists");
+        }
+    }
+
+
 
 }

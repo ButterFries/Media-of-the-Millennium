@@ -20,43 +20,33 @@ import java.sql.*;
 
 import com.sun.net.httpserver.HttpsExchange;
 
-public class getReports implements HttpHandler
+public class getReviews implements HttpHandler
 {
     private static AppDatabase db;
     private static SessionManager sm;
     private static Connection conn = null;
 
-    public getReports(AppDatabase appDB, SessionManager appSM) {
+    public getReviews(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
 
     }
 
-    /* Client sends the reviewID, text and type and in return the report gets added
+    /* Client sends the reviewID, username/email and session token and in turn the review gets deleted
      *
      * Error Codes:
-     *      0 --  successfully added/deleted report
-     *      1 --  failed to add/delete
+     *      0 --  successfully deleted review
+     *      1 --  failed to delete
      *      ~~
      */
     public void handle(HttpExchange r) {
         System.out.println("\n-Received request [getReports.java]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
-            if (r.getRequestMethod().equals("PUT")) {
-                System.out.println("--request type: PUT");
-                conn = db.connect();
-                handlePut(r, conn);
-            }
-            else if (r.getRequestMethod().equals("DELETE")) {
+            if (r.getRequestMethod().equals("DELETE")) {
                 System.out.println("--request type: DELETE");
                 conn = db.connect();
                 handleDelete(r, conn);
-            }
-            else if (r.getRequestMethod().equals("GET")) {
-                System.out.println("--request type: GET");
-                conn = db.connect();
-                handleGet(r, conn);
             }
             else {
                 System.out.println("--request type unsupported: "+r.getRequestMethod());
@@ -84,17 +74,20 @@ public class getReports implements HttpHandler
         }
     }
 
+
     /**
-     * adding report to database
+     * removing review from database (only usable in backend/cmd line)
      */
-    public void handlePut(HttpExchange r, Connection conn) throws Exception {
+    public void handleDelete(HttpExchange r, Connection conn) throws Exception {
         String body = Utils.convert(r.getRequestBody());
         JSONObject requestJSON = new JSONObject(body);
         JSONObject responseJSON = new JSONObject();
         HttpsExchange rs = (HttpsExchange) r;
 
         if (requestJSON.has("reviewID") &&
-        (requestJSON.has("username") || requestJSON.has("email")) && requestJSON.has("session_token")){
+                (requestJSON.has("username") || requestJSON.has("email")) && requestJSON.has("session_token")){
+            int reportID = requestJSON.getInt("reportID");
+
             int reviewID = requestJSON.getInt("reviewID");
             String sessionID = requestJSON.getString("session_token");
 
@@ -129,18 +122,17 @@ public class getReports implements HttpHandler
             }
             int userID = acc.get_ID();
 
-
             /*  check if session is valid  */
             if ( !sm.isValidSession(userID+"", sessionID) ){
                 response_no_session(r, responseJSON, sessionID, user);
                 return;
             }
 
-            //check if user already made a report
-            if (db.hasReport(conn, reviewID, user)){
-                System.out.println("--user already reported on review");
+            //check if review exists
+            if (!db.hasReview(conn, reviewID, user)){
+                System.out.println("--review does not exist");
                 responseJSON.put("error_code", 1);
-                responseJSON.put("error_description", "error: user already reported on this review");
+                responseJSON.put("error_description", "error: review does not exist");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(200, response.length());
                 OutputStream os = rs.getResponseBody();
@@ -149,108 +141,11 @@ public class getReports implements HttpHandler
                 return;
             }
 
-
-
-            /* add report to reports table */
             try {
-                db.add_report(conn, reviewID, user);
+                db.delete_review(conn, reviewID);
 
                 responseJSON.put("error_code", 0);
-                responseJSON.put("error_description", "successfully added report to reports");
-                String response = responseJSON.toString() + "\n";
-                rs.sendResponseHeaders(200, response.length());
-                OutputStream os = rs.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                System.out.println("--response :   "+response.trim());
-                System.out.println("--request fufilled");
-            }
-            catch (Exception e){
-                System.out.println("## ERROR ::  " + e);
-                throw new Exception("(handlePut) -- something went wrong when sending response");
-            }
-        }
-        else {
-            rs.sendResponseHeaders(400, -1);
-        }
-    }
-
-    public void handleGet(HttpExchange r, Connection conn) throws Exception {
-        String body = Utils.convert(r.getRequestBody());
-        JSONObject requestJSON = new JSONObject(body);
-        JSONObject responseJSON = new JSONObject();
-        HttpsExchange rs = (HttpsExchange) r;
-
-        if (requestJSON.has("numOfReports")){
-            int numOfReports = requestJSON.getInt("numOfReports");
-            System.out.println("--client send reports: ");
-            try{
-                responseJSON.put("reportIDs", db.get_list_of_reportIDs(conn, numOfReports));
-            } catch (SQLDataException data_ex){
-                System.out.println("#  ERROR ::  "+ data_ex);
-                responseJSON.put("error_code", 2);
-                responseJSON.put("error_description", "critical error:  database is missing data; reports cannot be fetched");
-                String response = responseJSON.toString() + "\n";
-                rs.sendResponseHeaders(500, response.length());
-                OutputStream os = rs.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                return;
-            } catch (SQLException sql_ex){
-                System.out.println("#  ERROR ::  "+ sql_ex);
-                responseJSON.put("error_code", 1);
-                responseJSON.put("error_description", "invalid number");
-                String response = responseJSON.toString() + "\n";
-                rs.sendResponseHeaders(404, response.length());
-                OutputStream os = rs.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                return;
-            } catch (Exception ex){
-                System.out.println("#  ERROR ::  "+ ex);
-                rs.sendResponseHeaders(500, -1);
-                return;
-            }
-            try {
-                responseJSON.put("error_code", 0);
-                responseJSON.put("error_description", "successfully fetched reports");
-                String response = responseJSON.toString() + "\n";
-                rs.sendResponseHeaders(200, response.length());
-                OutputStream os = rs.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                System.out.println("--responese :   "+response.trim());
-                System.out.println("--request fufilled");
-            }
-            catch (Exception e){
-                System.out.println("## ERROR ::  " + e);
-                throw new Exception("(handleReq) -- something went wrong when sending response");
-            }
-        }
-        else {
-            rs.sendResponseHeaders(400, -1);
-        }
-    }
-
-    /**
-     * removing report from database (only usable in backend/cmd line)
-     */
-    public void handleDelete(HttpExchange r, Connection conn) throws Exception {
-        String body = Utils.convert(r.getRequestBody());
-        JSONObject requestJSON = new JSONObject(body);
-        JSONObject responseJSON = new JSONObject();
-        HttpsExchange rs = (HttpsExchange) r;
-
-        if (requestJSON.has("reportID")){
-            int reportID = requestJSON.getInt("reportID");
-
-            System.out.println("--client send reportID: "+reportID);
-
-            try {
-                db.delete_report(conn, reportID);
-
-                responseJSON.put("error_code", 0);
-                responseJSON.put("error_description", "successfully deleted report from reports");
+                responseJSON.put("error_description", "successfully deleted review from reviews");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(200, response.length());
                 OutputStream os = rs.getResponseBody();

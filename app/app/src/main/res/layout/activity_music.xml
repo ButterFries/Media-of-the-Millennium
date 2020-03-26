@@ -22,7 +22,8 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:background="@drawable/ic_music_button"/>
 
         <TextView
             android:id="@+id/Trending"

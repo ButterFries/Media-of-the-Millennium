@@ -2,7 +2,7 @@
     <!-- Global -->
     <!-- For debugging purposes change server_address to your computer's IPv4 Address -->
     <!-- string name="server_address">ipv4</string -->
-    <string name="server_address">192.168.2.54</string>
+    <string name="server_address">192.168.50.253</string>
     <string name="server_port">8080</string>
 
     <string name="app_name">MotM</string>

@@ -89,17 +89,22 @@ public class SessionManager
      * otherwise or if user doesn't have a session entry then return false
      */
     public boolean isValidSession(String uID, String sID){
-        return sessions.containsKey(sID) ? (sessions.get(sID).getUID() == uID) : false;
+    	String session = sID.substring("motm_sessionID=".length(), sID.length()); //remove "motm_sessionID=" from session string
+        return sessions.containsKey(session) ? (sessions.get(session).getUID().equals(uID)) : false;
     }
     public boolean isValidSession_u(String username, String sID){
-        return sessions.containsKey(sID) ? (sessions.get(sID).getUsername() == username) : false;
+    	System.out.println(username);
+    	String session = sID.substring("motm_sessionID=".length(), sID.length()); //remove "motm_sessionID=" from session string
+        return sessions.containsKey(session) ? (sessions.get(session).getUsername().equals(username)) : false;
     }
     public boolean isValidSession_e(String email, String sID){
-        return sessions.containsKey(sID) ? (sessions.get(sID).getEmail() == email) : false;
+    	String session = sID.substring(0,"motm_sessionID=".length()); //remove "motm_sessionID=" from session string
+        return sessions.containsKey(session) ? (sessions.get(session).getEmail().equals(email)) : false;
     }
     
     public String getUID(String sID) {
-    	return sessions.containsKey(sID) ? sessions.get(sID).getUID() : "";
+    	String session = sID.substring("motm_sessionID=".length(), sID.length()); //remove "motm_sessionID=" from session string
+    	return sessions.containsKey(session) ? sessions.get(session).getUID() : "";
     }
 
 
@@ -141,7 +146,7 @@ public class SessionManager
         }    
         @Override
         public void run() {
-            System.out.println("\n%% session with sID ["+this.sID+"] expired.\n");
+            /*System.out.println("\n%% session with sID ["+this.sID+"] expired.\n");
             String uID = null;
             String err = "";
             try{
@@ -162,7 +167,7 @@ public class SessionManager
             if (!err.equals(""))
                 throw new NullPointerException(err);
             System.out.println("active sessions: "+actives.toString()); // for debugging
-            System.out.println("sessions: "+sessions.toString()); // for debugging
+            System.out.println("sessions: "+sessions.toString()); // for debugging */
         }
     }
 
@@ -194,6 +199,8 @@ public class SessionManager
             sessionInfo sess = new sessionInfo(uID, username, email, sID, time_stamp, timer);
             sessions.put(sID,sess);
             actives.put(uID,sID);
+            System.out.println(sessions);
+            System.out.println(actives);
         }
     }
 

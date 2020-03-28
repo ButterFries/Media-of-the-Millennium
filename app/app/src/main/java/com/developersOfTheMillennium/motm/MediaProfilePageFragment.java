@@ -24,6 +24,8 @@ import org.w3c.dom.Text;
 
 public class MediaProfilePageFragment extends Fragment implements View.OnClickListener {
 
+    private int mediaID = -1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
 
         Bundle args = getArguments();
         if(args != null) {
-            int mediaID = args.getInt("mediaID", 0);
+            mediaID = args.getInt("mediaID", 0);
             System.out.println("MEDIA ID: " + mediaID);
             try {
                 //get info should be first
@@ -86,6 +88,12 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
             case R.id.reviewButton:
                 Log.d("MediaProfileFrag","review button pressed");
                 fragment = new ReviewsFragment();
+
+                Bundle args = new Bundle();
+                if(mediaID != -1) {
+                    args.putInt("mediaID", mediaID);
+                    fragment.setArguments(args);
+                }
                 replaceFragment(fragment);
                 break;
             case R.id.addToFavorites:

@@ -64,6 +64,15 @@ public class getMediaProfile implements HttpHandler
                 }
             }
         }
+        /*finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
+            }
+        }*/
     }
 
     public void handleReq(HttpExchange r, Connection conn) throws Exception {

@@ -29,7 +29,7 @@ public class BookmarksFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_bookmarks, container, false);
 
         //accountInfo / accountType
-        DisplayBookmarks displayBookmarkRequest = (DisplayBookmarks) new DisplayBookmarks((MainActivity) getActivity(), v).execute(AppGlobals.user, AppGlobals.userType);
+        DisplayBookmarks displayBookmarkRequest = (DisplayBookmarks) new DisplayBookmarks((MainActivity) getActivity(), v).execute();
         return v;
 
     }

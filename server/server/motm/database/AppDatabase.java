@@ -365,6 +365,7 @@ public class AppDatabase {
             throw new SQLException("Could not update account favorites");
         }
 
+
     }
     /**
      * Adds specified media title (ID) to User's bookmarks
@@ -384,6 +385,7 @@ public class AppDatabase {
             //System.out.println("#  ERROR :  " + var5);
             throw new SQLException("Could not update account bookmarks");
         }
+
 
     }
 
@@ -642,9 +644,26 @@ public class AppDatabase {
         catch (SQLException ex) { 
             throw new SQLException("Failed to add media title :  "+ex);
         }
-        finally {
-            conn.close();
+
+    }
+
+/*
+     * Checks if mediaID exists in 'mediaTitles' table, returns true if it does exist.
+     */
+    public boolean mediaExists(Connection conn, int mediaId) throws SQLException {
+        Statement stmt = conn.createStatement();
+        String sqlReq = "SELECT (count(*) > 0) FROM mediaTitles WHERE mediaID = \"" + mediaId + "\"";
+        try {
+            ResultSet rs = stmt.executeQuery(sqlReq);
+            if (rs.next()) {
+                return rs.getBoolean(1);
+            } else {
+                throw new SQLException("Failed to fetch query on existence of 'mediaID' from 'mediaTitles' table");
+            }
+        } catch (SQLException ex) {
+            throw new SQLException("An error occurred when executing query on existence of 'mediaID' from 'mediaTitles' table :  " + ex);
         }
+
     }
 
     public byte[] getByteArrayImage(String img) {
@@ -740,6 +759,7 @@ public class AppDatabase {
         } catch (SQLException ex) {
             throw new Exception("Error while fetching common info using mediaID [" + mediaID + "]:  " + ex);
         }
+
         // String sqlReq2 = null;
         // if (mediaType.equals("cinema"))
         //     sqlReq2 = "SELECT * FROM cinemaInfo WHERE mediaID = "+mediaID;
@@ -1055,7 +1075,7 @@ public class AppDatabase {
 
         //update tags
         try {
-            sqlReq = "UPDATE mediaTitles SET tags = (?)";
+            sqlReq = "UPDATE mediaTitles SET tags = (?) ";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setString(1, updated_tags);
             pstmt.executeUpdate();
@@ -1196,10 +1216,10 @@ public class AppDatabase {
             mediaRatingInfo r_i = get_mediaRatingInfo(conn, mediaId);
             float currentRating = r_i.get_rating();
             int numRaters = r_i.get_raters();
-            float revertedRating = currentRating - previousRating * (1 / numRaters);
-            float updatedRating = revertedRating + newRating * (1 / numRaters);
+            float revertedRating = currentRating - previousRating * ((float) (1.0/ numRaters));
+            float updatedRating = revertedRating + newRating * ((float)(1.0 / numRaters));
             try {
-                String sqlReq = "UPDATE mediaTitles SET rating = (?)";
+                String sqlReq = "UPDATE mediaTitles SET rating = (?) WHERE mediaID = " + mediaId;
                 PreparedStatement pstmt = conn.prepareStatement(sqlReq);
                 pstmt.setFloat(1, updatedRating);
                 pstmt.executeUpdate();
@@ -1212,9 +1232,9 @@ public class AppDatabase {
             mediaRatingInfo r_i = get_mediaRatingInfo(conn, mediaId);
             float rating = r_i.get_rating();
             int numRaters = r_i.get_raters();
-            float updatedRating = (numRaters / (numRaters + 1)) * rating + newRating * (1 / (numRaters + 1));
+            float updatedRating = ((float) numRaters / (numRaters + 1)) * rating + newRating * ((float)(1.0 / (numRaters + 1)));
             try {
-                String sqlReq = "UPDATE mediaTitles SET rating = (?), numRaters = (?)";
+                String sqlReq = "UPDATE mediaTitles SET rating = (?), numRaters = (?) WHERE mediaID = " + mediaId;
                 PreparedStatement pstmt = conn.prepareStatement(sqlReq);
                 pstmt.setFloat(1, updatedRating);
                 pstmt.setInt(2, numRaters + 1);
@@ -1310,13 +1330,12 @@ public class AppDatabase {
         }
     }
 
-    public void add_report(Connection conn, int reviewID, String accountInfo, String sessionID) throws SQLException{
+    public void add_report(Connection conn, int reviewID, String user) throws SQLException{
         try {
-            String sqlReq = "INSERT INTO reports (reviewID, accountInfo, sessionID) VALUES (?, ?, ?)";
+            String sqlReq = "INSERT INTO reports (reviewID, user) VALUES (?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlReq);
             pstmt.setInt(1, reviewID);
-            pstmt.setString(2, accountInfo);
-            pstmt.setString(3, sessionID);
+            pstmt.setString(2, user);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw new SQLException("An error occurred when adding the user rated on media relation");
@@ -1339,14 +1358,14 @@ public class AppDatabase {
         Statement stmt = conn.createStatement();
         try {
             String rID = Integer.toString(reviewID);
-            String sqlReq = "SELECT * FROM reports WHERE reviewID = \"" + rID + "\" AND accountInfo = \"" + accountInfo + "\"";
+            String sqlReq = "SELECT * FROM reports WHERE reviewID = \"" + rID + "\" AND user = \"" + accountInfo + "\"";
             ResultSet rs = stmt.executeQuery(sqlReq);
             return rs.next();
 
         }
         catch (SQLException ex) {
             //System.out.println("#  ERROR :  "+ex);
-            throw new SQLException("An error occurred when checking if user has favorited");
+            throw new SQLException("An error occurred when checking if user has reported");
         }
     }
 

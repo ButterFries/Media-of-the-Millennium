@@ -21,7 +21,8 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:background="@drawable/ic_top_rated_media_button"/>
 
         <TextView
             android:id="@+id/Movies"

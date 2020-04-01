@@ -45,7 +45,7 @@ public class validateAccount implements HttpHandler
     public validateAccount(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+        //conn = db.connect();
     }
 
     public void handle(HttpExchange r) {
@@ -55,7 +55,7 @@ public class validateAccount implements HttpHandler
         try {
             if (r.getRequestMethod().equals("POST")) {
                 System.out.println("--request type: POST (GET)"); //System.out.println("--request type: GET");
-                //conn = db.connect();
+                conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -72,7 +72,7 @@ public class validateAccount implements HttpHandler
                 }
             }
         }
-        /*finally {
+        finally {
             try { //this is to safely disconnect from the db if a connection was made
                 if (conn != null)
                     db.disconnect(conn);
@@ -80,7 +80,7 @@ public class validateAccount implements HttpHandler
             catch (Exception eDisconnect){
                 System.out.println("# handled error disconnecting :: "+eDisconnect);
             }
-        }*/
+        }
     }
 
     public void handleReq(HttpExchange r, Connection conn) throws Exception {
@@ -152,7 +152,7 @@ public class validateAccount implements HttpHandler
                 Headers headers = r.getResponseHeaders();
                 headers.add("User-agent", "HTTPTool/1.0");
                 headers.add("Set-cookie", "motm_sessionID="+sessionID+"; Max-Age="+(sm.getSessionDuration()-60)+"; HttpOnly;"); // Secure;");
-                String session_token = "motm_sessionID="+sessionID;
+                String session_token = sessionID;
                 responseJSON.put("session_token", session_token);
 
                 String response = responseJSON.toString() + "\n";

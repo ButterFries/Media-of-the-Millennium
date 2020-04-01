@@ -22,10 +22,10 @@ import java.util.HashMap;
 
 /* Store sessionIDs in an in-memory storage map
  * --to improve this for scalability, instead store sessions in the database
- * 
+ *
  * --there is a concurrency issue with the current management method using two maps
  *     which could be alleviated using locks or other synchronization methods.
- *     alternatively a concurrency safe database could be used to hold, query, update, and 
+ *     alternatively a concurrency safe database could be used to hold, query, update, and
  *     delete entries safely.
  */
 
@@ -101,15 +101,15 @@ public class SessionManager
     	String session = sID.substring(0,"motm_sessionID=".length()); //remove "motm_sessionID=" from session string
         return sessions.containsKey(session) ? (sessions.get(session).getEmail().equals(email)) : false;
     }
-    
+
     public String getUID(String sID) {
     	String session = sID.substring("motm_sessionID=".length(), sID.length()); //remove "motm_sessionID=" from session string
     	return sessions.containsKey(session) ? sessions.get(session).getUID() : "";
     }
 
 
-    /* The session ID consists of both a random number and a 
-     * hash combining some properties of the user such as the 
+    /* The session ID consists of both a random number and a
+     * hash combining some properties of the user such as the
      * username and IP address.
      *     sessionId = randomNum + SHA256( userId + timestamp + salt + ipAddr )
      */
@@ -124,7 +124,7 @@ public class SessionManager
         String shaHalf = DatatypeConverter.printHexBinary(sha2hash).toLowerCase();
         String prefix = UUID.randomUUID().toString() + "-";
         String sessID = prefix + shaHalf;
-        while (this.sessions.containsKey(sessID)){ 
+        while (this.sessions.containsKey(sessID)){
             //if sessID already exists then generate new prefix
             prefix = UUID.randomUUID().toString() + "-";
             sessID = prefix + shaHalf;
@@ -135,7 +135,7 @@ public class SessionManager
         System.out.println("%%-- session for uID ["+uID+"] created.");
         return sessID;
     }
-    
+
 
     /* TimerTask to destory the session entry.
      */
@@ -143,7 +143,7 @@ public class SessionManager
         private final String sID;
         public destroySessionEvent ( String sID ){
             this.sID = sID;
-        }    
+        }
         @Override
         public void run() {
             /*System.out.println("\n%% session with sID ["+this.sID+"] expired.\n");
@@ -156,9 +156,9 @@ public class SessionManager
                 err += (e+": sID ["+this.sID+"] not found in sessions;  ");
             }
             try {
-                if (actives.get(uID) == this.sID)
+                if (actives.get(uID).equals(this.sID))
                     actives.remove(uID);
-                else 
+                else
                     System.out.println("\n%% session with sID ["+this.sID+"] expired but was overwritten while deleting.\n");
             }
             catch (Exception e){
@@ -178,9 +178,9 @@ public class SessionManager
     private void addSession(String uID, String username, String email, String sID, long time_stamp){
         Timer timer = new Timer(sID+"_sessionTimer");
         TimerTask dse = new destroySessionEvent(sID);
-        timer.schedule( dse, TimeUnit.SECONDS.toMillis(session_duration) ); 
+        timer.schedule( dse, TimeUnit.SECONDS.toMillis(session_duration) );
         // increase accuracy with `sess_dur - (getTime - time_stamp).toMilli`
-        
+
         if (actives.containsKey(uID)){
             System.out.println("%%-- overwriting existing session for uID ["+uID+"]");
             String old_sessID = actives.get(uID);
@@ -206,15 +206,15 @@ public class SessionManager
 
     /* Safely remove the sessionID from the set of sessionIDs and
      * destroy the timed event
-     * 
-     * mode = 'uID' , 'username' , 'email' 
+     *
+     * mode = 'uID' , 'username' , 'email'
      */
     public void removeSession(String sID, String user, String mode) throws Exception{
         if ( !mode.equals("uID") && !mode.equals("username") && !mode.equals("email") )
             throw new Exception("Invalid session removal mode: ["+mode+"]");
         System.out.println("%% removing session for sID ["+sID+"]");
         if ( !sessions.containsKey(sID) ){
-            System.out.println("%%-- session for sID ["+sID+"] does not exist. (may have expired or wasn't created)");    
+            System.out.println("%%-- session for sID ["+sID+"] does not exist. (may have expired or wasn't created)");
             return;
         }
         sessionInfo sess = sessions.get(sID);
@@ -235,4 +235,3 @@ public class SessionManager
         System.out.println("%%-- session for sID ["+sID+"] has been destroyed.");
     }
 }
-

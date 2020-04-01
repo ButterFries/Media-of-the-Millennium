@@ -105,7 +105,7 @@ public class Server
 
         /***   initialize session manager   ***/
         System.out.println("! Initializing SessionManager");
-        SessionManager sm = new SessionManager(10/*30*/); //if arg then arg-sec session duration, otherwise default 1hour
+        SessionManager sm = new SessionManager(); //if arg then arg-sec session duration, otherwise default 1hour
         System.out.println("--manager ready");
 
 
@@ -142,6 +142,12 @@ public class Server
         httpsServer.createContext("/getMediaProfile", new getMediaProfile(db, sm));
         httpsServer.createContext("/getFavorites", new getFavorites(db, sm));
         httpsServer.createContext("/getBookmarks", new getBookmarks(db, sm));
+
+        httpsServer.createContext("/getMediaRating", new getMediaRating(db, sm));
+        httpsServer.createContext("/getUsersRating", new getUsersRating(db, sm));
+        httpsServer.createContext("/updateUsersRating", new updateUsersRating(db, sm));
+
+        //httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
         httpsServer.createContext("/getReports", new getReports(db, sm));
         httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
         httpsServer.createContext("/getPicture", new getPicture(db, sm));

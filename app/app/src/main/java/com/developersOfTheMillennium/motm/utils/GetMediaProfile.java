@@ -153,9 +153,14 @@ public class GetMediaProfile extends AsyncTask<Object, Void, Object[]> {
             summary = (String) returnJSON.get("summary");
             links = (String) returnJSON.get("links");
 
-            titleView.setText("Title: " + title);
-            genresView.setText("Genres: " + genres);
-            summaryView.setText("Summary: " + summary);
+//            titleView.setText("Title: " + title);
+//            genresView.setText("Genres: " + genres);
+//            summaryView.setText("Summary: " + summary);
+
+            titleView.setText(title);
+            genresView.setText(genres);
+            summaryView.setText(summary);
+
             String[] linksArray = links.split(",");
             linksView.setText("Links: \n");
             for(int i=0; i<linksArray.length; i++) {

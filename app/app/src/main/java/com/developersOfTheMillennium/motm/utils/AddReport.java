@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.MainActivity;
 import com.developersOfTheMillennium.motm.R;
 import com.developersOfTheMillennium.motm.ssl.SecureHTTPClient;
@@ -42,19 +43,17 @@ public class AddReport extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... params ) {
         int reviewID = Integer.parseInt(params[0]);
-        String accountInfo = params[1];
-        String sessionID = params[2];
-        return run(reviewID, accountInfo, sessionID);
+        return run(reviewID);
     }
 
-    private boolean run(int reviewID, String accountInfo, String sessionID) {
+    private boolean run(int reviewID) {
 
         JSONObject data = new JSONObject();
 
         try {
             data.put("reviewID", reviewID);
-            data.put("accountInfo", accountInfo);
-            data.put("sessionID",sessionID);
+            data.put(AppGlobals.userType, AppGlobals.user);
+            data.put("session_token", AppGlobals.session);
 
 
             JSONObject rtn = putRequest("getReports", data);

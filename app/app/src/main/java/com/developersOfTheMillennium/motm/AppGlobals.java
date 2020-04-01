@@ -7,4 +7,5 @@ public class AppGlobals {
     public static String userType = "username";
     public static String user = "abc";
     public static String session = "";
+
 }

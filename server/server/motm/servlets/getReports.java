@@ -29,7 +29,7 @@ public class getReports implements HttpHandler
     public getReports(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+
     }
 
     /* Client sends the reviewID, text and type and in return the report gets added
@@ -45,10 +45,12 @@ public class getReports implements HttpHandler
         try {
             if (r.getRequestMethod().equals("PUT")) {
                 System.out.println("--request type: PUT");
+                conn = db.connect();
                 handlePut(r, conn);
             }
             else if (r.getRequestMethod().equals("DELETE")) {
                 System.out.println("--request type: DELETE");
+                conn = db.connect();
                 handleDelete(r, conn);
             }
             else {
@@ -66,6 +68,15 @@ public class getReports implements HttpHandler
                 }
             }
         }
+        finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
+            }
+        }
     }
 
     /**
@@ -77,15 +88,51 @@ public class getReports implements HttpHandler
         JSONObject responseJSON = new JSONObject();
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("reviewID") && (requestJSON.has("accountInfo") && (requestJSON.has("sessionID")))){
+        if (requestJSON.has("reviewID") &&
+        (requestJSON.has("username") || requestJSON.has("email")) && requestJSON.has("session_token")){
             int reviewID = requestJSON.getInt("reviewID");
-            String sessionID = requestJSON.getString("sessionID");
-            String accountInfo = requestJSON.getString("accountInfo");
+            String sessionID = requestJSON.getString("session_token");
 
             System.out.println("--client send reviewID: "+reviewID);
 
+            /*  check if user exists  */
+            AppDatabase.accountInfo acc = null;
+            String user = null;
+            if ( requestJSON.has("username") ) {
+                String username = requestJSON.getString("username");
+                user = username;
+                System.out.println("----username: "+username);
+                /*  check if username exists  */
+                if ( !db.usernameExists(conn, username) ){ //exception will be forwarded up to .handle
+                    response_no_user(r, responseJSON);
+                    return;
+                }
+                /*  get userID  */
+                acc = db.get_user_from_name(conn, username);
+            }
+            else { //(  requestJSON.has("email")
+                String email = requestJSON.getString("email");
+                System.out.println("----email: "+email);
+                user = email;
+                /*  check if email exists  */
+                if ( !db.emailExists(conn, email) ){ //exception will be forwarded up to .handle
+                    response_no_email(r, responseJSON);
+                    return;
+                }
+                /*  get userID  */
+                acc = db.get_user_from_email(conn, email);
+            }
+            int userID = acc.get_ID();
 
-            if (db.hasReport(conn, reviewID, accountInfo)){
+
+            /*  check if session is valid  */
+            if ( !sm.isValidSession(userID+"", sessionID) ){
+                response_no_session(r, responseJSON, sessionID, user);
+                return;
+            }
+
+            //check if user already made a report
+            if (db.hasReport(conn, reviewID, user)){
                 System.out.println("--user already reported on review");
                 responseJSON.put("error_code", 1);
                 responseJSON.put("error_description", "error: user already reported on this review");
@@ -96,9 +143,12 @@ public class getReports implements HttpHandler
                 os.close();
                 return;
             }
+
+
+
             /* add report to reports table */
             try {
-                db.add_report(conn, reviewID, accountInfo, sessionID);
+                db.add_report(conn, reviewID, user);
 
                 responseJSON.put("error_code", 0);
                 responseJSON.put("error_description", "successfully added report to reports");
@@ -156,6 +206,44 @@ public class getReports implements HttpHandler
             rs.sendResponseHeaders(400, -1);
         }
 
+    }
+
+    private void response_no_session(HttpExchange r, JSONObject responseJSON, String sID, String user) throws Exception {
+        System.out.println("----invalid session for user ["+user+"] with session ID ["+sID+"]");
+        responseJSON.put("error_code", 4);
+        responseJSON.put("error_description", "invalid session");
+        String response = responseJSON.toString() + "\n";
+        r.sendResponseHeaders(404, response.length());
+        OutputStream os = r.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+        System.out.println("--responese :   "+response.trim());
+        System.out.println("--request fufilled");
+    }
+    private void response_no_user(HttpExchange r, JSONObject responseJSON) throws Exception {
+        System.out.println("----username doesn't exist");
+        responseJSON.put("error_code", 2);
+        responseJSON.put("error_description", "username doesn't exist");
+        String response = responseJSON.toString() + "\n";
+        r.sendResponseHeaders(200, response.length());
+        OutputStream os = r.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+        System.out.println("--responese :   "+response.trim());
+        System.out.println("--request fufilled");
+    }
+
+    private void response_no_email(HttpExchange r, JSONObject responseJSON) throws Exception {
+        System.out.println("----email doesn't exist");
+        responseJSON.put("error_code", 3);
+        responseJSON.put("error_description", "email doesn't exists");
+        String response = responseJSON.toString() + "\n";
+        r.sendResponseHeaders(200, response.length());
+        OutputStream os = r.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+        System.out.println("--responese :   "+response.trim());
+        System.out.println("--request fufilled");
     }
 
 }

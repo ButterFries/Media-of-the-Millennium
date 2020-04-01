@@ -24,7 +24,8 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:background="@drawable/ic_novels_button"/>
 
         <TextView
             android:id="@+id/Trending"

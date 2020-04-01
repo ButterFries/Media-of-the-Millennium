@@ -27,11 +27,11 @@ import com.sun.net.httpserver.HttpsExchange;
 
 /* (NOT USED YET)
  * Client sends {} and gets {}
- * 
- * Error Codes: 
- *      0 --  
- *      1 --  
- *      2 --  
+ *
+ * Error Codes:
+ *      0 --
+ *      1 --
+ *      2 --
  *      ~~
  */
 
@@ -44,22 +44,23 @@ public class addReview implements HttpHandler
     public addReview(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+
     }
 
     public void handle(HttpExchange r) {
         System.out.println("\n-Received request [addReview]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
-            if (r.getRequestMethod().equals("POST")) {
-                System.out.println("--request type: POST");
+            if (r.getRequestMethod().equals("PUT")) {
+                System.out.println("--request type: PUT");
+                conn = db.connect();
                 handleReq(r, conn);
             }
             else {
                 System.out.println("--request type unsupported: "+r.getRequestMethod());
                 rs.sendResponseHeaders(405, -1);
             }
-        } 
+        }
         catch (Exception e) {
             System.out.println("# ERROR addReview.handle ::  " + e);
             if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
@@ -70,6 +71,15 @@ public class addReview implements HttpHandler
                 }
             }
         }
+        finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
+            }
+        }
     }
     // Requires userType, username/password, sessionID, mediaID, and reviewText
     public void handleReq(HttpExchange r, Connection conn) throws Exception {
@@ -78,7 +88,7 @@ public class addReview implements HttpHandler
 
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("mediaID") && requestJSON.has("userType") && requestJSON.has("user") 
+        if (requestJSON.has("mediaID") && requestJSON.has("userType") && requestJSON.has("user")
         		&& requestJSON.has("sessionID") && requestJSON.has("reviewText") && requestJSON.has("reviewTitle")
         		&& requestJSON.has("rating")) {
             int mediaID = requestJSON.getInt("mediaID");
@@ -88,15 +98,15 @@ public class addReview implements HttpHandler
             String reviewText = requestJSON.getString("reviewText");
             String reviewTitle = requestJSON.getString("reviewTitle");
             float rating = requestJSON.getInt("rating");
-            
+
             JSONObject responseJSON = new JSONObject();
-            
+
             boolean validID = false;
             if (userType.equals("email"))
             	validID = sm.isValidSession_e(user, sessionId);
             else if (userType.equals("username"))
             	validID = sm.isValidSession_u(user, sessionId);
-            
+
             // If the sessionID doesn't match the given username/email or sessionID is invalid
             if (!validID) {
             	throw new CredentialException("sessionID doesn't match the given username/email or sessionID is invalid");
@@ -104,13 +114,13 @@ public class addReview implements HttpHandler
             int userID = Integer.parseInt(sm.getUID(sessionId));
             /*  register the title to db  */
             System.out.println("--adding review to database");
-            
+
             // Should not store username as part of the review since the saved username will not update if the poster changes their username
             // Should instead dynamically retrieve the username from the userID when retrieving the review
             db.add_review(conn, userID, mediaID, reviewText, reviewTitle, rating); //exception will be forwarded up to .handle
-            
+
             System.out.println("----successfully added review to database");
-            
+
             /*  send response  */
             try {
                 responseJSON.put("error_code", 0);

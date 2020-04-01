@@ -44,7 +44,7 @@ public class registerAccount implements HttpHandler
     public registerAccount(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+
     }
 
     public void handle(HttpExchange r) {
@@ -54,7 +54,7 @@ public class registerAccount implements HttpHandler
         try {
             if (r.getRequestMethod().equals("PUT")) {
                 System.out.println("--request type: PUT");
-                //conn = db.connect();
+                conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -159,7 +159,7 @@ public class registerAccount implements HttpHandler
                 Headers headers = r.getResponseHeaders();
                 headers.add("User-agent", "HTTPTool/1.0");
                 headers.add("Set-cookie", "motm_sessionID="+sessionID+"; Max-Age="+(sm.getSessionDuration()-60)+"; HttpOnly;"); // Secure;");
-                String session_token = "motm_sessionID="+sessionID;
+                String session_token = sessionID;
                 responseJSON.put("session_token", session_token);
 
                 responseJSON.put("error_code", 0);

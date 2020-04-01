@@ -1,0 +1,74 @@
+<resources>
+    <!-- Global -->
+    <!-- For debugging purposes change server_address to your computer's IPv4 Address -->
+    <!-- string name="server_address">ipv4</string -->
+    <string name="server_address">192.168.0.114</string>
+    <string name="server_port">8080</string>
+
+    <string name="app_name">MotM</string>
+
+    <!-- Registration Page -->
+    <string name="registration_login_button">Login</string>
+    <string name="registration_signup_button">Signup</string>
+    <string name="registration_guest_button">or continue as a guest</string>
+    <string name="tv_series">TV SERIES</string>
+
+    <!-- Login Page -->
+    <string name="login_email_button">Username or Email</string>
+    <string name="login_password_button">Password</string>
+
+    <!-- Signup Page -->
+    <string name="signup_password_button">Password</string>
+    <string name="signup_password_confirm_button">Confirm Password</string>
+    <string name="signup_username_button">Username</string>
+    <string name="signup_email_button">Email</string>
+    <string name="signup_email_hint_button">someone@example.com</string>
+    <!-- Media Home Page -->
+    <string name="new_media_button">New Releases</string>
+    <string name="top_rated_media_button">Top Rated</string>
+
+    <!-- Media Profile Page -->
+    <string name="media_profile_image">media_image</string>
+    <string name="summary_info">summary_info</string>
+    <string name="title">title</string>
+    <string name="genres">genres</string>
+    <string name="rate">rate</string>
+    <string name="review">review</string>
+    <string name="favorite">Favorite</string>
+    <string name="media_image" />
+    <string name="bookmark">Bookmark</string>
+    <string name="links">links</string>
+
+    <!-- Media Reviews Page -->
+    <string name="AddReview">Add Review</string>
+    <string name="reviewpagetitle">Title</string>
+
+    <!-- User Favorites Page -->
+    <string name="my_favourites">My Favourites</string>
+    <!-- User Bookmarks Page -->
+    <string name="my_bookmarks">My Bookmarks</string>
+
+    <!-- User Profile Page -->
+    <string name="profile">PROFILE</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="name">NAME</string>
+    <string name="e_mail">E-MAIL</string>
+    <string name="age">AGE</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="favourites">Favourites</string>
+
+    <!-- Base Layout for ListView in User Favourites Page -->
+    <string name="view_favorite_button">view_favorite_button</string>
+    <string name="delete_favorite_button">delete_favorite_button</string>
+    <string name="user">User</string>
+
+    <!-- Single favorite/bookmark layout entry -->
+    <string name="x">X</string>
+    <string name="view">View</string>
+
+    <!-- Report button -->
+    <string name="report">Report</string>
+    <string name="numratings">numRatings</string>
+
+
+</resources>

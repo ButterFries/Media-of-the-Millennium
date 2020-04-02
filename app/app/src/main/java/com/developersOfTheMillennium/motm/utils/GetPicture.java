@@ -5,19 +5,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.module.AppGlideModule;
-import com.developersOfTheMillennium.motm.AppGlobals;
+
 import com.developersOfTheMillennium.motm.MainActivity;
+import com.developersOfTheMillennium.motm.MediaProfilePageFragment;
 import com.developersOfTheMillennium.motm.R;
 import com.developersOfTheMillennium.motm.ssl.SecureHTTPClient;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,15 +25,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import jp.wasabeef.picasso.transformations.CropSquareTransformation;
-import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
-public class GetPicture extends AsyncTask<Object, Void, Object[]> {
+public class GetPicture extends AsyncTask<Object, Void, Object[]> implements View.OnClickListener {
 
     private static MainActivity activity;
     private static SecureHTTPClient HTTPSClient;
@@ -61,7 +59,13 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
     private Object[] getPic(String mediaId, ImageView btn) {
         //Picture
         JSONObject data = new JSONObject();
-        byte[] image = null;
+        Object[] fin = new Object[2];
+        if(mediaId == null) {
+            //Empty image
+            fin[0] = null;
+            fin[1] = btn;
+            return fin;
+        }
         try {
             data.put("mediaID", mediaId);
             Log.i("mediaID", mediaId);
@@ -75,24 +79,10 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
                 bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                 System.out.println("WIDTH: " + btn.getWidth() + "HEIGHT : " + btn.getHeight());
             }
-            //Bitmap bm = Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false);
-            //btn.setImageBitmap(bm);
-            //btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false));
-            //btn.set(R.drawable.ic_cinema);
-            Object[] fin = new Object[2];
             fin[0] = bmp;
             fin[1] = btn;
             return fin;
-            //return true;
-            //if (error_code == 0) {
-                //AppGlobals.userType = "email";
-                //AppGlobals.user = usernameEmail;
-                //AppGlobals.session = session_token;
-                //Log.i("global user type",AppGlobals.userType);
-                //Log.i("global username/email",AppGlobals.user);
-                //Log.i("global session token",AppGlobals.session);
-            //    return true;
-            //}
+
         } catch (Exception e) {
             Log.e("ERROR Getting Picture", "JSON Parsing: " + e);
             //error case just set to image of cinema (MAY CHANGE TO GENERAL IMAGE
@@ -145,9 +135,25 @@ public class GetPicture extends AsyncTask<Object, Void, Object[]> {
         Bitmap bmp = (Bitmap) rtn[0];
         ImageView btn = (ImageView) rtn[1];
         if(bmp == null) {
-            btn.setImageResource(R.drawable.ic_cinema); //change image to general error case
+            //btn.setOnClickListener(null);
+            btn.setImageResource(R.mipmap.error_pic); //change image to general error case
             return;
         }
         btn.setImageBitmap(Bitmap.createScaledBitmap(bmp, btn.getMeasuredWidth(), btn.getMeasuredHeight(), false));
+        btn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        //Take to the Proper Review
+        //MIGHT NEED TO ADD CASE SWITCH FOR EACH BUTTON CREATE FRAG DEPENDING ON WHAT ITS ID IS
+        Object id = v.getTag();
+        Bundle args = new Bundle();
+        MediaProfilePageFragment Frag = new MediaProfilePageFragment();
+        if(id != null) {
+            args.putInt("mediaID", (Integer) id);
+            Frag.setArguments(args);
+        }
+        (activity).replaceFragment(Frag);
     }
 }

@@ -37,15 +37,14 @@ public class saveMediaList extends AsyncTask<String, Void, Boolean> {
         String mediaIds = params[1];
         System.out.println(list_name + mediaIds);
         Log.i("Info Passed", list_name + mediaIds);
-        return save(list_name, mediaIds);
+        System.out.println(save(list_name, mediaIds));
+        return true;
 //            return false;
     }
 
     private boolean save(String list_name, String mediaIds) {
 
         //Loading Spinner On
-        activity.enableLoadingAnimation();
-
         JSONObject data = new JSONObject();
 
         try {
@@ -55,8 +54,8 @@ public class saveMediaList extends AsyncTask<String, Void, Boolean> {
 
             JSONObject rtn = putRequest("saveMediaList", data);
             int error_code = rtn.getInt("error_code");
-            String session_token = rtn.getString("session_token");
-            System.out.println(session_token);
+//            String session_token = rtn.getString("session_token");
+            System.out.println(error_code);
             //String session_token = rtn.getString("session_token");
             if (error_code == 0) {
                 return true;
@@ -64,7 +63,6 @@ public class saveMediaList extends AsyncTask<String, Void, Boolean> {
         } catch (Exception e) {
             Log.e("ERROR POST", "JSON Parsing: " + e);
         }
-        activity.disableLoadingAnimation();
         return false;
     }
 

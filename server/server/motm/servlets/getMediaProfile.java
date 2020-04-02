@@ -141,16 +141,16 @@ public class getMediaProfile implements HttpHandler
         System.out.println("--request fufilled");
     }
 
-    private void response_no_media(HttpExchange r, JSONObject responseJSON, int mediaID) throws Exception {
-        System.out.println("----mediaID ["+mediaID+"] doesn't exist");
-        responseJSON.put("error_code", 1);
-        responseJSON.put("error_description", "invalid mediaID");
-        String response = responseJSON.toString() + "\n";
-        r.sendResponseHeaders(404, response.length());
-        OutputStream os = r.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
-        System.out.println("--responese :   "+response.trim());
-        System.out.println("--request fufilled");
-    }
+//    private void response_no_media(HttpExchange r, JSONObject responseJSON, int mediaID) throws Exception {
+//        System.out.println("----mediaID ["+mediaID+"] doesn't exist");
+//        responseJSON.put("error_code", 1);
+//        responseJSON.put("error_description", "invalid mediaID");
+//        String response = responseJSON.toString() + "\n";
+//        r.sendResponseHeaders(404, response.length());
+//        OutputStream os = r.getResponseBody();
+//        os.write(response.getBytes());
+//        os.close();
+//        System.out.println("--responese :   "+response.trim());
+//        System.out.println("--request fufilled");
+//    }
 }

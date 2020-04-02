@@ -54,7 +54,10 @@ public class saveMediaList implements HttpHandler
             if (r.getRequestMethod().equals("PUT")) {
                 System.out.println("--request type: PUT");
                 handlePut(r, conn);
-            } else {
+            }else if(r.getRequestMethod().equals("POST")){
+                System.out.println("--request type: POST(GET)");
+                handleGET(r, conn);
+            }else {
                 System.out.println("--request type unsupported: " + r.getRequestMethod());
                 rs.sendResponseHeaders(405, -1);
             }
@@ -69,8 +72,10 @@ public class saveMediaList implements HttpHandler
             }
         }finally {
             try { //this is to safely disconnect from the db if a connection was made
-                if (conn != null)
+                if (conn != null){
                     db.disconnect(conn);
+                }
+
             }
             catch (Exception eDisconnect){
                 System.out.println("# handled error disconnecting :: "+eDisconnect);
@@ -136,6 +141,40 @@ public class saveMediaList implements HttpHandler
             }
         }
         else {
+            rs.sendResponseHeaders(400, -1);
+        }
+    }
+    public void handleGET(HttpExchange r, Connection conn) throws Exception {
+        String body = Utils.convert(r.getRequestBody());
+        JSONObject requestJSON = new JSONObject(body);
+        JSONObject responseJSON = new JSONObject();
+        JSONArray list_names = new JSONArray();
+        HttpsExchange rs = (HttpsExchange) r;
+
+        if (requestJSON.has("username")){
+            String username = requestJSON.getString("username");
+
+            System.out.println("--client send username: "+username);
+//            System.out.println("--client send accountInfo: "+accountInfo);
+
+            try {
+                list_names= db.get_user_listname(username,conn);
+//                db.add_titleToFavorites(conn, mediaID, accountInfo, accountType);
+                responseJSON.put("list_name",list_names);
+                responseJSON.put("error_code", 0);
+                String response = responseJSON.toString() + "\n";
+                rs.sendResponseHeaders(200, response.length());
+                OutputStream os = rs.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+                System.out.println("--responese :   "+response.trim());
+                System.out.println("--request fufilled");
+            }
+            catch (Exception e){
+                System.out.println("## ERROR ::  " + e);
+                throw new Exception("(handlePut) -- something went wrong when sending response");
+            }
+        }else {
             rs.sendResponseHeaders(400, -1);
         }
     }

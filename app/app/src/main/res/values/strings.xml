@@ -72,5 +72,9 @@
     <string name="report">Report</string>
     <string name="numratings">numRatings</string>
 
+    <!-- Menu Names-->
+    <string name="createlist">create a list</string>
+    <string name="placeholder">placeholder</string>
+    <string name="Lists">lists</string>
 
 </resources>

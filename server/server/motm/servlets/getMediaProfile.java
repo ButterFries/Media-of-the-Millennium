@@ -29,7 +29,7 @@ public class getMediaProfile implements HttpHandler
     public getMediaProfile(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+        //conn = db.connect();
     }
 
     /* Client sends a mediaID (and maybe a sessionID) and in return gets
@@ -47,6 +47,7 @@ public class getMediaProfile implements HttpHandler
         try {
             if (r.getRequestMethod().equals("POST")) {
                 System.out.println("--request type: POST (GET)");
+                conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -64,6 +65,15 @@ public class getMediaProfile implements HttpHandler
                 }
             }
         }
+        finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
+            }
+        }
     }
 
     public void handleReq(HttpExchange r, Connection conn) throws Exception {
@@ -77,23 +87,17 @@ public class getMediaProfile implements HttpHandler
             System.out.println("--client send mediaID: "+mediaID);
             JSONObject profile = null;
             try{
+//                if ( !db.mediaExists(conn, mediaID) ){
+//                    response_no_media(r, responseJSON, mediaID);
+//                    return;
+//                }
                 responseJSON = db.get_all_media_Info(conn, mediaID);
-            } catch (SQLDataException data_ex){ 
+            } catch (SQLDataException data_ex){
                 System.out.println("#  ERROR ::  "+ data_ex);
                 responseJSON.put("error_code", 2);
                 responseJSON.put("error_description", "critical error:  database is missing data; profile cannot be fetched");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(500, response.length());
-                OutputStream os = rs.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-                return;
-            } catch (SQLException sql_ex){
-                System.out.println("#  ERROR ::  "+ sql_ex);
-                responseJSON.put("error_code", 1);
-                responseJSON.put("error_description", "invalid mediaID");
-                String response = responseJSON.toString() + "\n";
-                rs.sendResponseHeaders(404, response.length());
                 OutputStream os = rs.getResponseBody();
                 os.write(response.getBytes());
                 os.close();
@@ -122,5 +126,18 @@ public class getMediaProfile implements HttpHandler
         else {
             rs.sendResponseHeaders(400, -1);
         }        
+    }
+
+    private void response_no_media(HttpExchange r, JSONObject responseJSON, int mediaID) throws Exception {
+        System.out.println("----mediaID ["+mediaID+"] doesn't exist");
+        responseJSON.put("error_code", 1);
+        responseJSON.put("error_description", "invalid mediaID");
+        String response = responseJSON.toString() + "\n";
+        r.sendResponseHeaders(404, response.length());
+        OutputStream os = r.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+        System.out.println("--responese :   "+response.trim());
+        System.out.println("--request fufilled");
     }
 }

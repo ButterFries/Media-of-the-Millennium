@@ -1371,6 +1371,7 @@ public class AppDatabase {
             pstmt.setString(2,list_name);
             pstmt.setString(3,items);
             pstmt.executeUpdate();
+
         } catch (SQLException ex) {
             System.err.println(ex.getSQLState()+ex.getMessage());
             throw new SQLException("An error occurred when adding the user list");

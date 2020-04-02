@@ -27,11 +27,11 @@ import com.sun.net.httpserver.HttpsExchange;
 
 /* (NOT USED YET)
  * Client sends {} and gets {}
- * 
- * Error Codes: 
- *      0 --  
- *      1 --  
- *      2 --  
+ *
+ * Error Codes:
+ *      0 --
+ *      1 --
+ *      2 --
  *      ~~
  */
 
@@ -51,8 +51,8 @@ public class addReview implements HttpHandler
         System.out.println("\n-Received request [addReview]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
-            if (r.getRequestMethod().equals("PUT")) {
-                System.out.println("--request type: PUT");
+            if (r.getRequestMethod().equals("POST")) {
+                System.out.println("--request type: POST");
                 conn = db.connect();
                 handleReq(r, conn);
             }
@@ -60,8 +60,9 @@ public class addReview implements HttpHandler
                 System.out.println("--request type unsupported: "+r.getRequestMethod());
                 rs.sendResponseHeaders(405, -1);
             }
-        } 
+        }
         catch (Exception e) {
+        	e.printStackTrace();
             System.out.println("# ERROR addReview.handle ::  " + e);
             if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
                 try{
@@ -88,36 +89,39 @@ public class addReview implements HttpHandler
 
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("mediaID") && requestJSON.has("userType") && requestJSON.has("user") && requestJSON.has("sessionID") && requestJSON.has("review")) {
+        if (requestJSON.has("mediaID") && requestJSON.has("userType") && requestJSON.has("user")
+        		&& requestJSON.has("sessionID") && requestJSON.has("reviewText") && requestJSON.has("reviewTitle")
+        		&& requestJSON.has("rating")) {
             int mediaID = requestJSON.getInt("mediaID");
             String user = requestJSON.getString("user");
             String userType = requestJSON.getString("userType");
             String sessionId = requestJSON.getString("sessionID");
-            String reviewText = requestJSON.getString("review");
-            
+            String reviewText = requestJSON.getString("reviewText");
+            String reviewTitle = requestJSON.getString("reviewTitle");
+            float rating = requestJSON.getInt("rating");
+
             JSONObject responseJSON = new JSONObject();
-            
+
             boolean validID = false;
             if (userType.equals("email"))
             	validID = sm.isValidSession_e(user, sessionId);
             else if (userType.equals("username"))
             	validID = sm.isValidSession_u(user, sessionId);
-            
+
             // If the sessionID doesn't match the given username/email or sessionID is invalid
             if (!validID) {
             	throw new CredentialException("sessionID doesn't match the given username/email or sessionID is invalid");
             }
             int userID = Integer.parseInt(sm.getUID(sessionId));
-            
             /*  register the title to db  */
             System.out.println("--adding review to database");
-            
+
             // Should not store username as part of the review since the saved username will not update if the poster changes their username
             // Should instead dynamically retrieve the username from the userID when retrieving the review
-            db.add_review(conn, userID, mediaID, reviewText); //exception will be forwarded up to .handle
-            
+            db.add_review(conn, userID, mediaID, reviewText, reviewTitle, rating); //exception will be forwarded up to .handle
+
             System.out.println("----successfully added review to database");
-            
+
             /*  send response  */
             try {
                 responseJSON.put("error_code", 0);

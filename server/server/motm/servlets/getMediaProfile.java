@@ -34,8 +34,8 @@ public class getMediaProfile implements HttpHandler
 
     /* Client sends a mediaID (and maybe a sessionID) and in return gets
      * a JSON containing {error_code: int, profile: {common: {~:~,,}, distinct: {~:~,,}} }
-     * 
-     * Error Codes: 
+     *
+     * Error Codes:
      *      0 --  successfully fetched profile
      *      1 --  mediaID invalid
      *      2 --  database is missing data and cannot be fetched (critical error)
@@ -54,7 +54,7 @@ public class getMediaProfile implements HttpHandler
                 System.out.println("--request type unsupported: "+r.getRequestMethod());
                 rs.sendResponseHeaders(405, -1);
             }
-        } 
+        }
         catch (Exception e) {
             System.out.println("# ERROR ::  " + e);
             if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
@@ -125,7 +125,7 @@ public class getMediaProfile implements HttpHandler
         }
         else {
             rs.sendResponseHeaders(400, -1);
-        }        
+        }
     }
 
     private void response_no_media(HttpExchange r, JSONObject responseJSON, int mediaID) throws Exception {

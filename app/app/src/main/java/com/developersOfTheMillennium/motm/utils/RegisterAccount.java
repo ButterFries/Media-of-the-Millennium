@@ -18,7 +18,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static android.os.SystemClock.sleep;
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
 public class RegisterAccount extends AsyncTask<String, Void, Boolean> {

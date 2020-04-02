@@ -1676,7 +1676,7 @@ public class AppDatabase {
                   
               } else {
             	  query.put("error_code", 404);
-                  throw new SQLException("An error occurred when getting the reviews on review relation");
+            	  System.out.println("Couldn't find review already made by user");
               }
           } catch (SQLException ex) {
         	  query.put("error_code", 505);

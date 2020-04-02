@@ -29,7 +29,7 @@ public class UserAlreadyReviewed extends AsyncTask<String, Void, Boolean> {
     private static SecureHTTPClient HTTPSClient;
 
     private String title = "", body = "";
-    private int rating = 0;
+    private double rating = 0;
 
     public UserAlreadyReviewed(MainActivity a) {
         activity = a;
@@ -76,7 +76,7 @@ public class UserAlreadyReviewed extends AsyncTask<String, Void, Boolean> {
             if (error_code == 0) {
                 title = rtn.getString("reviewTitle");
                 body = rtn.getString("reviewText");
-                rating = (int)(rtn.getDouble("rating")*2);
+                rating = rtn.getDouble("rating");
                 return true;
             }
             else {
@@ -147,7 +147,7 @@ public class UserAlreadyReviewed extends AsyncTask<String, Void, Boolean> {
 
             title.setText(this.title);
             body.setText(this.body);
-            rating.setRating(this.rating);
+            rating.setRating((float) this.rating);
 
             submit_review.setVisibility(View.INVISIBLE);
             edit_review.setVisibility(View.VISIBLE);

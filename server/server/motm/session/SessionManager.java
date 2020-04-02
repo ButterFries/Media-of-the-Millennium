@@ -89,22 +89,16 @@ public class SessionManager
      * otherwise or if user doesn't have a session entry then return false
      */
     public boolean isValidSession(String uID, String sID){
-    	String session = sID.substring("motm_sessionID=".length(), sID.length()); //remove "motm_sessionID=" from session string
-        return sessions.containsKey(session) ? (sessions.get(session).getUID().equals(uID)) : false;
+    	return sessions.containsKey(sID) ? (sessions.get(sID).getUID().equals(uID)) : false;
     }
     public boolean isValidSession_u(String username, String sID){
-    	System.out.println(username);
-    	String session = sID.substring("motm_sessionID=".length(), sID.length()); //remove "motm_sessionID=" from session string
-        return sessions.containsKey(session) ? (sessions.get(session).getUsername().equals(username)) : false;
+    	return sessions.containsKey(sID) ? (sessions.get(sID).getUsername().equals(username)) : false;
     }
     public boolean isValidSession_e(String email, String sID){
-    	String session = sID.substring(0,"motm_sessionID=".length()); //remove "motm_sessionID=" from session string
-        return sessions.containsKey(session) ? (sessions.get(session).getEmail().equals(email)) : false;
+    	return sessions.containsKey(sID) ? (sessions.get(sID).getEmail().equals(email)) : false;
     }
-
     public String getUID(String sID) {
-    	String session = sID.substring("motm_sessionID=".length(), sID.length()); //remove "motm_sessionID=" from session string
-    	return sessions.containsKey(session) ? sessions.get(session).getUID() : "";
+    	return sessions.containsKey(sID) ? sessions.get(sID).getUID() : "";
     }
 
 

@@ -1,7 +1,9 @@
 package com.developersOfTheMillennium.motm.utils;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,26 +27,34 @@ import okhttp3.Response;
 
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
-public class GetMediaIDs extends AsyncTask<Object, JSONArray, JSONObject> {
+public class GetMediaIDs { //extends AsyncTask<Object, JSONArray, JSONObject> {
 
     private static MainActivity activity;
     private static SecureHTTPClient HTTPSClient;
 
-    public GetMediaIDs(MainActivity a) {
-        activity = a;
+    public GetMediaIDs(MainActivity act) {//, String mediaType, String requestType, String genre) {
+    //public GetMediaIDs(MainActivity a) {
+        activity = act;
+
         HTTPSClient = new SecureHTTPClient(activity.getResources().getString(R.string.server_address)
                 +":"+activity.getResources().getString(R.string.server_port), activity);
+        //String mediaType = (String) params[0];
+        //String requestType = (String) params[1];
+        //String genre = (String) params[2];
+        //System.out.println("do in back");
+        //getIds(mediaType, requestType, genre);
     }
 
-    @Override
-    protected JSONObject doInBackground(Object...params) {
-        String mediaType = (String) params[0];
-        String requestType = (String) params[1];
-        String genre = (String) params[2];
-        return getIds(mediaType, requestType, genre);
-    }
+    //@Override
+//    protected JSONObject doInBackground(Object...params) {
+//        String mediaType = (String) params[0];
+//        String requestType = (String) params[1];
+//        String genre = (String) params[2];
+//        ImageButton[] genreButtons = (ImageButton[]) params[3];
+//        return getIds(mediaType, requestType, genreButtons);
+//    }
 
-    private JSONObject getIds(String mediaType, String requestType, String genre) {
+    protected JSONObject getIds(String mediaType, String requestType, String genre) {
         //Picture
         JSONObject data = new JSONObject();
         JSONObject returnJSON = new JSONObject();
@@ -109,7 +119,6 @@ public class GetMediaIDs extends AsyncTask<Object, JSONArray, JSONObject> {
             // Get response body
             responseData = new JSONObject (response.body().string());
             //String responseData = response.body().string();
-            System.out.println("RESPONSE DATA :" + responseData);
             Log.i("postRequest", "--complete");
 
         } catch (Exception e) {

@@ -28,6 +28,7 @@ import com.developersOfTheMillennium.motm.utils.GetPicture;
 import com.developersOfTheMillennium.motm.utils.Ratings.GetMediaRating;
 import com.developersOfTheMillennium.motm.utils.Ratings.GetUserRating;
 import com.developersOfTheMillennium.motm.utils.Ratings.UpdateRating;
+import com.developersOfTheMillennium.motm.utils.Reviews.GetReviews;
 
 import org.w3c.dom.Text;
 
@@ -36,7 +37,7 @@ import org.w3c.dom.Text;
 
 public class MediaProfilePageFragment extends Fragment implements View.OnClickListener {
 
-    private int mediaID = -1;
+    private String mediaID = null;
     float userRating;
 
     @Override
@@ -56,16 +57,29 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
 
         Bundle args = getArguments();
         if(args != null) {
-            mediaID = args.getInt("mediaID", 0);
+            mediaID = args.getInt("mediaID", -1)+"";
             System.out.println("MEDIA ID: " + mediaID);
             try {
                 //get info should be first
                 getMediaRating(mediaID, rootView);
                 getUserRating(mediaID, rootView);
 
-
                 getMediaProfile(mediaID, image, title, tags, summary, links);
                 getPicture(mediaID, image);
+
+
+                ReviewsListFragment fragment = new ReviewsListFragment();
+                Bundle args2 = new Bundle();
+                if(mediaID != null) {
+                    args.putInt("mediaID", Integer.parseInt(mediaID));
+                    fragment.setArguments(args);
+                }
+                // Begin the transaction
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.mediaReviewContainer, fragment);
+                ft.commit();
+
+
 
             } catch (Exception e) {
                 //catch but never happens because getPicture never throws exception? might need to fix?
@@ -106,8 +120,8 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
                 fragment = new ReviewsFragment();
 
                 Bundle args = new Bundle();
-                if(mediaID != -1) {
-                    args.putInt("mediaID", mediaID);
+                if(mediaID != null) {
+                    args.putInt("mediaID", Integer.parseInt(mediaID));
                     fragment.setArguments(args);
                 }
                 replaceFragment(fragment);
@@ -225,6 +239,7 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
             throw new Exception("(getMediaRating) -- something went wrong when retrieving picture");
         }
     }
+
 
     public void transactFragment(Fragment fragment, boolean reload) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

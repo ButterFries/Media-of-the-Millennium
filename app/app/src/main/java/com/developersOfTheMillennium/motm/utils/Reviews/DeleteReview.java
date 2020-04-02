@@ -32,16 +32,16 @@ public class DeleteReview extends AsyncTask<String, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... params) {
-        int sessionID = Integer.parseInt(params[1]);
-        int mediaID = Integer.parseInt(params[2]);
-        String user = params[3];
-        String userType = params[4];
+        String sessionID = params[0];
+        String mediaID = params[1];
+        String user = params[2];
+        String userType = params[3];
 
 
         return review(sessionID, mediaID, user, userType);
     }
 
-    private boolean review(int sessionID, int mediaID, String user, String userType) {
+    private boolean review(String sessionID, String mediaID, String user, String userType) {
 
         //Loading Spinner On
         activity.enableLoadingAnimation();

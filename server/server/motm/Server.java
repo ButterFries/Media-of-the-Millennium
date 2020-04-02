@@ -152,6 +152,9 @@ public class Server
         httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
         httpsServer.createContext("/getPicture", new getPicture(db, sm));
         httpsServer.createContext("/addReview", new addReview(db, sm));
+        httpsServer.createContext("/deleteReview", new deleteReview(db, sm));
+        httpsServer.createContext("/getReview", new getReview(db, sm));
+        httpsServer.createContext("/getReviews", new getReviews(db, sm));
         
         httpsServer.createContext("/getNewMedia", new getNewMedia(db, sm));
         httpsServer.createContext("/getTopRatedMedia", new getTopRatedMedia(db, sm));

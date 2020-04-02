@@ -51,8 +51,8 @@ public class addReview implements HttpHandler
         System.out.println("\n-Received request [addReview]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
-            if (r.getRequestMethod().equals("PUT")) {
-                System.out.println("--request type: PUT");
+            if (r.getRequestMethod().equals("POST")) {
+                System.out.println("--request type: POST");
                 conn = db.connect();
                 handleReq(r, conn);
             }
@@ -62,6 +62,7 @@ public class addReview implements HttpHandler
             }
         }
         catch (Exception e) {
+        	e.printStackTrace();
             System.out.println("# ERROR addReview.handle ::  " + e);
             if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
                 try{

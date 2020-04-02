@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.developersOfTheMillennium.motm.utils.Reviews.AddReview;
 import com.developersOfTheMillennium.motm.utils.Reviews.DeleteReview;
+import com.developersOfTheMillennium.motm.utils.Reviews.UserAlreadyReviewed;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.EventListener;
@@ -56,7 +57,7 @@ public class ReviewsFragment extends Fragment {
         review.addTextChangedListener(review_watcher);
         review_title.addTextChangedListener(review_watcher);
 
-
+        submit_review.setEnabled(false);
         review_bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -119,6 +120,12 @@ public class ReviewsFragment extends Fragment {
 
             }
         });
+
+
+        UserAlreadyReviewed userAlreadyReviewed = (UserAlreadyReviewed)
+                new UserAlreadyReviewed((MainActivity) this.getActivity()).execute(session, mediaID+"", user, userType);
+
+
 
         return v;
     }

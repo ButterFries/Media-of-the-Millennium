@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.developersOfTheMillennium.motm.utils.AddReport;
 
@@ -23,19 +24,7 @@ public class TemporaryReportButtonFrag extends Fragment implements View.OnClickL
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_temporary_report_button, container, false);
-//        // Inflate the layout for this fragment
-//        //get the spinner from the xml.
-//        Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner1);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.report_type_array, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setPrompt("Select your report type");
-//
-//        spinner.setAdapter(
-//                new NothingSelectedSpinnerAdapter(
-//                        adapter,
-//                        R.layout.testys,
-//                        // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
-//                        this.getContext()));
+
         // Review Button
         final Button reportBtn = rootView.findViewById(R.id.report_button);
         reportBtn.setOnClickListener(this);
@@ -46,9 +35,18 @@ public class TemporaryReportButtonFrag extends Fragment implements View.OnClickL
         Fragment fragment = null;
         switch (view.getId()) {
             case R.id.report_button:
-                //TODO: CHANGE MEDIAID (1)
-                //Media ID / account Info / accountType
-                AddReport addReportRequest = (AddReport) new AddReport((MainActivity) getActivity(), view).execute("1", AppGlobals.user, AppGlobals.session);
+                if (AppGlobals.userType.equals("guest")) {
+                    CharSequence text = "Please sign in to report";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getContext(), text, duration);
+                    toast.show();
+                }
+                else {
+                //TODO: CHANGE REVIEWID (1) to actual review ID
+                //reviewID
+                AddReport addReportRequest = (AddReport) new AddReport((MainActivity) getActivity(), view).execute("1"); }
+
                 break;
             // case R.id.addToBookmarks:
 

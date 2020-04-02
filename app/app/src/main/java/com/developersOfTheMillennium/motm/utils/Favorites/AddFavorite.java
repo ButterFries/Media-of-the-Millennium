@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.MainActivity;
 import com.developersOfTheMillennium.motm.R;
 import com.developersOfTheMillennium.motm.ssl.SecureHTTPClient;
@@ -43,25 +44,18 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... params ) {
         int mediaID = Integer.parseInt(params[0]);
-        String accountInfo = params[1];
-        String accountType = params[2];
-        return run(mediaID, accountInfo, accountType);
+        return run(mediaID);
     }
 
-    private boolean run(int mediaID, String accountInfo, String accountType) {
+    private boolean run(int mediaID) {
 
         JSONObject data = new JSONObject();
 
         try {
             data.put("mediaID", mediaID);
-            data.put("accountInfo", accountInfo);
-            data.put("accountType", accountType);
+            data.put("accountInfo", AppGlobals.user);
+            data.put("accountType", AppGlobals.userType);
 
-//            String context = "";
-//            if (contextType.equals("favorites"))
-//                context = "getFavorites";
-//            else
-//                context = "getBookmarks";
 
             JSONObject rtn = putRequest("getFavorites", data);
             int error_code = rtn.getInt("error_code");
@@ -123,10 +117,16 @@ public class AddFavorite extends AsyncTask<String, Void, Boolean> {
         if (result) {
             Context context = activity.getApplicationContext(); //might be another context function
             CharSequence text = "Added to Favorites";
-//            if (contextType.equals("favorites"))
-//                text = "Added to Favorites";
-//            else
-//                text = "Added to Bookmarks";
+
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        else {
+            Context context = activity.getApplicationContext(); //might be another context function
+            CharSequence text = "Already added!";
+
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);

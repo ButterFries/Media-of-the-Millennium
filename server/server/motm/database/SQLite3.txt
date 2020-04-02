@@ -159,7 +159,7 @@ CREATE TABLE reviews (user_ID INTEGER PRIMARY KEY,media_ID TEXT(100) UNIQUE,rati
 ================================================================================
 ###   reports   ###
 ================================================================================
-CREATE TABLE reports (reportID INTEGER PRIMARY KEY, reviewID INTEGER NOT NULL, sessionID INT, accountInfo TEXT NOT NULL);
+CREATE TABLE reports (reportID INTEGER PRIMARY KEY, reviewID INTEGER NOT NULL, user TEXT NOT NULL);
 
 
 

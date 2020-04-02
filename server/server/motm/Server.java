@@ -52,7 +52,7 @@ import java.security.cert.X509Certificate;
 public class Server 
 {
     static int PORT = 8080;
-    static String ADDR = "0.0.0.0";
+    static String ADDR = "192.168.50.253";
     //keytool -genkeypair -keyalg RSA -alias selfsigned -keystore motm_key.jks -storepass developers_of_the_millenium_password_to_motm -validity 360 -keysize 2048
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, CertificateException, UnrecoverableKeyException
@@ -105,7 +105,7 @@ public class Server
 
         /***   initialize session manager   ***/
         System.out.println("! Initializing SessionManager");
-        SessionManager sm = new SessionManager(10/*30*/); //if arg then arg-sec session duration, otherwise default 1hour
+        SessionManager sm = new SessionManager(); //if arg then arg-sec session duration, otherwise default 1hour
         System.out.println("--manager ready");
 
 
@@ -142,9 +142,19 @@ public class Server
         httpsServer.createContext("/getMediaProfile", new getMediaProfile(db, sm));
         httpsServer.createContext("/getFavorites", new getFavorites(db, sm));
         httpsServer.createContext("/getBookmarks", new getBookmarks(db, sm));
+
+        httpsServer.createContext("/getMediaRating", new getMediaRating(db, sm));
+        httpsServer.createContext("/getUsersRating", new getUsersRating(db, sm));
+        httpsServer.createContext("/updateUsersRating", new updateUsersRating(db, sm));
+
+        //httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
         httpsServer.createContext("/getReports", new getReports(db, sm));
         httpsServer.createContext("/addMediaProfile", new addMediaProfile(db, sm));
         httpsServer.createContext("/getPicture", new getPicture(db, sm));
+        httpsServer.createContext("/addReview", new addReview(db, sm));
+        httpsServer.createContext("/deleteReview", new deleteReview(db, sm));
+        httpsServer.createContext("/getReview", new getReview(db, sm));
+        httpsServer.createContext("/getReviews", new getReviews(db, sm));
         
         httpsServer.createContext("/getNewMedia", new getNewMedia(db, sm));
         httpsServer.createContext("/getTopRatedMedia", new getTopRatedMedia(db, sm));

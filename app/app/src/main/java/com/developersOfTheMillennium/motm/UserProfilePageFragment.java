@@ -34,16 +34,11 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
                 replaceFragment(fragment);
                 break;
             case R.id.bookmarksButton:
-                fragment = new TemporaryReportButtonFrag();
+//              fragment = new TemporaryReportButtonFrag(); //uncomment to test report button
+                fragment = new BookmarksFragment();  //comment if uncommented out line above
                 replaceFragment(fragment);
                 break;
-//                //Log.d("MediaProfileFrag","review button pressed");
-//                fragment = new BookmarksFragment();
-//                replaceFragment(fragment);
-//                break;
-            //case R.id.ratingBar:
-            //ratingScore = ratingBar.getRating();
-            //String rating = "Rating is :" + ratingBar.getRating();
+
 
         }
     }

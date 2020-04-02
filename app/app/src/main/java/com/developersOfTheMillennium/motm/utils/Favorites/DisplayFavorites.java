@@ -1,15 +1,12 @@
 package com.developersOfTheMillennium.motm.utils.Favorites;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.developersOfTheMillennium.motm.BookmarksAdapter;
+import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.FavouritesAdapter;
 import com.developersOfTheMillennium.motm.MainActivity;
 import com.developersOfTheMillennium.motm.R;
@@ -20,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -48,9 +44,7 @@ public class DisplayFavorites extends AsyncTask<String, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... params ) {
-        String accountInfo = params[0];
-        String accountType = params[1];
-        lstItems = run(accountInfo, accountType);
+        lstItems = run();
         if (lstItems != null) {
             System.out.println("temp wasnt null");
             return true;
@@ -58,13 +52,13 @@ public class DisplayFavorites extends AsyncTask<String, Void, Boolean> {
         return false;
     }
 
-    private JSONArray run(String accountInfo, String accountType) {
+    private JSONArray run() {
 
         JSONObject data = new JSONObject();
 
         try {
-            data.put("accountInfo", accountInfo);
-            data.put("accountType", accountType);
+            data.put("accountInfo", AppGlobals.user);
+            data.put("accountType", AppGlobals.userType);
 
 //            String context = "";
 //            if (contextType.equals("favorites"))
@@ -135,16 +129,6 @@ public class DisplayFavorites extends AsyncTask<String, Void, Boolean> {
             final FavouritesAdapter allFavsAdapter = new FavouritesAdapter(activity.getBaseContext(), lstItems);
             favList.setAdapter(allFavsAdapter);
 
-//            if (contextType.equals("favorites")) {
-//                favList = (ListView) activity_view.findViewById(R.id.list_view);
-//                FavouritesAdapter allFavsAdapter = new FavouritesAdapter(activity.getBaseContext(), lstItems, contextType);
-//                favList.setAdapter(allFavsAdapter);
-//            }
-//            else{
-//                favList = (ListView) activity_view.findViewById(R.id.list_view_2);
-//                BookmarksAdapter allBookmarksAdapter = new BookmarksAdapter(activity.getBaseContext(), lstItems, contextType);
-//                favList.setAdapter(allBookmarksAdapter);
-//            }
 
 
         }

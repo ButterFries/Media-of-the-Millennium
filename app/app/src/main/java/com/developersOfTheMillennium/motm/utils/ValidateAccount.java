@@ -158,7 +158,7 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
         // do something with the result, for example display the received Data in a ListView
         // in this case, "result" would contain the "someLong" variable returned by doInBackground();
 
-        //TAKE TO HOME PAGE
+        //TODO
         if (result) {
             HomePageFragment homeFragment = new HomePageFragment();
             activity.replaceFragment(homeFragment);

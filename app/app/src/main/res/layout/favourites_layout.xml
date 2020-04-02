@@ -13,23 +13,27 @@
 
     <TextView
         android:id="@+id/titleDisplayText"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="2dp"
+        android:ellipsize="marquee"
         android:text="@string/title"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/viewButton"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintVertical_bias="0.511" />
 
     <Button
         android:id="@+id/deleteButton"
-        android:layout_width="43dp"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:contentDescription="@string/delete_favorite_button"

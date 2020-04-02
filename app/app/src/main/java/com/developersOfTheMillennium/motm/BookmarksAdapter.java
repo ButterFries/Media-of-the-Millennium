@@ -3,6 +3,7 @@ package com.developersOfTheMillennium.motm;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,6 +86,18 @@ public class BookmarksAdapter extends BaseAdapter {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Button mppView = convertView.findViewById(R.id.viewButton);
+        mppView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View v) {
+                Bundle args = new Bundle();
+                MediaProfilePageFragment Frag = new MediaProfilePageFragment();
+                args.putInt("mediaID", viewHolder.get_mediaID());
+                Frag.setArguments(args);
+
+                ( (MainActivity) v.getContext()).replaceFragment(Frag);
+
+            }
+        });
 
         Button deleteView = convertView.findViewById(R.id.deleteButton);
         deleteView.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +112,7 @@ public class BookmarksAdapter extends BaseAdapter {
                     public void onClick(DialogInterface dialog, int which) {
                         items.remove(positionToRemove);
                         //TODO: media ID / user info / user type
-                        RemoveBookmark removeRequest2 = (RemoveBookmark) new RemoveBookmark((MainActivity) parent.getContext(), v).execute(Integer.toString(viewHolder.get_mediaID()), AppGlobals.user, AppGlobals.userType);
+                        RemoveBookmark removeRequest2 = (RemoveBookmark) new RemoveBookmark((MainActivity) parent.getContext(), v).execute(Integer.toString(viewHolder.get_mediaID()));
                         notifyDataSetChanged(); //USED TO NOTIFY ADAPTER, MAY NOT BE NEEDED INSIDE ADAPTER CLASS
                     }
                 });

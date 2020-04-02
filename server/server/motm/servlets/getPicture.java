@@ -34,8 +34,8 @@ public class getPicture implements HttpHandler
 
     /* Client sends a mediaID (and maybe a sessionID) and in return gets
      * a JSON containing {error_code: int, profile: {common: {~:~,,}, distinct: {~:~,,}} }
-     * 
-     * Error Codes: 
+     *
+     * Error Codes:
      *      0 --  successfully fetched profile
      *      1 --  mediaID invalid
      *      2 --  database is missing data and cannot be fetched (critical error)
@@ -54,7 +54,7 @@ public class getPicture implements HttpHandler
                 System.out.println("--request type unsupported: "+r.getRequestMethod());
                 rs.sendResponseHeaders(405, -1);
             }
-        } 
+        }
         catch (Exception e) {
             System.out.println("# ERROR ::  " + e);
             if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
@@ -90,7 +90,7 @@ public class getPicture implements HttpHandler
             JSONObject profile = null;
             try{
                 byteArray = db.get_picture(conn, mediaID);
-            } catch (SQLDataException data_ex){ 
+            } catch (SQLDataException data_ex){
                 System.out.println("#  ERROR ::  "+ data_ex);
                 responseJSON.put("error_code", 2);
                 responseJSON.put("error_description", "critical error:  database is missing data; picture cannot be fetched");
@@ -135,6 +135,6 @@ public class getPicture implements HttpHandler
         }
         else {
             rs.sendResponseHeaders(400, -1);
-        }        
+        }
     }
 }

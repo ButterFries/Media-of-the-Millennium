@@ -29,7 +29,7 @@ public class getTopRatedMedia implements HttpHandler
     public getTopRatedMedia(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
         sm = appSM;
-        conn = db.connect();
+
     }
 
     /* Client sends a rating (and maybe a sessionID) and in return gets
@@ -47,6 +47,7 @@ public class getTopRatedMedia implements HttpHandler
         try {
             if (r.getRequestMethod().equals("POST")) {
                 System.out.println("--request type: POST (GET)");
+                conn = db.connect();
                 handleReq(r, conn);
             }
             else {
@@ -64,6 +65,15 @@ public class getTopRatedMedia implements HttpHandler
                 }
             }
         }
+        finally {
+            try { //this is to safely disconnect from the db if a connection was made
+                if (conn != null)
+                    db.disconnect(conn);
+            }
+            catch (Exception eDisconnect){
+                System.out.println("# handled error disconnecting :: "+eDisconnect);
+            }
+        }
     }
 
     public void handleReq(HttpExchange r, Connection conn) throws Exception {
@@ -77,7 +87,7 @@ public class getTopRatedMedia implements HttpHandler
             System.out.println("--client send mediaType: "+mediaType);
             JSONObject profile = null;
             try{
-                responseJSON.put("Top Rated", db.get_mediaIDs_by_TopRating(conn, mediaType));
+                responseJSON.put("mediaIDs", db.get_mediaIDs_by_TopRating(conn, mediaType));
             } catch (SQLDataException data_ex){
                 System.out.println("#  ERROR ::  "+ data_ex);
                 responseJSON.put("error_code", 2);

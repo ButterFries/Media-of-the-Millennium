@@ -31,12 +31,13 @@
     <string name="media_profile_image">media_image</string>
     <string name="summary_info">summary_info</string>
     <string name="title">title</string>
-    <string name="tags">tags</string>
+    <string name="genres">genres</string>
     <string name="rate">rate</string>
     <string name="review">review</string>
     <string name="favorite">Favorite</string>
     <string name="media_image" />
     <string name="bookmark">Bookmark</string>
+    <string name="links">links</string>
 
     <!-- Media Reviews Page -->
     <string name="AddReview">Add Review</string>
@@ -66,6 +67,10 @@
     <string name="view">View</string>
     <string name="CreateAList">createAList</string>
     <string name="Create_A_List">createAList</string>
+
+    <!-- Report button -->
+    <string name="report">Report</string>
+    <string name="numratings">numRatings</string>
 
 
 </resources>

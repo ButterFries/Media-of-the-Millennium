@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/ic_top_rated_media_button">
+    android:background="@drawable/gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,9 @@
             android:text="Top Rated"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/ic_top_rated_media_button"/>
 
         <TextView
             android:id="@+id/Movies"
@@ -28,7 +30,8 @@
             android:layout_height="match_parent"
             android:text="Movies"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/white"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -108,7 +111,8 @@
             android:layout_height="match_parent"
             android:text="TV Series"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/white"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -188,7 +192,8 @@
             android:layout_height="match_parent"
             android:text="Music"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/white"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -268,7 +273,8 @@
             android:layout_height="match_parent"
             android:text="Video Games"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/white"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -348,7 +354,8 @@
             android:layout_height="match_parent"
             android:text="Novels"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/white"/>
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

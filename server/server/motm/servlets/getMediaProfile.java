@@ -34,8 +34,8 @@ public class getMediaProfile implements HttpHandler
 
     /* Client sends a mediaID (and maybe a sessionID) and in return gets
      * a JSON containing {error_code: int, profile: {common: {~:~,,}, distinct: {~:~,,}} }
-     * 
-     * Error Codes: 
+     *
+     * Error Codes:
      *      0 --  successfully fetched profile
      *      1 --  mediaID invalid
      *      2 --  database is missing data and cannot be fetched (critical error)
@@ -54,7 +54,7 @@ public class getMediaProfile implements HttpHandler
                 System.out.println("--request type unsupported: "+r.getRequestMethod());
                 rs.sendResponseHeaders(405, -1);
             }
-        } 
+        }
         catch (Exception e) {
             System.out.println("# ERROR ::  " + e);
             if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
@@ -87,10 +87,10 @@ public class getMediaProfile implements HttpHandler
             System.out.println("--client send mediaID: "+mediaID);
             JSONObject profile = null;
             try{
-//                if ( !db.mediaExists(conn, mediaID) ){
-//                    response_no_media(r, responseJSON, mediaID);
-//                    return;
-//                }
+                if ( !db.mediaExists(conn, mediaID) ){
+                    response_no_media(r, responseJSON, mediaID);
+                    return;
+                }
                 responseJSON = db.get_all_media_Info(conn, mediaID);
             } catch (SQLDataException data_ex){
                 System.out.println("#  ERROR ::  "+ data_ex);
@@ -125,7 +125,20 @@ public class getMediaProfile implements HttpHandler
         }
         else {
             rs.sendResponseHeaders(400, -1);
-        }        
+        }
+    }
+
+    private void response_no_media(HttpExchange r, JSONObject responseJSON, int mediaID) throws Exception {
+        System.out.println("----mediaID ["+mediaID+"] doesn't exist");
+        responseJSON.put("error_code", 1);
+        responseJSON.put("error_description", "invalid mediaID");
+        String response = responseJSON.toString() + "\n";
+        r.sendResponseHeaders(404, response.length());
+        OutputStream os = r.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+        System.out.println("--responese :   "+response.trim());
+        System.out.println("--request fufilled");
     }
 
     private void response_no_media(HttpExchange r, JSONObject responseJSON, int mediaID) throws Exception {

@@ -1,11 +1,22 @@
 package com.developersOfTheMillennium.motm.utils;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.developersOfTheMillennium.motm.MainActivity;
 import com.developersOfTheMillennium.motm.R;
@@ -43,10 +54,11 @@ public class GetMediaProfile extends AsyncTask<Object, Void, Object[]> {
         TextView title = (TextView) params[2];
         TextView tags = (TextView) params[3];
         TextView summary = (TextView) params[4];
-        return getInfo(mediaID, image, title, tags, summary);
+        TextView links = (TextView) params[5];
+        return getInfo(mediaID, image, title, tags, summary, links);
     }
 
-    private Object[] getInfo(String mediaId, ImageView imgView, TextView titleView, TextView tagsView, TextView summaryView) {
+    private Object[] getInfo(String mediaId, ImageView imgView, TextView titleView, TextView genresView, TextView summaryView, TextView linksView) {
         //Picture
         JSONObject data = new JSONObject();
         JSONObject returnJSON = new JSONObject();
@@ -58,12 +70,13 @@ public class GetMediaProfile extends AsyncTask<Object, Void, Object[]> {
             //int error_code = rtn.getInt("error_code");
             //String session_token = rtn.getString("session_token");
 
-            Object[] fin = new Object[5]; //Might need to add genres and links?
+            Object[] fin = new Object[6]; //Might need to add genres and links?
             fin[0] = returnJSON;
             fin[1] = imgView;
             fin[2] = titleView;
-            fin[3] = tagsView;
+            fin[3] = genresView;
             fin[4] = summaryView;
+            fin[5] = linksView;
             //MIGHT NEED TO ADD MORE LIKE GENRES LINKS
             return fin;
             //if (error_code == 0) {
@@ -124,26 +137,35 @@ public class GetMediaProfile extends AsyncTask<Object, Void, Object[]> {
         ImageView imgView = (ImageView) rtn[1];
         //System.out.println("IMAGE VIEW " + imgView.toString());
         TextView titleView = (TextView) rtn[2];
-        TextView tagsView = (TextView) rtn[3];
+        TextView genresView = (TextView) rtn[3];
         TextView summaryView = (TextView) rtn[4];
+        TextView linksView = (TextView) rtn[5];
 
-        byte[] byteArray = null;
+        //byte[] byteArray = null;
         String title = "";
-        String tags = "";
+        String genres = "";
         String summary = "";
+        String links = "";
         try {
-            String byteString = (String) returnJSON.get("image");
-            byteArray = byteString.getBytes();
+            //String byteString = (String) returnJSON.get("image");
             title = (String) returnJSON.get("title");
-            tags = (String) returnJSON.get("tags"); //MIGHT want to separate by , display differently?
+            genres = (String) returnJSON.get("genres"); //MIGHT want to separate by , display differently?
             summary = (String) returnJSON.get("summary");
+            links = (String) returnJSON.get("links");
 
-            //Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            //Bitmap bm = (Bitmap.createScaledBitmap(bmp, imgView.getMeasuredWidth(), imgView.getMeasuredHeight(), false));
-            //imgView.setImageBitmap(Bitmap.createScaledBitmap(bmp, imgView.getMeasuredWidth(), imgView.getMeasuredHeight(), false));
-            titleView.setText("TITLE: " + title);
-            tagsView.setText("TAGS: " + tags);
-            summaryView.setText("SUMMARY: " + summary);
+//            titleView.setText("Title: " + title);
+//            genresView.setText("Genres: " + genres);
+//            summaryView.setText("Summary: " + summary);
+
+            titleView.setText(title);
+            genresView.setText(genres);
+            summaryView.setText(summary);
+
+            String[] linksArray = links.split(",");
+            linksView.setText("Links: \n");
+            for(int i=0; i<linksArray.length; i++) {
+                linksView.append(linksArray[i]+"\n");
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -1347,17 +1347,33 @@ public class AppDatabase {
         //        public int get_raters(){ return this.numRaters; }
     }
 
-    public void insert_media_item(Connection conn, int listID,int userID,String list_name,String items) throws SQLException{
+    public void insert_media_item(Connection conn,String username,String list_name,String items) throws SQLException{
+        int userID = 0;
+        JSONArray query = new JSONArray();
+        Statement stmt = conn.createStatement();
+        String sqlReq = "SELECT userID FROM accounts WHERE username = "+username ;
+        ResultSet rs = stmt.executeQuery(sqlReq);
+        if(rs.next()){
+            userID = rs.getInt("userID");
+            System.out.println(userID);
+        }else{
+            throw new SQLException("An error occurred when getting the reviews on review  relation");
+        }
+
         try {
-            String sqlReq = "INSERT INTO user_list (listID,userID,list_name,items) VALUES (?,?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sqlReq);
-            pstmt.setInt(1, listID);
-            pstmt.setInt(2,userID);
-            pstmt.setString(3,list_name);
-            pstmt.setString(4, items);
+
+            String sqlReq2 = "INSERT INTO user_list (userID,list_name,list_items) VALUES (?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq2);
+            System.out.println(userID);
+            System.out.println(list_name);
+            System.out.println(items);
+            pstmt.setInt(1, userID);
+            pstmt.setString(2,list_name);
+            pstmt.setString(3,items);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            throw new SQLException("An error occurred when adding the user rated on media relation");
+            System.err.println(ex.getSQLState()+ex.getMessage());
+            throw new SQLException("An error occurred when adding the user list");
         }
     }
 

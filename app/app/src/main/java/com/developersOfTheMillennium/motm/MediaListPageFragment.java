@@ -17,7 +17,11 @@ import androidx.fragment.app.Fragment;
 
 import com.developersOfTheMillennium.motm.utils.GetMediaIDs;
 import com.developersOfTheMillennium.motm.utils.GetPicture;
+import com.developersOfTheMillennium.motm.utils.RegisterAccount;
+import com.developersOfTheMillennium.motm.utils.saveMediaList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +42,16 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
     private ImageButton media10;
     private ImageButton media11;
     private ImageButton media12;
-    private FloatingActionButton add;
+    private JSONArray item_list = new JSONArray();
+    private Button save;
     private SearchView searchView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.activity_media_list_page_fragment, container, false);
+
+
         add_media.add(media1 = v.findViewById(R.id.imageButton));
         add_media.add(media2 = v.findViewById(R.id.imageButton2));
         add_media.add(media3 = v.findViewById(R.id.imageButton3));
@@ -59,6 +66,10 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
         add_media.add(media12 = v.findViewById(R.id.imageButton12));
         username = v.findViewById(R.id.username_text);
         username.setText(AppGlobals.user);
+        list_title = v.findViewById(R.id.list_name);
+        save = v.findViewById(R.id.save_button);
+        save.setOnClickListener(this);
+        String search = null;
 
         searchView = v.findViewById(R.id.search);
 
@@ -79,6 +90,7 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
 
+
             }
         });
 
@@ -89,6 +101,12 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
 
         switch(view.getId()){
+            case R.id.save_button:
+                if(save(list_title.getText().toString(),item_list.toString())){
+                    System.out.println(list_title.getText().toString() + item_list.toString());
+                }
+
+                break;
             case R.id.imageButton:
                 case_switch(add_media,media1,"2");
                 break;
@@ -136,6 +154,7 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
                 try {
                      GetPicture pic = (GetPicture) new GetPicture((MainActivity) getActivity()).execute(mediaId, add_media.get(i));
                      add_media.get(i).setTag("1");
+                     item_list.put(mediaId);
                 } catch (Exception e) {
                     throw new Exception("(getPicture) -- something went wrong when retrieving picture");
                 }
@@ -165,10 +184,20 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
                 }
                 break;
             case 1:
+                //may elimiate this not sure yet
                 fragment = new MediaProfilePageFragment();
                 replaceFragment(fragment);
                 break;
         }
+    }
+    private boolean save(String list_title, String media_list){
+        if (list_title.length()!=0 ) {
+            saveMediaList saveList = (saveMediaList) new saveMediaList((MainActivity) getActivity()).execute(list_title,media_list);
+            Log.i("Save List", "Valid credentials");
+            return true;
+        }
+        Log.i("save List", "Invalid credentials");
+        return false;
     }
 
     public void replaceFragment(Fragment someFragment) {

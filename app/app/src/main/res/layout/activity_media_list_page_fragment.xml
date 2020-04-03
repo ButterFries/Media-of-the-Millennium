@@ -16,12 +16,29 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000">
+
+            <SearchView
+                android:id="@+id/search_main_list"
+                android:background="#CCCCCC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+            </SearchView>
+
+        </LinearLayout>
+
         <EditText
             android:id="@+id/list_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter a list name, MUST BE ENTERED"
-            android:textColorHint="@color/white"
+            android:hint="Enter a list name"
+            android:textColorHint="#3c3c3c"
             android:textAlignment="center"
             android:textColor="@android:color/holo_purple"
             android:textSize="30sp"
@@ -35,11 +52,6 @@
             android:textAlignment="center"
             android:textColor="@android:color/holo_purple"
             android:textSize="24sp" />
-
-        <SearchView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/save_button"

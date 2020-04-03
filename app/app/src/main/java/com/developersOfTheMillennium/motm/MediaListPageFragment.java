@@ -1,5 +1,6 @@
 package com.developersOfTheMillennium.motm;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.developersOfTheMillennium.motm.utils.GetPicture;
+import com.developersOfTheMillennium.motm.utils.Searchbar.GetSearchResults;
+import com.developersOfTheMillennium.motm.utils.Searchbar.GetSearchResultsList;
 import com.developersOfTheMillennium.motm.utils.saveMediaList;
 
 import org.json.JSONArray;
@@ -43,7 +47,7 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
     private JSONArray item_list = new JSONArray();
     private JSONArray new_media = null;
     private Button save;
-    private SearchView searchView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,9 +72,6 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
         list_title = v.findViewById(R.id.list_name);
         save = v.findViewById(R.id.save_button);
         save.setOnClickListener(this);
-        String search = null;
-
-        searchView = v.findViewById(R.id.search);
 
         Bundle recieved = getArguments();
         if(recieved != null){
@@ -105,6 +106,35 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
             }
         });
 
+        final MediaListPageFragment temp = this;
+
+
+        //Search bar
+        final SearchView searchList = v.findViewById(R.id.search_main_list);
+        searchList.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                if (s.isEmpty()) return false;
+
+                GetSearchResultsList getSearchResults = (GetSearchResultsList) new GetSearchResultsList
+                        ((MainActivity) getActivity(), searchList, temp).execute(s);
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.length() == 0)
+                    return false;
+
+                GetSearchResultsList getSearchResults = (GetSearchResultsList) new GetSearchResultsList
+                        ((MainActivity) getActivity(), searchList, temp).execute(s);
+
+                return true;
+            }
+        });
+
+
         return v;
 
 
@@ -117,46 +147,56 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
                     System.out.println(list_title.getText().toString() + item_list.toString());
                 }
                 break;
-            case R.id.imageButton:
-                case_switch(add_media,media1,"2");
-                break;
-            case R.id.imageButton2:
-                case_switch(add_media,media2,"2");
-                break;
-            case R.id.imageButton3:
-                case_switch(add_media,media3,"2");
-                break;
-            case R.id.imageButton4:
-                case_switch(add_media,media4,"2");
-                break;
-            case R.id.imageButton5:
-                case_switch(add_media,media5,"2");
-                break;
-            case R.id.imageButton6:
-                case_switch(add_media,media6,"2");
-                break;
-            case R.id.imageButton7:
-                case_switch(add_media,media7,"2");
-                break;
-            case R.id.imageButton8:
-                case_switch(add_media,media8,"2");
-                break;
-            case R.id.imageButton9:
-                case_switch(add_media,media9,"2");
-                break;
-            case R.id.imageButton10:
-                case_switch(add_media,media10,"2");
-                break;
-            case R.id.imageButton11:
-                case_switch(add_media,media11,"2");
-                break;
-            case R.id.imageButton12:
-                case_switch(add_media,media12,"2");
-                break;
         }
 
 
     }
+
+    private int count = 1;
+
+    public void select(String mediaID) {
+        switch(count){
+            case 1:
+                case_switch(add_media,media1,mediaID);
+                break;
+            case 2:
+                case_switch(add_media,media2,mediaID);
+                break;
+            case 3:
+                case_switch(add_media,media3,mediaID);
+                break;
+            case 4:
+                case_switch(add_media,media4,mediaID);
+                break;
+            case 5:
+                case_switch(add_media,media5,mediaID);
+                break;
+            case 6:
+                case_switch(add_media,media6,mediaID);
+                break;
+            case 7:
+                case_switch(add_media,media7,mediaID);
+                break;
+            case 8:
+                case_switch(add_media,media8,mediaID);
+                break;
+            case 9:
+                case_switch(add_media,media9,mediaID);
+                break;
+            case 10:
+                case_switch(add_media,media10,mediaID);
+                break;
+            case 11:
+                case_switch(add_media,media11,mediaID);
+                break;
+            case 12:
+                case_switch(add_media,media12,mediaID);
+                break;
+        }
+        count++;
+    }
+
+
 
     public void change_image(List<ImageButton>add_media, String mediaId) throws Exception {
         for(int i = 0; i<add_media.size();i++){
@@ -168,7 +208,8 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
                 } catch (Exception e) {
                     throw new Exception("(getPicture) -- something went wrong when retrieving picture");
                 }
-                add_media.get(i+1).setVisibility(View.VISIBLE);
+                add_media.get(i).setEnabled(false);
+                add_media.get(i).setVisibility(View.VISIBLE);
                 System.out.println(add_media.get(i+1).toString() +add_media.get(i+1).getVisibility());
                 break;
             }
@@ -183,7 +224,6 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
         return holds_image;
     }
     public void case_switch(List<ImageButton>add_media, ImageButton media,String mediaId){
-        Fragment fragment;
         int check = check_case(media);
         switch(check){
             case 0:
@@ -193,15 +233,17 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
                     e.printStackTrace();
                 }
                 break;
-//            case 1:
-////                //may elimiate this not sure yet
-////                fragment = new MediaProfilePageFragment();
-////                replaceFragment(fragment);
-////                break;
         }
     }
     private boolean save(String list_title, String media_list){
         if (list_title.length()!=0 ) {
+
+            //Close virtual keyboard
+            try {
+                InputMethodManager imm = (InputMethodManager) getView().getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(((MainActivity) getView().getContext()).getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {}
+
             saveMediaList saveList = (saveMediaList) new saveMediaList((MainActivity) getActivity()).execute(list_title,media_list);
             Log.i("Save List", "Valid credentials");
             return true;

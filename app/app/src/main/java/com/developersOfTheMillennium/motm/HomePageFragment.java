@@ -97,7 +97,6 @@ public class HomePageFragment extends Fragment {
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                System.out.println("SEARCH TEXT SUBMIT " + s);
                 if (s.isEmpty()) return false;
 
                 GetSearchResults getSearchResults = (GetSearchResults) new GetSearchResults
@@ -108,7 +107,6 @@ public class HomePageFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                System.out.println("SEARCH TEXT CHANGE " + s);
                 if (s.length() == 0)
                     return false;
 

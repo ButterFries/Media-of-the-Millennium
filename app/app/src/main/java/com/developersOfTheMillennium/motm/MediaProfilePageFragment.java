@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.developersOfTheMillennium.motm.utils.GetMediaProfile;
 import com.developersOfTheMillennium.motm.utils.GetPicture;
+import com.developersOfTheMillennium.motm.utils.GetPictureNoClick;
 import com.developersOfTheMillennium.motm.utils.Ratings.GetMediaRating;
 import com.developersOfTheMillennium.motm.utils.Ratings.GetUserRating;
 import com.developersOfTheMillennium.motm.utils.Ratings.UpdateRating;
@@ -106,6 +107,10 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         final Button ratingButton = rootView.findViewById(R.id.ratingButton);
         ratingButton.setOnClickListener(this);
 
+        //Rating button
+        final ImageView imageView = rootView.findViewById(R.id.imageView2);
+        imageView.setOnClickListener(null);
+
         return rootView;
 
 
@@ -116,15 +121,25 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
         Fragment fragment = null;
         switch (view.getId()) {
             case R.id.reviewButton:
-                Log.d("MediaProfileFrag","review button pressed");
-                fragment = new ReviewsFragment();
 
-                Bundle args = new Bundle();
-                if(mediaID != null) {
-                    args.putInt("mediaID", Integer.parseInt(mediaID));
-                    fragment.setArguments(args);
+                if (AppGlobals.userType.equals("guest")) {
+                    CharSequence text = "Please sign in to review";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getContext(), text, duration);
+                    toast.show();
                 }
-                replaceFragment(fragment);
+                else {
+                    Log.d("MediaProfileFrag", "review button pressed");
+                    fragment = new ReviewsFragment();
+
+                    Bundle args = new Bundle();
+                    if (mediaID != null) {
+                        args.putInt("mediaID", Integer.parseInt(mediaID));
+                        fragment.setArguments(args);
+                    }
+                    replaceFragment(fragment);
+                }
                 break;
             case R.id.addToFavorites:
                 //Media ID
@@ -219,7 +234,7 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
 
     private void getPicture(String mediaId, ImageView imgView) throws Exception{
         try {
-            GetPicture pic = (GetPicture) new GetPicture((MainActivity) getActivity()).execute(mediaId, imgView);
+            GetPictureNoClick pic = (GetPictureNoClick) new GetPictureNoClick((MainActivity) getActivity()).execute(mediaId, imgView);
         } catch (Exception e) {
             throw new Exception("(getPicture) -- something went wrong when retrieving picture");
         }
@@ -239,20 +254,5 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
             throw new Exception("(getMediaRating) -- something went wrong when retrieving picture");
         }
     }
-
-
-    public void transactFragment(Fragment fragment, boolean reload) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        if (reload) {
-            getFragmentManager().popBackStack();
-        }
-
-
-        transaction.replace(((ViewGroup)getView().getParent()).getId(), fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
 
 }

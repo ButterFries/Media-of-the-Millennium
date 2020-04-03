@@ -21,7 +21,8 @@
             android:value="ca-app-pub-6835007576822716~8074248521" />
 
         <activity android:name=".RegistrationPageFragment"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

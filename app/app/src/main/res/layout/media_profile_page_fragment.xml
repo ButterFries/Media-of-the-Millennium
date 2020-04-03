@@ -16,7 +16,7 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="360dp"
+                android:layout_width="match_parent"
                 android:layout_height="390dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
@@ -104,7 +104,7 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="361dp"
+                android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="25dp"
@@ -112,11 +112,11 @@
                 android:text="@string/title"
                 android:textColor="@color/white"
                 android:textSize="30sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="362dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
@@ -127,7 +127,7 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="361dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
@@ -138,10 +138,9 @@
                 android:textSize="20sp" />
 
 
-
             <TextView
                 android:id="@+id/linksView"
-                android:layout_width="362dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"

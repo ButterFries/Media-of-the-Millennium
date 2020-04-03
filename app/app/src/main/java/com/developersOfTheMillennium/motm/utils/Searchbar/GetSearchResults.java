@@ -56,7 +56,7 @@ public class GetSearchResults extends AsyncTask<String, Void, Boolean> {
         return review(search);
     }
 
-    private boolean review(String search) {
+    protected boolean review(String search) {
 
         //Email
         JSONObject data = new JSONObject();

@@ -76,21 +76,6 @@ public class RetrieveList extends AsyncTask<Object, Void, JSONObject>{
         }
         return info;
     }
-//        if(genreArray != null) {
-//            //iterate through the list then start setting tags and getpicture
-//            for (int i = 0; i < genreArray.length(); i++) {
-//                try {
-//                    Integer mediaID = (Integer) genreArray.get(i);
-//                    genreButtons[i].setTag(mediaID);
-//                    getPicture(Integer.toString(mediaID), genreButtons[i]);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        } else {
-//            //ERROR WITH RETRIEVAL OF MEDIA IDS leaves button and transition blank
-//            Log.i("Retrieving media IDs", "--Error");
-//        }
 
     private JSONObject getRequest(String context, JSONObject data) {
         //private String postRequest(String context, JSONObject data) {

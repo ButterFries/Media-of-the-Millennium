@@ -161,7 +161,7 @@ public class Server
         httpsServer.createContext("/getTopRatedMedia", new getTopRatedMedia(db, sm));
         httpsServer.createContext("/saveMediaList", new saveMediaList(db, sm));
         httpsServer.createContext("/getMediaByGenreAndType", new getMediaByGenreAndType(db, sm));
-        httpsServer.createContext("/getMediaList", new saveMediaList(db, sm));
+        httpsServer.createContext("/getMediaList", new getMediaList(db, sm));
         //httpsServer.createContext("/x", new x(db, sm));
 
 

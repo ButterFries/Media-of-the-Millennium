@@ -30,11 +30,13 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
     private MenuItem list_menu2;
     private MenuItem list_menu3;
     private JSONObject return_list = null;
+    private int save_menu = 0;
     private List<MenuItem> menu_holders = new ArrayList<MenuItem>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
 
         View rootView = inflater.inflate(R.layout.user_profile_fragment, container, false);
         // Need to add button functioning here.
@@ -60,18 +62,23 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
                 break;
             case R.id.CreateList:
                PopupMenu popup = new PopupMenu(getActivity(), view);
+
                MenuInflater inflater = popup.getMenuInflater();
                popup.setOnMenuItemClickListener(this);
                inflater.inflate(R.menu.list_menu, popup.getMenu());
                menu_holders.add(list_menu1=popup.getMenu().findItem(R.id.placeholder_1));
                menu_holders.add(list_menu2=popup.getMenu().findItem(R.id.placeholder_2));
                menu_holders.add(list_menu3=popup.getMenu().findItem(R.id.placeholder_3));
-                try {
-                    fetch_list_names(menu_holders);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                popup.show();
+               if(save_menu == 0){
+                   try {
+                       fetch_list_names(menu_holders);
+                       save_menu = 1;
+                   } catch (Exception e) {
+                       e.printStackTrace();
+                   }
+               }
+               System.out.println(save_menu);
+               popup.show();
 
                break;
 
@@ -94,14 +101,15 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
                 return true;
             case R.id.placeholder_1:
                 // do your code
-                return_list = fetch_list(AppGlobals.user,list_menu1.getTitle().toString(),return_list);
-                System.out.println(return_list);
+                fetch_list(list_menu1.getTitle().toString(),return_list);
                 return true;
             case R.id.placeholder_2:
                 // do your code
+                fetch_list(list_menu2.getTitle().toString(),return_list);
                 return true;
             case R.id.placeholder_3:
                 // do your code
+                fetch_list(list_menu3.getTitle().toString(),return_list);
                 return true;
             default:
                 return false;
@@ -111,13 +119,17 @@ public class UserProfilePageFragment extends Fragment implements View.OnClickLis
 
         getList name = (getList) new getList((MainActivity) getActivity()).execute(AppGlobals.user,menu_holders);
     }
-    public JSONObject fetch_list(String user, String list_name, JSONObject return_list){
+    public void fetch_list(String list_name, JSONObject return_list){
 
         RetrieveList list = (RetrieveList) new RetrieveList((MainActivity) getActivity()).execute(AppGlobals.user,list_name,return_list);
 
-        return return_list;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt("save_menu", 1);
+        super.onSaveInstanceState(savedInstanceState);
+    }
     public void replaceFragment(Fragment someFragment) {
         //FragmentTransaction transaction = getFragmentManager().beginTransaction();
         androidx.fragment.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();

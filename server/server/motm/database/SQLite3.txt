@@ -158,12 +158,14 @@ CREATE TABLE reviews (user_ID INTEGER PRIMARY KEY,media_ID TEXT(100) UNIQUE,rati
 
 ================================================================================
 ###   mediaList   ###
+================================================================================
 CREATE TABLE user_list (
-    listID     INTEGER       PRIMARY KEY,
-    userID     INTEGER       REFERENCES accounts (userID),
-    list_name  TEXT (100),
-    list_items TEXT (100000)
+    listID     INTEGER         PRIMARY KEY,
+    userID     INTEGER         REFERENCES accounts (userID),
+    list_name  STRING (100),
+    list_items STRING (100000)
 );
+
 ================================================================================
 ###   reports   ###
 ================================================================================

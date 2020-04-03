@@ -1,3 +1,27 @@
+package server.motm.servlets;
+import server.motm.database.*;
+import server.motm.utils.*;
+import server.motm.session.*;
+
+
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+
+import java.io.IOException;
+import java.io.OutputStream;
+
+import org.json.*;
+
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.Headers;
+
+
+import java.sql.*;
+
+import com.sun.net.httpserver.HttpsExchange;
+
 public class getMediaList implements HttpHandler {
     private static AppDatabase db;
     private static SessionManager sm;
@@ -10,11 +34,12 @@ public class getMediaList implements HttpHandler {
     }
 
     public void handle(HttpExchange r) {
-        System.out.println("\n-Received request [saveMediaList.java]");
+        System.out.println("\n-Received request [getMediaList.java]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
            if(r.getRequestMethod().equals("POST")){
                 System.out.println("--request type: POST(GET)");
+                conn = db.connect();
                 handleGET(r, conn);
             }else {
                 System.out.println("--request type unsupported: " + r.getRequestMethod());
@@ -48,14 +73,15 @@ public class getMediaList implements HttpHandler {
 
         HttpsExchange rs = (HttpsExchange) r;
 
-        if (requestJSON.has("username")){
+        if (requestJSON.has("username") && requestJSON.has("list_name")){
             String username = requestJSON.getString("username");
+            String list_name = requestJSON.getString("list_name");
 
             System.out.println("--client send username: "+username);
 //            System.out.println("--client send accountInfo: "+accountInfo);
 
             try {
-                responseJSON= db.get_user_lists(username,conn);
+                responseJSON= db.get_user_lists(username,list_name,conn);
 //                db.add_titleToFavorites(conn, mediaID, accountInfo, accountType);
                 responseJSON.put("error_code", 0);
                 String response = responseJSON.toString() + "\n";

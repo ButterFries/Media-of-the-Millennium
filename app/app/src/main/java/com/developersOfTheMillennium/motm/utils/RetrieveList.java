@@ -1,10 +1,15 @@
 package com.developersOfTheMillennium.motm.utils;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.developersOfTheMillennium.motm.HomePageFragment;
 import com.developersOfTheMillennium.motm.MainActivity;
+import com.developersOfTheMillennium.motm.MediaListPageFragment;
 import com.developersOfTheMillennium.motm.R;
 import com.developersOfTheMillennium.motm.ssl.SecureHTTPClient;
 
@@ -13,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -20,7 +27,7 @@ import okhttp3.Response;
 
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
-public class RetrieveList extends AsyncTask<Object, Void, Void>{
+public class RetrieveList extends AsyncTask<Object, Void, JSONObject>{
 
     private static MainActivity activity;
     private static SecureHTTPClient HTTPSClient;
@@ -31,29 +38,35 @@ public class RetrieveList extends AsyncTask<Object, Void, Void>{
                 +":"+activity.getResources().getString(R.string.server_port), activity);
     }
     @Override
-    protected Void doInBackground(Object... params) {
+    protected JSONObject doInBackground(Object... params) {
 //        ImageButton[] genreButtons = (ImageButton[]) params[0];
 //        String genre = (String) params[1];
         String username = (String) params[0];
         String list_name = (String) params[1];
         JSONObject return_list = (JSONObject) params[2];
 
-        retrieveListFromDb(username,list_name,return_list);
-        return null;
+        return retrieveListFromDb(username,list_name,return_list);
+
     }
-    private void retrieveListFromDb(String username, String list_name,JSONObject return_list) {
+    private JSONObject retrieveListFromDb(String username, String list_name, JSONObject return_list) {
         //Retrieve mediaIds
         JSONObject data = new JSONObject();
-        JSONObject reponse = new JSONObject();
+        JSONObject reponse = null;
 
+        JSONObject return_data = null;
+        JSONObject info = new JSONObject();
+        JSONArray test = null;
         try {
             data.put("username", username);
             data.put("list_name", list_name);
             Log.i("Getting List",list_name);
             reponse = getRequest("getMediaList", data);
-            return_list = reponse;
+            return_data = new JSONObject(reponse.get("data").toString());
+            test = new JSONArray(return_data.get("list_items").toString().replace("[" + "]",""));
+            info.put("list_name",list_name);
+            info.put("list_items",test);
 
-            //String rtn = postRequest("getPicture", data);
+
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("ERROR Getting Picture", "JSON Parsing: " + e);
@@ -61,6 +74,7 @@ public class RetrieveList extends AsyncTask<Object, Void, Void>{
             // FOR SOME REASON THIS BREAKS THE CODE???
             //btn.setImageResource(R.drawable.ic_cinema);
         }
+        return info;
     }
 //        if(genreArray != null) {
 //            //iterate through the list then start setting tags and getpicture
@@ -118,29 +132,30 @@ public class RetrieveList extends AsyncTask<Object, Void, Void>{
         }
     }
 
+    protected void onPostExecute(JSONObject list_info) {
+        // do something with the result, for example display the received Data in a ListView
+        // in this case, "result" would contain the "someLong" variable returned by doInBackground();
 
-//        private JSONArray getMediaIDs(String mediaType, String requestType, String genre,ImageButton[] imageButtons) throws Exception{
-//            try {
-//                //new GetMediaIDs(activity).execute(mediaType, requestType, genre);
-//                GetMediaIDs result = new GetMediaIDs(activity);//, mediaType, requestType, genre); //(activity).execute(mediaType, requestType, genre).get();
-//                JSONObject res = result.getIds(mediaType, requestType, genre);
-//                return res.getJSONArray("mediaIDs");
-//                //GetMediaIDs IDs = (GetMediaIDs) new GetMediaIDs((MainActivity) getActivity()).execute(mediaType, array).get();
-//            } catch (Exception e) {
-//                for(int i=0; i<10; i++) {
-//                    getPicture(null, imageButtons[i]);
-//                }
-//                throw new Exception("(getMediaIDs) -- something went wrong when retrieving mediaIDs");
-//            }
-//        }
-//
-//        private void getPicture(String mediaId, ImageButton imgButton) throws Exception{
-//            try {
-//                GetPicture pic = (GetPicture) new GetPicture(activity).execute(mediaId, imgButton);
-//            } catch (Exception e) {
-//                throw new Exception("(getPicture) -- something went wrong when retrieving picture");
-//            }
-//        }
+
+        try {
+            Bundle args = new Bundle();
+            args.putString("list_name",list_info.get("list_name").toString());
+            JSONArray load_pics = list_info.getJSONArray("list_items");
+            MediaListPageFragment mediaList = new MediaListPageFragment();
+            mediaList.setAdd_media(load_pics);
+            mediaList.setArguments(args);
+            activity.replaceFragment(mediaList);
+            System.out.println(mediaList.getAdd_media());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
 }
 
 

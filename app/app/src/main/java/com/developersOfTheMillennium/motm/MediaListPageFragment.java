@@ -15,15 +15,13 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.developersOfTheMillennium.motm.utils.GetMediaIDs;
 import com.developersOfTheMillennium.motm.utils.GetPicture;
-import com.developersOfTheMillennium.motm.utils.RegisterAccount;
 import com.developersOfTheMillennium.motm.utils.saveMediaList;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MediaListPageFragment extends Fragment implements View.OnClickListener {
@@ -43,6 +41,7 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
     private ImageButton media11;
     private ImageButton media12;
     private JSONArray item_list = new JSONArray();
+    private JSONArray new_media = null;
     private Button save;
     private SearchView searchView;
     @Override
@@ -72,6 +71,18 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
         String search = null;
 
         searchView = v.findViewById(R.id.search);
+
+        Bundle recieved = getArguments();
+        if(recieved != null){
+            list_title.setText(recieved.get("list_name").toString());
+            for (int i =0; i<new_media.length();i++){
+                try {
+                    change_image(add_media,new_media.get(i).toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         for(int i = 0; i<add_media.size();i++){
             add_media.get(i).setOnClickListener(this);
@@ -105,7 +116,6 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
                 if(save(list_title.getText().toString(),item_list.toString())){
                     System.out.println(list_title.getText().toString() + item_list.toString());
                 }
-
                 break;
             case R.id.imageButton:
                 case_switch(add_media,media1,"2");
@@ -183,11 +193,11 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
                     e.printStackTrace();
                 }
                 break;
-            case 1:
-                //may elimiate this not sure yet
-                fragment = new MediaProfilePageFragment();
-                replaceFragment(fragment);
-                break;
+//            case 1:
+////                //may elimiate this not sure yet
+////                fragment = new MediaProfilePageFragment();
+////                replaceFragment(fragment);
+////                break;
         }
     }
     private boolean save(String list_title, String media_list){
@@ -198,6 +208,12 @@ public class MediaListPageFragment extends Fragment implements View.OnClickListe
         }
         Log.i("save List", "Invalid credentials");
         return false;
+    }
+    public List<ImageButton> getAdd_media(){
+        return this.add_media;
+    }
+    public void setAdd_media(JSONArray new_media){
+        this.new_media = new_media;
     }
 
     public void replaceFragment(Fragment someFragment) {

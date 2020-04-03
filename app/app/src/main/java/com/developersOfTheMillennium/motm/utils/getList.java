@@ -62,6 +62,7 @@ public class getList extends AsyncTask<Object, Void, Void> implements View.OnCli
 
             name_holder = new JSONObject(return_data.get("data").toString());
             names = new JSONArray(name_holder.get("list_name").toString());
+
             for(int i= 0;i<names.length();i++){
 
                 btns.get(i).setVisible(true);

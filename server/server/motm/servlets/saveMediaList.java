@@ -53,9 +53,11 @@ public class saveMediaList implements HttpHandler
         try {
             if (r.getRequestMethod().equals("PUT")) {
                 System.out.println("--request type: PUT");
+                conn = db.connect();
                 handlePut(r, conn);
             }else if(r.getRequestMethod().equals("POST")){
                 System.out.println("--request type: POST(GET)");
+                conn = db.connect();
                 handleGET(r, conn);
             }else {
                 System.out.println("--request type unsupported: " + r.getRequestMethod());
@@ -107,40 +109,40 @@ public class saveMediaList implements HttpHandler
 
             /* check if user already has existing mediaID in favorites */
 
-//            if (db.hasFavorite(conn, mediaID, accountInfo, accountType)){
-//                System.out.println("--favorited ID already exists");
-//                responseJSON.put("error_code", 3);
-//                responseJSON.put("error_description", "error: user already has exisiting favorites in DB");
-//                String response = responseJSON.toString() + "\n";
-//                rs.sendResponseHeaders(200, response.length());
-//                OutputStream os = rs.getResponseBody();
-//                os.write(response.getBytes());
-//                os.close();
-//                return;
-//            }
-            /* add mediaID to user favorites */
-//            System.out.println("User favorites does not contain mediaID yet");
-            try {
-
-                db.insert_media_item(conn, username, list_name, items);
-//                db.add_titleToFavorites(conn, mediaID, accountInfo, accountType);
-
+            if (db.list_exists(username, list_name,conn)){
+                db.update_list(username,list_name,items,conn);
                 responseJSON.put("error_code", 0);
-                responseJSON.put("error_description", "successfully added media list");
+                responseJSON.put("error_description", "error: user already has exisiting favorites in DB");
                 String response = responseJSON.toString() + "\n";
                 rs.sendResponseHeaders(200, response.length());
                 OutputStream os = rs.getResponseBody();
                 os.write(response.getBytes());
                 os.close();
-                System.out.println("--response :   "+response.trim());
-                System.out.println("--request fufilled");
+            } else {
+                try {
+
+                    db.insert_media_item(conn, username, list_name, items);
+//                db.add_titleToFavorites(conn, mediaID, accountInfo, accountType);
+
+                    responseJSON.put("error_code", 0);
+                    responseJSON.put("error_description", "successfully added media list");
+                    String response = responseJSON.toString() + "\n";
+                    rs.sendResponseHeaders(200, response.length());
+                    OutputStream os = rs.getResponseBody();
+                    os.write(response.getBytes());
+                    os.close();
+                    System.out.println("--response :   "+response.trim());
+                    System.out.println("--request fufilled");
+                }
+                catch (Exception e){
+                    System.out.println("## ERROR ::  " + e);
+                    throw new Exception("(handlePut) -- something went wrong when sending response");
+                }
             }
-            catch (Exception e){
-                System.out.println("## ERROR ::  " + e);
-                throw new Exception("(handlePut) -- something went wrong when sending response");
-            }
-        }
-        else {
+            /* add mediaID to user favorites */
+//            System.out.println("User favorites does not contain mediaID yet");
+
+        } else {
             rs.sendResponseHeaders(400, -1);
         }
     }

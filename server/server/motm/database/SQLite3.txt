@@ -157,6 +157,16 @@ CREATE TABLE ratings (ratingID INTEGER PRIMARY KEY, rating FLOAT NOT NULL, userI
 CREATE TABLE reviews (user_ID INTEGER PRIMARY KEY,media_ID TEXT(100) UNIQUE,rating_FID INTEGER UNIQUE, rating FLOAT, review_ID INTEGER UNIQUE,review_text TEXT(500))
 
 ================================================================================
+###   mediaList   ###
+================================================================================
+CREATE TABLE user_list (
+    listID     INTEGER         PRIMARY KEY,
+    userID     INTEGER         REFERENCES accounts (userID),
+    list_name  STRING (100),
+    list_items STRING (100000)
+);
+
+================================================================================
 ###   reports   ###
 ================================================================================
 CREATE TABLE reports (reportID INTEGER PRIMARY KEY, reviewID INTEGER NOT NULL, user TEXT NOT NULL);

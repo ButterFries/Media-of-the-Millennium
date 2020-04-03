@@ -5,31 +5,49 @@
     android:id="@+id/movie_page_frag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:orientation="vertical">
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/main_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/CategoryTitleTxt"
+        <EditText
+            android:id="@+id/list_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="LIST NAME"
+            android:hint="Enter a list name, MUST BE ENTERED"
+            android:textColorHint="@color/white"
             android:textAlignment="center"
+            android:textColor="@android:color/holo_purple"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/Trending"
+            android:id="@+id/username_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="By:USER NAME"
             android:textAlignment="center"
+            android:textColor="@android:color/holo_purple"
             android:textSize="24sp" />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save List"
+            android:textColor="@android:color/holo_purple"
+            android:background="@drawable/gradient"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,21 +59,26 @@
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/yellow" />
+                android:tag="0"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/colorAccent" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
                 android:id="@+id/imageButton3"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/colorPrimary" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
         </LinearLayout>
 
@@ -69,21 +92,27 @@
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/yellow" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
                 android:id="@+id/imageButton5"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/colorAccent" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
                 android:id="@+id/imageButton6"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/colorPrimary" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,21 +125,28 @@
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/yellow" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
                 android:id="@+id/imageButton8"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/colorAccent" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
                 android:id="@+id/imageButton9"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/colorPrimary" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -123,21 +159,28 @@
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/yellow" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
                 android:id="@+id/imageButton11"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/colorAccent" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
                 android:id="@+id/imageButton12"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/colorPrimary" />
+                android:tag="0"
+                android:visibility="invisible"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
         </LinearLayout>
 
 

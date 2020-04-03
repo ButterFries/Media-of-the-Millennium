@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/create_list"
+        android:title="@string/createlist" />
+    <item android:id="@+id/placeholder_1"
+        android:tag="0"
+        android:visibility="invisible"
+        android:visible="false"
+        android:title="@string/placeholder"
+        />
+    <item android:id="@+id/placeholder_2"
+        android:tag="0"
+        android:visible="false"
+        android:title="@string/placeholder"
+       />
+    <item android:id="@+id/placeholder_3"
+        android:tag="0"
+        android:visible="false"
+        android:title="@string/placeholder"
+        />
+</menu>

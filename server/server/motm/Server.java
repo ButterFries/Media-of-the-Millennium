@@ -52,7 +52,8 @@ import java.security.cert.X509Certificate;
 public class Server 
 {
     static int PORT = 8080;
-    static String ADDR = "192.168.50.253";
+//    static String ADDR = "192.168.50.253";
+    static String ADDR = "192.168.0.18";
     //keytool -genkeypair -keyalg RSA -alias selfsigned -keystore motm_key.jks -storepass developers_of_the_millenium_password_to_motm -validity 360 -keysize 2048
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, CertificateException, UnrecoverableKeyException
@@ -158,7 +159,9 @@ public class Server
         
         httpsServer.createContext("/getNewMedia", new getNewMedia(db, sm));
         httpsServer.createContext("/getTopRatedMedia", new getTopRatedMedia(db, sm));
+        httpsServer.createContext("/saveMediaList", new saveMediaList(db, sm));
         httpsServer.createContext("/getMediaByGenreAndType", new getMediaByGenreAndType(db, sm));
+        httpsServer.createContext("/getMediaList", new getMediaList(db, sm));
         //httpsServer.createContext("/x", new x(db, sm));
 
 

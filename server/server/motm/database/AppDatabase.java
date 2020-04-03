@@ -1387,9 +1387,40 @@ public class AppDatabase {
         //        public float get_rating(){ return this.rating; }
         //        public int get_raters(){ return this.numRaters; }
     }
-    
-    public void insert_media_item(Connection conn, int listID,int userID,String list_name,String items) throws SQLException{
-        try {    
+
+    public void insert_media_item(Connection conn,String username,String list_name,String items) throws SQLException{
+        int userID = 0;
+        JSONArray query = new JSONArray();
+        Statement stmt = conn.createStatement();
+        String sqlReq = "SELECT userID FROM accounts WHERE username = \"" +username+ "\"" ;
+        ResultSet rs = stmt.executeQuery(sqlReq);
+        if(rs.next()){
+            userID = rs.getInt("userID");
+            System.out.println(userID);
+        }else{
+            throw new SQLException("An error occurred when getting the reviews on review  relation");
+        }
+
+        try {
+
+            String sqlReq2 = "INSERT INTO user_list (userID,list_name,list_items) VALUES (?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq2);
+            System.out.println(userID);
+            System.out.println(list_name);
+            System.out.println(items);
+            pstmt.setInt(1, userID);
+            pstmt.setString(2,list_name);
+            pstmt.setString(3,items);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println(ex.getSQLState()+ex.getMessage());
+            throw new SQLException("An error occurred when adding the user list");
+        }
+    }
+
+    public void get_media_list(int listID,Connection conn)throws SQLException{
+
+        try {
             JSONArray query = new JSONArray();
             Statement stmt = conn.createStatement();
             String sqlReq = "SELECT * FROM user_list WHERE listID = "+listID ;
@@ -1407,25 +1438,65 @@ public class AppDatabase {
             throw new SQLException("An error occurred when getting specific review");
         }
     }
-
-    public void get_user_lists(int userID,Connection conn)throws SQLException{
+    public JSONArray get_user_listname(String username,Connection conn)throws SQLException{
+        int userID = 0;
+        JSONArray query = new JSONArray();
+        Statement stmt = conn.createStatement();
+        String sqlReq = "SELECT userID FROM accounts WHERE username = \"" +username+ "\"" ;
+        ResultSet rs = stmt.executeQuery(sqlReq);
+        if(rs.next()){
+            userID = rs.getInt("userID");
+            System.out.println(userID);
+        }else{
+            throw new SQLException("An error occurred when getting the reviews on review  relation");
+        }
         try {
-            JSONArray query = new JSONArray();
-            Statement stmt = conn.createStatement();
-            String sqlReq = "SELECT * FROM user_list WHERE userID = "+userID ;
-            ResultSet rs = stmt.executeQuery(sqlReq);
-            if(rs.next()){
-                JSONObject line = new JSONObject();
-                line.put("listID",rs.getString("listID"));
-                line.put("List Title",rs.getString("list_name"));
-                line.put("list_items",rs.getInt("items"));
-                query.put(line);
+            Statement stmt2 = conn.createStatement();
+            String sqlReq2= "SELECT list_name FROM user_list WHERE userID = \"" + userID + "\"" + "LIMIT 3" ;
+            ResultSet rs2 = stmt2.executeQuery(sqlReq2);
+            while(rs2.next()) {
+                query.put(rs2.getString("list_name"));
+            }
+//           }else{
+//                throw new SQLException("An error occurred when getting the list_name");
+//            }
+        }catch (SQLException ex) {
+            throw new SQLException("An error occurred when getting specific list_names");
+        }
+        return query;
+    }
+
+    public JSONObject get_user_lists(String username,String list_name,Connection conn)throws SQLException{
+        int userID = 0;
+        JSONObject query = new JSONObject();
+        Statement stmt = conn.createStatement();
+        String sqlReq = "SELECT userID FROM accounts WHERE username = \"" +username+ "\"" ;
+        ResultSet rs = stmt.executeQuery(sqlReq);
+        if(rs.next()){
+            userID = rs.getInt("userID");
+            System.out.println(userID);
+        }else{
+            throw new SQLException("An error occurred when getting the reviews on review  relation");
+        }
+
+        try {
+
+            String sqlReq2 = "SELECT list_items FROM user_list WHERE userID = ? AND list_name = ?;";
+            PreparedStatement pstmt2 = conn.prepareStatement(sqlReq2);
+            pstmt2.setInt(1,userID);
+            pstmt2.setString(2,list_name);
+            ResultSet rs2 = pstmt2.executeQuery();
+            if(rs2.next()){
+                query.put("list_name",list_name);
+                query.put("list_items",rs2.getString("list_items"));
             }else{
-                throw new SQLException("An error occurred when getting the reviews on review  relation");
+                throw new SQLException("An error occurred when getting the media list");
             }
         }catch (SQLException ex) {
-            throw new SQLException("An error occurred when getting specific review");
+            System.err.println(ex.getSQLState()+ex.getMessage());
+            throw new SQLException("An error occurred when getting specific list");
         }
+        return query;
     } 
 
     public void delete_item(int listID, String item,Connection conn)throws SQLException{
@@ -1467,6 +1538,56 @@ public class AppDatabase {
             throw new SQLException("An error occurred when getting specific review");
         }
     }
+
+    public Boolean list_exists(String username,String list_name,Connection conn)throws SQLException{
+        int userID = 0;
+        Statement stmt = conn.createStatement();
+        String sqlReq = "SELECT userID FROM accounts WHERE username = \"" +username+ "\"" ;
+        ResultSet rs = stmt.executeQuery(sqlReq);
+        if(rs.next()){
+            userID = rs.getInt("userID");
+            System.out.println(userID);
+        }else{
+            throw new SQLException("An error occurred when getting the reviews on review  relation");
+        }
+
+        String sqlReq2 = "SELECT listID FROM user_list WHERE userID = ? AND list_name = ?;";
+        PreparedStatement pstmt2 = conn.prepareStatement(sqlReq2);
+        pstmt2.setInt(1,userID);
+        pstmt2.setString(2,list_name);
+        ResultSet rs2 = pstmt2.executeQuery();
+        if(rs2.next()){
+            return true;
+        }
+        return false;
+    }
+
+    public void update_list(String username,String list_name,String list_items,Connection conn)throws SQLException{
+        int userID = 0;
+        Statement stmt = conn.createStatement();
+        String sqlReq = "SELECT userID FROM accounts WHERE username = \"" +username+ "\"" ;
+        ResultSet rs = stmt.executeQuery(sqlReq);
+        if(rs.next()){
+            userID = rs.getInt("userID");
+            System.out.println(userID);
+        }else{
+            throw new SQLException("An error occurred when getting the reviews on review  relation");
+        }
+        try {
+            String sqlReq2 = "UPDATE user_list SET list_items = ? WHERE userID = ? AND list_name = ?" ;
+            PreparedStatement pstmt = conn.prepareStatement(sqlReq2);
+            pstmt.setString(1,list_items);
+            pstmt.setInt(2,userID);
+            pstmt.setString(3,list_name);
+            pstmt.executeUpdate();
+        }catch (SQLException ex) {
+            System.err.println(ex.getSQLState()+ex.getMessage());
+            throw new SQLException("An error occurred when getting specific review");
+        }
+    }
+
+
+
     
   //==============================================================================
   //###   Reviews   ###

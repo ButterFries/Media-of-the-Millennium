@@ -800,18 +800,21 @@ public class AppDatabase {
     /**
      * Returns a list of n (default 50) randomly chosen mediaIDs that contain the search string in its title.
      */
-    public ArrayList<Integer> get_mediaIDs_by_search(Connection conn, String search_query, int n) throws SQLException {
+    public ArrayList<JSONObject> get_mediaIDs_and_name_by_search(Connection conn, String search_query, int n) throws SQLException {
 
         if (n < 1) n = 1;
-        String sqlReq = "SELECT mediaID FROM mediaTitles WHERE title LIKE \"%" + search_query + "%\" COLLATE NOCASE ORDER BY RANDOM() LIMIT " + n + "";
-        ArrayList<Integer> ids = new ArrayList<Integer>();
+        String sqlReq = "SELECT mediaID,title FROM mediaTitles WHERE title LIKE \"%" + search_query + "%\" COLLATE NOCASE LIMIT " + n + "";
+        ArrayList<JSONObject> res = new ArrayList<JSONObject>();
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlReq);
             while (rs.next()) { //found something
-                ids.add(rs.getInt("mediaID"));
+            	JSONObject curr = new JSONObject();
+            	curr.put("mediaID", rs.getInt("mediaID")+"");
+            	curr.put("title", rs.getString("title"));
+                res.add(curr);
             }
-            return ids;
+            return res;
         } catch (SQLException ex) {
             throw new SQLException("Error while searching matching media titles using query string [" + search_query + "] :  " + ex);
         }

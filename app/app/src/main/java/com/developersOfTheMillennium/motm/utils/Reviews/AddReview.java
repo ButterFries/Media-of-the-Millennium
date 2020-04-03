@@ -1,15 +1,19 @@
 package com.developersOfTheMillennium.motm.utils.Reviews;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.SystemClock.*;
+import android.view.inputmethod.InputMethodManager;
 
 import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.HomePageFragment;
 import com.developersOfTheMillennium.motm.MainActivity;
+import com.developersOfTheMillennium.motm.MediaProfilePageFragment;
 import com.developersOfTheMillennium.motm.R;
 import com.developersOfTheMillennium.motm.ssl.SecureHTTPClient;
 
@@ -138,10 +142,7 @@ public class AddReview extends AsyncTask<String, Void, Boolean> {
         // do something with the result, for example display the received Data in a ListView
         // in this case, "result" would contain the "someLong" variable returned by doInBackground();
 
-        //TAKE TO HOME PAGE
-        if (result) {
-            HomePageFragment homeFragment = new HomePageFragment();
-            activity.replaceFragment(homeFragment);
-        }
+        //Take back to media page
+        activity.getFragmentManager().popBackStackImmediate();
     }
 }

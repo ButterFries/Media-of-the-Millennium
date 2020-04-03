@@ -53,8 +53,8 @@ public class mediaTitleSearch implements HttpHandler
         System.out.println("\n-Received request [mediaTitleSearch]");
         HttpsExchange rs = (HttpsExchange) r;
         try {
-            if (r.getRequestMethod().equals("PUT")) {
-                System.out.println("--request type: PUT");
+            if (r.getRequestMethod().equals("POST")) {
+                System.out.println("--request type: POST (PUT)");
                 conn = db.connect();
                 handleReq(r, conn);
             }
@@ -95,13 +95,13 @@ public class mediaTitleSearch implements HttpHandler
             String query = requestJSON.getString("query");
             //if (query.length() < 4 ) error_code 2, query too short
 
-            int amount = 50; //default limit of up to 50 matches
+            int amount = 30; //default limit of up to 30 matches
             if ( requestJSON.has("amount") ) 
                 amount = requestJSON.getInt("amount");
 
             /*  search the database for matches  */
             System.out.println("--searching the database for matching titles");
-            ArrayList<Integer> matches = db.get_mediaIDs_by_search(conn, query, amount); //exception will be forwarded up to .handle
+            ArrayList<JSONObject> matches = db.get_mediaIDs_and_name_by_search(conn, query, amount); //exception will be forwarded up to .handle
             System.out.println("----successfully completed search");
             System.out.println("----["+matches.size()+"] matches found");
 

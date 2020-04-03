@@ -156,6 +156,7 @@ public class Server
         httpsServer.createContext("/deleteReview", new deleteReview(db, sm));
         httpsServer.createContext("/getReview", new getReview(db, sm));
         httpsServer.createContext("/getReviews", new getReviews(db, sm));
+        httpsServer.createContext("/mediaTitleSearch", new mediaTitleSearch(db, sm));
         
         httpsServer.createContext("/getNewMedia", new getNewMedia(db, sm));
         httpsServer.createContext("/getTopRatedMedia", new getTopRatedMedia(db, sm));

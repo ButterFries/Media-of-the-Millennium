@@ -71,8 +71,8 @@ public class MediaProfilePageFragment extends Fragment implements View.OnClickLi
                 ReviewsListFragment fragment = new ReviewsListFragment();
                 Bundle args2 = new Bundle();
                 if(mediaID != null) {
-                    args.putInt("mediaID", Integer.parseInt(mediaID));
-                    fragment.setArguments(args);
+                    args2.putInt("mediaID", Integer.parseInt(mediaID));
+                    fragment.setArguments(args2);
                 }
                 // Begin the transaction
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();

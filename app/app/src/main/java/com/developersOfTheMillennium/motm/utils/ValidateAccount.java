@@ -1,11 +1,13 @@
 package com.developersOfTheMillennium.motm.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.SystemClock.*;
+import android.view.inputmethod.InputMethodManager;
 
 import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.HomePageFragment;
@@ -162,6 +164,11 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
         if (result) {
             HomePageFragment homeFragment = new HomePageFragment();
             activity.replaceFragment(homeFragment);
+
+            try {
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {}
         }
     }
 }

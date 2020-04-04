@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/registration_page_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundSecondary"
+    android:background="@drawable/gradient"
     android:gravity="center"
-    android:orientation="vertical"
-    android:id="@+id/registration_page_fragment">
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        app:srcCompat="@drawable/motm_logo" />
 
     <TextView
-        android:layout_width="250dp"
-        android:layout_height="120dp"
-        android:text="MotM"
-        android:gravity="center"
-        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="155dp"
         android:fontFamily="casual"
-        android:textSize="50dp"
-        android:paddingBottom="20dp"/>
+        android:gravity="top"
+        android:paddingBottom="20dp"
+        android:text="Media of the Millenium"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/ActivityRegistrationButtonLogin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="@color/backgroundPrimary"
+        android:background="@drawable/homepage_btn_gradient"
         android:backgroundTintMode="src_in"
         android:includeFontPadding="true"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="@string/registration_login_button"
+        android:textColor="#000000"
         android:visibility="visible" />
 
     <Button
@@ -36,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="25dp"
-        android:backgroundTint="@color/backgroundPrimary"
+        android:background="@drawable/homepage_btn_gradient"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="@string/registration_signup_button" />
@@ -46,12 +54,14 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent"
         android:duplicateParentState="false"
         android:fontFamily="cursive"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/registration_guest_button" />
+        android:text="@string/registration_guest_button"
+        android:textColor="#FFFFFF" />
+
 </LinearLayout>

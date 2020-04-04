@@ -1,7 +1,8 @@
 <resources>
     <!-- Global -->
     <!-- For debugging purposes change server_address to your computer's IPv4 Address -->
-    <string name="server_address">138.51.157.202</string>
+    <!-- string name="server_address">ipv4</string -->
+    <string name="server_address">192.168.50.253</string>
     <string name="server_port">8080</string>
 
     <string name="app_name">MotM</string>
@@ -30,15 +31,50 @@
     <string name="media_profile_image">media_image</string>
     <string name="summary_info">summary_info</string>
     <string name="title">title</string>
-    <string name="tags">tags</string>
+    <string name="genres">genres</string>
     <string name="rate">rate</string>
     <string name="review">review</string>
-    <string name="add_to_favorites">add to favorites</string>
+    <string name="favorite">Favorite</string>
     <string name="media_image" />
+    <string name="bookmark">Bookmark</string>
+    <string name="links">links</string>
 
     <!-- Media Reviews Page -->
     <string name="AddReview">Add Review</string>
     <string name="reviewpagetitle">Title</string>
 
+    <!-- User Favorites Page -->
+    <string name="my_favourites">My Favourites</string>
+    <!-- User Bookmarks Page -->
+    <string name="my_bookmarks">My Bookmarks</string>
+
+    <!-- User Profile Page -->
+    <string name="profile">PROFILE</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="name">NAME</string>
+    <string name="e_mail">E-MAIL</string>
+    <string name="age">AGE</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="favourites">Favourites</string>
+
+    <!-- Base Layout for ListView in User Favourites Page -->
+    <string name="view_favorite_button">view_favorite_button</string>
+    <string name="delete_favorite_button">delete_favorite_button</string>
+    <string name="user">User</string>
+
+    <!-- Single favorite/bookmark layout entry -->
+    <string name="x">X</string>
+    <string name="view">View</string>
+    <string name="CreateAList">createAList</string>
+    <string name="Create_A_List">createAList</string>
+
+    <!-- Report button -->
+    <string name="report">Report</string>
+    <string name="numratings">numRatings</string>
+
+    <!-- Menu Names-->
+    <string name="createlist">create a list</string>
+    <string name="placeholder">placeholder</string>
+    <string name="Lists">lists</string>
 
 </resources>

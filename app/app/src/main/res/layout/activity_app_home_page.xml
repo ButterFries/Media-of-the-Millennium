@@ -1,90 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_page_frag"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000">
+
+        <SearchView
+            android:id="@+id/search_main"
+            android:background="#CCCCCC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+        </SearchView>
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:id="@+id/home_page_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <ImageButton
-            android:id="@+id/HomePageMovies"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_cinema_button"
-            android:paddingRight="200dp"
-            app:srcCompat="@drawable/ic_cinema" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#000000">
 
-        <ImageButton
-            android:id="@+id/HomePageTvSeries"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_tvseries_button"
-            android:paddingRight="200dp"
-            app:srcCompat="@drawable/ic_tvseries" />
 
-        <ImageButton
-            android:id="@+id/HomePageMusic"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_music_button"
-            android:paddingRight="200dp"
-            app:srcCompat="@drawable/ic_music" />
+            <ImageButton
+                android:id="@+id/HomePageMovies"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_cinema_button"
+                android:paddingRight="200dp"
+                app:srcCompat="@drawable/ic_cinema" />
 
-        <ImageButton
-            android:id="@+id/HomePageGames"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_videogames_button"
-            android:paddingRight="200dp"
-            app:srcCompat="@drawable/ic_videogames" />
+            <ImageButton
+                android:id="@+id/HomePageTvSeries"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_tvseries_button"
+                android:paddingRight="200dp"
+                app:srcCompat="@drawable/ic_tvseries" />
 
-        <ImageButton
-            android:id="@+id/HomePageBooks"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_novels_button"
-            android:paddingRight="200dp"
-            app:srcCompat="@drawable/ic_novels" />
+            <ImageButton
+                android:id="@+id/HomePageMusic"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_music_button"
+                android:paddingRight="200dp"
+                app:srcCompat="@drawable/ic_music" />
 
-        <ImageButton
-            android:id="@+id/HomePageNewMedia"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_top_rated_media_button"
-            android:paddingRight="200dp"
-            app:srcCompat="@drawable/ic_new_media" />
+            <ImageButton
+                android:id="@+id/HomePageGames"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_videogames_button"
+                android:paddingRight="200dp"
+                app:srcCompat="@drawable/ic_videogames" />
 
-        <ImageButton
-            android:id="@+id/HomePageTopRatedMedia"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_new_media_button"
-            android:paddingRight="200dp"
-            app:srcCompat="@drawable/ic_top_rated_media" />
+            <ImageButton
+                android:id="@+id/HomePageBooks"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_novels_button"
+                android:paddingRight="200dp"
+                app:srcCompat="@drawable/ic_novels" />
 
-        <ImageButton
-            android:id="@+id/HomePageSettings"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/feldgrau"
-            android:paddingRight="200dp"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            <ImageButton
+                android:id="@+id/HomePageNewMedia"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_new_media_button"
+                android:paddingRight="200dp"
+                app:srcCompat="@drawable/ic_new_media" />
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/HomePageTopRatedMedia"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_top_rated_media_button"
+                android:paddingRight="200dp"
+                app:srcCompat="@drawable/ic_top_rated_media" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/HomePageSettings"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/feldgrau"
+                android:paddingRight="200dp"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

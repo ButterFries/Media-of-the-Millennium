@@ -1,8 +1,13 @@
 package com.developersOfTheMillennium.motm.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.os.SystemClock.*;
+import android.view.inputmethod.InputMethodManager;
 
 import com.developersOfTheMillennium.motm.HomePageFragment;
 import com.developersOfTheMillennium.motm.MainActivity;
@@ -18,6 +23,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.os.SystemClock.sleep;
 import static com.developersOfTheMillennium.motm.MainActivity.JSON;
 
 public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
@@ -41,6 +47,9 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
     private boolean login(String usernameEmail, String password) {
 
+        //Loading Spinner On
+        activity.enableLoadingAnimation();
+
         //Email
         JSONObject data = new JSONObject();
 
@@ -54,6 +63,15 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
             int error_code = rtn.getInt("error_code");
 
             if (error_code == 0) {
+                AppGlobals.userType = "email";
+                AppGlobals.user = usernameEmail;
+                AppGlobals.session = session_token;
+                Log.i("global user type",AppGlobals.userType);
+                Log.i("global username/email",AppGlobals.user);
+                Log.i("global session token",AppGlobals.session);
+
+                //Loading Spinner Off
+                activity.disableLoadingAnimation();
                 return true;
             }
         } catch (Exception e) {
@@ -72,11 +90,24 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
             JSONObject rtn = postRequest("validateAccount", data);
             int error_code = rtn.getInt("error_code");
             if (error_code == 0) {
+                AppGlobals.userType = "username";
+                AppGlobals.user = usernameEmail;
+                AppGlobals.session = session_token;
+                Log.i("global user type",AppGlobals.userType);
+                Log.i("global username/email",AppGlobals.user);
+                Log.i("global session token",AppGlobals.session);
+
+                //Loading Spinner Off
+                activity.disableLoadingAnimation();
                 return true;
+
             }
         } catch (Exception e) {
             Log.e("ERROR Login", "JSON Parsing");
         }
+
+        //Loading Spinner Off
+        activity.disableLoadingAnimation();
 
         return false;
     }
@@ -125,10 +156,15 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
         // do something with the result, for example display the received Data in a ListView
         // in this case, "result" would contain the "someLong" variable returned by doInBackground();
 
-        //TAKE TO HOME PAGE
+        //TODO
         if (result) {
             HomePageFragment homeFragment = new HomePageFragment();
             activity.replaceFragment(homeFragment);
+
+            try {
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {}
         }
     }
 }

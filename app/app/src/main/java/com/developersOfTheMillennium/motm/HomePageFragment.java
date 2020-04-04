@@ -1,12 +1,19 @@
 package com.developersOfTheMillennium.motm;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
+
+import com.developersOfTheMillennium.motm.utils.Searchbar.GetSearchResults;
 
 public class HomePageFragment extends Fragment {
 
@@ -84,6 +91,29 @@ public class HomePageFragment extends Fragment {
                 //TAKE TO BOOKS PAGE
                 UserProfilePageFragment userProfileFragment = new UserProfilePageFragment();
                 ((MainActivity)getActivity()).replaceFragment(userProfileFragment);
+            }
+        });
+        final SearchView search = v.findViewById(R.id.search_main);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                if (s.isEmpty()) return false;
+
+                GetSearchResults getSearchResults = (GetSearchResults) new GetSearchResults
+                        ((MainActivity) getActivity(), search).execute(s);
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.length() == 0)
+                    return false;
+
+                GetSearchResults getSearchResults = (GetSearchResults) new GetSearchResults
+                        ((MainActivity) getActivity(), search).execute(s);
+
+                return true;
             }
         });
 

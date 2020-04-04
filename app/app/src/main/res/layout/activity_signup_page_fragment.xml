@@ -1,109 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_page_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundSecondary"
+    android:background="@drawable/gradient"
     android:gravity="center"
-    android:orientation="vertical"
-    android:id="@+id/login_page_fragment">
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        app:srcCompat="@drawable/motm_logo" />
 
     <TextView
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:text="MotM"
-        android:gravity="center"
-        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:textSize="50dp"/>
+        android:gravity="top"
+        android:paddingBottom="10dp"
+        android:text="Media of the Millenium"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="280dp"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/username_text"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:gravity="bottom"
             android:text="@string/signup_username_button"
-            android:gravity="bottom"/>
+            android:textColor="#4DF4DD" />
+
         <EditText
             android:id="@+id/username_input"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:hint= "@string/signup_username_button"
             android:inputType="text"
-            android:backgroundTint="@color/colorPrimary"
-            android:textCursorDrawable="@null"
-            android:hint="@string/signup_username_button"/>
+            android:textColorHint="@color/goodgrey"
+            android:textColor="@color/white"
+            android:textCursorDrawable="@null" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="280dp"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/email_text"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:gravity="bottom"
             android:text="@string/signup_email_button"
-            android:gravity="bottom"/>
+            android:textColor="#4DF4DD" />
+
         <EditText
             android:id="@+id/email_input"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:hint="@string/signup_email_hint_button"
+            android:textColorHint="@color/goodgrey"
+            android:textColor="@color/white"
             android:inputType="text"
-            android:backgroundTint="@color/colorPrimary"
-            android:textCursorDrawable="@null"
-            android:hint="@string/signup_email_hint_button"/>
+            android:textCursorDrawable="@null" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginBottom="0dp"
         android:layout_width="280dp"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/password_text"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:gravity="bottom"
             android:text="@string/signup_password_button"
-            android:gravity="bottom"/>
+            android:textColor="#4DF4DD" />
+
         <EditText
             android:id="@+id/password_input"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/goodgrey"
+            android:textColor="@color/white"
+            android:hint="@string/signup_password_button"
             android:inputType="textPassword"
-            android:backgroundTint="@color/colorPrimary"
-            android:textCursorDrawable="@null"
-            android:hint="@string/signup_password_button"/>
+            android:textCursorDrawable="@null" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginBottom="0dp"
         android:layout_width="280dp"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/password_confirm_text"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:gravity="bottom"
             android:text="@string/signup_password_confirm_button"
-            android:gravity="bottom"/>
+            android:textColor="#4DF4DD" />
+
         <EditText
             android:id="@+id/password_confirm_input"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/goodgrey"
+            android:textColor="@color/white"
+            android:hint="@string/signup_password_button"
             android:inputType="textPassword"
-            android:backgroundTint="@color/colorPrimary"
-            android:textCursorDrawable="@null"
-            android:hint="@string/signup_password_button"/>
+            android:textCursorDrawable="@null" />
     </LinearLayout>
 
 
@@ -112,16 +134,15 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="@color/backgroundPrimary"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/homepage_btn_gradient"
         android:backgroundTintMode="src_in"
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="true"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:layout_marginBottom="40dp"
         android:text="@string/registration_signup_button"
         android:visibility="visible" />
-
 
 
 </LinearLayout>

@@ -127,6 +127,24 @@ public class registerAccount implements HttpHandler
 
             /*  send response  */
             try {
+                AppDatabase.accountInfo acc = db.get_user_from_email(conn, email);
+
+                //get client addr (if forwarded then get that from header, otherwise get the remote addr)
+                Headers reqHeader = r.getRequestHeaders();
+                List<String> ipList = reqHeader.get("X-FORWARDED-FOR");
+                System.out.println("--reqHeader [x-forwarded-for]: "+ipList);
+                String ipAddress = ipList == null ? r.getRemoteAddress().getAddress().toString() : ipList.get(0); 
+                System.out.println("--client ip addr: "+ipAddress);
+                
+                String sessionID = sm.createSession(acc, ipAddress);
+                System.out.println("--obtained session");
+                //add both session id to cookie header and token to json (same purpose)
+                Headers headers = r.getResponseHeaders();
+                headers.add("User-agent", "HTTPTool/1.0");
+                headers.add("Set-cookie", "motm_sessionID="+sessionID+"; Max-Age="+(sm.getSessionDuration()-60)+"; HttpOnly;"); // Secure;");
+                String session_token = sessionID;
+                responseJSON.put("session_token", session_token);
+
                 responseJSON.put("error_code", 0);
                 responseJSON.put("error_description", "successfully registered account to database");
                 String response = responseJSON.toString() + "\n";

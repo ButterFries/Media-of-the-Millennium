@@ -1,25 +1,28 @@
 -- Merging decision tree log ---
 manifest
-ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5bf4724d592e8420e955a06d1f4bf064\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\6ed2921497707c0bea46ca9fb71602ca\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3bcc6082e48e3b6df5ee36f1a260c3f\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\6e8c0ceb3ceacd602d945f35ffed223c\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\91721d5f4d79f2cf1df976eedf0bd200\AndroidManifest.xml:17:1-25:12
-MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dcc5cd0b24bc32854a2ebf22808a44ea\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-ads:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e74bd4379b12c8c53b87195e9371820a\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\23b19942ca568dda8d3be1943c43a9d9\AndroidManifest.xml:17:1-24:12
+MERGED from [jp.wasabeef:picasso-transformations:2.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\9168e57ee5240da47b654f14f895a458\AndroidManifest.xml:2:1-12:12
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:2:1-14:12
+MERGED from [com.google.android.gms:play-services-ads:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\79940071777caf984cb0fbf208978a35\AndroidManifest.xml:17:1-25:12
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\9caba29aa969ce7a109200038c089aa5\AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.android.gms:play-services-audience:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\57bb39c100fe652a87b1ccf8fc2be195\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d34055f657236392b439daf83c43f123\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f9f26c08d8ab5fd10ddf57d729e6b95a\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.android.gms:play-services-gass:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d5f19943c5ddd79a91cfe3dad5b546ac\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:17:1-42:12
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\45b87098d8c26a0e871d9de56980bf06\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3488dd99dad80d94666221be40ff08b\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\29a7d8c7fc6cd55c49a03501e2ac9027\AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8337bad31d9b53ff76167be21fe451a3\AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\030e6ebb3f1095cbb5b07d2c8c90d966\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\65bf12bdd939b3dfc81d320aa08a005a\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c849dc9e50e22d5ac2cb13c3117a9ef2\AndroidManifest.xml:17:1-22:12
@@ -48,108 +51,126 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\JiJae\.g
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8c185e14b0cde70732cdcd131ac3ef1b\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\73c65f6e6b7e54d6edba07a3d8bdbfaf\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c613b54729b7527bd5a2adbfa198a9a4\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d324b0c189be9f180e5905a69ae10a95\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e1a0fb417b84e8b93260862029f2d912\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\6fc5215f3a923e554560bab843cea7d6\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\4d15e70b674a55d8b13f1c8a71447c09\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\3bc2665c6837a5957ed96c88b0163d8b\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3181a68f2460618cd3543c1f1b16827\AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\12a589eec2ccfa7ecbd271981cba920c\AndroidManifest.xml:2:1-9:12
-INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
+MERGED from [com.google.android.gms:play-services-ads-base:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\1ce698b6e90f80614ca33f61009b2a75\AndroidManifest.xml:2:1-9:12
+INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
 	package
 		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:3:5-49
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-31:12
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:1-34:12
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
 ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:6:5-67
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:23:5-67
 	android:name
 		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:6:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:7:5-78
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:7:22-76
 application
-ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:8:5-29:19
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:9:5-32:19
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5bf4724d592e8420e955a06d1f4bf064\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5bf4724d592e8420e955a06d1f4bf064\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3bcc6082e48e3b6df5ee36f1a260c3f\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3bcc6082e48e3b6df5ee36f1a260c3f\AndroidManifest.xml:9:5-20
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\91721d5f4d79f2cf1df976eedf0bd200\AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\91721d5f4d79f2cf1df976eedf0bd200\AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dcc5cd0b24bc32854a2ebf22808a44ea\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dcc5cd0b24bc32854a2ebf22808a44ea\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\23b19942ca568dda8d3be1943c43a9d9\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\23b19942ca568dda8d3be1943c43a9d9\AndroidManifest.xml:22:5-20
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:7:5-12:19
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:7:5-12:19
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\9caba29aa969ce7a109200038c089aa5\AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\9caba29aa969ce7a109200038c089aa5\AndroidManifest.xml:10:5-20
 MERGED from [com.google.android.gms:play-services-audience:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\57bb39c100fe652a87b1ccf8fc2be195\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-audience:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\57bb39c100fe652a87b1ccf8fc2be195\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:22:5-27:19
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d34055f657236392b439daf83c43f123\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d34055f657236392b439daf83c43f123\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f9f26c08d8ab5fd10ddf57d729e6b95a\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f9f26c08d8ab5fd10ddf57d729e6b95a\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:26:5-40:19
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:26:5-40:19
+MERGED from [com.google.android.gms:play-services-gass:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d5f19943c5ddd79a91cfe3dad5b546ac\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-gass:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d5f19943c5ddd79a91cfe3dad5b546ac\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:26:5-40:19
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:26:5-40:19
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\45b87098d8c26a0e871d9de56980bf06\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\45b87098d8c26a0e871d9de56980bf06\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3488dd99dad80d94666221be40ff08b\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3488dd99dad80d94666221be40ff08b\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\29a7d8c7fc6cd55c49a03501e2ac9027\AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\29a7d8c7fc6cd55c49a03501e2ac9027\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8337bad31d9b53ff76167be21fe451a3\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8337bad31d9b53ff76167be21fe451a3\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.core:core:1.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f7ccf8775b4f3ef109c7af85b9440109\AndroidManifest.xml:22:5-89
 MERGED from [androidx.core:core:1.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f7ccf8775b4f3ef109c7af85b9440109\AndroidManifest.xml:22:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\841864079991cad1a9dbbea22e3a0dd4\AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\841864079991cad1a9dbbea22e3a0dd4\AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f591738a59d3d79f3662e213a78ff179\AndroidManifest.xml:22:5-28:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f591738a59d3d79f3662e213a78ff179\AndroidManifest.xml:22:5-28:19
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\12a589eec2ccfa7ecbd271981cba920c\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\12a589eec2ccfa7ecbd271981cba920c\AndroidManifest.xml:7:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e1a0fb417b84e8b93260862029f2d912\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e1a0fb417b84e8b93260862029f2d912\AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.gms:play-services-ads-base:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\1ce698b6e90f80614ca33f61009b2a75\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-base:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\1ce698b6e90f80614ca33f61009b2a75\AndroidManifest.xml:7:5-20
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f7ccf8775b4f3ef109c7af85b9440109\AndroidManifest.xml:22:18-86
 	android:supportsRtl
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:13:9-35
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:14:9-35
 	android:label
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:11:9-41
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:12:9-41
 	android:roundIcon
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:12:9-54
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:13:9-54
 	android:icon
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:10:9-43
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:11:9-43
 	android:allowBackup
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:9:9-35
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:14:9-40
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:15:9-40
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:16:9-18:69
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:19:9-21:70
 	android:value
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:18:13-67
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:21:13-67
 	android:name
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:17:13-69
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:20:13-69
 activity#com.developersOfTheMillennium.motm.RegistrationPageFragment
-ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:20:9-22:20
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:23:9-71
 	android:name
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:20:19-93
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:23:19-59
 activity#com.developersOfTheMillennium.motm.MainActivity
-ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:22:20-28:20
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:24:9-31:20
+	android:windowSoftInputMode
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:25:13-52
 	android:name
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:22:30-92
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:24:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:23:9-27:25
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:26:13-30:29
 action#android.intent.action.MAIN
-ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:24:13-65
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:27:17-69
 	android:name
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:24:21-62
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:27:25-66
 category#android.intent.category.LAUNCHER
-ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:26:13-73
+ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:26:23-70
+		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml:29:27-74
 uses-sdk
 INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
@@ -164,28 +185,34 @@ MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\JiJae\.gradle\cac
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\6e8c0ceb3ceacd602d945f35ffed223c\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\91721d5f4d79f2cf1df976eedf0bd200\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\91721d5f4d79f2cf1df976eedf0bd200\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dcc5cd0b24bc32854a2ebf22808a44ea\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dcc5cd0b24bc32854a2ebf22808a44ea\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e74bd4379b12c8c53b87195e9371820a\AndroidManifest.xml:21:5-23:52
-MERGED from [com.google.android.gms:play-services-ads:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e74bd4379b12c8c53b87195e9371820a\AndroidManifest.xml:21:5-23:52
+MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\23b19942ca568dda8d3be1943c43a9d9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-plus:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\23b19942ca568dda8d3be1943c43a9d9\AndroidManifest.xml:20:5-44
+MERGED from [jp.wasabeef:picasso-transformations:2.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\9168e57ee5240da47b654f14f895a458\AndroidManifest.xml:8:5-10:41
+MERGED from [jp.wasabeef:picasso-transformations:2.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\9168e57ee5240da47b654f14f895a458\AndroidManifest.xml:8:5-10:41
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\79940071777caf984cb0fbf208978a35\AndroidManifest.xml:21:5-23:52
+MERGED from [com.google.android.gms:play-services-ads:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\79940071777caf984cb0fbf208978a35\AndroidManifest.xml:21:5-23:52
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\9caba29aa969ce7a109200038c089aa5\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\9caba29aa969ce7a109200038c089aa5\AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.android.gms:play-services-audience:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\57bb39c100fe652a87b1ccf8fc2be195\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-audience:16.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\57bb39c100fe652a87b1ccf8fc2be195\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d34055f657236392b439daf83c43f123\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d34055f657236392b439daf83c43f123\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f9f26c08d8ab5fd10ddf57d729e6b95a\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f9f26c08d8ab5fd10ddf57d729e6b95a\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-gass:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d5f19943c5ddd79a91cfe3dad5b546ac\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-gass:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d5f19943c5ddd79a91cfe3dad5b546ac\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\45b87098d8c26a0e871d9de56980bf06\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\45b87098d8c26a0e871d9de56980bf06\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3488dd99dad80d94666221be40ff08b\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3488dd99dad80d94666221be40ff08b\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\29a7d8c7fc6cd55c49a03501e2ac9027\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\29a7d8c7fc6cd55c49a03501e2ac9027\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8337bad31d9b53ff76167be21fe451a3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8337bad31d9b53ff76167be21fe451a3\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\030e6ebb3f1095cbb5b07d2c8c90d966\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\030e6ebb3f1095cbb5b07d2c8c90d966\AndroidManifest.xml:20:5-44
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\65bf12bdd939b3dfc81d320aa08a005a\AndroidManifest.xml:20:5-44
@@ -242,6 +269,10 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\JiJae\.gradl
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\73c65f6e6b7e54d6edba07a3d8bdbfaf\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c613b54729b7527bd5a2adbfa198a9a4\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c613b54729b7527bd5a2adbfa198a9a4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d324b0c189be9f180e5905a69ae10a95\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\d324b0c189be9f180e5905a69ae10a95\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e1a0fb417b84e8b93260862029f2d912\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e1a0fb417b84e8b93260862029f2d912\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\6fc5215f3a923e554560bab843cea7d6\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\6fc5215f3a923e554560bab843cea7d6\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\4d15e70b674a55d8b13f1c8a71447c09\AndroidManifest.xml:20:5-44
@@ -250,12 +281,12 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\JiJae\.gradle\caches\transform
 MERGED from [androidx.print:print:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\3bc2665c6837a5957ed96c88b0163d8b\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3181a68f2460618cd3543c1f1b16827\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\c3181a68f2460618cd3543c1f1b16827\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\12a589eec2ccfa7ecbd271981cba920c\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\12a589eec2ccfa7ecbd271981cba920c\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\1ce698b6e90f80614ca33f61009b2a75\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\1ce698b6e90f80614ca33f61009b2a75\AndroidManifest.xml:5:5-44
 INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.google.android.gms:play-services-ads:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\e74bd4379b12c8c53b87195e9371820a\AndroidManifest.xml:23:9-49
+		ADDED from [com.google.android.gms:play-services-ads:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\79940071777caf984cb0fbf208978a35\AndroidManifest.xml:23:9-49
 	android:targetSdkVersion
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
@@ -264,50 +295,52 @@ INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\ma
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 		ADDED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
 		INJECTED from X:\Oath\GitHub\project-developers-of-the-millennium\app\app\src\main\AndroidManifest.xml
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:23:9-26:75
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:25:13-37
-	android:theme
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:26:13-72
-	android:name
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\5a245209a0f0e48026a0b32df3890f93\AndroidManifest.xml:24:13-79
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:24:5-79
-	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:24:22-76
-activity#com.google.android.gms.ads.AdActivity
-ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:29:9-33:64
-	android:exported
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:32:13-37
-	android:configChanges
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:31:13-122
-	android:theme
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:33:13-61
-	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:30:13-65
-provider#com.google.android.gms.ads.MobileAdsInitProvider
-ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:35:9-39:39
+provider#com.squareup.picasso.PicassoProvider
+ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:8:9-11:40
 	android:authorities
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:37:13-73
+		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:10:13-72
 	android:exported
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:38:13-37
-	android:initOrder
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:39:13-36
+		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:11:13-37
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\97e664a3aabcf660e1ab4e7c02927d27\AndroidManifest.xml:36:13-76
+		ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\355c17d14d2b7e1c6fc871b6f6847d3e\AndroidManifest.xml:9:13-64
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ed3eb455abeb61c543673c6f5544880e\AndroidManifest.xml:24:13-79
+activity#com.google.android.gms.ads.AdActivity
+ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:29:9-33:64
+	android:exported
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:32:13-37
+	android:configChanges
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:31:13-122
+	android:theme
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:33:13-61
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:30:13-65
+provider#com.google.android.gms.ads.MobileAdsInitProvider
+ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:35:9-39:39
+	android:authorities
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:37:13-73
+	android:exported
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:38:13-37
+	android:initOrder
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:39:13-36
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\dabbbec1a936998c21493aa18d1eddcb\AndroidManifest.xml:36:13-76
 uses-permission#android.permission.WAKE_LOCK
 ADDED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:25:5-68
 	android:name
 		ADDED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\ab168102c222fc7df73a3409ece52024\AndroidManifest.xml:25:22-65
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\29a7d8c7fc6cd55c49a03501e2ac9027\AndroidManifest.xml:23:9-25:69
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8337bad31d9b53ff76167be21fe451a3\AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\29a7d8c7fc6cd55c49a03501e2ac9027\AndroidManifest.xml:25:13-66
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8337bad31d9b53ff76167be21fe451a3\AndroidManifest.xml:25:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\29a7d8c7fc6cd55c49a03501e2ac9027\AndroidManifest.xml:24:13-58
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\8337bad31d9b53ff76167be21fe451a3\AndroidManifest.xml:24:13-58
 provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
 ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\JiJae\.gradle\caches\transforms-2\files-2.1\f591738a59d3d79f3662e213a78ff179\AndroidManifest.xml:23:9-27:43
 	android:authorities

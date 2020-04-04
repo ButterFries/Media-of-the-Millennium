@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\e74bd4379b12c8c53b87195e9371820a\\res\\values-gl\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "199,268,393,458,524,608,725",
-                        "endColumns": "68,124,64,65,83,116,71",
-                        "endOffsets": "267,392,457,523,607,724,796"
-                    },
-                    "to": {
-                        "startLines": "47,48,49,50,51,52,53",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "5608,5681,5810,5879,5949,6037,6158",
-                        "endColumns": "72,128,68,69,87,120,75",
-                        "endOffsets": "5676,5805,5874,5944,6032,6153,6229"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\29a7d8c7fc6cd55c49a03501e2ac9027\\res\\values-gl\\values.xml",
+                    "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\8337bad31d9b53ff76167be21fe451a3\\res\\values-gl\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -55,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\values-gl\\values.xml",
+                    "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\79940071777caf984cb0fbf208978a35\\res\\values-gl\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10",
+                        "startColumns": "0,0,0,0,0,0,0",
+                        "startOffsets": "199,268,393,458,524,608,725",
+                        "endColumns": "68,124,64,65,83,116,71",
+                        "endOffsets": "267,392,457,523,607,724,796"
+                    },
+                    "to": {
+                        "startLines": "47,48,49,50,51,52,53",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "5608,5681,5810,5879,5949,6037,6158",
+                        "endColumns": "72,128,68,69,87,120,75",
+                        "endOffsets": "5676,5805,5874,5944,6032,6153,6229"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\values-gl\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

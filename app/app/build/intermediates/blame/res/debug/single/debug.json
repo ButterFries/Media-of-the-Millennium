@@ -1,11 +1,11 @@
 [
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_focused_holo.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_list_focused_holo.9.png"
-    },
-    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_focused_holo.9.png.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -28,12 +28,12 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\74e33217c26bfe93f23e3a2d4cd2eb15\\res\\layout\\browser_actions_context_menu_page.xml"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_design_ic_visibility_off.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\drawable-xhdpi-v4\\design_ic_visibility_off.png"
-    },
-    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_design_ic_visibility_off.png.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\drawable-xhdpi-v4\\design_ic_visibility_off.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
@@ -72,12 +72,12 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-v21\\abc_edit_text_material.xml"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_bottom_nav_item_tint.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\color\\mtrl_bottom_nav_item_tint.xml"
-    },
-    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_avd_hide_password.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\drawable-v21\\avd_hide_password.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_bottom_nav_item_tint.xml.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\color\\mtrl_bottom_nav_item_tint.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -85,7 +85,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_plusone_medium_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-hdpi-v4\\ic_plusone_medium_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-hdpi-v4\\ic_plusone_medium_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -120,12 +120,12 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\drawable-xxxhdpi-v4\\design_ic_visibility_off.png"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_focused_holo.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-mdpi-v4\\abc_list_focused_holo.9.png"
-    },
-    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_list_divider_material.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-v21\\abc_list_divider_material.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_focused_holo.9.png.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-mdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -136,12 +136,12 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxhdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_close_icon_tint.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\color\\mtrl_chip_close_icon_tint.xml"
-    },
-    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_close_icon_tint.xml.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\color\\mtrl_chip_close_icon_tint.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_fade_in.xml.flat",
@@ -149,7 +149,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
@@ -164,12 +164,12 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxhdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_cinema_button.xml.flat",
-        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable\\ic_cinema_button.xml"
-    },
-    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-mdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_cinema_button.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable\\ic_cinema_button.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_navigation_empty_icon.xml.flat",
@@ -180,12 +180,12 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\color\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxhdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_text_light.xml.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\color\\common_google_signin_btn_text_light.xml"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_text_light.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\color\\common_google_signin_btn_text_light.xml"
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxhdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_longpressed_holo.9.png.flat",
@@ -193,19 +193,19 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xhdpi-v4\\googleg_disabled_color_18.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xhdpi-v4\\googleg_disabled_color_18.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_snackbar_background.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\drawable\\mtrl_snackbar_background.xml"
-    },
-    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_action_bar_item_background_material.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_snackbar_background.xml.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\drawable\\mtrl_snackbar_background.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",
@@ -222,6 +222,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_motm_logo.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable-mdpi\\motm_logo.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
@@ -245,15 +249,15 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-mdpi-v4\\googleg_disabled_color_18.png"
-    },
-    {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_full_open_on_phone.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-hdpi-v4\\common_full_open_on_phone.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-mdpi-v4\\googleg_disabled_color_18.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-ldrtl-xxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_full_open_on_phone.png.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-hdpi-v4\\common_full_open_on_phone.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -265,7 +269,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-hdpi-v4\\googleg_disabled_color_18.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-hdpi-v4\\googleg_disabled_color_18.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_layout_snackbar.xml.flat",
@@ -305,7 +309,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_voice_search_api_material.xml.flat",
@@ -356,12 +360,16 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_search_row.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\search_row.xml"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_plusone_standard_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-xhdpi-v4\\ic_plusone_standard_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-xhdpi-v4\\ic_plusone_standard_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_plusone_standard_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-xxhdpi-v4\\ic_plusone_standard_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-xxhdpi-v4\\ic_plusone_standard_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -385,7 +393,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_disabled.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
@@ -397,11 +405,11 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light_normal.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -421,7 +429,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-mdpi-v4\\googleg_standard_color_18.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-mdpi-v4\\googleg_standard_color_18.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
@@ -448,6 +456,10 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_homepage_btn_gradient.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable\\homepage_btn_gradient.xml"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_tvseries.png.flat",
         "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable-mdpi\\ic_tvseries.png"
     },
@@ -470,6 +482,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_design_ic_visibility.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\drawable-anydpi-v21\\design_ic_visibility.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_reviews_list_fragment.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\reviews_list_fragment.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -505,7 +521,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_light.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_icon_light.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_icon_light.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
@@ -518,6 +534,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_popup_enter.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_gradient.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable\\gradient.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
@@ -628,12 +648,20 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xhdpi-v4\\abc_ic_star_black_36dp.png"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_pic_border.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable\\ic_pic_border.xml"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-mdpi-v4\\abc_popup_background_mtrl_mult.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_search_api_material.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_temporary_report_button.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\fragment_temporary_report_button.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_select_dialog_singlechoice_material.xml.flat",
@@ -650,6 +678,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-mdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_motm_logo.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable-xxhdpi\\motm_logo.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
@@ -682,6 +714,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\menu_list_menu.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\menu\\list_menu.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
@@ -749,7 +785,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-hdpi-v4\\googleg_standard_color_18.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-hdpi-v4\\googleg_standard_color_18.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
@@ -777,7 +813,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_plusone_medium_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-mdpi-v4\\ic_plusone_medium_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-mdpi-v4\\ic_plusone_medium_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_novels.png.flat",
@@ -825,7 +861,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\animator_design_fab_show_motion_spec.xml.flat",
@@ -884,6 +920,10 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\color\\abc_secondary_text_material_dark.xml"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_error_pic.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\mipmap-hdpi\\error_pic.png"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxxhdpi-v4\\abc_ic_star_black_16dp.png"
     },
@@ -901,7 +941,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_ic_plusone_standard_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-tvdpi-v4\\ic_plusone_standard_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-tvdpi-v4\\ic_plusone_standard_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_subheader.xml.flat",
@@ -913,7 +953,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_ic_plusone_tall_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-tvdpi-v4\\ic_plusone_tall_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-tvdpi-v4\\ic_plusone_tall_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
@@ -997,7 +1037,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_plusone_standard_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-mdpi-v4\\ic_plusone_standard_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-mdpi-v4\\ic_plusone_standard_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout-watch-v20_abc_alert_dialog_title_material.xml.flat",
@@ -1028,6 +1068,10 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_bookmarks.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\fragment_bookmarks.xml"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_videogames.png.flat",
         "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable-mdpi\\ic_videogames.png"
     },
@@ -1037,7 +1081,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_fab_transformation_sheet_expand_spec.xml.flat",
@@ -1045,7 +1089,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_focused.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_tooltip_exit.xml.flat",
@@ -1121,7 +1165,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_plusone_small_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-xxhdpi-v4\\ic_plusone_small_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-xxhdpi-v4\\ic_plusone_small_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -1137,7 +1181,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_text_light.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_cinema.png.flat",
@@ -1241,7 +1285,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_plusone_tall_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-mdpi-v4\\ic_plusone_tall_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-mdpi-v4\\ic_plusone_tall_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -1305,7 +1349,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
@@ -1313,7 +1357,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_plusone_small_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-xhdpi-v4\\ic_plusone_small_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-xhdpi-v4\\ic_plusone_small_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_text_input_password_icon.xml.flat",
@@ -1326,6 +1370,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_favorites.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\fragment_favorites.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_videogames.png.flat",
@@ -1361,7 +1409,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_plusone_tall_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-hdpi-v4\\ic_plusone_tall_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-hdpi-v4\\ic_plusone_tall_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_longpressed_holo.9.png.flat",
@@ -1405,7 +1453,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light_focused.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_disable_only_material_dark.xml.flat",
@@ -1473,7 +1521,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_plusone_medium_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-xxhdpi-v4\\ic_plusone_medium_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-xxhdpi-v4\\ic_plusone_medium_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -1481,7 +1529,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_tabs_icon_color_selector_colored.xml.flat",
@@ -1498,6 +1546,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_16dp.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_error_pic.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\mipmap-xxxhdpi\\error_pic.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
@@ -1573,7 +1625,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
@@ -1616,6 +1668,10 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\layout\\abc_list_menu_item_radio.xml"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_motm_logo.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable-hdpi\\motm_logo.png"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_design_snackbar_background.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\drawable\\design_snackbar_background.xml"
     },
@@ -1652,24 +1708,24 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_out_top.xml.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\anim\\abc_slide_out_top.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_ripple_color.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\color\\mtrl_btn_ripple_color.xml"
     },
     {
-        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_out_top.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\anim\\abc_slide_out_top.xml"
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_16dp.png.flat",
@@ -1685,11 +1741,11 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-hdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-hdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_plusone_tall_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-xhdpi-v4\\ic_plusone_tall_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-xhdpi-v4\\ic_plusone_tall_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -1705,7 +1761,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xxhdpi-v4\\googleg_standard_color_18.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xxhdpi-v4\\googleg_standard_color_18.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
@@ -1713,7 +1769,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_plusone_small_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-mdpi-v4\\ic_plusone_small_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-mdpi-v4\\ic_plusone_small_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_arrow_drop_right_black_24dp.xml.flat",
@@ -1752,8 +1808,16 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_rating_overlay.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\rating_overlay.xml"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_grey_gradient.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable\\grey_gradient.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_holo_dark.xml.flat",
@@ -1769,7 +1833,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark_focused.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -1781,7 +1845,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_ic_plusone_medium_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-tvdpi-v4\\ic_plusone_medium_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-tvdpi-v4\\ic_plusone_medium_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_search_view.xml.flat",
@@ -1813,7 +1877,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_light_focused.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_in_top.xml.flat",
@@ -1821,11 +1885,11 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_plusone_small_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-hdpi-v4\\ic_plusone_small_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-hdpi-v4\\ic_plusone_small_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_tint.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\color\\common_google_signin_btn_tint.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\color\\common_google_signin_btn_tint.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_notification_action_background.xml.flat",
@@ -1841,7 +1905,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_cab_background_top_mtrl_alpha.9.png.flat",
@@ -1865,7 +1929,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_new_media.png.flat",
@@ -1893,7 +1957,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_text_dark.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -1905,11 +1969,11 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_plusone_medium_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-xhdpi-v4\\ic_plusone_medium_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-xhdpi-v4\\ic_plusone_medium_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_disabled.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
@@ -1926,6 +1990,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
         "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_media_list_page_fragment.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\activity_media_list_page_fragment.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
@@ -1953,7 +2021,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_plusone_tall_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-xxhdpi-v4\\ic_plusone_tall_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-xxhdpi-v4\\ic_plusone_tall_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
@@ -1980,6 +2048,10 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-mdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_favourites_layout.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\favourites_layout.xml"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_cab_background_top_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
@@ -1989,7 +2061,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
@@ -2005,7 +2077,11 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark_normal.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_testys.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\testys.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_custom.xml.flat",
@@ -2037,7 +2113,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-hdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-hdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -2060,8 +2136,12 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_motm_logo.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable-xhdpi\\motm_logo.png"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
@@ -2132,6 +2212,10 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_16dp.png"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_loading_spinner_fragment.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\loading_spinner_fragment.xml"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-hdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
     },
@@ -2150,6 +2234,10 @@
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13_mtrl_layout_snackbar.xml.flat",
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5bf4724d592e8420e955a06d1f4bf064\\res\\layout-sw600dp-v13\\mtrl_layout_snackbar.xml"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_custom_border.xml.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\drawable\\custom_border.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ratingbar_indicator_material.xml.flat",
@@ -2180,6 +2268,10 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\6ed2921497707c0bea46ca9fb71602ca\\res\\drawable-xhdpi-v4\\abc_popup_background_mtrl_mult.9.png"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_error_pic.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\mipmap-xxhdpi\\error_pic.png"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_games.xml.flat",
         "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\layout\\activity_games.xml"
     },
@@ -2201,7 +2293,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_text_dark.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\color\\common_google_signin_btn_text_dark.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\color\\common_google_signin_btn_text_dark.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_screen_simple_overlay_action_mode.xml.flat",
@@ -2217,7 +2309,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_ic_plusone_small_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-tvdpi-v4\\ic_plusone_small_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-tvdpi-v4\\ic_plusone_small_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\anim-v21_design_bottom_sheet_slide_in.xml.flat",
@@ -2233,7 +2325,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_template_custom_big.xml.flat",
@@ -2256,8 +2348,16 @@
         "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\f7ccf8775b4f3ef109c7af85b9440109\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
     },
     {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_error_pic.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\mipmap-mdpi\\error_pic.png"
+    },
+    {
+        "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_error_pic.png.flat",
+        "source": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\src\\main\\res\\mipmap-xhdpi\\error_pic.png"
+    },
+    {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xxhdpi-v4\\googleg_disabled_color_18.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xxhdpi-v4\\googleg_disabled_color_18.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
@@ -2265,7 +2365,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_plusone_standard_off_client.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\dcc5cd0b24bc32854a2ebf22808a44ea\\res\\drawable-hdpi-v4\\ic_plusone_standard_off_client.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\23b19942ca568dda8d3be1943c43a9d9\\res\\drawable-hdpi-v4\\ic_plusone_standard_off_client.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",
@@ -2285,7 +2385,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xhdpi-v4\\googleg_standard_color_18.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xhdpi-v4\\googleg_standard_color_18.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -2297,7 +2397,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -2333,7 +2433,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
@@ -2377,7 +2477,7 @@
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_light_normal.xml.flat",
-        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\5a245209a0f0e48026a0b32df3890f93\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
+        "source": "C:\\Users\\JiJae\\.gradle\\caches\\transforms-2\\files-2.1\\ed3eb455abeb61c543673c6f5544880e\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
     },
     {
         "merged": "X:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",

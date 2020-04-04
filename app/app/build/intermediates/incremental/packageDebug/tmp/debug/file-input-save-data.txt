@@ -1,11 +1,15 @@
 #Internal package file, do not edit.
-#Tue Mar 03 23:52:08 EST 2020
+#Sat Apr 04 14:08:49 EDT 2020
 1.base=X\:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
+2.path=classes2.dex
 0.baseType=DIRECTORY
+2.base=X\:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
+2.set=DEX
 1.baseType=DIRECTORY
-count=2
+count=3
 1.set=DEX
 0.path=classes.dex
 0.set=DEX
 0.base=X\:\\Oath\\GitHub\\project-developers-of-the-millennium\\app\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+2.baseType=DIRECTORY
 1.path=classes.dex

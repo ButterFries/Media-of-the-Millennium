@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.os.SystemClock.*;
 import android.view.inputmethod.InputMethodManager;
 
+import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.HomePageFragment;
 import com.developersOfTheMillennium.motm.MainActivity;
 import com.developersOfTheMillennium.motm.R;
@@ -61,6 +62,7 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
             JSONObject rtn = postRequest("validateAccount", data);
             int error_code = rtn.getInt("error_code");
+            String session_token = rtn.getString("session_token");
 
             if (error_code == 0) {
                 AppGlobals.userType = "email";
@@ -89,6 +91,8 @@ public class ValidateAccount extends AsyncTask<String, Void, Boolean> {
 
             JSONObject rtn = postRequest("validateAccount", data);
             int error_code = rtn.getInt("error_code");
+            String session_token = rtn.getString("session_token");
+
             if (error_code == 0) {
                 AppGlobals.userType = "username";
                 AppGlobals.user = usernameEmail;

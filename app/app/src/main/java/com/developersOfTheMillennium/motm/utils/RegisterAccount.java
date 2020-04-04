@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
+import com.developersOfTheMillennium.motm.AppGlobals;
 import com.developersOfTheMillennium.motm.HomePageFragment;
 import com.developersOfTheMillennium.motm.MainActivity;
 import com.developersOfTheMillennium.motm.R;
@@ -55,6 +56,7 @@ public class RegisterAccount extends AsyncTask<String, Void, Boolean> {
 
             JSONObject rtn = putRequest("registerAccount", data);
             int error_code = rtn.getInt("error_code");
+            String session_token = rtn.getString("session_token");
 
             if (error_code == 0) {
                 AppGlobals.userType = "username";

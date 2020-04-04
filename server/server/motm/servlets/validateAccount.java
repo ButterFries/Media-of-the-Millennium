@@ -23,21 +23,24 @@ import com.sun.net.httpserver.HttpsExchange;
 
 
 
-/* First send the username/email alone then it will return the hash,
- * apply the hash on the password and send it along with the username/email
+/* 
+ * Client sends { u_name: "my_username", pw: "~~"} or { email: "my_email@example", pw: "~~"}
+ * and it will return { error_code: int, session_token: "x-yy-zzzz" }
  * 
- * Send Send { u_name: "my_username"} or { email: "my_email@example"}
- * and it will return { error_code: int, hash: "x:yy:zzzz" }
- * use applyHash.java on the password and the retrieved hash
- * then send { u_name: "my_username", pw: "hashed_password" }
- * or { email: "my_email@example", pw: "hashed_password" }
- * and it will return (TBD) something like { error_code: int, session_token: String?, etc } 
+ * Error Codes: 
+ *      0 --  successfully verified
+ *      1 --  username doesn't exist
+ *      2 --  email doesn't exist
+ *      3 --  invalid password
+ *      4 --  SQL error (DEPREC)
+ *      ~~
  */
 
 public class validateAccount implements HttpHandler
 {
     private static AppDatabase db;
     private static SessionManager sm;
+    private static Connection conn = null;
 
     public validateAccount(AppDatabase appDB, SessionManager appSM) {
         db = appDB;
@@ -47,7 +50,7 @@ public class validateAccount implements HttpHandler
 
     public void handle(HttpExchange r) {
         System.out.println("\n-Received request [validateAccount]");
-        Connection conn = null;
+        //Connection conn = null;
         HttpsExchange rs = (HttpsExchange) r;
         try {
             if (r.getRequestMethod().equals("POST")) {
@@ -61,16 +64,18 @@ public class validateAccount implements HttpHandler
             }
         } 
         catch (Exception e) {
-            System.out.println("# ERROR HelloWorld.handle ::  " + e);
-            try{
-                rs.sendResponseHeaders(500, -1);
-            }catch (Exception eH500) {
-                System.out.println("# handled error sending h500 ::  "+eH500);
+            if (r.getResponseCode() < 0 ){ //header hasnt been sent yet
+                try{
+                    rs.sendResponseHeaders(500, -1);
+                }catch (Exception eH500) {
+                    System.out.println("# error sending h500 ::  "+eH500);
+                }
             }
         }
         finally {
             try { //this is to safely disconnect from the db if a connection was made
-                db.disconnect(conn);
+                if (conn != null)
+                    db.disconnect(conn);
             }
             catch (Exception eDisconnect){
                 System.out.println("# handled error disconnecting :: "+eDisconnect);

@@ -2,6 +2,11 @@ package server.motm.database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+
+import java.util.Arrays;
+
+import org.json.*;
 
 import server.motm.utils.*;
 
@@ -20,14 +25,6 @@ public class AppDatabase {
     public static String dbPath = "./server/motm/database/appdatabase.db";
     private static String saltshaker = "||password_security++"; //using PBKDF2, this is extra and isn't necessary
 
-    /*public static void main(String[] args) { //does this execute when making new class object? i dun remember
-        System.out.println("AppDatabase running main");
-        try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 
     public AppDatabase() {
         try {
@@ -139,6 +136,10 @@ public class AppDatabase {
             e.printStackTrace();
             return;
         }
+        System.out.println("AppDatabase running main");
+
+        //put code to test here
+        //
     }
 
 

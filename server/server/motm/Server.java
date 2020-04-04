@@ -52,7 +52,7 @@ import java.security.cert.X509Certificate;
 public class Server 
 {
     static int PORT = 8080;
-    static String ADDR = "192.168.50.253";
+    static String ADDR = "0.0.0.0";
     //keytool -genkeypair -keyalg RSA -alias selfsigned -keystore motm_key.jks -storepass developers_of_the_millenium_password_to_motm -validity 360 -keysize 2048
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, CertificateException, UnrecoverableKeyException
